@@ -1,0 +1,515 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57A8F1D9DF43400F881C9 /* AppDelegate.swift */; };
+		CED57A921D9DF43400F881C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED57A911D9DF43400F881C9 /* Assets.xcassets */; };
+		CED57A951D9DF43400F881C9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED57A931D9DF43400F881C9 /* MainMenu.xib */; };
+		CED57AA01D9DF43400F881C9 /* fflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57A9F1D9DF43400F881C9 /* fflowTests.swift */; };
+		CED57AAB1D9DF43400F881C9 /* fflowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AAA1D9DF43400F881C9 /* fflowUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CED57A9C1D9DF43400F881C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CED57A841D9DF43400F881C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CED57A8B1D9DF43400F881C9;
+			remoteInfo = fflow;
+		};
+		CED57AA71D9DF43400F881C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CED57A841D9DF43400F881C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CED57A8B1D9DF43400F881C9;
+			remoteInfo = fflow;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CED57A8C1D9DF43400F881C9 /* fflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CED57A8F1D9DF43400F881C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CED57A911D9DF43400F881C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CED57A941D9DF43400F881C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		CED57A961D9DF43400F881C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CED57A9B1D9DF43400F881C9 /* fflowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fflowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CED57A9F1D9DF43400F881C9 /* fflowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fflowTests.swift; sourceTree = "<group>"; };
+		CED57AA11D9DF43400F881C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CED57AA61D9DF43400F881C9 /* fflowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fflowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CED57AAA1D9DF43400F881C9 /* fflowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fflowUITests.swift; sourceTree = "<group>"; };
+		CED57AAC1D9DF43400F881C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CED57A891D9DF43400F881C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CED57A981D9DF43400F881C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CED57AA31D9DF43400F881C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CED57A831D9DF43400F881C9 = {
+			isa = PBXGroup;
+			children = (
+				CED57A8E1D9DF43400F881C9 /* fflow */,
+				CED57A9E1D9DF43400F881C9 /* fflowTests */,
+				CED57AA91D9DF43400F881C9 /* fflowUITests */,
+				CED57A8D1D9DF43400F881C9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CED57A8D1D9DF43400F881C9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CED57A8C1D9DF43400F881C9 /* fflow.app */,
+				CED57A9B1D9DF43400F881C9 /* fflowTests.xctest */,
+				CED57AA61D9DF43400F881C9 /* fflowUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CED57A8E1D9DF43400F881C9 /* fflow */ = {
+			isa = PBXGroup;
+			children = (
+				CED57A8F1D9DF43400F881C9 /* AppDelegate.swift */,
+				CED57A911D9DF43400F881C9 /* Assets.xcassets */,
+				CED57A931D9DF43400F881C9 /* MainMenu.xib */,
+				CED57A961D9DF43400F881C9 /* Info.plist */,
+			);
+			path = fflow;
+			sourceTree = "<group>";
+		};
+		CED57A9E1D9DF43400F881C9 /* fflowTests */ = {
+			isa = PBXGroup;
+			children = (
+				CED57A9F1D9DF43400F881C9 /* fflowTests.swift */,
+				CED57AA11D9DF43400F881C9 /* Info.plist */,
+			);
+			path = fflowTests;
+			sourceTree = "<group>";
+		};
+		CED57AA91D9DF43400F881C9 /* fflowUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CED57AAA1D9DF43400F881C9 /* fflowUITests.swift */,
+				CED57AAC1D9DF43400F881C9 /* Info.plist */,
+			);
+			path = fflowUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CED57A8B1D9DF43400F881C9 /* fflow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CED57AAF1D9DF43400F881C9 /* Build configuration list for PBXNativeTarget "fflow" */;
+			buildPhases = (
+				CED57A881D9DF43400F881C9 /* Sources */,
+				CED57A891D9DF43400F881C9 /* Frameworks */,
+				CED57A8A1D9DF43400F881C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = fflow;
+			productName = fflow;
+			productReference = CED57A8C1D9DF43400F881C9 /* fflow.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CED57A9A1D9DF43400F881C9 /* fflowTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CED57AB21D9DF43400F881C9 /* Build configuration list for PBXNativeTarget "fflowTests" */;
+			buildPhases = (
+				CED57A971D9DF43400F881C9 /* Sources */,
+				CED57A981D9DF43400F881C9 /* Frameworks */,
+				CED57A991D9DF43400F881C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CED57A9D1D9DF43400F881C9 /* PBXTargetDependency */,
+			);
+			name = fflowTests;
+			productName = fflowTests;
+			productReference = CED57A9B1D9DF43400F881C9 /* fflowTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CED57AA51D9DF43400F881C9 /* fflowUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CED57AB51D9DF43400F881C9 /* Build configuration list for PBXNativeTarget "fflowUITests" */;
+			buildPhases = (
+				CED57AA21D9DF43400F881C9 /* Sources */,
+				CED57AA31D9DF43400F881C9 /* Frameworks */,
+				CED57AA41D9DF43400F881C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CED57AA81D9DF43400F881C9 /* PBXTargetDependency */,
+			);
+			name = fflowUITests;
+			productName = fflowUITests;
+			productReference = CED57AA61D9DF43400F881C9 /* fflowUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CED57A841D9DF43400F881C9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = user;
+				TargetAttributes = {
+					CED57A8B1D9DF43400F881C9 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+					CED57A9A1D9DF43400F881C9 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CED57A8B1D9DF43400F881C9;
+					};
+					CED57AA51D9DF43400F881C9 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CED57A8B1D9DF43400F881C9;
+					};
+				};
+			};
+			buildConfigurationList = CED57A871D9DF43400F881C9 /* Build configuration list for PBXProject "fflow" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CED57A831D9DF43400F881C9;
+			productRefGroup = CED57A8D1D9DF43400F881C9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CED57A8B1D9DF43400F881C9 /* fflow */,
+				CED57A9A1D9DF43400F881C9 /* fflowTests */,
+				CED57AA51D9DF43400F881C9 /* fflowUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CED57A8A1D9DF43400F881C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CED57A921D9DF43400F881C9 /* Assets.xcassets in Resources */,
+				CED57A951D9DF43400F881C9 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CED57A991D9DF43400F881C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CED57AA41D9DF43400F881C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CED57A881D9DF43400F881C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CED57A971D9DF43400F881C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CED57AA01D9DF43400F881C9 /* fflowTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CED57AA21D9DF43400F881C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CED57AAB1D9DF43400F881C9 /* fflowUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CED57A9D1D9DF43400F881C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CED57A8B1D9DF43400F881C9 /* fflow */;
+			targetProxy = CED57A9C1D9DF43400F881C9 /* PBXContainerItemProxy */;
+		};
+		CED57AA81D9DF43400F881C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CED57A8B1D9DF43400F881C9 /* fflow */;
+			targetProxy = CED57AA71D9DF43400F881C9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CED57A931D9DF43400F881C9 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CED57A941D9DF43400F881C9 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CED57AAD1D9DF43400F881C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CED57AAE1D9DF43400F881C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		CED57AB01D9DF43400F881C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = fflow/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = to.fflow;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		CED57AB11D9DF43400F881C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = fflow/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = to.fflow;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		CED57AB31D9DF43400F881C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = fflowTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = to.fflowTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fflow.app/Contents/MacOS/fflow";
+			};
+			name = Debug;
+		};
+		CED57AB41D9DF43400F881C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = fflowTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = to.fflowTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fflow.app/Contents/MacOS/fflow";
+			};
+			name = Release;
+		};
+		CED57AB61D9DF43400F881C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = fflowUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = to.fflowUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = fflow;
+			};
+			name = Debug;
+		};
+		CED57AB71D9DF43400F881C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = fflowUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = to.fflowUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = fflow;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CED57A871D9DF43400F881C9 /* Build configuration list for PBXProject "fflow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CED57AAD1D9DF43400F881C9 /* Debug */,
+				CED57AAE1D9DF43400F881C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CED57AAF1D9DF43400F881C9 /* Build configuration list for PBXNativeTarget "fflow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CED57AB01D9DF43400F881C9 /* Debug */,
+				CED57AB11D9DF43400F881C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CED57AB21D9DF43400F881C9 /* Build configuration list for PBXNativeTarget "fflowTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CED57AB31D9DF43400F881C9 /* Debug */,
+				CED57AB41D9DF43400F881C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CED57AB51D9DF43400F881C9 /* Build configuration list for PBXNativeTarget "fflowUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CED57AB61D9DF43400F881C9 /* Debug */,
+				CED57AB71D9DF43400F881C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CED57A841D9DF43400F881C9 /* Project object */;
+}
