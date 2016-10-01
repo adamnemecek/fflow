@@ -36,6 +36,31 @@ class fflowTests: XCTestCase {
         let gesturesForApp = setting2.gestures["Google Chrome"]
         XCTAssertEqual(gesturesForApp!, ["ur": "key code 124"])
     }
+    func testGestureManager() {
+        let gm = GestureManager()
+        XCTAssertEqual(gm.add(direction: "d"), nil)
+        XCTAssertEqual(gm.add(direction: "r"), nil)
+        XCTAssertEqual(gm.add(direction: nil), "dr")
+        
+        XCTAssertEqual(gm.add(direction: "u"), nil)
+        XCTAssertEqual(gm.add(direction: "v"), nil)
+        XCTAssertEqual(gm.add(direction: "l"), nil)
+        XCTAssertEqual(gm.add(direction: "v"), nil)
+        XCTAssertEqual(gm.add(direction: nil), "ul")
+        
+        XCTAssertEqual(gm.add(direction: "d"), nil)
+        XCTAssertEqual(gm.add(direction: "r"), nil)
+        XCTAssertEqual(gm.add(direction: "r"), nil)
+        XCTAssertEqual(gm.add(direction: nil), "dr")
+        
+        XCTAssertEqual(gm.add(direction: "d"), nil)
+        XCTAssertEqual(gm.add(direction: "r"), nil)
+        XCTAssertEqual(gm.add(direction: "u"), nil)
+        XCTAssertEqual(gm.add(direction: nil), "dru")
+        XCTAssertEqual(gm.add(direction: "d"), nil)
+        XCTAssertEqual(gm.add(direction: "r"), nil)
+        XCTAssertEqual(gm.add(direction: nil), "dr")
+    }
     
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.

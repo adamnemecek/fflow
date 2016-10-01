@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE561BDC1D9FDBDA00861B5A /* GestureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE561BDB1D9FDBDA00861B5A /* GestureManager.swift */; };
 		CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57A8F1D9DF43400F881C9 /* AppDelegate.swift */; };
 		CED57A921D9DF43400F881C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED57A911D9DF43400F881C9 /* Assets.xcassets */; };
 		CED57A951D9DF43400F881C9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED57A931D9DF43400F881C9 /* MainMenu.xib */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE561BDB1D9FDBDA00861B5A /* GestureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureManager.swift; sourceTree = "<group>"; };
 		CED57A8C1D9DF43400F881C9 /* fflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED57A8F1D9DF43400F881C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CED57A911D9DF43400F881C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				CED57A961D9DF43400F881C9 /* Info.plist */,
 				CED57AC21D9E2AC300F881C9 /* Direction.swift */,
 				CED57AC41D9E3C7300F881C9 /* Setting.swift */,
+				CE561BDB1D9FDBDA00861B5A /* GestureManager.swift */,
 			);
 			path = fflow;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */,
+				CE561BDC1D9FDBDA00861B5A /* GestureManager.swift in Sources */,
 				CED57AC31D9E2AC300F881C9 /* Direction.swift in Sources */,
 				CED57AC51D9E3C7300F881C9 /* Setting.swift in Sources */,
 			);
