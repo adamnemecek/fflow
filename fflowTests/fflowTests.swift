@@ -29,6 +29,13 @@ class fflowTests: XCTestCase {
         XCTAssertEqual(Direction.which(-3.0, y: 0.0), .Left)
         XCTAssertEqual(Direction.which(3.0, y: 0.0), .Right)
     }
+    func testSetting() {
+        let setting = Setting()
+        setting.setGesture(appName: "Google Chrome", gesture: "ur", keyCode: 124)
+        let setting2 = Setting()
+        let gesturesForApp = setting2.gestures["Google Chrome"]
+        XCTAssertEqual(gesturesForApp!, ["ur": "key code 124"])
+    }
     
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.

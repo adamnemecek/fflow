@@ -12,13 +12,13 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
+    let setting = Setting()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
         let menu = NSMenu()
         menu.addItem(makeMenuItem(title: "Quit", selector: #selector(quit)))
-        
         statusItem.menu = menu
         statusItem.highlightMode = true
         statusItem.title = "ff"

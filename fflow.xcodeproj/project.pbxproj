@@ -13,6 +13,7 @@
 		CED57AA01D9DF43400F881C9 /* fflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57A9F1D9DF43400F881C9 /* fflowTests.swift */; };
 		CED57AAB1D9DF43400F881C9 /* fflowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AAA1D9DF43400F881C9 /* fflowUITests.swift */; };
 		CED57AC31D9E2AC300F881C9 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AC21D9E2AC300F881C9 /* Direction.swift */; };
+		CED57AC51D9E3C7300F881C9 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AC41D9E3C7300F881C9 /* Setting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		CED57AAA1D9DF43400F881C9 /* fflowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fflowUITests.swift; sourceTree = "<group>"; };
 		CED57AAC1D9DF43400F881C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CED57AC21D9E2AC300F881C9 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
+		CED57AC41D9E3C7300F881C9 /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				CED57A931D9DF43400F881C9 /* MainMenu.xib */,
 				CED57A961D9DF43400F881C9 /* Info.plist */,
 				CED57AC21D9E2AC300F881C9 /* Direction.swift */,
+				CED57AC41D9E3C7300F881C9 /* Setting.swift */,
 			);
 			path = fflow;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			files = (
 				CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */,
 				CED57AC31D9E2AC300F881C9 /* Direction.swift in Sources */,
+				CED57AC51D9E3C7300F881C9 /* Setting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +500,7 @@
 				CED57AB11D9DF43400F881C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CED57AB21D9DF43400F881C9 /* Build configuration list for PBXNativeTarget "fflowTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +509,7 @@
 				CED57AB41D9DF43400F881C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CED57AB51D9DF43400F881C9 /* Build configuration list for PBXNativeTarget "fflowUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +518,7 @@
 				CED57AB71D9DF43400F881C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
