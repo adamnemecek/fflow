@@ -13,31 +13,32 @@ class Setting {
     
     let userDefaults = NSUserDefaultsController().defaults
     
-    var gestures = [String: [String: String]]()
+    var keyStrokes = [String: [String: String]]()
     
     init() {
-        if let gesturesSetting = userDefaults.dictionary(forKey: "gestures") {
-            gestures = gesturesSetting as! [String: [String: String]]
+        if let keyStrokes = userDefaults.dictionary(forKey: "keyStrokes") {
+            self.keyStrokes = keyStrokes as! [String: [String: String]]
         }
     }
     
     private func save() {
-        userDefaults.set(gestures, forKey: "gestures")
+        userDefaults.set(keyStrokes, forKey: "keyStrokes")
     }
     
     func setGesture(appName: String, gesture: String, keyCode: Int,
                     shift: Bool = false, option: Bool = false, command: Bool = false) {
+        
         var modifierKeys = [String]()
         if shift { modifierKeys.append("shift down") }
         if option { modifierKeys.append("option down") }
         if command { modifierKeys.append("command down") }
         
-        var statement = "key code \(keyCode)"
-        if modifierKeys.count > 1 {
-            statement += " using {\(modifierKeys.joined(separator: ","))}"
+        var keyStroke = "key code \(keyCode)"
+        if modifierKeys.count > 0 {
+            keyStroke += " using {\(modifierKeys.joined(separator: ","))}"
         }
         
-        gestures[appName] = [gesture: statement]
+        keyStrokes[appName] = [gesture: keyStroke]
         save()
     }
 }
