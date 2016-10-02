@@ -33,13 +33,19 @@ class fflowTests: XCTestCase {
     
     func testSetting() {
         
-        let setting = Setting()
+        var setting = Setting()
+        setting.reset()
+        
         setting.setGesture(appName: "Google Chrome", gesture: "ur", keyCode: 124)
         setting.setGesture(appName: "Finder", gesture: "dr", keyCode: 123, command: true)
         
-        let setting2 = Setting()
-        XCTAssertEqual(setting2.keyStrokes["Google Chrome"]!["ur"]!, "key code 124")
-        XCTAssertEqual(setting2.keyStrokes["Finder"]!["dr"]!, "key code 123 using {command down}")
+        setting = Setting()
+        
+        XCTAssertNil(setting.keyStrokes["Safari"])
+        XCTAssertEqual(setting.keyStrokes["Google Chrome"]!["ur"]!, "key code 124")
+        XCTAssertEqual(setting.keyStrokes["Finder"]!["dr"]!, "key code 123 using {command down}")
+        
+        setting.reset()
     }
     
     func testGestureManager() {

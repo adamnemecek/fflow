@@ -25,6 +25,11 @@ class Setting {
         userDefaults.set(keyStrokes, forKey: "keyStrokes")
     }
     
+    func reset() {
+        keyStrokes.removeAll()
+        save()
+    }
+    
     func setGesture(appName: String, gesture: String, keyCode: Int,
                     shift: Bool = false, option: Bool = false, command: Bool = false) {
         
