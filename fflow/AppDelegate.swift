@@ -18,6 +18,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
+//        // Initialize setting
+//        setting.setGesture(appName: "Google Chrome", gesture: "dr", keyCode: 13, command: true) // command-w
+//        setting.setGesture(appName: "Google Chrome", gesture: "ud", keyCode: 15, command: true) // command-r
+        
         // Set status menu
         let menu = NSMenu()
         menu.addItem(makeMenuItem(title: "Quit", selector: #selector(quit)))

@@ -37,13 +37,15 @@ class fflowTests: XCTestCase {
         setting.reset()
         
         setting.setGesture(appName: "Google Chrome", gesture: "ur", keyCode: 124)
-        setting.setGesture(appName: "Finder", gesture: "dr", keyCode: 123, command: true)
+        setting.setGesture(appName: "Google Chrome", gesture: "ud", keyCode: 125, shift: true)
+        setting.setGesture(appName: "Finder", gesture: "dr", keyCode: 123, option: true, command: true)
         
         setting = Setting()
         
         XCTAssertNil(setting.keyStrokes["Safari"])
         XCTAssertEqual(setting.keyStrokes["Google Chrome"]!["ur"]!, "key code 124")
-        XCTAssertEqual(setting.keyStrokes["Finder"]!["dr"]!, "key code 123 using {command down}")
+        XCTAssertEqual(setting.keyStrokes["Google Chrome"]!["ud"]!, "key code 125 using {shift down}")
+        XCTAssertEqual(setting.keyStrokes["Finder"]!["dr"]!, "key code 123 using {option down,command down}")
         
         setting.reset()
     }

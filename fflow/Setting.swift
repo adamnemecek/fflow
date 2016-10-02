@@ -43,7 +43,8 @@ class Setting {
             keyStroke += " using {\(modifierKeys.joined(separator: ","))}"
         }
         
-        keyStrokes[appName] = [gesture: keyStroke]
+        if keyStrokes[appName] == nil { keyStrokes[appName] = [:] }
+        keyStrokes[appName]?[gesture] = keyStroke
         save()
     }
 }
