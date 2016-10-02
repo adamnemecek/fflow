@@ -22,6 +22,7 @@ class fflowTests: XCTestCase {
     }
     
     func testDirection() {
+        
         XCTAssertEqual(Direction.which(0.0, y: 0.0), nil)
         XCTAssertEqual(Direction.which(1.0, y: 1.0), .Vague)
         XCTAssertEqual(Direction.which(0.0, y: -5.0), .Up)
@@ -29,15 +30,22 @@ class fflowTests: XCTestCase {
         XCTAssertEqual(Direction.which(-3.0, y: 0.0), .Left)
         XCTAssertEqual(Direction.which(3.0, y: 0.0), .Right)
     }
+    
     func testSetting() {
+        
         let setting = Setting()
         setting.setGesture(appName: "Google Chrome", gesture: "ur", keyCode: 124)
+        setting.setGesture(appName: "Finder", gesture: "dr", keyCode: 123, command: true)
+        
         let setting2 = Setting()
-        let gesturesForApp = setting2.gestures["Google Chrome"]
-        XCTAssertEqual(gesturesForApp!, ["ur": "key code 124"])
+        XCTAssertEqual(setting2.keyStrokes["Google Chrome"]!["ur"]!, "key code 124")
+        XCTAssertEqual(setting2.keyStrokes["Finder"]!["dr"]!, "key code 123 using {command down}")
     }
+    
     func testGestureManager() {
+        
         let gm = GestureManager()
+        
         XCTAssertEqual(gm.add(direction: "d"), nil)
         XCTAssertEqual(gm.add(direction: "r"), nil)
         XCTAssertEqual(gm.add(direction: nil), "dr")
