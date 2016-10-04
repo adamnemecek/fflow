@@ -78,6 +78,14 @@ class fflowTests: XCTestCase {
         XCTAssertEqual(gm.add(direction: nil), "dr")
     }
     
+    func testKey() {
+        
+        XCTAssertEqual(Key.B.code(), 11)
+        XCTAssertEqual(Key.UpArrow.code(), 126)
+        XCTAssertEqual(Key.T.symbol(), "T")
+        XCTAssertEqual(Key.Option.symbol(), "⌥")
+    }
+    
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.
 //        self.measure {
