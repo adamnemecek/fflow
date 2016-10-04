@@ -23,6 +23,7 @@ class Setting {
     
     private func save() {
         userDefaults.set(keyStrokes, forKey: "keyStrokes")
+        userDefaults.synchronize()
     }
     
     func reset() {

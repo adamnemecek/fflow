@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE313D8E1DA0B2C70097ADA2 /* KeyStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE313D8D1DA0B2C70097ADA2 /* KeyStroke.swift */; };
 		CE561BDC1D9FDBDA00861B5A /* GestureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE561BDB1D9FDBDA00861B5A /* GestureManager.swift */; };
+		CEA83E6D1DA3DB07005A9D23 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA83E6C1DA3DB07005A9D23 /* Key.swift */; };
+		CEA83E6F1DA3F11A005A9D23 /* KeySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA83E6E1DA3F11A005A9D23 /* KeySender.swift */; };
 		CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57A8F1D9DF43400F881C9 /* AppDelegate.swift */; };
 		CED57A921D9DF43400F881C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED57A911D9DF43400F881C9 /* Assets.xcassets */; };
 		CED57A951D9DF43400F881C9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED57A931D9DF43400F881C9 /* MainMenu.xib */; };
@@ -35,7 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE313D8D1DA0B2C70097ADA2 /* KeyStroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyStroke.swift; sourceTree = "<group>"; };
 		CE561BDB1D9FDBDA00861B5A /* GestureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureManager.swift; sourceTree = "<group>"; };
+		CEA83E6C1DA3DB07005A9D23 /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		CEA83E6E1DA3F11A005A9D23 /* KeySender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySender.swift; sourceTree = "<group>"; };
 		CED57A8C1D9DF43400F881C9 /* fflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED57A8F1D9DF43400F881C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CED57A911D9DF43400F881C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,6 +112,9 @@
 				CED57AC21D9E2AC300F881C9 /* Direction.swift */,
 				CED57AC41D9E3C7300F881C9 /* Setting.swift */,
 				CE561BDB1D9FDBDA00861B5A /* GestureManager.swift */,
+				CE313D8D1DA0B2C70097ADA2 /* KeyStroke.swift */,
+				CEA83E6C1DA3DB07005A9D23 /* Key.swift */,
+				CEA83E6E1DA3F11A005A9D23 /* KeySender.swift */,
 			);
 			path = fflow;
 			sourceTree = "<group>";
@@ -262,9 +271,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */,
+				CEA83E6F1DA3F11A005A9D23 /* KeySender.swift in Sources */,
+				CE313D8E1DA0B2C70097ADA2 /* KeyStroke.swift in Sources */,
 				CE561BDC1D9FDBDA00861B5A /* GestureManager.swift in Sources */,
 				CED57AC31D9E2AC300F881C9 /* Direction.swift in Sources */,
 				CED57AC51D9E3C7300F881C9 /* Setting.swift in Sources */,
+				CEA83E6D1DA3DB07005A9D23 /* Key.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
