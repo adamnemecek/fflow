@@ -86,6 +86,17 @@ class fflowTests: XCTestCase {
         XCTAssertEqual(Key.Option.symbol(), "⌥")
     }
     
+    func testKeyStroke() {
+        
+        let keyStroke = KeyStroke(keyCode: 123)
+        XCTAssertEqual(keyStroke.keyCode, 123)
+        XCTAssertEqual(keyStroke.modifierKeys, [])
+        
+        let keyStroke2 = KeyStroke(keyCode: 124, shift: true, command: true)
+        XCTAssertEqual(keyStroke2.keyCode, 124)
+        XCTAssertEqual(keyStroke2.modifierKeys, ["shift", "command"])
+    }
+    
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.
 //        self.measure {
