@@ -30,4 +30,16 @@ enum Direction: String {
         }
     }
     
+    static func filter(targetString: String?) -> String {
+        guard targetString != nil else { return "" }
+        
+        return targetString!.characters.map({String($0)})
+            .filter({(string: String) -> Bool in
+                return Direction(rawValue: String(string)) != nil
+            }).joined()
+    }
+    
+    func isVague() -> Bool! {
+        return self == .Vague
+    }
 }

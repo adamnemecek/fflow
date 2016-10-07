@@ -29,73 +29,110 @@ class fflowTests: XCTestCase {
         XCTAssertEqual(Direction.which(0.0, y: 5.0), .Down)
         XCTAssertEqual(Direction.which(-3.0, y: 0.0), .Left)
         XCTAssertEqual(Direction.which(3.0, y: 0.0), .Right)
-    }
-    
-    func testSetting() {
         
-        var setting = Setting()
-        setting.reset()
+        XCTAssertEqual(Direction.Vague.isVague(), true)
         
-        setting.setGesture(appName: "Google Chrome", gesture: "ur", keyCode: 124)
-        setting.setGesture(appName: "Google Chrome", gesture: "ud", keyCode: 125, shift: true)
-        setting.setGesture(appName: "Finder", gesture: "dr", keyCode: 123, option: true, command: true)
-        
-        setting = Setting()
-        
-        XCTAssertNil(setting.keyStrokes["Safari"])
-        XCTAssertEqual(setting.keyStrokes["Google Chrome"]!["ur"]!, "key code 124")
-        XCTAssertEqual(setting.keyStrokes["Google Chrome"]!["ud"]!, "key code 125 using {shift down}")
-        XCTAssertEqual(setting.keyStrokes["Finder"]!["dr"]!, "key code 123 using {option down,command down}")
-        
-        setting.reset()
-    }
-    
-    func testGestureManager() {
-        
-        let gm = GestureManager()
-        
-        XCTAssertEqual(gm.add(direction: "d"), nil)
-        XCTAssertEqual(gm.add(direction: "r"), nil)
-        XCTAssertEqual(gm.add(direction: nil), "dr")
-        
-        XCTAssertEqual(gm.add(direction: "u"), nil)
-        XCTAssertEqual(gm.add(direction: "v"), nil)
-        XCTAssertEqual(gm.add(direction: "l"), nil)
-        XCTAssertEqual(gm.add(direction: "v"), nil)
-        XCTAssertEqual(gm.add(direction: nil), "ul")
-        
-        XCTAssertEqual(gm.add(direction: "d"), nil)
-        XCTAssertEqual(gm.add(direction: "r"), nil)
-        XCTAssertEqual(gm.add(direction: "r"), nil)
-        XCTAssertEqual(gm.add(direction: nil), "dr")
-        
-        XCTAssertEqual(gm.add(direction: "d"), nil)
-        XCTAssertEqual(gm.add(direction: "r"), nil)
-        XCTAssertEqual(gm.add(direction: "u"), nil)
-        XCTAssertEqual(gm.add(direction: nil), "dru")
-        XCTAssertEqual(gm.add(direction: "d"), nil)
-        XCTAssertEqual(gm.add(direction: "r"), nil)
-        XCTAssertEqual(gm.add(direction: nil), "dr")
-    }
-    
-    func testKey() {
-        
-        XCTAssertEqual(Key.B.code(), 11)
-        XCTAssertEqual(Key.UpArrow.code(), 126)
-        XCTAssertEqual(Key.T.symbol(), "T")
-        XCTAssertEqual(Key.Option.symbol(), "⌥")
+        XCTAssertEqual(Direction.filter(targetString: "iuydl rpre"), "udlrr")
     }
     
     func testKeyStroke() {
         
-        let keyStroke = KeyStroke(keyCode: 123)
-        XCTAssertEqual(keyStroke.keyCode, 123)
-        XCTAssertEqual(keyStroke.modifierKeys, [])
+        let keyStroke = Keystroke(keyCode: 43, command: true)
+        XCTAssertEqual(keyStroke.keyCode, 43)
+        XCTAssertEqual(keyStroke.modifierKeys, ["command"])
         
-        let keyStroke2 = KeyStroke(keyCode: 124, shift: true, command: true)
+        let keyStroke2 = Keystroke(keyCode: 124, shift: true, command: true)
         XCTAssertEqual(keyStroke2.keyCode, 124)
         XCTAssertEqual(keyStroke2.modifierKeys, ["shift", "command"])
+        XCTAssertEqual(keyStroke2.toString(), "shift-command-124")
     }
+    
+    func testGesture() {
+        
+        let gesture = Gesture()
+        
+        XCTAssertEqual(gesture.count, 0)
+        XCTAssertEqual(gesture.last, nil)
+        XCTAssertEqual(gesture.toString(), "")
+        XCTAssertEqual(gesture.copy().toString(), "")
+        
+        gesture.clear()
+        XCTAssertEqual(gesture.toString(), "")
+        
+        gesture.append(direction: Direction.Down)
+        XCTAssertEqual(gesture.toString(), "d")
+        
+        gesture.append(direction: Direction.Down)
+        gesture.append(direction: Direction.Up)
+        gesture.append(direction: Direction.Left)
+        XCTAssertEqual(gesture.toString(), "ddul")
+        XCTAssertEqual(gesture.last, .Left)
+        XCTAssertEqual(gesture.count, 4)
+        
+        let copied = gesture.copy()
+        gesture.clear()
+        XCTAssertEqual(copied.toString(), "ddul")
+        XCTAssertEqual(gesture.toString(), "")
+        
+        XCTAssertEqual(Gesture(fromString: "ud").toString(), "ud")
+    }
+    
+    func testGestureProcessor() {
+        
+        let gm = GestureProcessor()
+        
+        let u: Direction? = .Up
+        let d: Direction? = .Down
+        let l: Direction? = .Left
+        let r: Direction? = .Right
+        let v: Direction? = .Vague
+        
+        XCTAssertNil(gm.append(direction: u))
+        XCTAssertNil(gm.append(direction: nil))
+        
+        XCTAssertNil(gm.append(direction: d))
+        XCTAssertNil(gm.append(direction: r))
+        XCTAssertEqual(gm.append(direction: nil)?.toString(), "dr")
+        
+        XCTAssertNil(gm.append(direction: u))
+        XCTAssertNil(gm.append(direction: v))
+        XCTAssertNil(gm.append(direction: l))
+        XCTAssertNil(gm.append(direction: v))
+        XCTAssertEqual(gm.append(direction: nil)?.toString(), "ul")
+        
+        XCTAssertNil(gm.append(direction: d))
+        XCTAssertNil(gm.append(direction: r))
+        XCTAssertNil(gm.append(direction: v))
+        XCTAssertNil(gm.append(direction: r))
+        XCTAssertNil(gm.append(direction: u))
+        XCTAssertEqual(gm.append(direction: nil)?.toString(), "dru")
+    }
+    
+    func testGestureCommand() {
+        
+        let cmdW = Keystroke(keyCode: 13, command: true) // command-w
+        let dr = Gesture(fromString: "dr")
+        let drCmdW = GestureCommand(gesture: dr, keystroke: cmdW)
+        XCTAssertEqual(drCmdW.gesture.toString(), dr.toString())
+        XCTAssertEqual(drCmdW.gestureString, dr.toString())
+        XCTAssertEqual(drCmdW.keystroke.toString(), cmdW.toString())
+    }
+    
+    func testGestureCommandManager() {
+        
+        let cmdR = Keystroke(keyCode: 15, command: true) // command-r
+        let ud = Gesture(fromString: "ud")
+        let udCmdR = GestureCommand(gesture: ud, keystroke: cmdR)
+        
+        let gestureCommandManager = GestureCommandManager()
+        gestureCommandManager.append(appName: "Finder", gestureCommand: udCmdR)
+        
+        let keystroke = gestureCommandManager.getKeystroke(appName: "Finder", gesture: ud)
+        
+        XCTAssertEqual(keystroke?.toString(), cmdR.toString())
+        
+    }
+    
     
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.

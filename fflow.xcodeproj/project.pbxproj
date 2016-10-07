@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE313D8E1DA0B2C70097ADA2 /* KeyStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE313D8D1DA0B2C70097ADA2 /* KeyStroke.swift */; };
-		CE561BDC1D9FDBDA00861B5A /* GestureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE561BDB1D9FDBDA00861B5A /* GestureManager.swift */; };
-		CEA83E6D1DA3DB07005A9D23 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA83E6C1DA3DB07005A9D23 /* Key.swift */; };
-		CEA83E6F1DA3F11A005A9D23 /* KeySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA83E6E1DA3F11A005A9D23 /* KeySender.swift */; };
+		CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */; };
+		CE561BDC1D9FDBDA00861B5A /* GestureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */; };
+		CE848DFD1DA752130097E42F /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848DFC1DA752130097E42F /* Preference.swift */; };
+		CEBD00031DA69196006B1EE1 /* GestureCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD00021DA69196006B1EE1 /* GestureCommand.swift */; };
+		CEBD00051DA693FF006B1EE1 /* Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD00041DA693FF006B1EE1 /* Gesture.swift */; };
 		CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57A8F1D9DF43400F881C9 /* AppDelegate.swift */; };
 		CED57A921D9DF43400F881C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED57A911D9DF43400F881C9 /* Assets.xcassets */; };
 		CED57A951D9DF43400F881C9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED57A931D9DF43400F881C9 /* MainMenu.xib */; };
 		CED57AA01D9DF43400F881C9 /* fflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57A9F1D9DF43400F881C9 /* fflowTests.swift */; };
 		CED57AAB1D9DF43400F881C9 /* fflowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AAA1D9DF43400F881C9 /* fflowUITests.swift */; };
 		CED57AC31D9E2AC300F881C9 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AC21D9E2AC300F881C9 /* Direction.swift */; };
-		CED57AC51D9E3C7300F881C9 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AC41D9E3C7300F881C9 /* Setting.swift */; };
+		CED57AC51D9E3C7300F881C9 /* GestureCommandManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AC41D9E3C7300F881C9 /* GestureCommandManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,10 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CE313D8D1DA0B2C70097ADA2 /* KeyStroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyStroke.swift; sourceTree = "<group>"; };
-		CE561BDB1D9FDBDA00861B5A /* GestureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureManager.swift; sourceTree = "<group>"; };
-		CEA83E6C1DA3DB07005A9D23 /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
-		CEA83E6E1DA3F11A005A9D23 /* KeySender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySender.swift; sourceTree = "<group>"; };
+		CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keystroke.swift; sourceTree = "<group>"; };
+		CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureProcessor.swift; sourceTree = "<group>"; };
+		CE848DFC1DA752130097E42F /* Preference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
+		CEBD00021DA69196006B1EE1 /* GestureCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureCommand.swift; sourceTree = "<group>"; };
+		CEBD00041DA693FF006B1EE1 /* Gesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gesture.swift; sourceTree = "<group>"; };
 		CED57A8C1D9DF43400F881C9 /* fflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED57A8F1D9DF43400F881C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CED57A911D9DF43400F881C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,7 +56,7 @@
 		CED57AAA1D9DF43400F881C9 /* fflowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fflowUITests.swift; sourceTree = "<group>"; };
 		CED57AAC1D9DF43400F881C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CED57AC21D9E2AC300F881C9 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
-		CED57AC41D9E3C7300F881C9 /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		CED57AC41D9E3C7300F881C9 /* GestureCommandManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureCommandManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,12 +111,13 @@
 				CED57A911D9DF43400F881C9 /* Assets.xcassets */,
 				CED57A931D9DF43400F881C9 /* MainMenu.xib */,
 				CED57A961D9DF43400F881C9 /* Info.plist */,
+				CE848DFC1DA752130097E42F /* Preference.swift */,
 				CED57AC21D9E2AC300F881C9 /* Direction.swift */,
-				CED57AC41D9E3C7300F881C9 /* Setting.swift */,
-				CE561BDB1D9FDBDA00861B5A /* GestureManager.swift */,
-				CE313D8D1DA0B2C70097ADA2 /* KeyStroke.swift */,
-				CEA83E6C1DA3DB07005A9D23 /* Key.swift */,
-				CEA83E6E1DA3F11A005A9D23 /* KeySender.swift */,
+				CEBD00041DA693FF006B1EE1 /* Gesture.swift */,
+				CEBD00021DA69196006B1EE1 /* GestureCommand.swift */,
+				CED57AC41D9E3C7300F881C9 /* GestureCommandManager.swift */,
+				CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */,
+				CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */,
 			);
 			path = fflow;
 			sourceTree = "<group>";
@@ -270,13 +273,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEBD00051DA693FF006B1EE1 /* Gesture.swift in Sources */,
 				CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */,
-				CEA83E6F1DA3F11A005A9D23 /* KeySender.swift in Sources */,
-				CE313D8E1DA0B2C70097ADA2 /* KeyStroke.swift in Sources */,
-				CE561BDC1D9FDBDA00861B5A /* GestureManager.swift in Sources */,
+				CE848DFD1DA752130097E42F /* Preference.swift in Sources */,
+				CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */,
+				CE561BDC1D9FDBDA00861B5A /* GestureProcessor.swift in Sources */,
 				CED57AC31D9E2AC300F881C9 /* Direction.swift in Sources */,
-				CED57AC51D9E3C7300F881C9 /* Setting.swift in Sources */,
-				CEA83E6D1DA3DB07005A9D23 /* Key.swift in Sources */,
+				CEBD00031DA69196006B1EE1 /* GestureCommand.swift in Sources */,
+				CED57AC51D9E3C7300F881C9 /* GestureCommandManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

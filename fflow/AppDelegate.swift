@@ -12,15 +12,21 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
-    let setting = Setting()
-    let gestureManager = GestureManager()
+    let gestureProcessor = GestureProcessor()
+    let gestureCommandManager = GestureCommandManager()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
-//        // Initialize setting
-//        setting.setGesture(appName: "Google Chrome", gesture: "dr", keyCode: 13, command: true) // command-w
-//        setting.setGesture(appName: "Google Chrome", gesture: "ud", keyCode: 15, command: true) // command-r
+        // Initialize setting
+        let cmdW = Keystroke(keyCode: 13, command: true) // command-w
+        let dr = Gesture(fromString: "dr")
+        let drCmdW = GestureCommand(gesture: dr, keystroke: cmdW)
+        gestureCommandManager.append(appName: "Google Chrome", gestureCommand: drCmdW)
+        let cmdR = Keystroke(keyCode: 15, command: true) // command-r
+        let ud = Gesture(fromString: "ud")
+        let udCmdR = GestureCommand(gesture: ud, keystroke: cmdR)
+        gestureCommandManager.append(appName: "Google Chrome", gestureCommand: udCmdR)
         
         // Set status menu
         let menu = NSMenu()
@@ -36,17 +42,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 
                 let x = evt.scrollingDeltaX
                 let y = evt.scrollingDeltaY
-                let direction: String? = Direction.which(x, y: y)?.rawValue
+                let direction: Direction? = Direction.which(x, y: y)
                 
-                guard let gesture = self.gestureManager.add(direction: direction) else { return }
+                guard let gesture = self.gestureProcessor.append(direction: direction) else { return }
                 guard let frontmostAppName = NSWorkspace.shared().frontmostApplication?.localizedName else { return }
-                guard let keyStrokes = self.setting.keyStrokes[frontmostAppName] else { return }
+                guard let keystroke = self.gestureCommandManager.getKeystroke(appName: frontmostAppName, gesture: gesture) else { return }
                 
-                guard let keyStroke = keyStrokes[gesture] else { return }
-                
-                print(keyStroke)
-//                var error: NSDictionary?
-//                keyStroke.executeAndReturnError(&error)
+                keystroke.dispatchTo(appName: frontmostAppName)
         })
     }
 
