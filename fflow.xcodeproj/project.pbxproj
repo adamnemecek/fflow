@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */; };
+		CE313D8E1DA0B2C70097ADA2 /* Keystroke_.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE313D8D1DA0B2C70097ADA2 /* Keystroke_.swift */; };
 		CE561BDC1D9FDBDA00861B5A /* GestureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */; };
 		CE848DFD1DA752130097E42F /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848DFC1DA752130097E42F /* Preference.swift */; };
 		CEBD00031DA69196006B1EE1 /* GestureCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD00021DA69196006B1EE1 /* GestureCommand.swift */; };
@@ -39,7 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keystroke.swift; sourceTree = "<group>"; };
+		CE313D8D1DA0B2C70097ADA2 /* Keystroke_.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keystroke_.swift; sourceTree = "<group>"; };
 		CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureProcessor.swift; sourceTree = "<group>"; };
 		CE848DFC1DA752130097E42F /* Preference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
 		CEBD00021DA69196006B1EE1 /* GestureCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureCommand.swift; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 				CEBD00021DA69196006B1EE1 /* GestureCommand.swift */,
 				CED57AC41D9E3C7300F881C9 /* GestureCommandManager.swift */,
 				CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */,
-				CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */,
+				CE313D8D1DA0B2C70097ADA2 /* Keystroke_.swift */,
 			);
 			path = fflow;
 			sourceTree = "<group>";
@@ -276,7 +276,7 @@
 				CEBD00051DA693FF006B1EE1 /* Gesture.swift in Sources */,
 				CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */,
 				CE848DFD1DA752130097E42F /* Preference.swift in Sources */,
-				CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */,
+				CE313D8E1DA0B2C70097ADA2 /* Keystroke_.swift in Sources */,
 				CE561BDC1D9FDBDA00861B5A /* GestureProcessor.swift in Sources */,
 				CED57AC31D9E2AC300F881C9 /* Direction.swift in Sources */,
 				CEBD00031DA69196006B1EE1 /* GestureCommand.swift in Sources */,
