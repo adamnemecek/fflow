@@ -52,4 +52,9 @@ class GestureCommandsManager {
         }
         return gestureCommand.keystroke
     }
+    
+    func getKeystroke(appName: String, gestureString: String) -> Keystroke? {
+        let gesture = Gesture(fromString: gestureString)
+        return self.getKeystroke(appName: appName, gesture: gesture)
+    }
 }
