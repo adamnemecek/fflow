@@ -163,6 +163,9 @@ class fflowTests: XCTestCase {
         
         XCTAssertEqual(gestureCommandsManager.getKeystroke(appName: "Finder", gesture: gestureCommand.gesture)?.toString(), "shift-T")
         XCTAssertEqual(gestureCommandsManager.getKeystroke(appName: "Finder", gestureString: "ur")?.toString(), "shift-T")
+        
+        let serialized = gestureCommandsManager.serialize()
+        XCTAssertEqual(serialized["Finder"]!, ["ur": "shift-T", "lurd": "shift-T"])
     }
     
 //    func testPerformanceExample() {

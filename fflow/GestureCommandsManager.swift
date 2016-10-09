@@ -57,4 +57,13 @@ class GestureCommandsManager {
         let gesture = Gesture(fromString: gestureString)
         return self.getKeystroke(appName: appName, gesture: gesture)
     }
+    
+    func serialize() -> [String: [String: String]] {
+        
+        var serialized: [String: [String: String]] = [:]
+        for gestureCommandsforApp in self.gestureCommandsForApps{
+            serialized[gestureCommandsforApp.appName] = gestureCommandsforApp.serialize()
+        }
+        return serialized
+    }
 }
