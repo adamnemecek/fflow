@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class GestureCommandManager {
+class GestureCommandsForApp {
     
     let appName: String
     private var gestureCommands: [GestureCommand] = []

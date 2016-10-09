@@ -135,7 +135,7 @@ class fflowTests: XCTestCase {
         let ud = Gesture(fromString: "ud")
         let udCmdR = GestureCommand(gesture: ud, keystroke: cmdR)
         
-        let gestureCommandManager = GestureCommandManager(appName: "Finder")
+        let gestureCommandManager = GestureCommandsForApp(appName: "Finder")
         gestureCommandManager.append(gestureCommand: udCmdR)
         gestureCommandManager.append(gestureString: "lr", keystrokeString: "command-t")
         
@@ -150,13 +150,13 @@ class fflowTests: XCTestCase {
         XCTAssertEqual(lrCommand?.keystroke.toString(), "command-T")
     }
     
-    func testTargetAppManager() {
+    func testGestureCommandsManager() {
         
-        let targetAppManager = TargetAppManager()
+        let gestureCommandsManager = GestureCommandsManager()
         let gestureCommand = GestureCommand(gestureString: "lurd", keystrokeString: "shift-t")!
-        targetAppManager.append(appName: "Finder", gestureCommand: gestureCommand)
+        gestureCommandsManager.append(appName: "Finder", gestureCommand: gestureCommand)
         
-        XCTAssertEqual(targetAppManager.getKeystroke(appName: "Finder", gesture: gestureCommand.gesture)?.toString(), "shift-T")
+        XCTAssertEqual(gestureCommandsManager.getKeystroke(appName: "Finder", gesture: gestureCommand.gesture)?.toString(), "shift-T")
     }
     
 //    func testPerformanceExample() {
