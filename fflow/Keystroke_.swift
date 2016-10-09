@@ -11,32 +11,36 @@ import Foundation
 
 class Keystroke {
     
-    var keyCode: Int = -1
+    var keyCode: Int? = nil
     var modifierKeys: [String] = []
     var error: NSDictionary? = [:]
     
     init(keyCode: Int, shift: Bool = false, control: Bool = false, option: Bool = false, command: Bool = false) {
         
         self.keyCode = keyCode
-        if shift { modifierKeys.append("shift") }
         if control { modifierKeys.append("control") }
         if option { modifierKeys.append("option") }
+        if shift { modifierKeys.append("shift") }
         if command { modifierKeys.append("command") }
     }
     
-    init(KeystrokeFormatString: String) {
+    init?(fromString: String) {
         
-        for _part in KeystrokeFormatString.characters.split(separator: "-") {
+        var parts: [String] = fromString.characters.split(separator: "-").map({String($0)})
+        
+        guard let key = parts.popLast() else { return nil }
+        
+        for part in parts {
             
-            let part = String(_part)
             switch (part) {
             case "shift": modifierKeys.append("shift")
             case "control": modifierKeys.append("control")
             case "option": modifierKeys.append("option")
             case "command": modifierKeys.append("command")
-            default: keyCode = Int(part)!
+            default: break
             }
         }
+        
     }
     
     func dispatchTo(appName: String) {
