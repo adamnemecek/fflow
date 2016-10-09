@@ -138,16 +138,16 @@ class fflowTests: XCTestCase {
         let ud = Gesture(fromString: "ud")
         let udCmdR = GestureCommand(gesture: ud, keystroke: cmdR)
         
-        let gestureCommandManager = GestureCommandsForApp(appName: "Finder")
-        gestureCommandManager.append(gestureCommand: udCmdR)
-        gestureCommandManager.append(gestureString: "lr", keystrokeString: "command-t")
+        let gestureCommandsForApp = GestureCommandsForApp(appName: "Finder")
+        gestureCommandsForApp.append(gestureCommand: udCmdR)
+        gestureCommandsForApp.append(gestureString: "lr", keystrokeString: "command-t")
         
-        let udCommand = gestureCommandManager.getGestureCommand(gesture: ud)
+        let udCommand = gestureCommandsForApp.getGestureCommand(gesture: ud)
         XCTAssertEqual(udCommand?.gesture.toString(), ud.toString())
         XCTAssertEqual(udCommand?.gestureString, ud.toString())
         XCTAssertEqual(udCommand?.keystroke.toString(), cmdR.toString())
         
-        let lrCommand = gestureCommandManager.getGestureCommand(gestureString: "lr")
+        let lrCommand = gestureCommandsForApp.getGestureCommand(gestureString: "lr")
         XCTAssertEqual(lrCommand?.gesture.toString(), "lr")
         XCTAssertEqual(lrCommand?.gestureString, "lr")
         XCTAssertEqual(lrCommand?.keystroke.toString(), "command-T")
