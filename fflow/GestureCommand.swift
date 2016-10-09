@@ -13,6 +13,13 @@ class GestureCommand {
     let gesture: Gesture
     let keystroke: Keystroke
     
+    var gestureString: String {
+        return gesture.toString()
+    }
+    var keystrokeString: String {
+        return keystroke.toString()
+    }
+    
     init(gesture: Gesture, keystroke: Keystroke) {
         self.gesture = gesture
         self.keystroke = keystroke
@@ -22,9 +29,5 @@ class GestureCommand {
         guard let keystroke = Keystroke(fromString: keystrokeString) else { return nil }
         self.keystroke = keystroke
         self.gesture = Gesture(fromString: gestureString)
-    }
-    
-    var gestureString: String? {
-        return gesture.toString()
     }
 }

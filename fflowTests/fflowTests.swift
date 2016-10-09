@@ -124,9 +124,12 @@ class fflowTests: XCTestCase {
         let cmdW = Keystroke(keyCode: 13, command: true)! // command-w
         let dr = Gesture(fromString: "dr")
         let drCmdW = GestureCommand(gesture: dr, keystroke: cmdW)
-        XCTAssertEqual(drCmdW.gesture.toString(), dr.toString())
         XCTAssertEqual(drCmdW.gestureString, dr.toString())
-        XCTAssertEqual(drCmdW.keystroke.toString(), cmdW.toString())
+        XCTAssertEqual(drCmdW.keystrokeString, cmdW.toString())
+        
+        let drdrOptU = GestureCommand(gestureString: "drdr", keystrokeString: "option-u")!
+        XCTAssertEqual(drdrOptU.gestureString, "drdr")
+        XCTAssertEqual(drdrOptU.keystrokeString, "option-U")
     }
     
     func testGestureCommandsForApp() {
