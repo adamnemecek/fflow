@@ -141,6 +141,7 @@ class fflowTests: XCTestCase {
         let gestureCommandsForApp = GestureCommandsForApp(appName: "Finder")
         gestureCommandsForApp.append(gestureCommand: udCmdR)
         gestureCommandsForApp.append(gestureString: "lr", keystrokeString: "command-t")
+        XCTAssertEqual(gestureCommandsForApp.serialize(), ["ud": "command-R", "lr": "command-T"])
         
         let udCommand = gestureCommandsForApp.getGestureCommand(gesture: ud)
         XCTAssertEqual(udCommand?.gesture.toString(), ud.toString())

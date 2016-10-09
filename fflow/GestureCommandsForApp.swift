@@ -51,6 +51,14 @@ class GestureCommandsForApp {
         return self.getGestureCommand(gestureString: gestureString)
     }
     
+    func serialize() -> [String: String] {
+        var serialized: [String: String] = [:]
+        for gestureCommand in gestureCommands {
+            serialized[gestureCommand.gestureString] = gestureCommand.keystrokeString
+        }
+        return serialized
+    }
+    
     func reset() {
         gestureCommands.removeAll()
     }
