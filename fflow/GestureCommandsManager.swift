@@ -35,6 +35,14 @@ class GestureCommandsManager {
         }
     }
     
+    func append(appName: String, gestureString: String, keystrokeString: String) -> Bool {
+        guard let gestureCommand = GestureCommand(gestureString: gestureString, keystrokeString: keystrokeString) else {
+            return false
+        }
+        self.append(appName: appName, gestureCommand: gestureCommand)
+        return true
+    }
+    
     func getKeystroke(appName: String, gesture: Gesture) -> Keystroke? {
         guard let gestureCommandsForApp = self.getGestureCommandsForApp(appName: appName) else {
             return nil

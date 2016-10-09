@@ -155,6 +155,7 @@ class fflowTests: XCTestCase {
         let gestureCommandsManager = GestureCommandsManager()
         let gestureCommand = GestureCommand(gestureString: "lurd", keystrokeString: "shift-t")!
         gestureCommandsManager.append(appName: "Finder", gestureCommand: gestureCommand)
+        gestureCommandsManager.append(appName: "Finder", gestureString: "ur", keystrokeString: "shift-t")
         
         XCTAssertEqual(gestureCommandsManager.getKeystroke(appName: "Finder", gesture: gestureCommand.gesture)?.toString(), "shift-T")
     }
