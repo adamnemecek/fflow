@@ -27,12 +27,12 @@ class GestureCommandsManager {
     }
     
     func append(appName: String, gestureCommand: GestureCommand) {
-        let gestureCommandsForApp = self.getGestureCommandsForApp(appName: appName)
+        var gestureCommandsForApp = self.getGestureCommandsForApp(appName: appName)
         if gestureCommandsForApp == nil {
-            let gestureCommandsForApp = GestureCommandsForApp(appName: appName)
-            gestureCommandsForApp.append(gestureCommand: gestureCommand)
-            self.append(gestureCommandsForApp: gestureCommandsForApp)
+            gestureCommandsForApp = GestureCommandsForApp(appName: appName)
         }
+        gestureCommandsForApp?.append(gestureCommand: gestureCommand)
+        self.append(gestureCommandsForApp: gestureCommandsForApp!)
     }
     
     func append(appName: String, gestureString: String, keystrokeString: String) -> Bool {
