@@ -35,16 +35,27 @@ class fflowTests: XCTestCase {
         XCTAssertEqual(Direction.filter(targetString: "iuydl rpre"), "udlrr")
     }
     
+    func testKey() {
+        
+        var key: Key
+        key = Key(fromCode: 3)!
+        XCTAssertEqual(key.code, 3)
+        XCTAssertEqual(key.symbol, "F")
+        XCTAssertEqual(key.name, "F")
+        
+    }
+    
     func testKeyStroke() {
         
-        let keyStroke = Keystroke(keyCode: 43, command: true)
-        XCTAssertEqual(keyStroke.keyCode, 43)
-        XCTAssertEqual(keyStroke.modifierKeys, ["command"])
+        var keystroke: Keystroke
         
-        let keyStroke2 = Keystroke(keyCode: 124, shift: true, command: true)
-        XCTAssertEqual(keyStroke2.keyCode, 124)
-        XCTAssertEqual(keyStroke2.modifierKeys, ["shift", "command"])
-        XCTAssertEqual(keyStroke2.toString(), "shift-command-124")
+        XCTAssertNil(Keystroke(fromString: ""))
+        
+        keystroke = Keystroke(keyName: "d", command: true)!
+        XCTAssertEqual(keystroke.toString(), "command-D")
+        
+        keystroke = Keystroke(keySymbol: "9", shift: true, command: true)!
+        XCTAssertEqual(keystroke.toString(), "shift-command-9")
     }
     
     func testGesture() {
@@ -110,7 +121,7 @@ class fflowTests: XCTestCase {
     
     func testGestureCommand() {
         
-        let cmdW = Keystroke(keyCode: 13, command: true) // command-w
+        let cmdW = Keystroke(keyCode: 13, command: true)! // command-w
         let dr = Gesture(fromString: "dr")
         let drCmdW = GestureCommand(gesture: dr, keystroke: cmdW)
         XCTAssertEqual(drCmdW.gesture.toString(), dr.toString())
@@ -120,19 +131,33 @@ class fflowTests: XCTestCase {
     
     func testGestureCommandManager() {
         
-        let cmdR = Keystroke(keyCode: 15, command: true) // command-r
+        let cmdR = Keystroke(keyCode: 15, command: true)! // command-r
         let ud = Gesture(fromString: "ud")
         let udCmdR = GestureCommand(gesture: ud, keystroke: cmdR)
         
-        let gestureCommandManager = GestureCommandManager()
-        gestureCommandManager.append(appName: "Finder", gestureCommand: udCmdR)
+        let gestureCommandManager = GestureCommandManager(appName: "Finder")
+        gestureCommandManager.append(gestureCommand: udCmdR)
+        gestureCommandManager.append(gestureString: "lr", keystrokeString: "command-t")
         
-        let keystroke = gestureCommandManager.getKeystroke(appName: "Finder", gesture: ud)
+        let udCommand = gestureCommandManager.getGestureCommand(gesture: ud)
+        XCTAssertEqual(udCommand?.gesture.toString(), ud.toString())
+        XCTAssertEqual(udCommand?.gestureString, ud.toString())
+        XCTAssertEqual(udCommand?.keystroke.toString(), cmdR.toString())
         
-        XCTAssertEqual(keystroke?.toString(), cmdR.toString())
-        
+        let lrCommand = gestureCommandManager.getGestureCommand(gestureString: "lr")
+        XCTAssertEqual(lrCommand?.gesture.toString(), "lr")
+        XCTAssertEqual(lrCommand?.gestureString, "lr")
+        XCTAssertEqual(lrCommand?.keystroke.toString(), "command-T")
     }
     
+    func testTargetAppManager() {
+        
+        let targetAppManager = TargetAppManager()
+        let gestureCommand = GestureCommand(gestureString: "lurd", keystrokeString: "shift-t")!
+        targetAppManager.append(appName: "Finder", gestureCommand: gestureCommand)
+        
+        XCTAssertEqual(targetAppManager.getKeystroke(appName: "Finder", gesture: gestureCommand.gesture)?.toString(), "shift-T")
+    }
     
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.

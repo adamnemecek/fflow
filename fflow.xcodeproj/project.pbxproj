@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE313D8E1DA0B2C70097ADA2 /* Keystroke_.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE313D8D1DA0B2C70097ADA2 /* Keystroke_.swift */; };
+		CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */; };
 		CE561BDC1D9FDBDA00861B5A /* GestureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */; };
 		CE848DFD1DA752130097E42F /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848DFC1DA752130097E42F /* Preference.swift */; };
+		CE94A1FB1DAA0ACB00811518 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94A1FA1DAA0ACB00811518 /* Key.swift */; };
+		CE9B96621DA8B1C3004AB707 /* TargetAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B96611DA8B1C3004AB707 /* TargetAppManager.swift */; };
 		CEBD00031DA69196006B1EE1 /* GestureCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD00021DA69196006B1EE1 /* GestureCommand.swift */; };
 		CEBD00051DA693FF006B1EE1 /* Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD00041DA693FF006B1EE1 /* Gesture.swift */; };
 		CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57A8F1D9DF43400F881C9 /* AppDelegate.swift */; };
@@ -39,9 +41,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CE313D8D1DA0B2C70097ADA2 /* Keystroke_.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keystroke_.swift; sourceTree = "<group>"; };
+		CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keystroke.swift; sourceTree = "<group>"; };
 		CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureProcessor.swift; sourceTree = "<group>"; };
 		CE848DFC1DA752130097E42F /* Preference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
+		CE94A1FA1DAA0ACB00811518 /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		CE9B96611DA8B1C3004AB707 /* TargetAppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetAppManager.swift; sourceTree = "<group>"; };
 		CEBD00021DA69196006B1EE1 /* GestureCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureCommand.swift; sourceTree = "<group>"; };
 		CEBD00041DA693FF006B1EE1 /* Gesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gesture.swift; sourceTree = "<group>"; };
 		CED57A8C1D9DF43400F881C9 /* fflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,7 +121,9 @@
 				CEBD00021DA69196006B1EE1 /* GestureCommand.swift */,
 				CED57AC41D9E3C7300F881C9 /* GestureCommandManager.swift */,
 				CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */,
-				CE313D8D1DA0B2C70097ADA2 /* Keystroke_.swift */,
+				CE94A1FA1DAA0ACB00811518 /* Key.swift */,
+				CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */,
+				CE9B96611DA8B1C3004AB707 /* TargetAppManager.swift */,
 			);
 			path = fflow;
 			sourceTree = "<group>";
@@ -274,9 +280,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEBD00051DA693FF006B1EE1 /* Gesture.swift in Sources */,
+				CE94A1FB1DAA0ACB00811518 /* Key.swift in Sources */,
 				CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */,
+				CE9B96621DA8B1C3004AB707 /* TargetAppManager.swift in Sources */,
 				CE848DFD1DA752130097E42F /* Preference.swift in Sources */,
-				CE313D8E1DA0B2C70097ADA2 /* Keystroke_.swift in Sources */,
+				CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */,
 				CE561BDC1D9FDBDA00861B5A /* GestureProcessor.swift in Sources */,
 				CED57AC31D9E2AC300F881C9 /* Direction.swift in Sources */,
 				CEBD00031DA69196006B1EE1 /* GestureCommand.swift in Sources */,

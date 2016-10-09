@@ -11,50 +11,73 @@ import Foundation
 
 class Keystroke {
     
-    var keyCode: Int? = nil
-    var modifierKeys: [String] = []
+    var key: Key
+    var modifiers: [Key] = []
     var error: NSDictionary? = [:]
     
-    init(keyCode: Int, shift: Bool = false, control: Bool = false, option: Bool = false, command: Bool = false) {
+    init?(keyCode: UInt8, shift: Bool = false, control: Bool = false, option: Bool = false, command: Bool = false) {
         
-        self.keyCode = keyCode
-        if control { modifierKeys.append("control") }
-        if option { modifierKeys.append("option") }
-        if shift { modifierKeys.append("shift") }
-        if command { modifierKeys.append("command") }
+        guard let key = Key(fromCode: keyCode) else { return nil }
+        self.key = key
+        self.modifiers = detectModifiers(shift: shift, control: control, option: option, command: command)
+    }
+    
+    init?(keySymbol: String, shift: Bool = false, control: Bool = false, option: Bool = false, command: Bool = false) {
+        
+        guard let key = Key(fromSymbol: keySymbol) else { return nil }
+        self.key = key
+        self.modifiers = detectModifiers(shift: shift, control: control, option: option, command: command)
+    }
+    
+    init?(keyName: String, shift: Bool = false, control: Bool = false, option: Bool = false, command: Bool = false) {
+        
+        guard let key = Key(fromName: keyName) else { return nil }
+        self.key = key
+        self.modifiers = detectModifiers(shift: shift, control: control, option: option, command: command)
     }
     
     init?(fromString: String) {
         
-        var parts: [String] = fromString.characters.split(separator: "-").map({String($0)})
+        let parts: [String] = fromString.characters.split(separator: "-").map({String($0)})
         
-        guard let key = parts.popLast() else { return nil }
-        
+        var key: Key? = nil
         for part in parts {
             
             switch (part) {
-            case "shift": modifierKeys.append("shift")
-            case "control": modifierKeys.append("control")
-            case "option": modifierKeys.append("option")
-            case "command": modifierKeys.append("command")
-            default: break
+            case "shift": modifiers.append(Key.shift)
+            case "control": modifiers.append(Key.control)
+            case "option": modifiers.append(Key.option)
+            case "command": modifiers.append(Key.command)
+            default: key = Key(fromSymbol: part)
             }
         }
         
+        guard key != nil else { return nil }
+        self.key = key!
+    }
+    
+    private func detectModifiers(shift: Bool, control: Bool, option: Bool, command: Bool) -> [Key] {
+        var modifiers: [Key] = []
+        if control { modifiers.append(Key.control) }
+        if option { modifiers.append(Key.option) }
+        if shift { modifiers.append(Key.shift) }
+        if command { modifiers.append(Key.command) }
+        return modifiers
     }
     
     func dispatchTo(appName: String) {
         
-        let modifierKeysSentence = modifierKeys.map({$0 + " down"}).joined(separator: ",")
+        let modifierStrings = modifiers.map({$0.name.lowercased() + " down"})
         let source = "tell application \"System Events\"\n"
           + "tell process \"\(appName)\"\n"
-          + "key code \(keyCode) using {\(modifierKeysSentence)}\n"
+          + "key code \(key.code) using {\(modifierStrings.joined(separator: ","))}\n"
           + "end tell\n"
           + "end tell\n"
         NSAppleScript(source: source)?.executeAndReturnError(&error)
     }
     
     func toString() -> String {
-        return "\(modifierKeys.joined(separator: "-"))-\(keyCode)"
+        let modifierStrings = modifiers.map({$0.name.lowercased()})
+        return "\(modifierStrings.joined(separator: "-"))-\(key.symbol)"
     }
 }

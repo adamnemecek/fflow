@@ -8,10 +8,21 @@
 
 import Foundation
 
-struct GestureCommand {
+class GestureCommand {
     
     let gesture: Gesture
     let keystroke: Keystroke
+    
+    init(gesture: Gesture, keystroke: Keystroke) {
+        self.gesture = gesture
+        self.keystroke = keystroke
+    }
+    
+    init?(gestureString: String, keystrokeString: String) {
+        guard let keystroke = Keystroke(fromString: keystrokeString) else { return nil }
+        self.keystroke = keystroke
+        self.gesture = Gesture(fromString: gestureString)
+    }
     
     var gestureString: String? {
         return gesture.toString()

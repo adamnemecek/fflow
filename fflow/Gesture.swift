@@ -18,13 +18,13 @@ class Gesture {
     init() {
     }
     
-    init(fromString: String?) {
-        guard fromString != nil else { return }
+    init(fromString: String) {
         
-        let filterd = Direction.filter(targetString: fromString)
-        self.gesture = filterd.characters.map({(character: Character) -> Direction in
-            Direction(rawValue: String(character))!
-        })
+        let filtered = Direction.filter(targetString: fromString)
+//        self.gesture = filtered.characters.map({(character: Character) -> Direction in
+//            Direction(rawValue: String(character))!
+//        })
+        self.gesture = filtered.characters.map({ Direction(rawValue: String($0))! })
     }
     
     func append(direction: Direction) {
@@ -35,7 +35,7 @@ class Gesture {
         gesture.removeAll()
     }
     
-    func toString() -> String? {
+    func toString() -> String {
         return gesture.map({$0.rawValue}).joined()
     }
     

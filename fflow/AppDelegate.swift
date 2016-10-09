@@ -13,20 +13,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
     let gestureProcessor = GestureProcessor()
-    let gestureCommandManager = GestureCommandManager()
+    let targetAppManager = TargetAppManager()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
         
         // Initialize setting
-        let cmdW = Keystroke(keyCode: 13, command: true) // command-w
-        let dr = Gesture(fromString: "dr")
-        let drCmdW = GestureCommand(gesture: dr, keystroke: cmdW)
-        gestureCommandManager.append(appName: "Google Chrome", gestureCommand: drCmdW)
-        let cmdR = Keystroke(keyCode: 15, command: true) // command-r
-        let ud = Gesture(fromString: "ud")
-        let udCmdR = GestureCommand(gesture: ud, keystroke: cmdR)
-        gestureCommandManager.append(appName: "Google Chrome", gestureCommand: udCmdR)
+        let gestureCommandManager = GestureCommandManager(appName: "Google Chrome")
+        gestureCommandManager.append(gestureString: "dur", keystrokeString: "command-t")
+        gestureCommandManager.append(gestureString: "dr", keystrokeString: "command-w")
+        gestureCommandManager.append(gestureString: "dru", keystrokeString: "shift-command-t")
+        gestureCommandManager.append(gestureString: "lurd", keystrokeString: "command-r")
+        gestureCommandManager.append(gestureString: "ur", keystrokeString: "option-command-→")
+        gestureCommandManager.append(gestureString: "ul", keystrokeString: "option-command-←")
+        targetAppManager.append(gestureCommandManager: gestureCommandManager)
         
         // Set status menu
         let menu = NSMenu()
@@ -46,7 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 
                 guard let gesture = self.gestureProcessor.append(direction: direction) else { return }
                 guard let frontmostAppName = NSWorkspace.shared().frontmostApplication?.localizedName else { return }
-                guard let keystroke = self.gestureCommandManager.getKeystroke(appName: frontmostAppName, gesture: gesture) else { return }
+                guard let keystroke = self.targetAppManager.getKeystroke(appName: frontmostAppName, gesture: gesture) else { return }
                 
                 keystroke.dispatchTo(appName: frontmostAppName)
         })
@@ -68,5 +67,3 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
 }
-    
-    

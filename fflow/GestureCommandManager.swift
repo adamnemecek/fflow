@@ -11,29 +11,47 @@ import Cocoa
 
 class GestureCommandManager {
     
-    private var gestureCommands: [String: [GestureCommand]] = [:]
+    let appName: String
+    private var gestureCommands: [GestureCommand] = []
     
-    init() {
+    init(appName: String) {
+        self.appName = appName
+    }
+    
+    func append(gestureCommand: GestureCommand) {
+        self.gestureCommands.append(gestureCommand)
+    }
+    
+    func append(gestureCommands: [GestureCommand]) {
+        self.gestureCommands.append(contentsOf: gestureCommands)
+    }
+    
+    func append(gesture: Gesture, keystroke: Keystroke) {
+        gestureCommands.append(GestureCommand(gesture: gesture, keystroke: keystroke))
+    }
+    
+    func append(gestureString: String, keystrokeString: String) -> Bool {
+        guard let keystroke = Keystroke(fromString: keystrokeString) else { return false }
+        let gesture: Gesture = Gesture(fromString: gestureString)
+        gestureCommands.append(GestureCommand(gesture: gesture, keystroke: keystroke))
+        return true
+    }
+    
+    func getGestureCommand(gestureString: String) -> GestureCommand? {
+        
+        for gestureCommand in gestureCommands {
+            if gestureCommand.gestureString == gestureString { return gestureCommand }
+        }
+        return nil
+    }
+    
+    func getGestureCommand(gesture: Gesture) -> GestureCommand? {
+        
+        let gestureString: String = gesture.toString()
+        return self.getGestureCommand(gestureString: gestureString)
     }
     
     func reset() {
         gestureCommands.removeAll()
-    }
-    
-    func append(appName: String, gestureCommand: GestureCommand) {
-        if self.gestureCommands[appName] == nil {
-            self.gestureCommands[appName] = []
-        }
-        self.gestureCommands[appName]!.append(gestureCommand)
-    }
-    
-    func append(appName: String, gestureCommands: [GestureCommand]) {
-        self.gestureCommands[appName]?.append(contentsOf: gestureCommands)
-    }
-    
-    func getKeystroke(appName: String, gesture: Gesture) -> Keystroke? {
-        let gestureCommandsForApp = gestureCommands[appName]
-        let gestureCommand = gestureCommandsForApp?.filter({$0.gestureString == gesture.toString()})
-        return gestureCommand?[0].keystroke
     }
 }
