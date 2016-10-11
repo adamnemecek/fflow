@@ -26,6 +26,17 @@ class GestureCommandsForApp {
         self.gestureCommands.append(contentsOf: gestureCommands)
     }
     
+    func append(rawGestureCommands: [String: String]) {
+        var gestureCommands: [GestureCommand] = []
+        for rawGestureCommand in rawGestureCommands {
+            guard let keystroke = Keystroke(fromString: rawGestureCommand.value) else { continue }
+            let gesture = Gesture(fromString: rawGestureCommand.key)
+            let gestureCommand = GestureCommand(gesture: gesture, keystroke: keystroke)
+            gestureCommands.append(gestureCommand)
+        }
+        self.append(gestureCommands: gestureCommands)
+    }
+    
     func append(gesture: Gesture, keystroke: Keystroke) {
         gestureCommands.append(GestureCommand(gesture: gesture, keystroke: keystroke))
     }
