@@ -40,30 +40,3 @@ class Preference {
         userDefaults.set(serialized, forKey: KEY)
     }
 }
-
-
-//[
-//    "gesture": "dr",
-//    "keyCode": "123",
-//    "shift": "true",
-//    "control": "true",
-//    "option": "true",
-//    "command": "true"
-//]
-
-//    private func load() -> [String: GestureSet] {
-//        guard let _gestureSets = userDefaults.dictionary(forKey: KEY_FOR_KEYSTROKES) else {
-//            return [:]
-//        }
-//        let gestureSets = (_gestureSets as [String: Any]).map({ (appName: String, _gestures: Any) -> [String: GestureSet] in
-//            let gestures = _gestures as! [String: Keystroke]
-//            return [appName: GestureSet(gestureSet: gestures)]
-//        })
-//        return gestureSets
-//        
-//    }
-//    private func save() {
-//        let keystrokes = keystrokes.map({() -> })
-//        userDefaults.set(keystrokes, forKey: KEY_FOR_KEYSTROKES)
-//        userDefaults.synchronize()
-//    }
