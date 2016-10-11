@@ -168,6 +168,20 @@ class fflowTests: XCTestCase {
         XCTAssertEqual(serialized["Finder"]!, ["ur": "shift-T", "lurd": "shift-T"])
     }
     
+    func testPreference() {
+        
+        let preference: Preference = Preference()
+        let gestureCommandsManager = preference.gestureCommandsManager
+        XCTAssertNil(gestureCommandsManager.getKeystroke(appName: "Finder", gestureString: "ur"))
+        gestureCommandsManager.append(appName: "Finder", gestureString: "ur", keystrokeString: "command-d")
+        XCTAssertEqual(gestureCommandsManager.getKeystroke(appName: "Finder", gestureString: "ur")?.toString(), "command-D")
+        preference.save()
+        
+        let preference2: Preference = Preference()
+        XCTAssertEqual(preference2.gestureCommandsManager.getKeystroke(appName: "Finder", gestureString: "ur")?.toString(), "command-D")
+    }
+    
+    
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.
 //        self.measure {

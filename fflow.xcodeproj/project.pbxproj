@@ -115,7 +115,6 @@
 				CED57A911D9DF43400F881C9 /* Assets.xcassets */,
 				CED57A931D9DF43400F881C9 /* MainMenu.xib */,
 				CED57A961D9DF43400F881C9 /* Info.plist */,
-				CE848DFC1DA752130097E42F /* Preference.swift */,
 				CED57AC21D9E2AC300F881C9 /* Direction.swift */,
 				CEBD00041DA693FF006B1EE1 /* Gesture.swift */,
 				CEBD00021DA69196006B1EE1 /* GestureCommand.swift */,
@@ -124,6 +123,7 @@
 				CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */,
 				CE94A1FA1DAA0ACB00811518 /* Key.swift */,
 				CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */,
+				CE848DFC1DA752130097E42F /* Preference.swift */,
 			);
 			path = fflow;
 			sourceTree = "<group>";
