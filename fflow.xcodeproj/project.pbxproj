@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */; };
+		CE3F31E51DAD63AB00EBDB11 /* 32.png in Resources */ = {isa = PBXBuildFile; fileRef = CE3F31E41DAD63AB00EBDB11 /* 32.png */; };
 		CE561BDC1D9FDBDA00861B5A /* GestureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */; };
 		CE848DFD1DA752130097E42F /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848DFC1DA752130097E42F /* Preference.swift */; };
 		CE94A1FB1DAA0ACB00811518 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94A1FA1DAA0ACB00811518 /* Key.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keystroke.swift; sourceTree = "<group>"; };
+		CE3F31E41DAD63AB00EBDB11 /* 32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 32.png; sourceTree = "<group>"; };
 		CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureProcessor.swift; sourceTree = "<group>"; };
 		CE848DFC1DA752130097E42F /* Preference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
 		CE94A1FA1DAA0ACB00811518 /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		CED57A8E1D9DF43400F881C9 /* fflow */ = {
 			isa = PBXGroup;
 			children = (
+				CE3F31E41DAD63AB00EBDB11 /* 32.png */,
 				CED57A8F1D9DF43400F881C9 /* AppDelegate.swift */,
 				CED57A911D9DF43400F881C9 /* Assets.xcassets */,
 				CED57A931D9DF43400F881C9 /* MainMenu.xib */,
@@ -255,6 +258,7 @@
 			files = (
 				CED57A921D9DF43400F881C9 /* Assets.xcassets in Resources */,
 				CED57A951D9DF43400F881C9 /* MainMenu.xib in Resources */,
+				CE3F31E51DAD63AB00EBDB11 /* 32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
