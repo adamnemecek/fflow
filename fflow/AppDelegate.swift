@@ -28,11 +28,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         gestureCommandsManager.append(gestureCommandsForApp: gestureCommandsForApp)
         
         // Set status menu
+        let image = NSImage(named: "32")
+        image?.isTemplate = true
+        image?.size = NSSize(width: 18, height: 18)
+        statusItem.image = image
         let menu = NSMenu()
         menu.addItem(makeMenuItem(title: "Quit", selector: #selector(quit)))
         statusItem.menu = menu
         statusItem.highlightMode = true
-        statusItem.title = "ff"
+//        statusItem.title = "ff"
         
         // Regist event handler for scrollWheel
         NSEvent.addGlobalMonitorForEvents(
