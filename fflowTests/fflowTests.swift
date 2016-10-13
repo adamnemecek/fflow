@@ -181,6 +181,9 @@ class fflowTests: XCTestCase {
         XCTAssertEqual(preference2.gestureCommandsManager.getKeystroke(appName: "Finder", gestureString: "ur")?.toString(), "command-D")
     }
     
+    // TODO: Add new feature: On triggering gesture, show overlay sign of the gesture.
+    // TODO: Implements preference window.
+    // TODO: Rename: GestureCommandsManager -> GestureCommandPreference (and then, inherits Preference class)
     
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.
