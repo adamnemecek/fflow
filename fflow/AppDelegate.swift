@@ -15,6 +15,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let gestureProcessor = GestureProcessor()
     let gestureCommandsManager = GestureCommandsManager()
     
+    let indicator: Indicator = Indicator()
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         // Initialize setting
@@ -51,6 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 guard let frontmostAppName = NSWorkspace.shared().frontmostApplication?.localizedName else { return }
                 guard let keystroke = self.gestureCommandsManager.getKeystroke(appName: frontmostAppName, gesture: gesture) else { return }
                 
+                self.indicator.show(arrowString: gesture.toString())
                 keystroke.dispatchTo(appName: frontmostAppName)
         })
     }
@@ -69,5 +72,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func quit() {
         NSApplication.shared().terminate(self)
     }
-    
 }

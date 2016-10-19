@@ -182,7 +182,6 @@ class fflowTests: XCTestCase {
         preference2.clear()
     }
     
-    // TODO: Add new feature: On triggering gesture, show overlay sign of the gesture.
     // TODO: Implements preference window.
     // TODO: Rename: GestureCommandsManager -> GestureCommandPreference (and then, inherits Preference class)
     
