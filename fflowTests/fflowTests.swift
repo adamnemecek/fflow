@@ -179,6 +179,7 @@ class fflowTests: XCTestCase {
         
         let preference2: Preference = Preference()
         XCTAssertEqual(preference2.gestureCommandsManager.getKeystroke(appName: "Finder", gestureString: "ur")?.toString(), "command-D")
+        preference2.clear()
     }
     
     // TODO: Add new feature: On triggering gesture, show overlay sign of the gesture.

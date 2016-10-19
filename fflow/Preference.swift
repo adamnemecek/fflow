@@ -39,4 +39,8 @@ class Preference {
         let serialized = self.gestureCommandsManager.serialize()
         userDefaults.set(serialized, forKey: KEY)
     }
+    
+    func clear() {
+        userDefaults.removeObject(forKey: KEY)
+    }
 }
