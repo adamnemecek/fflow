@@ -72,10 +72,7 @@ class Indicator: NSObject, CAAnimationDelegate {
         guard let screenSize = NSScreen.main()?.frame.size else { return }
         panel.setFrameOrigin(originOfCenteredRect(of: panel.frame.size, in: screenSize))
         let dy = -1 * screenSize.height / 6
-//        let aff = CGAffineTransform.init(translationX: 0, y: 40)
-//        panel.frame.applying(aff)
         panel.setFrame(panel.frame.offsetBy(dx: 0, dy: dy), display: true)
-        
     }
     
     private func alignCenter(of view: NSView) {
