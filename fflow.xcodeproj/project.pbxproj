@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE09F7841DB8899900EDE9C5 /* ExtensionNSBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE09F7831DB8899900EDE9C5 /* ExtensionNSBezierPath.swift */; };
 		CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */; };
-		CE3F31E51DAD63AB00EBDB11 /* 32.png in Resources */ = {isa = PBXBuildFile; fileRef = CE3F31E41DAD63AB00EBDB11 /* 32.png */; };
+		CE43BAEE1DB7F7B6005862C5 /* StatusItemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BAED1DB7F7B6005862C5 /* StatusItemImage.swift */; };
 		CE561BDC1D9FDBDA00861B5A /* GestureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */; };
 		CE848DFD1DA752130097E42F /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848DFC1DA752130097E42F /* Preference.swift */; };
 		CE94A1FB1DAA0ACB00811518 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94A1FA1DAA0ACB00811518 /* Key.swift */; };
@@ -43,8 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE09F7831DB8899900EDE9C5 /* ExtensionNSBezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionNSBezierPath.swift; sourceTree = "<group>"; };
 		CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keystroke.swift; sourceTree = "<group>"; };
-		CE3F31E41DAD63AB00EBDB11 /* 32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 32.png; sourceTree = "<group>"; };
+		CE43BAED1DB7F7B6005862C5 /* StatusItemImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemImage.swift; sourceTree = "<group>"; };
 		CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureProcessor.swift; sourceTree = "<group>"; };
 		CE848DFC1DA752130097E42F /* Preference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
 		CE94A1FA1DAA0ACB00811518 /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
@@ -115,7 +117,6 @@
 		CED57A8E1D9DF43400F881C9 /* fflow */ = {
 			isa = PBXGroup;
 			children = (
-				CE3F31E41DAD63AB00EBDB11 /* 32.png */,
 				CED57A8F1D9DF43400F881C9 /* AppDelegate.swift */,
 				CED57A911D9DF43400F881C9 /* Assets.xcassets */,
 				CED57A931D9DF43400F881C9 /* MainMenu.xib */,
@@ -130,6 +131,8 @@
 				CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */,
 				CE848DFC1DA752130097E42F /* Preference.swift */,
 				CEDE3B681DAFC4A80081664E /* Indicator.swift */,
+				CE43BAED1DB7F7B6005862C5 /* StatusItemImage.swift */,
+				CE09F7831DB8899900EDE9C5 /* ExtensionNSBezierPath.swift */,
 			);
 			path = fflow;
 			sourceTree = "<group>";
@@ -261,7 +264,6 @@
 			files = (
 				CED57A921D9DF43400F881C9 /* Assets.xcassets in Resources */,
 				CED57A951D9DF43400F881C9 /* MainMenu.xib in Resources */,
-				CE3F31E51DAD63AB00EBDB11 /* 32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +293,9 @@
 				CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */,
 				CE9B96621DA8B1C3004AB707 /* GestureCommandsManager.swift in Sources */,
 				CE848DFD1DA752130097E42F /* Preference.swift in Sources */,
+				CE09F7841DB8899900EDE9C5 /* ExtensionNSBezierPath.swift in Sources */,
 				CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */,
+				CE43BAEE1DB7F7B6005862C5 /* StatusItemImage.swift in Sources */,
 				CE561BDC1D9FDBDA00861B5A /* GestureProcessor.swift in Sources */,
 				CED57AC31D9E2AC300F881C9 /* Direction.swift in Sources */,
 				CEDE3B691DAFC4A80081664E /* Indicator.swift in Sources */,
