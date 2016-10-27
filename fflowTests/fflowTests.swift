@@ -32,6 +32,10 @@ class fflowTests: XCTestCase {
         
         XCTAssertEqual(Direction.Vague.isVague(), true)
         
+        let unitVector = Direction.Up.unitVector()!
+        XCTAssertEqual(unitVector.x, 0)
+        XCTAssertEqual(unitVector.y, 1)
+        
         XCTAssertEqual(Direction.filter(targetString: "iuydl rpre"), "udlrr")
     }
     

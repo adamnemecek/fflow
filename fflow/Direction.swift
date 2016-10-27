@@ -42,4 +42,15 @@ enum Direction: String {
     func isVague() -> Bool! {
         return self == .Vague
     }
+    
+    func unitVector() -> (x: Int, y: Int)? {
+        
+        switch (self) {
+        case .Up: return (0, 1)
+        case .Down: return (0, -1)
+        case .Left: return (-1, 0)
+        case .Right: return (1, 0)
+        default: return nil
+        }
+    }
 }
