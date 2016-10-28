@@ -94,6 +94,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE55B6A91DC38531000A7D54 /* StatusItemImage */ = {
+			isa = PBXGroup;
+			children = (
+				CE43BAED1DB7F7B6005862C5 /* StatusItemImage.swift */,
+				CE09F7831DB8899900EDE9C5 /* ExtensionNSBezierPath.swift */,
+			);
+			name = StatusItemImage;
+			sourceTree = "<group>";
+		};
 		CED57A831D9DF43400F881C9 = {
 			isa = PBXGroup;
 			children = (
@@ -131,8 +140,7 @@
 				CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */,
 				CE848DFC1DA752130097E42F /* Preference.swift */,
 				CEDE3B681DAFC4A80081664E /* Indicator.swift */,
-				CE43BAED1DB7F7B6005862C5 /* StatusItemImage.swift */,
-				CE09F7831DB8899900EDE9C5 /* ExtensionNSBezierPath.swift */,
+				CE55B6A91DC38531000A7D54 /* StatusItemImage */,
 			);
 			path = fflow;
 			sourceTree = "<group>";
