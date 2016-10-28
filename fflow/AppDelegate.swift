@@ -20,14 +20,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         // Initialize setting
-        let gestureCommandsForApp = GestureCommandsForApp(appName: "Google Chrome")
-        gestureCommandsForApp.append(gestureString: "dur", keystrokeString: "command-t")
-        gestureCommandsForApp.append(gestureString: "dr", keystrokeString: "command-w")
-        gestureCommandsForApp.append(gestureString: "dru", keystrokeString: "shift-command-t")
-        gestureCommandsForApp.append(gestureString: "lurd", keystrokeString: "command-r")
-        gestureCommandsForApp.append(gestureString: "ur", keystrokeString: "option-command-→")
-        gestureCommandsForApp.append(gestureString: "ul", keystrokeString: "option-command-←")
-        gestureCommandsManager.append(gestureCommandsForApp: gestureCommandsForApp)
+        
+        let gestureCommandsForChrome = GestureCommandsForApp(appName: "Google Chrome")
+        gestureCommandsForChrome.append(gestureString: "dur", keystrokeString: "command-t")
+        gestureCommandsForChrome.append(gestureString: "dul", keystrokeString: "command-shift-x")
+        gestureCommandsForChrome.append(gestureString: "dr", keystrokeString: "command-w")
+        gestureCommandsForChrome.append(gestureString: "dru", keystrokeString: "shift-command-t")
+        gestureCommandsForChrome.append(gestureString: "lurd", keystrokeString: "command-r")
+        gestureCommandsForChrome.append(gestureString: "ur", keystrokeString: "option-command-→")
+        gestureCommandsForChrome.append(gestureString: "ul", keystrokeString: "option-command-←")
+        gestureCommandsManager.append(gestureCommandsForApp: gestureCommandsForChrome)
+        
+        let gestureCommandsForSafari = GestureCommandsForApp(appName: "Safari")
+        gestureCommandsForSafari.append(gestureString: "dr", keystrokeString: "command-w")
+        gestureCommandsManager.append(gestureCommandsForApp: gestureCommandsForSafari)
+        
+        let gestureCommandsForFinder = GestureCommandsForApp(appName: "Finder")
+        gestureCommandsForFinder.append(gestureString: "dr", keystrokeString: "command-w")
+        gestureCommandsManager.append(gestureCommandsForApp: gestureCommandsForFinder)
+        
         
         // Set status menu
         let menu = NSMenu()
