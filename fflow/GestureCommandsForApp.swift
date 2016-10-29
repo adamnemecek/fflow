@@ -1,5 +1,5 @@
 //
-//  Setting.swift
+//  GestureCommandsForApp.swift
 //  fflow
 //
 //  Created by user on 2016/09/30.
