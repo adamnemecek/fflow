@@ -52,7 +52,7 @@ class GestureCommandsManager {
             return self.getKeystrokeForGlobal(gesture: gesture)
         }
         guard let gestureCommand = gestureCommandsForApp.getGestureCommand(gesture: gesture) else {
-            return nil
+            return self.getKeystrokeForGlobal(gesture: gesture)
         }
         return gestureCommand.keystroke
     }
