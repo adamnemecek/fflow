@@ -39,6 +39,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         gestureCommandsForFinder.append(gestureString: "dr", keystrokeString: "command-w")
         gestureCommandsManager.append(gestureCommandsForApp: gestureCommandsForFinder)
         
+        gestureCommandsManager.appendForGlobal(gestureString: "ruldruld", keystrokeString: "command-q")
+        
         
         // Set status menu
         let menu = NSMenu()
