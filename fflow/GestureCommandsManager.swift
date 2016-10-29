@@ -45,7 +45,7 @@ class GestureCommandsManager {
     
     func getKeystroke(appName: String, gesture: Gesture) -> Keystroke? {
         guard let gestureCommandsForApp = self.getGestureCommandsForApp(appName: appName) else {
-            return nil
+            return self.getKeystrokeForGlobal(gesture: gesture)
         }
         guard let gestureCommand = gestureCommandsForApp.getGestureCommand(gesture: gesture) else {
             return nil
@@ -56,6 +56,16 @@ class GestureCommandsManager {
     func getKeystroke(appName: String, gestureString: String) -> Keystroke? {
         let gesture = Gesture(fromString: gestureString)
         return self.getKeystroke(appName: appName, gesture: gesture)
+    }
+    
+    func getKeystrokeForGlobal(gesture: Gesture) -> Keystroke? {
+        guard let gestureCommandsForGlobal = self.getGestureCommandsForApp(appName: "Global") else {
+            return nil
+        }
+        guard let gestureCommand = gestureCommandsForGlobal.getGestureCommand(gesture: gesture) else {
+            return nil
+        }
+        return gestureCommand.keystroke
     }
     
     func serialize() -> [String: [String: String]] {
