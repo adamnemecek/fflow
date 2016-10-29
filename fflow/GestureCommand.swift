@@ -1,5 +1,5 @@
 //
-//  KeystrokeGestureSet.swift
+//  GestureCommand.swift
 //  fflow
 //
 //  Created by user on 2016/10/06.
