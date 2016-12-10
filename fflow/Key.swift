@@ -57,7 +57,7 @@ enum Key: Int {
 
     init?(fromName name: String) {
 
-        let which: (KeyInfo) -> Bool = { $0.name == name }
+        let which: (KeyInfo) -> Bool = { $0.name == name.capitalized }
         guard let key = Key.find(which: which) else { return nil }
         self = key
     }

@@ -33,13 +33,15 @@ class KeyTests: XCTestCase {
 
     func testInitFromAny() {
 
-        XCTAssertNil(Key(fromName: "asdf"))
+        XCTAssertNil(Key(fromName: "invalidName"))
         XCTAssertEqual(Key(fromName: "N"), .N)
+        XCTAssertEqual(Key(fromName: "n"), .N)
         
-        XCTAssertNil(Key(fromSymbol: "zxcv"))
+        XCTAssertNil(Key(fromSymbol: "invalidSymbol"))
         XCTAssertEqual(Key(fromSymbol: "S"), .S)
-        
-        XCTAssertNil(Key(fromCode: 255))
+
+        let invalidCode: UInt8 = 255
+        XCTAssertNil(Key(fromCode: invalidCode))
         XCTAssertEqual(Key(fromCode: 8), .C)
     }
 
