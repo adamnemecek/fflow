@@ -25,7 +25,7 @@ class DirectionTests: XCTestCase {
 
     func testFilter() {
         
-        XCTAssertEqual(Direction.filter(targetString: "iuydl rpre"), "udlrr")
+        XCTAssertEqual(Direction.filter(string: "iuydl rpre"), "udlrr")
     }
     
     func testWhich() {
@@ -38,6 +38,12 @@ class DirectionTests: XCTestCase {
         XCTAssertEqual(Direction.which(x: 3.0, y: 0.0), .Right)
     }
     
+    
+    func testIsNo() {
+        
+        XCTAssertTrue(Direction.No.isNo)
+        XCTAssertFalse(Direction.Up.isNo)
+    }
     func testIsVague() {
         
         XCTAssertTrue(Direction.Vague.isVague)
