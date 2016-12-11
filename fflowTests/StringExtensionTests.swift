@@ -33,4 +33,10 @@ class StringExtensionTests: XCTestCase {
         XCTAssertTrue(str.firstIs(it: shift))
         XCTAssertFalse(str.firstIs(it: control))
     }
+
+    func testTrimmingLeading() {
+
+        let s = "nnnasdf"
+        XCTAssertEqual(s.trimmingLeading(character: "n"), "asdf")
+    }
 }

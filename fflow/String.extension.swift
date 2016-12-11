@@ -15,4 +15,19 @@ extension String {
         guard let first = self.characters.first else { return false }
         return String(first) == it
     }
+
+    func trimmingLeading(character: Character) -> String {
+
+        var trimmed: String = ""
+
+        NSLog("\(character)")
+        for (i, _character) in self.characters.enumerated() {
+            NSLog("\(_character)")
+            guard _character != character else { continue }
+            trimmed = String(self.characters.dropFirst(i))
+            break
+        }
+
+        return trimmed
+    }
 }
