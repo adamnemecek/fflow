@@ -10,74 +10,125 @@ import Foundation
 
 
 class Keystroke {
+
+
+    // MARK: Private static property
+
+    static private var error: NSDictionary? = [:]
+
+
+    // MARK: Private static method
+    // MARK: Static property
+    // MARK: Static method
+
     
-    var key: Key
-    var modifiers: [Key] = []
-    var error: NSDictionary? = [:]
+    // MARK: Private instance property
+
+    private let key: Key
+    private let shift: Bool
+    private let control: Bool
+    private let option: Bool
+    private let command: Bool
+
+    private var modifiers: [Key] {
+
+        var modifiers: [Key] = []
+        if self.shift { modifiers.append(Key.Shift) }
+        if self.control { modifiers.append(Key.Control) }
+        if self.option { modifiers.append(Key.Option) }
+        if self.command { modifiers.append(Key.Command) }
+
+        return modifiers
+    }
+
+    private var modifierSymbols: [String] {
+
+        return self.modifiers.map({ $0.symbol })
+    }
+
+    private var symbols: [String] {
+
+        return self.modifierSymbols + [self.key.symbol]
+    }
+
+
+    // MARK: Instance property
+    
+    var string: String {
+
+        return self.symbols.joined()
+    }
+
+
+    // MARK: Designated init
     
     init?(keyCode: UInt8, shift: Bool = false, control: Bool = false, option: Bool = false, command: Bool = false) {
         
         guard let key = Key(fromCode: keyCode) else { return nil }
         self.key = key
-        self.modifiers = detectModifiers(shift: shift, control: control, option: option, command: command)
+        self.shift = shift
+        self.control = control
+        self.option = option
+        self.command = command
     }
     
     init?(keySymbol: String, shift: Bool = false, control: Bool = false, option: Bool = false, command: Bool = false) {
         
         guard let key = Key(fromSymbol: keySymbol) else { return nil }
         self.key = key
-        self.modifiers = detectModifiers(shift: shift, control: control, option: option, command: command)
+        self.shift = shift
+        self.control = control
+        self.option = option
+        self.command = command
     }
-    
+
     init?(keyName: String, shift: Bool = false, control: Bool = false, option: Bool = false, command: Bool = false) {
         
         guard let key = Key(fromName: keyName) else { return nil }
         self.key = key
-        self.modifiers = detectModifiers(shift: shift, control: control, option: option, command: command)
-    }
+        self.shift = shift
+        self.control = control
+        self.option = option
+        self.command = command
+   }
     
-    init?(fromString: String) {
+    init?(fromString immutableKeystrokeString: String) {
+
+        var keystrokeString = immutableKeystrokeString
+
+        self.shift = keystrokeString.firstIs(it: Key.Shift.symbol)
+        if self.shift { keystrokeString.characters.removeFirst() }
         
-        let parts: [String] = fromString.characters.split(separator: "-").map({String($0)})
+        self.control = keystrokeString.firstIs(it: Key.Control.symbol)
+        if self.control { keystrokeString.characters.removeFirst() }
         
-        var key: Key? = nil
-        for part in parts {
-            
-            switch (part) {
-            case "shift": modifiers.append(Key.shift)
-            case "control": modifiers.append(Key.control)
-            case "option": modifiers.append(Key.option)
-            case "command": modifiers.append(Key.command)
-            default: key = Key(fromSymbol: part)
-            }
-        }
+        self.option = keystrokeString.firstIs(it: Key.Option.symbol)
+        if self.option { keystrokeString.characters.removeFirst() }
         
-        guard key != nil else { return nil }
-        self.key = key!
+        self.command = keystrokeString.firstIs(it: Key.Command.symbol)
+        if self.command { keystrokeString.characters.removeFirst() }
+
+        guard let key = Key(fromSymbol: keystrokeString) else { return nil }
+        self.key = key
     }
+
     
-    private func detectModifiers(shift: Bool, control: Bool, option: Bool, command: Bool) -> [Key] {
-        var modifiers: [Key] = []
-        if control { modifiers.append(Key.control) }
-        if option { modifiers.append(Key.option) }
-        if shift { modifiers.append(Key.shift) }
-        if command { modifiers.append(Key.command) }
-        return modifiers
-    }
+    // MARK: Convenience init
+    // MARK: Private instance method
+
     
+    // MARK: Instance method
+
     func dispatchTo(appName: String) {
         
-        let modifierStrings = modifiers.map({$0.name.lowercased() + " down"})
+        let modifiersString = self.modifiers.map({$0.name.lowercased() + " down"})
+                                            .joined(separator: ",")
         let source = "tell application \"System Events\"\n"
           + "tell process \"\(appName)\"\n"
-          + "key code \(key.code) using {\(modifierStrings.joined(separator: ","))}\n"
+          + "key code \(key.code) using {\(modifiersString)}\n"
           + "end tell\n"
           + "end tell\n"
-        NSAppleScript(source: source)?.executeAndReturnError(&error)
-    }
-    
-    func toString() -> String {
-        let modifierStrings = modifiers.map({$0.name.lowercased()})
-        return "\(modifierStrings.joined(separator: "-"))-\(key.symbol)"
+
+        NSAppleScript(source: source)?.executeAndReturnError(&(Keystroke.error))
     }
 }
