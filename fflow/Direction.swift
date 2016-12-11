@@ -15,13 +15,23 @@ enum Direction: String {
     case Left = "l"
     case Right = "r"
     case Vague = "v"
-    
-    static func which(_ x: CGFloat, y: CGFloat) -> Direction? {
+    case No = "n"
+
+    static private var unitVectors: [String: (x: Int, y: Int)] {
+        return [
+            Direction.Up.rawValue: (0, 1),
+            Direction.Down.rawValue: (0, -1),
+            Direction.Left.rawValue: (-1, 0),
+            Direction.Right.rawValue: (1, 0)
+        ]
+    }
+
+    static func which(x: CGFloat, y: CGFloat) -> Direction {
         
         let motionless: ClosedRange<CGFloat> = -1.0...1.0
         
         switch (x, y) {
-        case (0.0, 0.0): return nil
+        case (0.0, 0.0): return .No
         case (motionless, -50.0 ... -5.0): return .Up
         case (motionless, 5.0...50.0): return .Down
         case (-50.0 ... -3.0, motionless): return .Left
@@ -38,19 +48,18 @@ enum Direction: String {
                 return Direction(rawValue: String(string)) != nil
             }).joined()
     }
-    
-    func isVague() -> Bool! {
+
+    var isVague: Bool {
+
         return self == .Vague
     }
-    
-    func unitVector() -> (x: Int, y: Int)? {
-        
-        switch (self) {
-        case .Up: return (0, 1)
-        case .Down: return (0, -1)
-        case .Left: return (-1, 0)
-        case .Right: return (1, 0)
-        default: return nil
+
+    var unitVector: (x: Int, y: Int) {
+
+        guard let unitVector = Direction.unitVectors[self.rawValue] else {
+            return (0, 0)
         }
+
+        return unitVector
     }
 }
