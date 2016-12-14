@@ -32,13 +32,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		CE450D9B1DF9BEDF007CB84C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CED57A841D9DF43400F881C9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CE450D8B1DF9BEDF007CB84C;
-			remoteInfo = Keystroke;
-		};
 		CED57A9C1D9DF43400F881C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CED57A841D9DF43400F881C9 /* Project object */;
@@ -61,8 +54,6 @@
 		CE36C7E21DFD688E0043F678 /* StringExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		CE43BAED1DB7F7B6005862C5 /* StatusItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
 		CE450D1B1DF977A0007CB84C /* KeystrokeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeystrokeTests.swift; sourceTree = "<group>"; };
-		CE450D8C1DF9BEDF007CB84C /* Keystroke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keystroke.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE450D9A1DF9BEDF007CB84C /* KeystrokeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeystrokeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE450DA71DF9D549007CB84C /* GestureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureTests.swift; sourceTree = "<group>"; };
 		CE512E1C1DFEACA3008B1877 /* NSBezierPathExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBezierPathExtensionTests.swift; sourceTree = "<group>"; };
 		CE6C2BF51DFC21C3001DBAD9 /* KeyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyTests.swift; sourceTree = "<group>"; };
@@ -89,20 +80,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		CE450D891DF9BEDF007CB84C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE450D971DF9BEDF007CB84C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CED57A891D9DF43400F881C9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -179,8 +156,6 @@
 				CED57A8C1D9DF43400F881C9 /* fflow.app */,
 				CED57A9B1D9DF43400F881C9 /* fflowTests.xctest */,
 				CED57AA61D9DF43400F881C9 /* fflowUITests.xctest */,
-				CE450D8C1DF9BEDF007CB84C /* Keystroke.app */,
-				CE450D9A1DF9BEDF007CB84C /* KeystrokeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -238,41 +213,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CE450D8B1DF9BEDF007CB84C /* Keystroke */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CE450DA51DF9BEDF007CB84C /* Build configuration list for PBXNativeTarget "Keystroke" */;
-			buildPhases = (
-				CE450D881DF9BEDF007CB84C /* Sources */,
-				CE450D891DF9BEDF007CB84C /* Frameworks */,
-				CE450D8A1DF9BEDF007CB84C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Keystroke;
-			productName = Keystroke;
-			productReference = CE450D8C1DF9BEDF007CB84C /* Keystroke.app */;
-			productType = "com.apple.product-type.application";
-		};
-		CE450D991DF9BEDF007CB84C /* KeystrokeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CE450DA61DF9BEDF007CB84C /* Build configuration list for PBXNativeTarget "KeystrokeTests" */;
-			buildPhases = (
-				CE450D961DF9BEDF007CB84C /* Sources */,
-				CE450D971DF9BEDF007CB84C /* Frameworks */,
-				CE450D981DF9BEDF007CB84C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CE450D9C1DF9BEDF007CB84C /* PBXTargetDependency */,
-			);
-			name = KeystrokeTests;
-			productName = KeystrokeTests;
-			productReference = CE450D9A1DF9BEDF007CB84C /* KeystrokeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		CED57A8B1D9DF43400F881C9 /* fflow */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CED57AAF1D9DF43400F881C9 /* Build configuration list for PBXNativeTarget "fflow" */;
@@ -336,15 +276,6 @@
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = user;
 				TargetAttributes = {
-					CE450D8B1DF9BEDF007CB84C = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-					};
-					CE450D991DF9BEDF007CB84C = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = CE450D8B1DF9BEDF007CB84C;
-					};
 					CED57A8B1D9DF43400F881C9 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
@@ -377,27 +308,11 @@
 				CED57A8B1D9DF43400F881C9 /* fflow */,
 				CED57A9A1D9DF43400F881C9 /* fflowTests */,
 				CED57AA51D9DF43400F881C9 /* fflowUITests */,
-				CE450D8B1DF9BEDF007CB84C /* Keystroke */,
-				CE450D991DF9BEDF007CB84C /* KeystrokeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		CE450D8A1DF9BEDF007CB84C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE450D981DF9BEDF007CB84C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CED57A8A1D9DF43400F881C9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -424,20 +339,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CE450D881DF9BEDF007CB84C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE450D961DF9BEDF007CB84C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CED57A881D9DF43400F881C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -482,11 +383,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		CE450D9C1DF9BEDF007CB84C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CE450D8B1DF9BEDF007CB84C /* Keystroke */;
-			targetProxy = CE450D9B1DF9BEDF007CB84C /* PBXContainerItemProxy */;
-		};
 		CED57A9D1D9DF43400F881C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CED57A8B1D9DF43400F881C9 /* fflow */;
@@ -511,64 +407,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		CE450DA11DF9BEDF007CB84C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Keystroke/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = to.Keystroke;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		CE450DA21DF9BEDF007CB84C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Keystroke/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = to.Keystroke;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		CE450DA31DF9BEDF007CB84C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = KeystrokeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = to.KeystrokeTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Keystroke.app/Contents/MacOS/Keystroke";
-			};
-			name = Debug;
-		};
-		CE450DA41DF9BEDF007CB84C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = KeystrokeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = to.KeystrokeTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Keystroke.app/Contents/MacOS/Keystroke";
-			};
-			name = Release;
-		};
 		CED57AAD1D9DF43400F881C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -748,24 +586,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CE450DA51DF9BEDF007CB84C /* Build configuration list for PBXNativeTarget "Keystroke" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CE450DA11DF9BEDF007CB84C /* Debug */,
-				CE450DA21DF9BEDF007CB84C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CE450DA61DF9BEDF007CB84C /* Build configuration list for PBXNativeTarget "KeystrokeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CE450DA31DF9BEDF007CB84C /* Debug */,
-				CE450DA41DF9BEDF007CB84C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		CED57A871D9DF43400F881C9 /* Build configuration list for PBXProject "fflow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
