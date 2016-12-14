@@ -40,15 +40,17 @@ class CommandPreferenceTests: XCTestCase {
 
         var appPaths: [Any]?
 
-        let drOptionP = Command(gestureString: "dr", keystrokeString: option + "p")!
+        let dr = "dr"
+        let optionP = option + "p"
 
-        commandPreference.set(forApp: Safari, command: drOptionP)
+        commandPreference.set(forApp: Safari, gestureString: dr, keystrokeString: optionP)
 
         appPaths = userDefaults.array(forKey: "appPaths")
         XCTAssertEqual(appPaths?.count, 1)
         XCTAssertEqual(appPaths?[0] as? String, Safari)
 
-        commandPreference.set(forApp: Atom, command: drOptionP)
+        commandPreference.set(forApp: Atom, gestureString: dr, keystrokeString: optionP)
+        commandPreference.set(forApp: Atom, gestureString: "ul", keystrokeString: command + "d")
 
         appPaths = userDefaults.array(forKey: "appPaths")
         XCTAssertEqual(appPaths?.count, 2)
@@ -63,48 +65,40 @@ class CommandPreferenceTests: XCTestCase {
 
     func testGestures() {
 
-        testKeystrokes()
+        testSet()
         XCTAssertEqual(commandPreference.keystrokes(forApp: Atom).count, 2)
-
         XCTAssertEqual(commandPreference.gestures(forApp: Atom).count, 2)
     }
 
     func testKeystrokes() {
 
-        let drOptionP = Command(gestureString: "dr", keystrokeString: option + "p")!
-        commandPreference.set(forApp: Atom, command: drOptionP)
-
-        XCTAssertEqual(commandPreference.keystrokes(forApp: Atom).count, 1)
-        
-        let luShiftT = Command(gestureString: "lu", keystrokeString: shift + "t")!
-        commandPreference.set(forApp: Atom, command: luShiftT)
-
+        self.testSet()
         XCTAssertEqual(commandPreference.keystrokes(forApp: Atom).count, 2)
     }
 
     func testKeystroke() {
 
-        let drOptionP = Command(gestureString: "dr", keystrokeString: option + "p")!
-        commandPreference.set(forApp: Atom, command: drOptionP)
-
-        let optionP = commandPreference.keystroke(forApp: Atom, gestureString: drOptionP.gestureString)
-        XCTAssertEqual(optionP, drOptionP.keystrokeString)
+        self.testSet()
+        let optionP = commandPreference.keystroke(forApp: Atom, gestureString: "dr")
+        XCTAssertEqual(optionP, option + "p")
     }
 
     func testRemoveKeystroke() {
 
-        testKeystrokes()
+        testSet()
         XCTAssertEqual(commandPreference.keystrokes(forApp: Atom).count, 2)
 
         commandPreference.removeKeystroke(forApp: Atom, gestureString: "dr")
         XCTAssertNil(commandPreference.keystroke(forApp: Atom, gestureString: "dr"))
 
-        XCTAssertEqual(commandPreference.keystrokes(forApp: Atom).count, 2) // ["(removed)", shift + "T"]
+        let keystrokes = commandPreference.keystrokes(forApp: Atom)
+        XCTAssertEqual(keystrokes[0], "")
+        XCTAssertEqual(keystrokes[1], command + "d")
     }
 
     func testRemoveGestures() {
 
-        testKeystrokes()
+        testSet()
         XCTAssertEqual(commandPreference.keystrokes(forApp: Atom).count, 2)
 
         commandPreference.removeGestures(forApp: Atom)
@@ -114,22 +108,22 @@ class CommandPreferenceTests: XCTestCase {
 
     func testRemoveApp() {
 
-        testKeystrokes()
+        testSet()
         XCTAssertEqual(commandPreference.keystrokes(forApp: Atom).count, 2)
 
         commandPreference.removeApp(path: Atom)
         XCTAssertEqual(commandPreference.keystrokes(forApp: Atom).count, 0)
         XCTAssertEqual(commandPreference.gestures(forApp: Atom).count, 0)
-        XCTAssertEqual(commandPreference.appPaths.count, 0)
+        XCTAssertEqual(commandPreference.appPaths.count, 1)
     }
 
     func testClearCompletely() {
 
-        testKeystrokes()
+        testSet()
 
         XCTAssertEqual(commandPreference.keystrokes(forApp: Atom).count, 2)
         XCTAssertEqual(commandPreference.gestures(forApp: Atom).count, 2)
-        XCTAssertEqual(commandPreference.appPaths.count, 1)
+        XCTAssertEqual(commandPreference.appPaths.count, 2)
 
         commandPreference.clearCompletely()
         

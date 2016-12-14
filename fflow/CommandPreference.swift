@@ -84,11 +84,11 @@ class CommandPreference {
 
     // MARK: Instance method
 
-    func set(forApp path: String, command: Command) {
+    func set(forApp path: String, gestureString: String, keystrokeString: String) {
 
         self.setApp(path: path)
-        self.setGesture(forApp: path, gestureString: command.gestureString)
-        self.setKeystroke(forApp: path, gestureString: command.gestureString, keystrokeString: command.keystrokeString)
+        self.setGesture(forApp: path, gestureString: gestureString)
+        self.setKeystroke(forApp: path, gestureString: gestureString, keystrokeString: keystrokeString)
     }
 
     func gestures(forApp path: String) -> [String] {
