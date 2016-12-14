@@ -10,37 +10,42 @@ import Foundation
 import Cocoa
 
 class Preference {
-    
-    let userDefaults = NSUserDefaultsController().defaults
-    private let KEY = "SerializedGestureCommandsManager"
-    let gestureCommandsManager: GestureCommandsManager = GestureCommandsManager()
+
+    // MARK: Private static property
+    // MARK: Private static method
+    // MARK: Static property
+    // MARK: Static method
+    // MARK: Private instance property
+
+    private let userDefaults = NSUserDefaultsController().defaults
+
+
+    // MARK: Instance property
+
+    var itemsAtDomain: [String: Any] {
+
+        guard let domainName = Bundle.main.bundleIdentifier else { return [:] }
+        guard let items = self.userDefaults.persistentDomain(forName: domainName) else { return [:] }
+
+        return items
+    }
+
+
+    // MARK: Designated init
     
     init() {
-        self.load()
     }
+
+
+    // MARK: Convenience init
+    // MARK: Private instance method
+
     
-    private func load() {
-        
-        guard let serializedGestureCommandsManager = userDefaults.dictionary(forKey: KEY) else {
-            return
-        }
-        
-        for serializedGestureCommandsForApp in serializedGestureCommandsManager {
-            let appName = serializedGestureCommandsForApp.key 
-            let rawGestureCommandsForApp = serializedGestureCommandsForApp.value as! [String: String]
-            
-            let gestureCommandsForApp = GestureCommandsForApp(appName: appName)
-            gestureCommandsForApp.append(rawGestureCommands: rawGestureCommandsForApp)
-            self.gestureCommandsManager.append(gestureCommandsForApp: gestureCommandsForApp)
-        }
-    }
+    // MARK: Instance method
     
-    func save() {
-        let serialized = self.gestureCommandsManager.serialize()
-        userDefaults.set(serialized, forKey: KEY)
-    }
-    
-    func clear() {
-        userDefaults.removeObject(forKey: KEY)
+    func clearCompletely() {
+
+        let keys = self.itemsAtDomain.keys
+        keys.forEach({ userDefaults.removeObject(forKey: $0) })
     }
 }
