@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE09F7841DB8899900EDE9C5 /* ExtensionNSBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE09F7831DB8899900EDE9C5 /* ExtensionNSBezierPath.swift */; };
+		CE09F7841DB8899900EDE9C5 /* NSBezierPath.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE09F7831DB8899900EDE9C5 /* NSBezierPath.extension.swift */; };
 		CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */; };
-		CE43BAEE1DB7F7B6005862C5 /* StatusItemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BAED1DB7F7B6005862C5 /* StatusItemImage.swift */; };
-		CE561BDC1D9FDBDA00861B5A /* GestureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */; };
+		CE36C7E31DFD688E0043F678 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36C7E21DFD688E0043F678 /* StringExtensionTests.swift */; };
+		CE43BAEE1DB7F7B6005862C5 /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BAED1DB7F7B6005862C5 /* StatusItem.swift */; };
+		CE450D1C1DF977A0007CB84C /* KeystrokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE450D1B1DF977A0007CB84C /* KeystrokeTests.swift */; };
+		CE450DA81DF9D549007CB84C /* GestureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE450DA71DF9D549007CB84C /* GestureTests.swift */; };
+		CE512E1D1DFEACA3008B1877 /* NSBezierPathExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE512E1C1DFEACA3008B1877 /* NSBezierPathExtensionTests.swift */; };
+		CE6C2BF61DFC21C3001DBAD9 /* KeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C2BF51DFC21C3001DBAD9 /* KeyTests.swift */; };
+		CE6C2BF81DFC8D90001DBAD9 /* String.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C2BF71DFC8D90001DBAD9 /* String.extension.swift */; };
 		CE848DFD1DA752130097E42F /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848DFC1DA752130097E42F /* Preference.swift */; };
 		CE94A1FB1DAA0ACB00811518 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94A1FA1DAA0ACB00811518 /* Key.swift */; };
-		CE9B96621DA8B1C3004AB707 /* GestureCommandsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B96611DA8B1C3004AB707 /* GestureCommandsManager.swift */; };
-		CEBD00031DA69196006B1EE1 /* GestureCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD00021DA69196006B1EE1 /* GestureCommand.swift */; };
+		CE9B96621DA8B1C3004AB707 /* CommandPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B96611DA8B1C3004AB707 /* CommandPreference.swift */; };
+		CEB846041DFD7BBD001C6DF1 /* DirectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB846031DFD7BBD001C6DF1 /* DirectionTests.swift */; };
 		CEBD00051DA693FF006B1EE1 /* Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD00041DA693FF006B1EE1 /* Gesture.swift */; };
 		CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57A8F1D9DF43400F881C9 /* AppDelegate.swift */; };
 		CED57A921D9DF43400F881C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED57A911D9DF43400F881C9 /* Assets.xcassets */; };
@@ -22,12 +27,18 @@
 		CED57AA01D9DF43400F881C9 /* fflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57A9F1D9DF43400F881C9 /* fflowTests.swift */; };
 		CED57AAB1D9DF43400F881C9 /* fflowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AAA1D9DF43400F881C9 /* fflowUITests.swift */; };
 		CED57AC31D9E2AC300F881C9 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AC21D9E2AC300F881C9 /* Direction.swift */; };
-		CED57AC51D9E3C7300F881C9 /* GestureCommandsForApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AC41D9E3C7300F881C9 /* GestureCommandsForApp.swift */; };
 		CEDE3B691DAFC4A80081664E /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDE3B681DAFC4A80081664E /* Indicator.swift */; };
-		CEE1008F1DC443E70060BB7D /* GestureCommandsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE1008E1DC443E70060BB7D /* GestureCommandsManagerTests.swift */; };
+		CEE1008F1DC443E70060BB7D /* CommandPreferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE1008E1DC443E70060BB7D /* CommandPreferenceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CE450D9B1DF9BEDF007CB84C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CED57A841D9DF43400F881C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE450D8B1DF9BEDF007CB84C;
+			remoteInfo = Keystroke;
+		};
 		CED57A9C1D9DF43400F881C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CED57A841D9DF43400F881C9 /* Project object */;
@@ -45,14 +56,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CE09F7831DB8899900EDE9C5 /* ExtensionNSBezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionNSBezierPath.swift; sourceTree = "<group>"; };
+		CE09F7831DB8899900EDE9C5 /* NSBezierPath.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBezierPath.extension.swift; sourceTree = "<group>"; };
 		CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keystroke.swift; sourceTree = "<group>"; };
-		CE43BAED1DB7F7B6005862C5 /* StatusItemImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemImage.swift; sourceTree = "<group>"; };
-		CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureProcessor.swift; sourceTree = "<group>"; };
+		CE36C7E21DFD688E0043F678 /* StringExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
+		CE43BAED1DB7F7B6005862C5 /* StatusItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
+		CE450D1B1DF977A0007CB84C /* KeystrokeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeystrokeTests.swift; sourceTree = "<group>"; };
+		CE450D8C1DF9BEDF007CB84C /* Keystroke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keystroke.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE450D9A1DF9BEDF007CB84C /* KeystrokeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeystrokeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE450DA71DF9D549007CB84C /* GestureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureTests.swift; sourceTree = "<group>"; };
+		CE512E1C1DFEACA3008B1877 /* NSBezierPathExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBezierPathExtensionTests.swift; sourceTree = "<group>"; };
+		CE6C2BF51DFC21C3001DBAD9 /* KeyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyTests.swift; sourceTree = "<group>"; };
+		CE6C2BF71DFC8D90001DBAD9 /* String.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.extension.swift; sourceTree = "<group>"; };
 		CE848DFC1DA752130097E42F /* Preference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
 		CE94A1FA1DAA0ACB00811518 /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
-		CE9B96611DA8B1C3004AB707 /* GestureCommandsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureCommandsManager.swift; sourceTree = "<group>"; };
-		CEBD00021DA69196006B1EE1 /* GestureCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureCommand.swift; sourceTree = "<group>"; };
+		CE9B96611DA8B1C3004AB707 /* CommandPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandPreference.swift; sourceTree = "<group>"; };
+		CEB846031DFD7BBD001C6DF1 /* DirectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionTests.swift; sourceTree = "<group>"; };
 		CEBD00041DA693FF006B1EE1 /* Gesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gesture.swift; sourceTree = "<group>"; };
 		CED57A8C1D9DF43400F881C9 /* fflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED57A8F1D9DF43400F881C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,18 +78,31 @@
 		CED57A941D9DF43400F881C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		CED57A961D9DF43400F881C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CED57A9B1D9DF43400F881C9 /* fflowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fflowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CED57A9F1D9DF43400F881C9 /* fflowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fflowTests.swift; sourceTree = "<group>"; };
+		CED57A9F1D9DF43400F881C9 /* fflowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = fflowTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CED57AA11D9DF43400F881C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CED57AA61D9DF43400F881C9 /* fflowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fflowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED57AAA1D9DF43400F881C9 /* fflowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fflowUITests.swift; sourceTree = "<group>"; };
 		CED57AAC1D9DF43400F881C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CED57AC21D9E2AC300F881C9 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
-		CED57AC41D9E3C7300F881C9 /* GestureCommandsForApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureCommandsForApp.swift; sourceTree = "<group>"; };
 		CEDE3B681DAFC4A80081664E /* Indicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
-		CEE1008E1DC443E70060BB7D /* GestureCommandsManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureCommandsManagerTests.swift; sourceTree = "<group>"; };
+		CEE1008E1DC443E70060BB7D /* CommandPreferenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandPreferenceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CE450D891DF9BEDF007CB84C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE450D971DF9BEDF007CB84C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CED57A891D9DF43400F881C9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -96,21 +127,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CE55B6A91DC38531000A7D54 /* StatusItemImage */ = {
+		CE28F7C51DF70E7900D6A609 /* Gesture */ = {
 			isa = PBXGroup;
 			children = (
-				CE43BAED1DB7F7B6005862C5 /* StatusItemImage.swift */,
-				CE09F7831DB8899900EDE9C5 /* ExtensionNSBezierPath.swift */,
+				CED57AC21D9E2AC300F881C9 /* Direction.swift */,
+				CEBD00041DA693FF006B1EE1 /* Gesture.swift */,
 			);
-			name = StatusItemImage;
+			name = Gesture;
 			sourceTree = "<group>";
 		};
-		CE88FDC71DC4360700E92609 /* Preference */ = {
+		CE28F7C61DF70EA700D6A609 /* Keystroke */ = {
 			isa = PBXGroup;
 			children = (
-				CE848DFC1DA752130097E42F /* Preference.swift */,
+				CE94A1FA1DAA0ACB00811518 /* Key.swift */,
+				CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */,
 			);
-			name = Preference;
+			name = Keystroke;
+			sourceTree = "<group>";
+		};
+		CE55B6A91DC38531000A7D54 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CEDE3B681DAFC4A80081664E /* Indicator.swift */,
+				CE43BAED1DB7F7B6005862C5 /* StatusItem.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		CEB846051DFDCF7B001C6DF1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE6C2BF71DFC8D90001DBAD9 /* String.extension.swift */,
+				CE09F7831DB8899900EDE9C5 /* NSBezierPath.extension.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		CED57A831D9DF43400F881C9 = {
@@ -129,6 +179,8 @@
 				CED57A8C1D9DF43400F881C9 /* fflow.app */,
 				CED57A9B1D9DF43400F881C9 /* fflowTests.xctest */,
 				CED57AA61D9DF43400F881C9 /* fflowUITests.xctest */,
+				CE450D8C1DF9BEDF007CB84C /* Keystroke.app */,
+				CE450D9A1DF9BEDF007CB84C /* KeystrokeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,17 +192,11 @@
 				CED57A911D9DF43400F881C9 /* Assets.xcassets */,
 				CED57A931D9DF43400F881C9 /* MainMenu.xib */,
 				CED57A961D9DF43400F881C9 /* Info.plist */,
-				CED57AC21D9E2AC300F881C9 /* Direction.swift */,
-				CEBD00041DA693FF006B1EE1 /* Gesture.swift */,
-				CEBD00021DA69196006B1EE1 /* GestureCommand.swift */,
-				CED57AC41D9E3C7300F881C9 /* GestureCommandsForApp.swift */,
-				CE9B96611DA8B1C3004AB707 /* GestureCommandsManager.swift */,
-				CE561BDB1D9FDBDA00861B5A /* GestureProcessor.swift */,
-				CE94A1FA1DAA0ACB00811518 /* Key.swift */,
-				CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */,
-				CEDE3B681DAFC4A80081664E /* Indicator.swift */,
-				CE88FDC71DC4360700E92609 /* Preference */,
-				CE55B6A91DC38531000A7D54 /* StatusItemImage */,
+				CE28F7C61DF70EA700D6A609 /* Keystroke */,
+				CE28F7C51DF70E7900D6A609 /* Gesture */,
+				CEF6B6EF1DFB484100206872 /* Preference */,
+				CE55B6A91DC38531000A7D54 /* Helpers */,
+				CEB846051DFDCF7B001C6DF1 /* Extensions */,
 			);
 			path = fflow;
 			sourceTree = "<group>";
@@ -158,9 +204,15 @@
 		CED57A9E1D9DF43400F881C9 /* fflowTests */ = {
 			isa = PBXGroup;
 			children = (
-				CED57A9F1D9DF43400F881C9 /* fflowTests.swift */,
 				CED57AA11D9DF43400F881C9 /* Info.plist */,
-				CEE1008E1DC443E70060BB7D /* GestureCommandsManagerTests.swift */,
+				CE6C2BF51DFC21C3001DBAD9 /* KeyTests.swift */,
+				CE450D1B1DF977A0007CB84C /* KeystrokeTests.swift */,
+				CEB846031DFD7BBD001C6DF1 /* DirectionTests.swift */,
+				CE450DA71DF9D549007CB84C /* GestureTests.swift */,
+				CEE1008E1DC443E70060BB7D /* CommandPreferenceTests.swift */,
+				CE36C7E21DFD688E0043F678 /* StringExtensionTests.swift */,
+				CE512E1C1DFEACA3008B1877 /* NSBezierPathExtensionTests.swift */,
+				CED57A9F1D9DF43400F881C9 /* fflowTests.swift */,
 			);
 			path = fflowTests;
 			sourceTree = "<group>";
@@ -174,9 +226,53 @@
 			path = fflowUITests;
 			sourceTree = "<group>";
 		};
+		CEF6B6EF1DFB484100206872 /* Preference */ = {
+			isa = PBXGroup;
+			children = (
+				CE848DFC1DA752130097E42F /* Preference.swift */,
+				CE9B96611DA8B1C3004AB707 /* CommandPreference.swift */,
+			);
+			name = Preference;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CE450D8B1DF9BEDF007CB84C /* Keystroke */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE450DA51DF9BEDF007CB84C /* Build configuration list for PBXNativeTarget "Keystroke" */;
+			buildPhases = (
+				CE450D881DF9BEDF007CB84C /* Sources */,
+				CE450D891DF9BEDF007CB84C /* Frameworks */,
+				CE450D8A1DF9BEDF007CB84C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Keystroke;
+			productName = Keystroke;
+			productReference = CE450D8C1DF9BEDF007CB84C /* Keystroke.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CE450D991DF9BEDF007CB84C /* KeystrokeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE450DA61DF9BEDF007CB84C /* Build configuration list for PBXNativeTarget "KeystrokeTests" */;
+			buildPhases = (
+				CE450D961DF9BEDF007CB84C /* Sources */,
+				CE450D971DF9BEDF007CB84C /* Frameworks */,
+				CE450D981DF9BEDF007CB84C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE450D9C1DF9BEDF007CB84C /* PBXTargetDependency */,
+			);
+			name = KeystrokeTests;
+			productName = KeystrokeTests;
+			productReference = CE450D9A1DF9BEDF007CB84C /* KeystrokeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CED57A8B1D9DF43400F881C9 /* fflow */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CED57AAF1D9DF43400F881C9 /* Build configuration list for PBXNativeTarget "fflow" */;
@@ -236,10 +332,19 @@
 		CED57A841D9DF43400F881C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = user;
 				TargetAttributes = {
+					CE450D8B1DF9BEDF007CB84C = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					CE450D991DF9BEDF007CB84C = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CE450D8B1DF9BEDF007CB84C;
+					};
 					CED57A8B1D9DF43400F881C9 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
@@ -272,11 +377,27 @@
 				CED57A8B1D9DF43400F881C9 /* fflow */,
 				CED57A9A1D9DF43400F881C9 /* fflowTests */,
 				CED57AA51D9DF43400F881C9 /* fflowUITests */,
+				CE450D8B1DF9BEDF007CB84C /* Keystroke */,
+				CE450D991DF9BEDF007CB84C /* KeystrokeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CE450D8A1DF9BEDF007CB84C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE450D981DF9BEDF007CB84C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CED57A8A1D9DF43400F881C9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -303,6 +424,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CE450D881DF9BEDF007CB84C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE450D961DF9BEDF007CB84C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CED57A881D9DF43400F881C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -310,16 +445,14 @@
 				CEBD00051DA693FF006B1EE1 /* Gesture.swift in Sources */,
 				CE94A1FB1DAA0ACB00811518 /* Key.swift in Sources */,
 				CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */,
-				CE9B96621DA8B1C3004AB707 /* GestureCommandsManager.swift in Sources */,
+				CE9B96621DA8B1C3004AB707 /* CommandPreference.swift in Sources */,
 				CE848DFD1DA752130097E42F /* Preference.swift in Sources */,
-				CE09F7841DB8899900EDE9C5 /* ExtensionNSBezierPath.swift in Sources */,
+				CE09F7841DB8899900EDE9C5 /* NSBezierPath.extension.swift in Sources */,
 				CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */,
-				CE43BAEE1DB7F7B6005862C5 /* StatusItemImage.swift in Sources */,
-				CE561BDC1D9FDBDA00861B5A /* GestureProcessor.swift in Sources */,
+				CE6C2BF81DFC8D90001DBAD9 /* String.extension.swift in Sources */,
+				CE43BAEE1DB7F7B6005862C5 /* StatusItem.swift in Sources */,
 				CED57AC31D9E2AC300F881C9 /* Direction.swift in Sources */,
 				CEDE3B691DAFC4A80081664E /* Indicator.swift in Sources */,
-				CEBD00031DA69196006B1EE1 /* GestureCommand.swift in Sources */,
-				CED57AC51D9E3C7300F881C9 /* GestureCommandsForApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,8 +460,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE512E1D1DFEACA3008B1877 /* NSBezierPathExtensionTests.swift in Sources */,
 				CED57AA01D9DF43400F881C9 /* fflowTests.swift in Sources */,
-				CEE1008F1DC443E70060BB7D /* GestureCommandsManagerTests.swift in Sources */,
+				CE6C2BF61DFC21C3001DBAD9 /* KeyTests.swift in Sources */,
+				CE36C7E31DFD688E0043F678 /* StringExtensionTests.swift in Sources */,
+				CEB846041DFD7BBD001C6DF1 /* DirectionTests.swift in Sources */,
+				CEE1008F1DC443E70060BB7D /* CommandPreferenceTests.swift in Sources */,
+				CE450D1C1DF977A0007CB84C /* KeystrokeTests.swift in Sources */,
+				CE450DA81DF9D549007CB84C /* GestureTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +482,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CE450D9C1DF9BEDF007CB84C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE450D8B1DF9BEDF007CB84C /* Keystroke */;
+			targetProxy = CE450D9B1DF9BEDF007CB84C /* PBXContainerItemProxy */;
+		};
 		CED57A9D1D9DF43400F881C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CED57A8B1D9DF43400F881C9 /* fflow */;
@@ -367,6 +511,64 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CE450DA11DF9BEDF007CB84C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Keystroke/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = to.Keystroke;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		CE450DA21DF9BEDF007CB84C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Keystroke/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = to.Keystroke;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		CE450DA31DF9BEDF007CB84C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = KeystrokeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = to.KeystrokeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Keystroke.app/Contents/MacOS/Keystroke";
+			};
+			name = Debug;
+		};
+		CE450DA41DF9BEDF007CB84C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = KeystrokeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = to.KeystrokeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Keystroke.app/Contents/MacOS/Keystroke";
+			};
+			name = Release;
+		};
 		CED57AAD1D9DF43400F881C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -544,6 +746,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CE450DA51DF9BEDF007CB84C /* Build configuration list for PBXNativeTarget "Keystroke" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE450DA11DF9BEDF007CB84C /* Debug */,
+				CE450DA21DF9BEDF007CB84C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE450DA61DF9BEDF007CB84C /* Build configuration list for PBXNativeTarget "KeystrokeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE450DA31DF9BEDF007CB84C /* Debug */,
+				CE450DA41DF9BEDF007CB84C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CED57A871D9DF43400F881C9 /* Build configuration list for PBXProject "fflow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

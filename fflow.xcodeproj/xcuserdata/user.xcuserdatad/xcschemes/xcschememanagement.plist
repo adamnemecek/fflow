@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Keystroke.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>fflow.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>CE450D8B1DF9BEDF007CB84C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE450D991DF9BEDF007CB84C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CED57A8B1D9DF43400F881C9</key>
 		<dict>
 			<key>primary</key>

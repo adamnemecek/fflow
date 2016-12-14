@@ -11,74 +11,55 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
-    let gestureProcessor = GestureProcessor()
-    let gestureCommandsManager = GestureCommandsManager()
+
+    private var statusItem: StatusItem? = nil
     
-    let indicator: Indicator = Indicator()
-    
+    private let indicator: Indicator = Indicator()
+    private let gesture = Gesture()
+    private let commandPreference = CommandPreference()
+
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        // Initialize setting
-        
-        let gestureCommandsForChrome = GestureCommandsForApp(appName: "Google Chrome")
-        gestureCommandsForChrome.append(gestureString: "dur", keystrokeString: "command-t")
-        gestureCommandsForChrome.append(gestureString: "dul", keystrokeString: "command-shift-x")
-        gestureCommandsForChrome.append(gestureString: "dr", keystrokeString: "command-w")
-        gestureCommandsForChrome.append(gestureString: "dru", keystrokeString: "shift-command-t")
-        gestureCommandsForChrome.append(gestureString: "lurd", keystrokeString: "command-r")
-        gestureCommandsForChrome.append(gestureString: "ur", keystrokeString: "option-command-→")
-        gestureCommandsForChrome.append(gestureString: "ul", keystrokeString: "option-command-←")
-        gestureCommandsManager.append(gestureCommandsForApp: gestureCommandsForChrome)
-        
-        let gestureCommandsForSafari = GestureCommandsForApp(appName: "Safari")
-        gestureCommandsForSafari.append(gestureString: "dr", keystrokeString: "command-w")
-        gestureCommandsManager.append(gestureCommandsForApp: gestureCommandsForSafari)
-        
-        let gestureCommandsForFinder = GestureCommandsForApp(appName: "Finder")
-        gestureCommandsForFinder.append(gestureString: "dr", keystrokeString: "command-w")
-        gestureCommandsManager.append(gestureCommandsForApp: gestureCommandsForFinder)
-        
-        gestureCommandsManager.appendForGlobal(gestureString: "ruldruld", keystrokeString: "command-q")
-        
-        
-        // Set status menu
-        let menu = NSMenu()
-        menu.addItem(makeMenuItem(title: "Quit", selector: #selector(quit)))
-        statusItem.menu = menu
-        statusItem.highlightMode = true
-        statusItem.image = StatusItemImage().image
+        // Set up status bar item
+        self.statusItem = StatusItem(menuItems: self.menuItems)
         
         // Regist event handler for scrollWheel
         NSEvent.addGlobalMonitorForEvents(
             matching: NSEventMask.scrollWheel,
             handler: {(evt: NSEvent!) -> Void in
                 
-                let x = evt.scrollingDeltaX
-                let y = evt.scrollingDeltaY
-                let direction: Direction? = Direction.which(x, y: y)
+                self.gesture.append(x: evt.scrollingDeltaX,
+                                    y: evt.scrollingDeltaY)
+
+                guard let gestureString = self.gesture.release() else { return }
                 
-                guard let gesture = self.gestureProcessor.append(direction: direction) else { return }
-                guard let frontmostAppName = NSWorkspace.shared().frontmostApplication?.localizedName else { return }
-                guard let keystroke = self.gestureCommandsManager.getKeystroke(appName: frontmostAppName, gesture: gesture) else { return }
+                guard let frontmostApp = NSWorkspace.shared().frontmostApplication else { return }
+                guard let url = frontmostApp.bundleURL else { return }
                 
-                self.indicator.show(arrowString: gesture.toString())
-                keystroke.dispatchTo(appName: frontmostAppName)
+                guard let keystrokeString = self.commandPreference.keystroke(forApp: url.path, gestureString: gestureString) else { return }
+                
+                self.indicator.show(arrowString: gestureString)
+                guard let appName = frontmostApp.localizedName else { return }
+                guard let keystroke = Keystroke(fromString: keystrokeString) else { return }
+                keystroke.dispatchTo(appName: appName)
         })
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-
-    private func makeMenuItem(title: String, selector: Selector?) -> NSMenuItem {
-        let menuItem = NSMenuItem()
-        menuItem.title = title
-        menuItem.action = selector
-        return menuItem
-    }
     
-    func quit() {
+    private var menuItems: [NSMenuItem] {
+
+        let quit = NSMenuItem()
+        quit.title = "Quit"
+        quit.action = #selector(self.quit)
+        return [quit]
+    }
+
+    @objc private func quit() {
+
         NSApplication.shared().terminate(self)
     }
 }
