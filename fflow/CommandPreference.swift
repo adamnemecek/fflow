@@ -36,6 +36,42 @@ class CommandPreference {
 
 
     // MARK: Designated init
+
+    init() {
+
+        let shift = Key.Shift.symbol
+        let control = Key.Control.symbol
+        let option = Key.Option.symbol
+        let command = Key.Command.symbol
+        let tab = Key.Tab.symbol
+
+        let chrome = "/Applications/Google Chrome.app"
+        self.set(forApp: chrome, gestureString: "dr", keystrokeString: "\(command)w")
+        self.set(forApp: chrome, gestureString: "dru", keystrokeString: "\(shift)\(command)t")
+        self.set(forApp: chrome, gestureString: "dur", keystrokeString: "\(command)t")
+        self.set(forApp: chrome, gestureString: "dul", keystrokeString: "\(shift)\(command)x")
+        self.set(forApp: chrome, gestureString: "lurd", keystrokeString: "\(command)r")
+        self.set(forApp: chrome, gestureString: "ur", keystrokeString: "\(option)\(command)→")
+        self.set(forApp: chrome, gestureString: "ul", keystrokeString: "\(option)\(command)←")
+
+        let safari = "/Applications/Safari.app"
+        self.set(forApp: safari, gestureString: "dr", keystrokeString: "\(command)w")
+        self.set(forApp: safari, gestureString: "lurd", keystrokeString: "\(command)r")
+        self.set(forApp: safari, gestureString: "ur", keystrokeString: "\(control)\(tab)")
+        self.set(forApp: safari, gestureString: "ul", keystrokeString: "\(shift)\(control)\(tab)")
+
+        let atom = "/Applications/Atom.app"
+        self.set(forApp: atom, gestureString: "dr", keystrokeString: "\(command)w")
+        self.set(forApp: atom, gestureString: "ul", keystrokeString: "\(option)\(command)←")
+        self.set(forApp: atom, gestureString: "ur", keystrokeString: "\(option)\(command)→")
+
+        let finder = "/System/Library/CoreServices/Finder.app"
+        self.setKeystroke(forApp: finder, gestureString: "dr", keystrokeString: "\(command)w")
+
+//        self.setKeystrokeForGlobal(gestureString: "ldrud", keystrokeString: "\(command)q")
+    }
+
+
     // MARK: Convenience init
 
     
