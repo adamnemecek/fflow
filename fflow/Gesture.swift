@@ -75,7 +75,7 @@ class Gesture {
     func append(direction: Direction) {
 
         guard !direction.isVague else { return }
-        guard !self.isEmpty || !direction.isNo else { return } // .No must no be first
+        guard !self.isEmpty || !direction.isNo else { return } // .No must not be first
         guard direction != self.last else { return } // whether duplicated or not
 
         self.directions.append(direction)
