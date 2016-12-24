@@ -52,20 +52,20 @@ class DirectionTests: XCTestCase {
     
     func testUnitVector() {
         
-        let upUnitVector = Direction.Up.unitVector
-        XCTAssertEqual(upUnitVector.x, 0)
-        XCTAssertEqual(upUnitVector.y, 1)
+        let up = Direction.Up.unitVector
+        XCTAssertEqual(up.dx, 0)
+        XCTAssertEqual(up.dy, 1)
 
-        let downUnitVector = Direction.Down.unitVector
-        XCTAssertEqual(downUnitVector.x, 0)
-        XCTAssertEqual(downUnitVector.y, -1)
+        let down = Direction.Down.unitVector
+        XCTAssertEqual(down.dx, 0)
+        XCTAssertEqual(down.dy, -1)
         
-        let leftUnitVector = Direction.Left.unitVector
-        XCTAssertEqual(leftUnitVector.x, -1)
-        XCTAssertEqual(leftUnitVector.y, 0)
+        let left = Direction.Left.unitVector
+        XCTAssertEqual(left.dx, -1)
+        XCTAssertEqual(left.dy, 0)
         
-        let rightUnitVector = Direction.Right.unitVector
-        XCTAssertEqual(rightUnitVector.x, 1)
-        XCTAssertEqual(rightUnitVector.y, 0)
+        let right = Direction.Right.unitVector
+        XCTAssertEqual(right.dx, 1)
+        XCTAssertEqual(right.dy, 0)
     }
 }
