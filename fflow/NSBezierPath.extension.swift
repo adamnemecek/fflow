@@ -11,55 +11,52 @@ import Cocoa
 
 extension NSBezierPath {
     
-    
-    // MARK: Straight line
-
     func left(dx: CGFloat) {
-        self.relativeLine(to: NSMakePoint(-1 * dx, 0))
+
+        self.relativeLine(to: .init(x: -dx, y: 0))
     }
     
     func right(dx: CGFloat) {
-        self.relativeLine(to: NSMakePoint(dx, 0))
+
+        self.relativeLine(to: .init(x: dx, y: 0))
     }
     
     func up(dy: CGFloat) {
-        self.relativeLine(to: NSMakePoint(0, dy))
+
+        self.relativeLine(to: .init(x: 0, y: dy))
     }
 
     func down(dy: CGFloat) {
-        self.relativeLine(to: NSMakePoint(0, -1 * dy))
+
+        self.relativeLine(to: .init(x: 0, y: -dy))
     }
-    
-    
-    // MARK: Arch line
-    
-    private func _centerPoint(radius: CGFloat, angle: CGFloat) -> NSPoint {
-        
-        let radian = CGFloat(M_PI) * angle / 180
-        let dx = radius * cos(radian)
-        let dy = radius * sin(radian)
-        
-        let x = self.currentPoint.x - CGFloat(dx)
-        let y = self.currentPoint.y - CGFloat(dy)
-        
-        return NSPoint(x: x, y: y)
+
+    private func pointOfCenter(radius: CGFloat, angle: CGFloat) -> NSPoint {
+
+        let currentVector = CGVector(endPoint: self.currentPoint)
+        let radian = M_PI * Double(angle) / 180
+        let radiusVector = radius * CGVector(dx: cos(radian), dy: sin(radian))
+
+        let centerVector = currentVector - radiusVector
+
+        return centerVector.endPoint
     }
     
     func clockwise(radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat) {
         
-        let center = _centerPoint(radius: radius, angle: startAngle)
-        
-        self.appendArc(withCenter: center, radius: radius,
-                       startAngle: startAngle, endAngle: endAngle,
+        self.appendArc(withCenter: pointOfCenter(radius: radius, angle: startAngle),
+                       radius: radius,
+                       startAngle: startAngle,
+                       endAngle: endAngle,
                        clockwise: true)
     }
     
     func counterClockwise(radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat) {
         
-        let center = _centerPoint(radius: radius, angle: startAngle)
-        
-        self.appendArc(withCenter: center, radius: radius,
-                       startAngle: startAngle, endAngle: endAngle,
+        self.appendArc(withCenter: pointOfCenter(radius: radius, angle: startAngle),
+                       radius: radius,
+                       startAngle: startAngle,
+                       endAngle: endAngle,
                        clockwise: false)
     }
 }
