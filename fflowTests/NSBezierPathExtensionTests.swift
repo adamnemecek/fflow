@@ -6,15 +6,6 @@
 //  Copyright © 2016年 user. All rights reserved.
 //
 
-import Foundation
-//
-//  NSBezierPathExtensionTests.swift
-//  fflow
-//
-//  Created by user on 2016/12/11.
-//  Copyright © 2016年 user. All rights reserved.
-//
-
 import XCTest
 @testable import fflow
 
@@ -67,5 +58,16 @@ class NSBezierPathExtensionTests: XCTestCase {
         bezierPath.counterClockwise(radius: 150, startAngle: 0, endAngle: 90)
         XCTAssertEqual(bezierPath.currentPoint.x, -150)
         XCTAssertEqual(bezierPath.currentPoint.y, 150)
+    }
+
+    func testInitWithInitialPoint() {
+
+        let path1 = NSBezierPath(initialPoint: .init(x: 3, y: 4))
+        XCTAssertEqual(path1.currentPoint.x, 3)
+        XCTAssertEqual(path1.currentPoint.y, 4)
+
+        let path2 = NSBezierPath(initialX: 5, y: 6)
+        XCTAssertEqual(path2.currentPoint.x, 5)
+        XCTAssertEqual(path2.currentPoint.y, 6)
     }
 }

@@ -60,3 +60,39 @@ extension NSBezierPath {
                        clockwise: false)
     }
 }
+
+
+extension NSBezierPath {
+
+    func scaleBounds(within limitSize: NSSize) {
+
+        let limit = limitSize.shortSide
+        let longSide = self.bounds.longSide
+        self.transform(using: .init(scale: limit / longSide))
+    }
+
+    func setBoundsCenter(of frame: NSRect) {
+
+        let from = self.bounds.centerPoint
+        let to = frame.centerPoint
+        let dx = to.x - from.x
+        let dy = to.y - from.y
+        
+        self.transform(using: .init(translationByX: dx, byY: dy))
+    }
+}
+
+
+extension NSBezierPath {
+
+    convenience init(initialPoint: NSPoint) {
+
+        self.init()
+        self.move(to: initialPoint)
+    }
+
+    convenience init(initialX x: CGFloat, y: CGFloat) {
+
+        self.init(initialPoint: .init(x: x, y: y))
+    }
+}
