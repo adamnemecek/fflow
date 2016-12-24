@@ -103,4 +103,11 @@ class GestureTests: XCTestCase {
         XCTAssertEqual(rdString, "rd")
         XCTAssertEqual(rdn.string, "")
     }
+
+    func testPath() {
+
+        let dru = Gesture(fromString: "dru")
+
+        XCTAssertEqual(dru.path.elementCount, 4)
+    }
 }

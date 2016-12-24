@@ -6,7 +6,7 @@
 //  Copyright © 2016年 user. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 class Gesture {
 
@@ -19,7 +19,7 @@ class Gesture {
 
     // MARK: Private instance property
 
-    private var directions: [Direction] = []
+    fileprivate var directions: [Direction] = []
     
     private var last: Direction? { return self.directions.last }
     private var count: Int { return self.directions.count }
@@ -43,6 +43,7 @@ class Gesture {
     // MARK: Instance property
 
     var string: String {
+
         return self.directions.map({$0.rawValue}).joined()
     }
 
@@ -96,5 +97,79 @@ class Gesture {
         self.clear()
 
         return partString
+    }
+}
+
+
+
+
+
+extension Gesture {
+
+    private var radian: CGFloat { return CGFloat(M_PI) / 18 }
+    private var clockwise: CGAffineTransform { return .init(rotationAngle: -self.radian) }
+    private var counterClockwise: CGAffineTransform { return .init(rotationAngle: self.radian) }
+    private var notRotate: CGAffineTransform { return .init(rotationAngle: 0) }
+
+    private func rivet(at center: NSPoint) -> NSBezierPath {
+
+        let rect = NSRect(center: center, size: .init(width: 7, height: 7))
+        return NSBezierPath(ovalIn: rect)
+    }
+
+    private func oneLine(vector: CGVector) -> NSBezierPath {
+
+        let line = NSBezierPath(initialPoint: .zero)
+
+        let rivet = self.rivet(at: .zero)
+        line.append(rivet)
+        line.move(to: .zero)
+
+        line.relativeLine(to: vector.endPoint)
+
+        return line
+    }
+
+    private func rotation(prev: CGVector, current: CGVector) -> CGAffineTransform {
+
+        let sub = prev - current
+        guard sub.dx != 2 && sub.dy != 2 else { return self.counterClockwise }
+        guard sub.dx != -2 && sub.dy != -2 else { return self.clockwise }
+
+        return self.notRotate
+    }
+
+    private func rotated(prev: CGVector, current: CGVector) -> CGVector {
+
+        let rotation = self.rotation(prev: prev, current: current)
+        let rotatedPoint = current.endPoint.applying(rotation)
+
+        return CGVector(endPoint: rotatedPoint)
+    }
+
+    var path: NSBezierPath {
+
+        let path = NSBezierPath(initialPoint: .zero)
+        path.lineCapStyle = .roundLineCapStyle
+
+        var length: CGFloat = 100
+        var prev: CGVector = .zero
+
+        for direction in self.directions {
+
+            let rotated = self.rotated(prev: prev, current: direction.unitVector)
+
+            let oneLine = self.oneLine(vector: length * rotated)
+
+            let point = path.currentPoint
+            oneLine.transform(using: .init(translationByX: point.x, byY: point.y))
+
+            path.append(oneLine)
+
+            prev = rotated
+            length *= 0.9
+        }
+
+        return path
     }
 }
