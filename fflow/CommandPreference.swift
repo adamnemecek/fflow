@@ -45,6 +45,8 @@ class CommandPreference {
         let command = Key.Command.symbol
         let tab = Key.Tab.symbol
 
+        self.clearCompletely()
+
         let chrome = "/Applications/Google Chrome.app"
         self.set(forApp: chrome, gestureString: "dr", keystrokeString: "\(command)w")
         self.set(forApp: chrome, gestureString: "dru", keystrokeString: "\(shift)\(command)t")
