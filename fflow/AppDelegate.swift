@@ -39,9 +39,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 
                 guard let keystrokeString = self.commandPreference.keystroke(forApp: url.path, gestureString: gestureString) else { return }
                 
-                self.indicator.show(arrowString: gestureString)
+                self.indicator.showAndFadeout(gesture: Gesture(fromString: gestureString))
+
                 guard let appName = frontmostApp.localizedName else { return }
                 guard let keystroke = Keystroke(fromString: keystrokeString) else { return }
+
                 keystroke.dispatchTo(appName: appName)
         })
     }
