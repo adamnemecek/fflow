@@ -172,6 +172,16 @@ class CommandPreference {
         self.userDefaults.removeObject(forKey: keystrokeKey)
     }
 
+    func removeGesture(forApp path: String, gestureString: String) {
+
+        self.removeKeystroke(forApp: path, gestureString: gestureString)
+
+        var gestures = self.gestures(forApp: path)
+        guard let index = gestures.index(of: gestureString) else { return }
+        gestures.remove(at: index)
+        self.setGestures(forApp: path, gestures: gestures)
+    }
+
     func removeGestures(forApp path: String) {
 
         let gestures = self.gestures(forApp: path)

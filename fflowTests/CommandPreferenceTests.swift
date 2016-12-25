@@ -96,6 +96,15 @@ class CommandPreferenceTests: XCTestCase {
         XCTAssertEqual(keystrokes[1], command + "d")
     }
 
+    func testRemoveGesture() {
+
+        testSet()
+        XCTAssertEqual(commandPreference.keystrokes(forApp: Atom).count, 2)
+
+        commandPreference.removeGesture(forApp: Atom, gestureString: "dr")
+        XCTAssertEqual(commandPreference.keystrokes(forApp: Atom).count, 1)
+    }
+    
     func testRemoveGestures() {
 
         testSet()
