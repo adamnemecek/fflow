@@ -203,3 +203,17 @@ class CommandPreference {
         self.setApps(paths: [])
     }
 }
+
+
+
+
+
+extension CommandPreference {
+
+    private var globalAppPath: String { return "Global" }
+
+    func setForGlobal(gestureString: String, keystrokeString: String) {
+
+        self.set(forApp: self.globalAppPath, gestureString: gestureString, keystrokeString: keystrokeString)
+    }
+}
