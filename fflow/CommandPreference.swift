@@ -103,14 +103,19 @@ class CommandPreference {
         self.setApps(paths: paths)
     }
 
-    private func setGesture(forApp appPath: String, gestureString: String) {
+    private func setGestures(forApp path: String, gestures: [String]) {
 
-        var gestures = self.gestures(forApp: appPath)
+        let gesturesKey = self.gesturesKey(forApp: path)
+        self.userDefaults.set(gestures, forKey: gesturesKey)
+    }
+
+    private func setGesture(forApp path: String, gestureString: String) {
+
+        var gestures = self.gestures(forApp: path)
         guard !gestures.contains(gestureString) else { return }
 
         gestures.append(gestureString)
-        let gesturesKey = self.gesturesKey(forApp: appPath)
-        self.userDefaults.set(gestures, forKey: gesturesKey)
+        self.setGestures(forApp: path, gestures: gestures)
     }
 
     private func setKeystroke(forApp appPath: String, gestureString: String, keystrokeString: String) {
