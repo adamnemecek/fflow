@@ -79,14 +79,14 @@ class CommandPreference {
     
     // MARK: Private instance method
 
-    private func gesturesKey(forApp appPath: String) -> String {
+    private func gesturesKey(forApp path: String) -> String {
 
-        return "gesturesFor:\(appPath)"
+        return "gesturesFor:\(path)"
     }
 
-    private func keystrokeKey(forApp appPath: String, forGesture gestureString: String) -> String {
+    private func keystrokeKey(forApp path: String, forGesture gestureString: String) -> String {
 
-        return "keystrokeFor:\(appPath)/\(gestureString)"
+        return "keystrokeFor:\(path)/\(gestureString)"
     }
 
     private func setApps(paths: [String]) {
@@ -118,9 +118,9 @@ class CommandPreference {
         self.setGestures(forApp: path, gestures: gestures)
     }
 
-    private func setKeystroke(forApp appPath: String, gestureString: String, keystrokeString: String) {
+    private func setKeystroke(forApp path: String, gestureString: String, keystrokeString: String) {
 
-        let keystrokesKey = self.keystrokeKey(forApp: appPath, forGesture: gestureString)
+        let keystrokesKey = self.keystrokeKey(forApp: path, forGesture: gestureString)
         self.userDefaults.set(keystrokeString, forKey: keystrokesKey)
     }
 
