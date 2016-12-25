@@ -153,4 +153,16 @@ class CommandPreferenceTests: XCTestCase {
         XCTAssertEqual(commandPreference.keystrokes(forApp: "Global").count, 2)
         XCTAssertEqual(commandPreference.keystroke(forApp: "Global", gestureString: "ud"), option + "U")
     }
+
+    func testKeystrokeIncludesGlobal() {
+
+        testSet()
+        commandPreference.setForGlobal(gestureString: "ud", keystrokeString: option + "U")
+        commandPreference.setForGlobal(gestureString: "lr", keystrokeString: option + "R")
+
+        XCTAssertEqual(commandPreference.keystroke(forApp: Atom, gestureString: "dr"), option + "p")
+        XCTAssertNil(commandPreference.keystroke(forApp: Atom, gestureString: "ud"))
+        XCTAssertNil(commandPreference.keystroke(forApp: Atom, gestureString: "ud", includesGlobal: false))
+        XCTAssertEqual(commandPreference.keystroke(forApp: Atom, gestureString: "ud", includesGlobal: true), option + "U")
+    }
 }

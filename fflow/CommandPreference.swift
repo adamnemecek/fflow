@@ -216,4 +216,18 @@ extension CommandPreference {
 
         self.set(forApp: self.globalAppPath, gestureString: gestureString, keystrokeString: keystrokeString)
     }
+
+    private func keystrokeForGlobal(gestureString: String) -> String? {
+
+        return self.keystroke(forApp: self.globalAppPath, gestureString: gestureString)
+    }
+
+    func keystroke(forApp path: String, gestureString: String, includesGlobal: Bool) -> String? {
+
+        if let keystroke = self.keystroke(forApp: path, gestureString: gestureString) { return keystroke }
+
+        guard includesGlobal else { return nil }
+        
+        return self.keystrokeForGlobal(gestureString: gestureString)
+    }
 }
