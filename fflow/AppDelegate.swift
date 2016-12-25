@@ -37,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 guard let frontmostApp = NSWorkspace.shared().frontmostApplication else { return }
                 guard let url = frontmostApp.bundleURL else { return }
                 
-                guard let keystrokeString = self.commandPreference.keystroke(forApp: url.path, gestureString: gestureString) else { return }
+                guard let keystrokeString = self.commandPreference.keystroke(forApp: url.path, gestureString: gestureString, includesGlobal: true) else { return }
                 
                 self.indicator.showAndFadeout(gesture: Gesture(fromString: gestureString))
 
