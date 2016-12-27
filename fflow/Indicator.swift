@@ -104,6 +104,12 @@ class Indicator: NSObject {
 
     // MARK: Private instance method
 
+    fileprivate func showPanel() {
+
+        self.panel.isFloatingPanel = true // to be visible even if target app isn't fullscreen
+        self.panel.orderFront(nil)
+    }
+
 
     // MARK: Instance method
 
@@ -116,7 +122,7 @@ class Indicator: NSObject {
         
         contentView.addSubview(textView)
 
-        self.panel.orderFront(nil)
+        self.showPanel()
     }
 
     func close() {
@@ -165,7 +171,7 @@ extension Indicator {
         imageView.image = image
         contentView.addSubview(imageView)
 
-        self.panel.orderFront(nil)
+        self.showPanel()
     }
 }
 
