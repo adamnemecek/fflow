@@ -69,7 +69,7 @@ class CommandPreference {
         let finder = "/System/Library/CoreServices/Finder.app"
         self.setKeystroke(forApp: finder, gestureString: "dr", keystrokeString: "\(command)w")
 
-        self.setForGlobal(gestureString: "ldrl", keystrokeString: "\(command)q")
+        self.setForGlobal(gestureString: "lrd", keystrokeString: "\(command)q")
     }
 
 
