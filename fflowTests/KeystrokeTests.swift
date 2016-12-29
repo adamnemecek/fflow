@@ -74,4 +74,14 @@ class KeystrokeTests: XCTestCase {
         let control9 = Keystroke(keyCode: 10, control: true)
         XCTAssertEqual(control9?.string, "⌃§")
     }
+
+    func testDispatchTo() {
+
+        guard let shiftA = Keystroke(keyName: "A", shift: true) else { return }
+
+        self.measure {
+
+            for _ in 0..<100 { shiftA.dispatchTo(appName: "Atom") }
+        }
+    }
 }
