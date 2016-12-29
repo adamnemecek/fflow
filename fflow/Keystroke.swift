@@ -62,7 +62,7 @@ class Keystroke {
 
     // MARK: Designated init
     
-    init?(keyCode: UInt8, shift: Bool = false, control: Bool = false, option: Bool = false, command: Bool = false) {
+    init?(keyCode: CGKeyCode, shift: Bool = false, control: Bool = false, option: Bool = false, command: Bool = false) {
         
         guard let key = Key(fromCode: keyCode) else { return nil }
         self.key = key
