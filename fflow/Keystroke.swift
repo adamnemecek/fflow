@@ -24,13 +24,13 @@ class Keystroke {
     
     // MARK: Private instance property
 
-    private let key: Key
-    private let shift: Bool
-    private let control: Bool
-    private let option: Bool
-    private let command: Bool
+    fileprivate let key: Key
+    fileprivate let shift: Bool
+    fileprivate let control: Bool
+    fileprivate let option: Bool
+    fileprivate let command: Bool
 
-    private var modifiers: [Key] {
+    fileprivate var modifiers: [Key] {
 
         var modifiers: [Key] = []
         if self.shift { modifiers.append(Key.Shift) }
@@ -130,5 +130,49 @@ class Keystroke {
           + "end tell\n"
 
         NSAppleScript(source: source)?.executeAndReturnError(&(Keystroke.error))
+    }
+}
+
+
+
+
+
+extension Keystroke {
+
+    private var eventSource: CGEventSource? { return CGEventSource(stateID: .hidSystemState) }
+    private var hidEventTapLocation: CGEventTapLocation { return .cghidEventTap }
+
+    private var flags: CGEventFlags {
+
+        return [
+            self.control ? .maskControl : .maskNonCoalesced,
+            self.option ? .maskAlternate : .maskNonCoalesced,
+            self.shift ? .maskShift : .maskNonCoalesced,
+            self.command ? .maskCommand : .maskNonCoalesced,
+        ]
+    }
+
+    private func down(keycode: CGKeyCode) -> CGEvent? {
+
+        return CGEvent(keyboardEventSource: self.eventSource, virtualKey: keycode, keyDown: true)
+    }
+
+    private func up(keycode: CGKeyCode) -> CGEvent? {
+
+        return CGEvent(keyboardEventSource: self.eventSource, virtualKey: keycode, keyDown: false)
+    }
+
+    func dispatchToFrontmostApp() {
+
+        guard let keyDown = self.down(keycode: self.key.code) else { return }
+        guard let keyUp = self.up(keycode: self.key.code) else { return }
+
+        keyDown.flags = self.flags
+
+        self.modifiers.forEach({ self.down(keycode: $0.code)?.post(tap: self.hidEventTapLocation) })
+        keyDown.post(tap: self.hidEventTapLocation)
+
+        keyUp.post(tap: self.hidEventTapLocation)
+        self.modifiers.forEach({ self.up(keycode: $0.code)?.post(tap: self.hidEventTapLocation) })
     }
 }

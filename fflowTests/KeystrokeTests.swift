@@ -74,14 +74,31 @@ class KeystrokeTests: XCTestCase {
         let control9 = Keystroke(keyCode: 10, control: true)
         XCTAssertEqual(control9?.string, "⌃§")
     }
+}
 
-    func testDispatchTo() {
+extension KeystrokeTests {
+
+    // NOTE: native code is about 16x faster than which through applescript
+
+    // Through applescript
+//    func testDispatchTo() {
+//
+//        guard let shiftA = Keystroke(keyName: "A", shift: true) else { return }
+//
+//        self.measure {
+//
+//            for _ in 0..<500 { shiftA.dispatchTo(appName: "Atom") }
+//        }
+//    }
+
+    // Native code
+    func testDispatchToFrontmostApp() {
 
         guard let shiftA = Keystroke(keyName: "A", shift: true) else { return }
 
         self.measure {
 
-            for _ in 0..<100 { shiftA.dispatchTo(appName: "Atom") }
+            for _ in 0..<500 { shiftA.dispatchToFrontmostApp() }
         }
     }
 }
