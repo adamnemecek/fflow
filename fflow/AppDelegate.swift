@@ -35,6 +35,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 guard let gestureString = self.gesture.release() else { return }
 
                 if gestureString == "rl" || gestureString == "lr" {
+
+                    self.indicator.showAndFadeout(gesture: Gesture(fromString: gestureString))
                     self.centerClick()
                     return
                 }
