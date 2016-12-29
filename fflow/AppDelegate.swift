@@ -33,6 +33,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                     y: evt.scrollingDeltaY)
 
                 guard let gestureString = self.gesture.release() else { return }
+
+                if gestureString == "rl" || gestureString == "lr" {
+                    self.centerClick()
+                    return
+                }
                 
                 guard let frontmostApp = NSWorkspace.shared().frontmostApplication else { return }
                 guard let url = frontmostApp.bundleURL else { return }
@@ -63,5 +68,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc private func quit() {
 
         NSApplication.shared().terminate(self)
+    }
+
+    func centerClick() {
+
+        guard let location = CGEvent(source: nil)?.location else { return }
+
+        let down = CGEvent(mouseEventSource: nil,
+                           mouseType: .otherMouseDown,
+                           mouseCursorPosition: location,
+                           mouseButton: .center)
+        let up = CGEvent(mouseEventSource: nil,
+                         mouseType: .otherMouseUp,
+                         mouseCursorPosition: location,
+                         mouseButton: .center)
+
+        down?.post(tap: .cghidEventTap)
+        up?.post(tap: .cghidEventTap)
     }
 }
