@@ -46,10 +46,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 
                 self.indicator.showAndFadeout(gesture: Gesture(fromString: gestureString))
 
-                guard let appName = frontmostApp.localizedName else { return }
                 guard let keystroke = Keystroke(fromString: keystrokeString) else { return }
 
-                keystroke.dispatchTo(appName: appName)
+                keystroke.dispatchToFrontmostApp()
         })
     }
 
