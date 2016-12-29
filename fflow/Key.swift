@@ -13,28 +13,28 @@ enum Key: Int {
 
     case Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine
 
-    case A, B, C, D, E, F, G, H, I, J, K, L, M, N
-    case O, P, Q, R, S, T, U, V, W, X, Y, Z
+    case A, B, C, D, E, F, G, H, I, J, K, L, M, N,
+         O, P, Q, R, S, T, U, V, W, X, Y, Z
 
-    case SectionSign, Grave, Minus, Equal
-    case LeftBracket, RightBracket, Semicolon
-    case Quote, Comma, Period, Slash, Backslash
+    case SectionSign, Grave, Minus, Equal,
+         LeftBracket, RightBracket, Semicolon,
+         Quote, Comma, Period, Slash, Backslash
 
-    case Keypad0, Keypad1, Keypad2, Keypad3, Keypad4
-    case Keypad5, Keypad6, Keypad7, Keypad8, Keypad9
-    case KeypadDecimal, KeypadMultiply, KeypadPlus, KeypadDivide
-    case KeypadMinus, KeypadEquals, KeypadClear, KeypadEnter
+    case Keypad0, Keypad1, Keypad2, Keypad3, Keypad4,
+         Keypad5, Keypad6, Keypad7, Keypad8, Keypad9,
+         KeypadDecimal, KeypadMultiply, KeypadPlus, KeypadDivide,
+         KeypadMinus, KeypadEquals, KeypadClear, KeypadEnter
 
-    case Space, Return, Tab, Delete, ForwardDelete, Linefeed, Escape
-    case Command, Shift, CapsLock, Option, Control
-    case RightShift, RightOption, RightControl, Function
+    case Space, Return, Tab, Delete, ForwardDelete, Linefeed, Escape,
+         Command, Shift, CapsLock, Option, Control,
+         RightShift, RightOption, RightControl, Function
 
-    case F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12
-    case F13, BrightnessDown, BrightnessUp, F16, F17, F18, F19, F20
+    case F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12,
+         F13, BrightnessDown, BrightnessUp, F16, F17, F18, F19, F20
 
-    case VolumeUp, VolumeDown, Mute, HelpInsert
-    case Home, End, PageUp, PageDown
-    case LeftArrow, RightArrow, DownArrow, UpArrow
+    case VolumeUp, VolumeDown, Mute, HelpInsert,
+         Home, End, PageUp, PageDown,
+         LeftArrow, RightArrow, DownArrow, UpArrow
 
 
     static private func find(which here: (KeyInfo) -> Bool) -> Key? {
