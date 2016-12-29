@@ -106,8 +106,12 @@ class GestureTests: XCTestCase {
 
     func testPath() {
 
-        let dru = Gesture(fromString: "dru")
+        let elementCountOfRivet = 5
+        let elementCountOfLine = 2
+        let elementCountOfOnePath = elementCountOfRivet + elementCountOfLine
 
-        XCTAssertEqual(dru.path.elementCount, 4)
+        let drudu = Gesture(fromString: "drudu")
+
+        XCTAssertEqual(drudu.path.elementCount, elementCountOfOnePath * 5)
     }
 }
