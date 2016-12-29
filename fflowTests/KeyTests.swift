@@ -40,7 +40,7 @@ class KeyTests: XCTestCase {
         XCTAssertNil(Key(fromSymbol: "invalidSymbol"))
         XCTAssertEqual(Key(fromSymbol: "S"), .S)
 
-        let invalidCode: UInt8 = 255
+        let invalidCode: CGKeyCode = 255
         XCTAssertNil(Key(fromCode: invalidCode))
         XCTAssertEqual(Key(fromCode: 8), .C)
     }

@@ -47,7 +47,7 @@ enum Key: Int {
         return keyInfos[self.rawValue].name
     }
 
-    var code: UInt8 {
+    var code: CGKeyCode {
         return keyInfos[self.rawValue].code
     }
 
@@ -69,7 +69,7 @@ enum Key: Int {
         self = key
     }
 
-    init?(fromCode code: UInt8) {
+    init?(fromCode code: CGKeyCode) {
 
         let which: (KeyInfo) -> Bool = { $0.code == code }
         guard let key = Key.find(which: which) else { return nil }
@@ -82,7 +82,7 @@ private struct KeyInfo {
 
     let name: String
     let symbol: String
-    let code: UInt8
+    let code: CGKeyCode
 }
 
 
