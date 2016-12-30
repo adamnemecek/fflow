@@ -111,10 +111,16 @@ extension Gesture {
     private var counterClockwise: CGAffineTransform { return .init(rotationAngle: self.radian) }
     private var notRotate: CGAffineTransform { return .init(rotationAngle: 0) }
 
-    private func rivet(at center: NSPoint) -> NSBezierPath {
+    private var rivetSide: CGFloat { return 7 }
+    private var rivetSize: NSSize { return NSSize(squaringOf: self.rivetSide) }
 
-        let rect = NSRect(center: center, size: .init(width: 7, height: 7))
-        return NSBezierPath(ovalIn: rect)
+    fileprivate func rivet(at center: NSPoint) -> NSBezierPath {
+
+        let rect = NSRect(center: center, size: self.rivetSize)
+        let rivet = NSBezierPath(ovalIn: rect)
+        rivet.move(to: center)
+
+        return rivet
     }
 
     private func oneLine(vector: CGVector) -> NSBezierPath {
@@ -123,7 +129,6 @@ extension Gesture {
 
         let rivet = self.rivet(at: .zero)
         line.append(rivet)
-        line.move(to: .zero)
 
         line.relativeLine(to: vector.endPoint)
 
