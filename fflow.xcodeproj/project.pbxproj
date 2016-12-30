@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CE0880F11E0A6FE700398749 /* CGVector.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0880F01E0A6FE700398749 /* CGVector.extension.swift */; };
 		CE09F7841DB8899900EDE9C5 /* NSBezierPath.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE09F7831DB8899900EDE9C5 /* NSBezierPath.extension.swift */; };
+		CE1806E31E15534400FDDFD4 /* CGFloat.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806E21E15534400FDDFD4 /* CGFloat.extension.swift */; };
+		CE1806E51E15541F00FDDFD4 /* CGFloatExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806E41E15541F00FDDFD4 /* CGFloatExtensionTests.swift */; };
 		CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */; };
 		CE36C7E31DFD688E0043F678 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36C7E21DFD688E0043F678 /* StringExtensionTests.swift */; };
 		CE3F709A1E0B19C300D79D04 /* NSSize.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F70991E0B19C300D79D04 /* NSSize.extension.swift */; };
@@ -61,6 +63,8 @@
 /* Begin PBXFileReference section */
 		CE0880F01E0A6FE700398749 /* CGVector.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGVector.extension.swift; sourceTree = "<group>"; };
 		CE09F7831DB8899900EDE9C5 /* NSBezierPath.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBezierPath.extension.swift; sourceTree = "<group>"; };
+		CE1806E21E15534400FDDFD4 /* CGFloat.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloat.extension.swift; sourceTree = "<group>"; };
+		CE1806E41E15541F00FDDFD4 /* CGFloatExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatExtensionTests.swift; sourceTree = "<group>"; };
 		CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keystroke.swift; sourceTree = "<group>"; };
 		CE36C7E21DFD688E0043F678 /* StringExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		CE3F70991E0B19C300D79D04 /* NSSize.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSSize.extension.swift; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 				CEFD397A1E0926B2001948C9 /* NSRect.extension.swift */,
 				CE0880F01E0A6FE700398749 /* CGVector.extension.swift */,
 				CE7A9E6E1E0D4216007194B8 /* NSPoint.extension.swift */,
+				CE1806E21E15534400FDDFD4 /* CGFloat.extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				CED57A9F1D9DF43400F881C9 /* fflowTests.swift */,
 				CEDABA3C1E0BC7380063D72F /* NSViewExtensionTests.swift */,
 				CE7A9E701E0D4299007194B8 /* NSPointExtensionTests.swift */,
+				CE1806E41E15541F00FDDFD4 /* CGFloatExtensionTests.swift */,
 			);
 			path = fflowTests;
 			sourceTree = "<group>";
@@ -381,6 +387,7 @@
 				CE848DFD1DA752130097E42F /* Preference.swift in Sources */,
 				CEF581E81E04AF7D006A8440 /* NSView.extension.swift in Sources */,
 				CE09F7841DB8899900EDE9C5 /* NSBezierPath.extension.swift in Sources */,
+				CE1806E31E15534400FDDFD4 /* CGFloat.extension.swift in Sources */,
 				CE3F709A1E0B19C300D79D04 /* NSSize.extension.swift in Sources */,
 				CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */,
 				CE0880F11E0A6FE700398749 /* CGVector.extension.swift in Sources */,
@@ -406,6 +413,7 @@
 				CE7A9E711E0D4299007194B8 /* NSPointExtensionTests.swift in Sources */,
 				CEE1008F1DC443E70060BB7D /* CommandPreferenceTests.swift in Sources */,
 				CEDABA3D1E0BC7380063D72F /* NSViewExtensionTests.swift in Sources */,
+				CE1806E51E15541F00FDDFD4 /* CGFloatExtensionTests.swift in Sources */,
 				CE3F709C1E0B1A5800D79D04 /* NSSizeExtensionTests.swift in Sources */,
 				CE450D1C1DF977A0007CB84C /* KeystrokeTests.swift in Sources */,
 				CE450DA81DF9D549007CB84C /* GestureTests.swift in Sources */,
