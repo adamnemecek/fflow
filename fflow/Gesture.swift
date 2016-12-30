@@ -106,6 +106,8 @@ class Gesture {
 
 extension Gesture {
 
+    fileprivate var initialLength: CGFloat { return 100 }
+
     private var radian: CGFloat { return CGFloat(M_PI) / 18 }
     private var clockwise: CGAffineTransform { return .init(rotationAngle: -self.radian) }
     private var counterClockwise: CGAffineTransform { return .init(rotationAngle: self.radian) }
@@ -157,7 +159,7 @@ extension Gesture {
         let path = NSBezierPath(initialPoint: .zero)
         path.lineCapStyle = .roundLineCapStyle
 
-        var length: CGFloat = 100
+        var length = self.initialLength
         var prev: CGVector = .zero
 
         for direction in self.directions {
