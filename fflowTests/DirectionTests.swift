@@ -68,4 +68,18 @@ class DirectionTests: XCTestCase {
         XCTAssertEqual(right.dx, 1)
         XCTAssertEqual(right.dy, 0)
     }
+
+    func testIsVertical() {
+
+        let up = Direction.Up
+        XCTAssertTrue(up.isVertical)
+        XCTAssertFalse(up.isHorizontal)
+    }
+
+    func testIsHorizontal() {
+
+        let left = Direction.Left
+        XCTAssertTrue(left.isHorizontal)
+        XCTAssertFalse(left.isVertical)
+    }
 }
