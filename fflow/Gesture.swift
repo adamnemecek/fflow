@@ -180,3 +180,80 @@ extension Gesture {
         return path
     }
 }
+
+extension Gesture {
+
+    private var radius: CGFloat { return self.initialLength * 0.3 }
+    
+    private func startAngle(prev: Direction, current: Direction) -> CGFloat {
+
+        if prev.isVertical { return current == .Left ? 0 : 180 }
+        if current == .Up { return 270 }
+
+        return 90
+    }
+
+    private func endAngle(prev: Direction, current: Direction) -> CGFloat {
+
+        if prev == .Up { return 90 }
+        if prev == .Down { return 270 }
+        if prev == .Left { return 180 }
+        return 0
+    }
+
+    private func isClockwise(prev: Direction, current: Direction) -> Bool {
+
+        switch (prev, current) {
+        case (.Right, .Up): fallthrough
+        case (.Up, .Left): fallthrough
+        case (.Left, .Down): fallthrough
+        case (.Down, .Right): fallthrough
+        case (.Left, .Right): fallthrough
+        case (.Down, .Up): return false
+        default:
+            return true
+        }
+    }
+
+    private func joint(at startPoint: NSPoint, prev: Direction, current: Direction) -> NSBezierPath {
+
+        let arc = NSBezierPath(initialPoint: startPoint)
+
+        guard prev != .No else { return arc }
+
+        let startAngle = self.startAngle(prev: prev, current: current)
+        let endAngle = self.endAngle(prev: prev, current: current)
+
+
+        self.isClockwise(prev: prev, current: current)
+            ? arc.clockwise(radius: self.radius, startAngle: startAngle, endAngle: endAngle)
+            : arc.counterClockwise(radius: self.radius, startAngle: startAngle, endAngle: endAngle)
+
+        return arc
+    }
+
+    var naturalPath: NSBezierPath {
+
+        let path = NSBezierPath(initialPoint: .zero)
+        path.lineCapStyle = .roundLineCapStyle
+
+        var length = self.initialLength
+        var prev: Direction = .No
+
+        for current in self.directions {
+
+            let joint = self.joint(at: path.currentPoint, prev: prev, current: current)
+            path.append(joint)
+
+            let rivet = self.rivet(at: path.currentPoint)
+            path.append(rivet)
+
+            path.relativeLine(to: (length * current.unitVector).endPoint)
+
+            prev = current
+            length *= 0.9
+        }
+
+        return path
+    }
+}
