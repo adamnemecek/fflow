@@ -43,7 +43,7 @@ class CGVectorExtensionTests: XCTestCase {
 
 extension CGVectorExtensionTests {
 
-    func testInitByNSPoint() {
+    func testInitByEndPoint() {
 
         let point = NSPoint(x: 2, y: 3)
         let vector = CGVector(endPoint: point)
