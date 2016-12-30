@@ -39,7 +39,10 @@ class CGVectorExtensionTests: XCTestCase {
         XCTAssertEqual(twelveFifteen.dx, 12)
         XCTAssertEqual(twelveFifteen.dy, 15)
     }
-    
+}
+
+extension CGVectorExtensionTests {
+
     func testInitByNSPoint() {
 
         let point = NSPoint(x: 2, y: 3)
