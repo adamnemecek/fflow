@@ -60,4 +60,7 @@ extension Direction {
         default:     return .zero
         }
     }
+
+    var isVertical: Bool { return self.unitVector.dx == 0 }
+    var isHorizontal: Bool { return self.unitVector.dy == 0 }
 }
