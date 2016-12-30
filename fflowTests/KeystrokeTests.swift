@@ -92,13 +92,13 @@ extension KeystrokeTests {
 //    }
 
     // Native code
-    func testDispatchToFrontmostApp() {
-
-        guard let shiftA = Keystroke(keyName: "A", shift: true) else { return }
-
-        self.measure {
-
-            for _ in 0..<500 { shiftA.dispatchToFrontmostApp() }
-        }
-    }
+//    func testDispatchToFrontmostApp() {
+//
+//        guard let shiftA = Keystroke(keyName: "A", shift: true) else { return }
+//
+//        self.measure {
+//
+//            for _ in 0..<100 { shiftA.dispatchToFrontmostApp() }
+//        }
+//    }
 }
