@@ -43,9 +43,6 @@ extension NSRect {
 
         self.origin = .init(x: x, y: y)
     }
-}
-
-extension NSRect {
 
     init(center: NSPoint, size: NSSize) {
 
@@ -55,9 +52,6 @@ extension NSRect {
 
         self.init(origin: origin, size: size)
     }
-}
-
-extension NSRect {
 
     var centerPoint: NSPoint {
 
