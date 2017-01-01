@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Regist event handler for scrollWheel
         NSEvent.addGlobalMonitorForEvents(
-            matching: NSEventMask.scrollWheel,
+            matching: .scrollWheel,
             handler: {(evt: NSEvent!) -> Void in
                 
                 self.gesture.append(x: evt.scrollingDeltaX,
