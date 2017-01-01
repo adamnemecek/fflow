@@ -50,6 +50,9 @@ class NSRectExtensionTests: XCTestCase {
         XCTAssertEqual(rect.shortSide, 22)
         XCTAssertEqual(rect.longSide, 33)
     }
+}
+
+extension NSRectExtensionTests {
 
     func testInitWithCenter() {
 
