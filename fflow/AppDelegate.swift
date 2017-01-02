@@ -27,10 +27,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Regist event handler for scrollWheel
         NSEvent.addGlobalMonitorForEvents(
             matching: .scrollWheel,
-            handler: {(evt: NSEvent!) -> Void in
+            handler: {(event: NSEvent!) -> Void in
                 
-                self.gesture.append(x: evt.scrollingDeltaX,
-                                    y: evt.scrollingDeltaY)
+                self.gesture.append(x: event.scrollingDeltaX,
+                                    y: event.scrollingDeltaY)
 
                 guard let gestureString = self.gesture.release() else { return }
 
