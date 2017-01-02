@@ -118,3 +118,19 @@ extension GestureTests {
         XCTAssertEqual(drudu.path.elementCount, elementCountOfOnePath * 5)
     }
 }
+
+extension GestureTests {
+
+    func testAppendAndReleaseIfCan() {
+
+        let dr = Gesture()
+
+        XCTAssertNil(dr.appendAndReleaseIfCan(x: 0, y: 10)?.string)
+        XCTAssertNil(dr.appendAndReleaseIfCan(x: 10, y: 0)?.string)
+        XCTAssertEqual(dr.appendAndReleaseIfCan(x: 0, y: 0)?.string, "dr")
+        
+        XCTAssertNil(dr.appendAndReleaseIfCan(x: -10, y: 0)?.string)
+        XCTAssertNil(dr.appendAndReleaseIfCan(x: 10, y: 0)?.string)
+        XCTAssertEqual(dr.appendAndReleaseIfCan(x: 0, y: 0)?.string, "lr")
+    }
+}
