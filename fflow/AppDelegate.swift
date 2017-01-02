@@ -28,15 +28,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSEvent.addGlobalMonitorForEvents(
             matching: .scrollWheel,
             handler: {(event: NSEvent!) -> Void in
-                
-                self.gesture.append(x: event.scrollingDeltaX,
-                                    y: event.scrollingDeltaY)
 
-                guard let gestureString = self.gesture.release() else { return }
+                let x = event.scrollingDeltaX
+                let y = event.scrollingDeltaY
+
+                guard let gesture = self.gesture.appendAndReleaseIfCan(x: x, y: y) else { return }
+
+                let gestureString = gesture.string
 
                 if gestureString == "rl" || gestureString == "lr" {
 
-                    self.indicator.showAndFadeout(gesture: Gesture(fromString: gestureString))
+                    self.indicator.showAndFadeout(gesture: gesture)
                     self.centerClick()
                     return
                 }
@@ -44,12 +46,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 guard let frontmostApp = NSWorkspace.shared().frontmostApplication else { return }
                 guard let url = frontmostApp.bundleURL else { return }
                 
-                guard let keystrokeString = self.commandPreference.keystroke(forApp: url.path, gestureString: gestureString, includesGlobal: true) else { return }
+                guard let keystroke = self.commandPreference.keystroke(forApp: url, gesture: gesture, includesGlobal: true) else { return }
                 
-                self.indicator.showAndFadeout(gesture: Gesture(fromString: gestureString))
-
-                guard let keystroke = Keystroke(fromString: keystrokeString) else { return }
-
+                self.indicator.showAndFadeout(gesture: gesture)
                 keystroke.dispatchToFrontmostApp()
         })
     }
