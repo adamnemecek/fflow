@@ -24,10 +24,10 @@ class Gesture {
     private var last: Direction? { return self.directions.last }
     private var count: Int { return self.directions.count }
     private var isEmpty: Bool { return self.directions.isEmpty }
-    private var isCompleted: Bool { return self.last == .No }
+    fileprivate var isCompleted: Bool { return self.last == .No }
     private var isCanceled: Bool { return self.count <= 1 && self.isCompleted }
 
-    private var stringOfCompletedPart: String? {
+    fileprivate var stringOfCompletedPart: String? {
 
         guard self.isCompleted else { return nil }
 
@@ -63,16 +63,18 @@ class Gesture {
 
     
     // MARK: Convenience init
+
+
     // MARK: Private instance method
-    
-    private func clear() {
+
+    fileprivate func clear() {
 
         directions.removeAll()
     }
-
+    
     
     // MARK: Instance method
-    
+
     func append(direction: Direction) {
 
         guard !direction.isVague else { return }
@@ -255,5 +257,30 @@ extension Gesture {
         }
 
         return path
+    }
+}
+
+
+
+
+
+extension Gesture {
+
+    private func release() -> Gesture? {
+
+        guard let gestureString = self.stringOfCompletedPart else { return nil }
+
+        let gesture = Gesture(fromString: gestureString)
+
+        self.clear()
+
+        return gesture
+    }
+    
+    func appendAndReleaseIfCan(x: CGFloat, y: CGFloat) -> Gesture? {
+
+        self.append(x: x, y: y)
+
+        return self.release()
     }
 }
