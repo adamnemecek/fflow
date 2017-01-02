@@ -42,10 +42,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     self.centerClick()
                     return
                 }
-                
-                guard let frontmostApp = NSWorkspace.shared().frontmostApplication else { return }
-                guard let url = frontmostApp.bundleURL else { return }
-                
+
+                guard let url = NSWorkspace.shared().frontmostApplication?.bundleURL else { return }
+
                 guard let keystroke = self.commandPreference.keystroke(forApp: url, gesture: gesture, includesGlobal: true) else { return }
                 
                 self.indicator.showAndFadeout(gesture: gesture)
