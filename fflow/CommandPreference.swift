@@ -19,7 +19,7 @@ class CommandPreference {
 
     // MARK: Private instance property
 
-    private let userDefaults = NSUserDefaultsController().defaults
+    fileprivate let userDefaults = NSUserDefaultsController().defaults
 
     private let appPathsKey = "appPaths"
 
@@ -83,7 +83,7 @@ class CommandPreference {
         return "gesturesFor:\(path)"
     }
 
-    private func keystrokeKey(forApp path: String, forGesture gestureString: String) -> String {
+    fileprivate func keystrokeKey(forApp path: String, forGesture gestureString: String) -> String {
 
         return "keystrokeFor:\(path)/\(gestureString)"
     }
@@ -228,5 +228,17 @@ extension CommandPreference {
         guard includesGlobal else { return nil }
         
         return self.keystrokeForGlobal(gestureString: gestureString)
+    }
+}
+
+
+
+extension CommandPreference {
+
+    func keystroke(forApp url: URL, gesture: Gesture, includesGlobal: Bool) -> Keystroke? {
+
+        guard let keystrokeString = self.keystroke(forApp: url.path, gestureString: gesture.string, includesGlobal: includesGlobal) else { return nil }
+
+        return Keystroke(fromString: keystrokeString)
     }
 }
