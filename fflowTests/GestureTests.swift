@@ -103,6 +103,9 @@ class GestureTests: XCTestCase {
         XCTAssertEqual(rdString, "rd")
         XCTAssertEqual(rdn.string, "")
     }
+}
+
+extension GestureTests {
 
     func testPath() {
 
