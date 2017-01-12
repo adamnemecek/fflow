@@ -32,3 +32,12 @@ extension NSSize {
         self.init(width: side, height: side)
     }
 }
+
+extension NSSize {
+
+    func insetBy(dx: CGFloat, dy: CGFloat) -> NSSize {
+
+        return NSSize(width: self.width - 2 * dx,
+                      height: self.height - 2 * dy)
+    }
+}
