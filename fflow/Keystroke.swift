@@ -25,17 +25,17 @@ class Keystroke {
     // MARK: Private instance property
 
     fileprivate let key: Key
-    fileprivate let shift: Bool
     fileprivate let control: Bool
     fileprivate let option: Bool
+    fileprivate let shift: Bool
     fileprivate let command: Bool
 
     fileprivate var modifiers: [Key] {
 
         var modifiers: [Key] = []
-        if self.shift { modifiers.append(Key.Shift) }
         if self.control { modifiers.append(Key.Control) }
         if self.option { modifiers.append(Key.Option) }
+        if self.shift { modifiers.append(Key.Shift) }
         if self.command { modifiers.append(Key.Command) }
 
         return modifiers
@@ -62,33 +62,33 @@ class Keystroke {
 
     // MARK: Designated init
     
-    init?(keyCode: CGKeyCode, shift: Bool = false, control: Bool = false, option: Bool = false, command: Bool = false) {
+    init?(keyCode: CGKeyCode, control: Bool = false, option: Bool = false, shift: Bool = false, command: Bool = false) {
         
         guard let key = Key(fromCode: keyCode) else { return nil }
         self.key = key
-        self.shift = shift
         self.control = control
         self.option = option
+        self.shift = shift
         self.command = command
     }
     
-    init?(keySymbol: String, shift: Bool = false, control: Bool = false, option: Bool = false, command: Bool = false) {
+    init?(keySymbol: String, control: Bool = false, option: Bool = false, shift: Bool = false, command: Bool = false) {
         
         guard let key = Key(fromSymbol: keySymbol) else { return nil }
         self.key = key
-        self.shift = shift
         self.control = control
         self.option = option
+        self.shift = shift
         self.command = command
     }
 
-    init?(keyName: String, shift: Bool = false, control: Bool = false, option: Bool = false, command: Bool = false) {
+    init?(keyName: String, control: Bool = false, option: Bool = false, shift: Bool = false, command: Bool = false) {
         
         guard let key = Key(fromName: keyName) else { return nil }
         self.key = key
-        self.shift = shift
         self.control = control
         self.option = option
+        self.shift = shift
         self.command = command
    }
     
@@ -96,14 +96,14 @@ class Keystroke {
 
         var keystrokeString = immutableKeystrokeString
 
-        self.shift = keystrokeString.firstIs(it: Key.Shift.symbol)
-        if self.shift { keystrokeString.characters.removeFirst() }
-        
         self.control = keystrokeString.firstIs(it: Key.Control.symbol)
         if self.control { keystrokeString.characters.removeFirst() }
         
         self.option = keystrokeString.firstIs(it: Key.Option.symbol)
         if self.option { keystrokeString.characters.removeFirst() }
+
+        self.shift = keystrokeString.firstIs(it: Key.Shift.symbol)
+        if self.shift { keystrokeString.characters.removeFirst() }
         
         self.command = keystrokeString.firstIs(it: Key.Command.symbol)
         if self.command { keystrokeString.characters.removeFirst() }

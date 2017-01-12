@@ -42,13 +42,13 @@ class KeystrokeTests: XCTestCase {
 
         XCTAssertNotNil(Keystroke(keyName: "zero"))
         XCTAssertNotNil(Keystroke(keyName: "Zero"))
-        XCTAssertNotNil(Keystroke(keyName: "Zero", shift: true, control: true, option: true, command: true))
+        XCTAssertNotNil(Keystroke(keyName: "Zero", control: true, option: true, shift: true, command: true))
 
         XCTAssertNotNil(Keystroke(keySymbol: "→"))
-        XCTAssertNotNil(Keystroke(keySymbol: "→", shift: true, control: true, option: true, command: true))
+        XCTAssertNotNil(Keystroke(keySymbol: "→", control: true, option: true, shift: true, command: true))
 
         XCTAssertNotNil(Keystroke(keyCode: 34))
-        XCTAssertNotNil(Keystroke(keyCode: 34, shift: true, control: true, option: true, command: true))
+        XCTAssertNotNil(Keystroke(keyCode: 34, control: true, option: true, shift: true, command: true))
     }
     
     func testString() {
@@ -101,4 +101,21 @@ extension KeystrokeTests {
 //            for _ in 0..<100 { shiftA.dispatchToFrontmostApp() }
 //        }
 //    }
+}
+
+
+extension KeystrokeTests {
+
+    func testModifiersOrder() {
+
+        // correct order: control, option, shift, command
+
+        let coscA = Keystroke(fromString: control + option + shift + command + "a")
+        XCTAssertEqual(coscA?.string, control + option + shift + command + "A")
+
+        let controlShiftB = Keystroke(fromString: control + shift + "z")
+        XCTAssertEqual(controlShiftB?.string, control + shift + "Z")
+        let keystrokeNil = Keystroke(fromString: shift + control + "z")
+        XCTAssertNil(keystrokeNil)
+    }
 }
