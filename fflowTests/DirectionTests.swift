@@ -83,3 +83,22 @@ class DirectionTests: XCTestCase {
         XCTAssertFalse(left.isVertical)
     }
 }
+
+extension DirectionTests {
+
+    func testString() {
+
+        XCTAssertEqual(Direction.Up.string, "u")
+        XCTAssertEqual(Direction.Down.string, "d")
+        XCTAssertEqual(Direction.Left.string, "l")
+        XCTAssertEqual(Direction.Right.string, "r")
+    }
+
+    func testArrowString() {
+        
+        XCTAssertEqual(Direction.Up.arrowString, Key.UpArrow.symbol)
+        XCTAssertEqual(Direction.Down.arrowString, Key.DownArrow.symbol)
+        XCTAssertEqual(Direction.Left.arrowString, Key.LeftArrow.symbol)
+        XCTAssertEqual(Direction.Right.arrowString, Key.RightArrow.symbol)
+    }
+}

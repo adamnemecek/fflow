@@ -64,3 +64,19 @@ extension Direction {
     var isVertical: Bool { return self.unitVector.dx == 0 }
     var isHorizontal: Bool { return self.unitVector.dy == 0 }
 }
+
+extension Direction {
+
+    var string: String { return self.rawValue }
+
+    var arrowString: String {
+
+        switch self {
+        case .Up: return Key.UpArrow.symbol
+        case .Down: return Key.DownArrow.symbol
+        case .Left: return Key.LeftArrow.symbol
+        case .Right: return Key.RightArrow.symbol
+        default: return "."
+        }
+    }
+}
