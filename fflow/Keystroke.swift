@@ -6,8 +6,7 @@
 //  Copyright © 2016年 user. All rights reserved.
 //
 
-import Foundation
-
+import Cocoa
 
 class Keystroke {
 
@@ -174,5 +173,19 @@ extension Keystroke {
 
         keyUp.post(tap: self.hidEventTapLocation)
         self.modifiers.forEach({ self.up(keycode: $0.code)?.post(tap: self.hidEventTapLocation) })
+    }
+}
+
+
+
+extension Keystroke {
+
+    convenience init?(keyCode: CGKeyCode, modifierFlags: NSEventModifierFlags) {
+
+        self.init(keyCode: keyCode,
+                  control: modifierFlags.contains(NSEventModifierFlags.control),
+                  option: modifierFlags.contains(NSEventModifierFlags.option),
+                  shift: modifierFlags.contains(NSEventModifierFlags.shift),
+                  command: modifierFlags.contains(NSEventModifierFlags.command))
     }
 }

@@ -119,3 +119,14 @@ extension KeystrokeTests {
         XCTAssertNil(keystrokeNil)
     }
 }
+
+
+extension KeystrokeTests {
+
+    func testEventModifierFlags() {
+
+        let flags: NSEventModifierFlags = [.option, .control, .command, .shift]
+        let coscF2 = Keystroke(keyCode: 120, modifierFlags: flags)
+        XCTAssertEqual(coscF2?.string, control + option + shift + command + "F2")
+    }
+}
