@@ -13,14 +13,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     private var statusItem: StatusItem? = nil
-    
+
     private let indicator: Indicator = Indicator()
     private let gesture = Gesture()
     private let commandPreference = CommandPreference()
 
+    private var preference: Preference?
+
+
+    private var menuItems: [NSMenuItem] {
+
+        let quit = NSMenuItem()
+        quit.title = "Quit"
+        quit.action = #selector(self.quit)
+
+        let preferences = NSMenuItem()
+        preferences.title = "Preferences"
+        preferences.action = #selector(self.preferences)
+        return [preferences, quit]
+    }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
+
+        self.commandPreference.clearCompletely()
+        self.commandPreference.backToDefault()
+
         // Set up status bar item
         self.statusItem = StatusItem(menuItems: self.menuItems)
         
@@ -45,28 +62,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
                 guard let url = NSWorkspace.shared().frontmostApplication?.bundleURL else { return }
 
-                guard let keystroke = self.commandPreference.keystroke(forApp: url, gesture: gesture, includesGlobal: true) else { return }
-                
+                guard let keystroke = self.commandPreference.keystroke(forApp: url, gesture: gesture)
+                                ?? self.commandPreference.keystrokeForGlobal(gesture: gesture) else { return }
+
                 self.indicator.showAndFadeout(gesture: gesture)
-                keystroke.dispatchToFrontmostApp()
+                Keystroke(fromString: keystroke)?.dispatchToFrontmostApp()
         })
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-    
-    private var menuItems: [NSMenuItem] {
-
-        let quit = NSMenuItem()
-        quit.title = "Quit"
-        quit.action = #selector(self.quit)
-        return [quit]
-    }
 
     @objc private func quit() {
 
         NSApplication.shared().terminate(self)
+    }
+
+    @objc private func preferences() {
+
+        self.preference = Preference()
+        self.preference?.openWindow()
     }
 
     func centerClick() {
