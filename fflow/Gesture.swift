@@ -44,7 +44,7 @@ class Gesture {
 
     var string: String {
 
-        return self.directions.map({$0.rawValue}).joined()
+        return self.directions.map({$0.string}).joined()
     }
 
     
