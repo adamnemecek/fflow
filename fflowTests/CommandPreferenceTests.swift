@@ -12,9 +12,9 @@ import XCTest
 
 class CommandPreferenceTests: XCTestCase {
 
-    let userDefaults = NSUserDefaultsController().defaults
+    static let suiteName = "CommandPreferenceTests"
 
-    let commandPreference = CommandPreference()
+    var commandPreference = CommandPreference()
 
     let Safari = "/Applications/Safari.app"
     let Atom = "/Applications/Atom.app"
@@ -27,40 +27,46 @@ class CommandPreferenceTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        Preference().clearCompletely()
+        commandPreference.clearCompletely()
+        self.commandPreference = CommandPreference(suiteName: CommandPreferenceTests.suiteName)
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        Preference().clearCompletely()
+        commandPreference.clearCompletely()
         super.tearDown()
     }
 
     func testSet() {
 
-        var appPaths: [Any]?
+        var appPaths: [String]
 
         let dr = "dr"
         let optionP = option + "p"
 
+        appPaths = commandPreference.appPaths
+        XCTAssertEqual(appPaths.count, 2)
+        XCTAssertEqual(appPaths[0], AppItem.Global.path)
+        XCTAssertEqual(appPaths[1], AppItem.Finder.path)
+
         commandPreference.set(forApp: Safari, gestureString: dr, keystrokeString: optionP)
 
-        appPaths = userDefaults.array(forKey: "appPaths")
-        XCTAssertEqual(appPaths?.count, 1)
-        XCTAssertEqual(appPaths?[0] as? String, Safari)
+        appPaths = commandPreference.appPaths
+        XCTAssertEqual(appPaths.count, 3)
+        XCTAssertEqual(appPaths[2], Safari)
 
         commandPreference.set(forApp: Atom, gestureString: dr, keystrokeString: optionP)
         commandPreference.set(forApp: Atom, gestureString: "ul", keystrokeString: command + "d")
 
-        appPaths = userDefaults.array(forKey: "appPaths")
-        XCTAssertEqual(appPaths?.count, 2)
-        XCTAssertEqual(appPaths?[1] as? String, Atom)
+        appPaths = commandPreference.appPaths
+        XCTAssertEqual(appPaths.count, 4)
+        XCTAssertEqual(appPaths[3], Atom)
     }
 
     func testAppPaths() {
 
         testSet()
-        XCTAssertEqual(commandPreference.appPaths.count, 2)
+        XCTAssertEqual(commandPreference.appPaths.count, 4)
     }
 
     func testGestures() {
@@ -123,7 +129,7 @@ class CommandPreferenceTests: XCTestCase {
         commandPreference.removeApp(path: Atom)
         XCTAssertEqual(commandPreference.keystrokes(forApp: Atom).count, 0)
         XCTAssertEqual(commandPreference.gestures(forApp: Atom).count, 0)
-        XCTAssertEqual(commandPreference.appPaths.count, 1)
+        XCTAssertEqual(commandPreference.appPaths.count, 3)
     }
 
     func testClearCompletely() {
@@ -132,7 +138,7 @@ class CommandPreferenceTests: XCTestCase {
 
         XCTAssertEqual(commandPreference.keystrokes(forApp: Atom).count, 2)
         XCTAssertEqual(commandPreference.gestures(forApp: Atom).count, 2)
-        XCTAssertEqual(commandPreference.appPaths.count, 2)
+        XCTAssertEqual(commandPreference.appPaths.count, 4)
 
         commandPreference.clearCompletely()
         
@@ -146,23 +152,43 @@ class CommandPreferenceTests: XCTestCase {
         commandPreference.setForGlobal(gestureString: "ud", keystrokeString: option + "U")
         commandPreference.setForGlobal(gestureString: "lr", keystrokeString: option + "R")
 
-        XCTAssertEqual(commandPreference.appPaths.count, 1)
-        XCTAssertEqual(commandPreference.appPaths[0], "Global")
+        XCTAssertEqual(commandPreference.appPaths.count, 2)
+        XCTAssertEqual(commandPreference.appPaths[0], "/")
 
-        XCTAssertEqual(commandPreference.gestures(forApp: "Global").count, 2)
-        XCTAssertEqual(commandPreference.keystrokes(forApp: "Global").count, 2)
-        XCTAssertEqual(commandPreference.keystroke(forApp: "Global", gestureString: "ud"), option + "U")
+        XCTAssertEqual(commandPreference.gestures(forApp: "/").count, 2)
+        XCTAssertEqual(commandPreference.keystrokes(forApp: "/").count, 2)
+        XCTAssertEqual(commandPreference.keystroke(forApp: "/", gestureString: "ud"), option + "U")
     }
 
-    func testKeystrokeIncludesGlobal() {
+    func testKeystrokeForGlobal() {
 
         testSet()
         commandPreference.setForGlobal(gestureString: "ud", keystrokeString: option + "U")
-        commandPreference.setForGlobal(gestureString: "lr", keystrokeString: option + "R")
 
-        XCTAssertEqual(commandPreference.keystroke(forApp: Atom, gestureString: "dr"), option + "p")
-        XCTAssertNil(commandPreference.keystroke(forApp: Atom, gestureString: "ud"))
-        XCTAssertNil(commandPreference.keystroke(forApp: Atom, gestureString: "ud", includesGlobal: false))
-        XCTAssertEqual(commandPreference.keystroke(forApp: Atom, gestureString: "ud", includesGlobal: true), option + "U")
+        let dr = Gesture(fromString: "dr")
+        XCTAssertNil(commandPreference.keystrokeForGlobal(gesture: dr))
+        let ud = Gesture(fromString: "ud")
+        XCTAssertEqual(commandPreference.keystrokeForGlobal(gesture: ud), option + "U")
+    }
+}
+
+extension CommandPreferenceTests {
+
+    func testEmptyKeystrokeString() {
+
+        let dud = Gesture(fromString: "dud")
+        commandPreference.setForGlobal(gestureString: "dud", keystrokeString: "")
+        XCTAssertEqual(commandPreference.keystrokeForGlobal(gesture: dud), "")
+    }
+}
+
+
+extension CommandPreferenceTests {
+
+    func testSetApp() {
+
+        XCTAssertFalse(commandPreference.appPaths.contains(Safari))
+        commandPreference.setApp(path: Safari)
+        XCTAssertTrue(commandPreference.appPaths.contains(Safari))
     }
 }
