@@ -284,3 +284,14 @@ extension Gesture {
         return self.release()
     }
 }
+
+
+
+
+extension Gesture {
+
+    var arrowString: String {
+
+        return self.directions.map({$0.arrowString}).joined()
+    }
+}

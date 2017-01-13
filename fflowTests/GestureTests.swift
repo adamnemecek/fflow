@@ -134,3 +134,15 @@ extension GestureTests {
         XCTAssertEqual(dr.appendAndReleaseIfCan(x: 0, y: 0)?.string, "lr")
     }
 }
+
+extension GestureTests {
+
+    func testArrowString() {
+
+        let ud = Gesture(fromString: "ud")
+        XCTAssertEqual(ud.arrowString, Key.UpArrow.symbol + Key.DownArrow.symbol)
+        
+        let lr = Gesture(fromString: "lr")
+        XCTAssertEqual(lr.arrowString, Key.LeftArrow.symbol + Key.RightArrow.symbol)
+    }
+}
