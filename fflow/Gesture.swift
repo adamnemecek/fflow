@@ -25,7 +25,7 @@ class Gesture {
     private var count: Int { return self.directions.count }
     private var isEmpty: Bool { return self.directions.isEmpty }
     fileprivate var isCompleted: Bool { return self.last == .No }
-    private var isCanceled: Bool { return self.count <= 1 && self.isCompleted }
+    private var isCanceled: Bool { return self.count <= 2 && self.isCompleted }
 
     fileprivate var stringOfCompletedPart: String? {
 

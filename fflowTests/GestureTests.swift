@@ -121,6 +121,12 @@ extension GestureTests {
 
 extension GestureTests {
 
+    func testSingleDirectionGestureShouldBeCanceled() {
+
+        let u = Gesture(fromString: "u")
+        XCTAssertNil(u.appendAndReleaseIfCan(x: 0, y: 0)?.string)
+    }
+
     func testAppendAndReleaseIfCan() {
 
         let dr = Gesture()
