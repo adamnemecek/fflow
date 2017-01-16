@@ -33,9 +33,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
-        self.commandPreference.clearCompletely()
-        self.commandPreference.backToDefault()
-
         // Set up status bar item
         self.statusItem = StatusItem(menuItems: self.menuItems)
 
