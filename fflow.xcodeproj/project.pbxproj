@@ -245,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				CED57AA11D9DF43400F881C9 /* Info.plist */,
+				CED57A9F1D9DF43400F881C9 /* fflowTests.swift */,
 				CE6C2BF51DFC21C3001DBAD9 /* KeyTests.swift */,
 				CE450D1B1DF977A0007CB84C /* KeystrokeTests.swift */,
 				CEB846031DFD7BBD001C6DF1 /* DirectionTests.swift */,
@@ -255,7 +256,6 @@
 				CE3F709B1E0B1A5800D79D04 /* NSSizeExtensionTests.swift */,
 				CEE4B8EE1E0A2A5000D00D35 /* NSRectExtensionTests.swift */,
 				CEEB5FCD1E0A94CF0016E3F3 /* CGVectorExtensionTests.swift */,
-				CED57A9F1D9DF43400F881C9 /* fflowTests.swift */,
 				CEDABA3C1E0BC7380063D72F /* NSViewExtensionTests.swift */,
 				CE7A9E701E0D4299007194B8 /* NSPointExtensionTests.swift */,
 				CE1806E41E15541F00FDDFD4 /* CGFloatExtensionTests.swift */,
