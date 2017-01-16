@@ -36,15 +36,12 @@ class Preference: NSWindowController {
     }
 
     init() {
-        
+
         super.init(window: Preference.templateWindow)
 
         guard let splitView = Preference.splitView() else { return }
 
         self.window?.contentView?.addSubview(splitView)
-
-
-
 //        self.window?.contentView?.addSubview(button)
     }
 
@@ -56,13 +53,11 @@ class Preference: NSWindowController {
     func openWindow() {
 
         guard let window = self.window else { return }
-        
+
         window.orderFront(self)
         window.becomeKey()
     }
 }
-
-
 
 private protocol HasAppsView {
 
@@ -80,7 +75,7 @@ extension HasAppsView where Self: Preference {
     }
 
     private static var scrollView: NSScrollView {
-        
+
         let scrollView = NSScrollView(frame: self.scrollViewFrame)
 
         scrollView.borderType = .lineBorder
@@ -93,9 +88,8 @@ extension HasAppsView where Self: Preference {
 
         return scrollView
     }
-    
-    fileprivate static func appsView(commandTableView: CommandTableView) -> NSView {
 
+    fileprivate static func appsView(commandTableView: CommandTableView) -> NSView {
 
         let appTableView = AppTableView(commandTableView: commandTableView)
         let buttonBar = appTableView.buttonBarForMe
@@ -115,10 +109,6 @@ extension HasAppsView where Self: Preference {
 
 extension Preference: HasAppsView {}
 
-
-
-
-
 private protocol HasCommandsView {
 
     static func commandsView() -> NSView
@@ -135,9 +125,9 @@ extension HasCommandsView where Self: Preference {
     }
 
     private static var scrollView: NSScrollView {
-        
+
         let scrollView = NSScrollView(frame: self.scrollViewFrame)
-        
+
         scrollView.borderType = .lineBorder
         scrollView.hasVerticalScroller = true
         scrollView.horizontalScrollElasticity = .none
@@ -147,7 +137,7 @@ extension HasCommandsView where Self: Preference {
 
         return scrollView
     }
-    
+
     fileprivate static func commandsView() -> NSView {
 
         let commandTableView = CommandTableView()
@@ -167,10 +157,6 @@ extension HasCommandsView where Self: Preference {
 }
 
 extension Preference: HasCommandsView {}
-
-
-
-
 
 private protocol HasSplitView {
 
@@ -195,7 +181,7 @@ extension HasSplitView where Self: Preference {
         let frame = NSRect(origin: origin, size: size)
                         .insetBy(dx: 0, dy: 20)
                         .offsetBy(dx: 0, dy: 20)
-        
+
         let splitView = NSSplitView(frame: frame)
         splitView.addArrangedSubview(appsView)
         splitView.addArrangedSubview(commandsView)
@@ -206,12 +192,6 @@ extension HasSplitView where Self: Preference {
 }
 
 extension Preference: HasSplitView {}
-
-
-
-
-
-
 
 protocol CanClear {
 
@@ -233,11 +213,6 @@ extension CanClear where Self: Preference {
 }
 
 extension Preference: CanClear {}
-
-
-
-
-
 
 extension Preference: NSToolbarDelegate {
 
@@ -267,7 +242,7 @@ extension Preference: NSToolbarDelegate {
             let toolbarItemGeneral = NSToolbarItem(itemIdentifier: "General")
             toolbarItemGeneral.image = NSImage(imageLiteralResourceName: NSImageNamePreferencesGeneral)
             toolbarItemGeneral.label = "General"
-            
+
             return toolbarItemGeneral
         }
 
@@ -276,30 +251,27 @@ extension Preference: NSToolbarDelegate {
 
     func toolbarWillAddItem(_ notification: Notification) {
     }
-    
+
     func toolbarDidRemoveItem(_ notification: Notification) {
     }
-    
+
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [String] {
 
         return [NSImageNamePreferencesGeneral]
     }
 
     func toolbarSelectableItemIdentifiers(_ toolbar: NSToolbar) -> [String] {
-        
+
         return [NSImageNamePreferencesGeneral]
     }
 
     override func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
-        
+
         return item.itemIdentifier == NSImageNamePreferencesGeneral
     }
-    
+
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [String] {
-        
+
         return [NSImageNamePreferencesGeneral]
     }
 }
-
-
-
