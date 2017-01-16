@@ -6,7 +6,6 @@
 //  Copyright © 2016年 user. All rights reserved.
 //
 
-
 import XCTest
 @testable import fflow
 
@@ -18,13 +17,13 @@ class KeystrokeTests: XCTestCase {
     let command = Key.Command.symbol
 
     override func setUp() {
-        
+
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDown() {
-        
+
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
@@ -50,7 +49,7 @@ class KeystrokeTests: XCTestCase {
         XCTAssertNotNil(Keystroke(keyCode: 34))
         XCTAssertNotNil(Keystroke(keyCode: 34, control: true, option: true, shift: true, command: true))
     }
-    
+
     func testString() {
 
         let controlA = Keystroke(fromString: control + "A")
@@ -103,7 +102,6 @@ extension KeystrokeTests {
 //    }
 }
 
-
 extension KeystrokeTests {
 
     func testModifiersOrder() {
@@ -119,7 +117,6 @@ extension KeystrokeTests {
         XCTAssertNil(keystrokeNil)
     }
 }
-
 
 extension KeystrokeTests {
 

@@ -39,7 +39,7 @@ class NSBezierPathExtensionTests: XCTestCase {
         bezierPath.down(dy: 50)
         XCTAssertEqual(bezierPath.currentPoint.x, -20)
         XCTAssertEqual(bezierPath.currentPoint.y, -40)
-        
+
         bezierPath.right(dx: 100)
         XCTAssertEqual(bezierPath.currentPoint.x, 80)
         XCTAssertEqual(bezierPath.currentPoint.y, -40)

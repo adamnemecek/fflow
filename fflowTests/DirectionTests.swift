@@ -24,10 +24,10 @@ class DirectionTests: XCTestCase {
     }
 
     func testFilter() {
-        
+
         XCTAssertEqual(Direction.filter(string: "iuydl rpre"), "udlrr")
     }
-    
+
     func testWhich() {
 
         XCTAssertEqual(Direction.which(x: 0.0, y: 0.0), .No)
@@ -37,21 +37,20 @@ class DirectionTests: XCTestCase {
         XCTAssertEqual(Direction.which(x: -3.0, y: 0.0), .Left)
         XCTAssertEqual(Direction.which(x: 3.0, y: 0.0), .Right)
     }
-    
-    
+
     func testIsNo() {
-        
+
         XCTAssertTrue(Direction.No.isNo)
         XCTAssertFalse(Direction.Up.isNo)
     }
     func testIsVague() {
-        
+
         XCTAssertTrue(Direction.Vague.isVague)
         XCTAssertFalse(Direction.Up.isVague)
     }
-    
+
     func testUnitVector() {
-        
+
         let up = Direction.Up.unitVector
         XCTAssertEqual(up.dx, 0)
         XCTAssertEqual(up.dy, 1)
@@ -59,11 +58,11 @@ class DirectionTests: XCTestCase {
         let down = Direction.Down.unitVector
         XCTAssertEqual(down.dx, 0)
         XCTAssertEqual(down.dy, -1)
-        
+
         let left = Direction.Left.unitVector
         XCTAssertEqual(left.dx, -1)
         XCTAssertEqual(left.dy, 0)
-        
+
         let right = Direction.Right.unitVector
         XCTAssertEqual(right.dx, 1)
         XCTAssertEqual(right.dy, 0)
@@ -95,7 +94,7 @@ extension DirectionTests {
     }
 
     func testArrowString() {
-        
+
         XCTAssertEqual(Direction.Up.arrowString, Key.UpArrow.symbol)
         XCTAssertEqual(Direction.Down.arrowString, Key.DownArrow.symbol)
         XCTAssertEqual(Direction.Left.arrowString, Key.LeftArrow.symbol)

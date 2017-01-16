@@ -12,13 +12,13 @@ import XCTest
 class GestureTests: XCTestCase {
 
     override func setUp() {
-        
+
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDown() {
-        
+
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
@@ -41,46 +41,45 @@ class GestureTests: XCTestCase {
     }
 
     func testAppendDirection() {
-        
+
         let gesture = Gesture()
-        
+
         gesture.append(direction: .Up)
         XCTAssertEqual(gesture.string, "u")
-        
+
         gesture.append(direction: .Down)
         XCTAssertEqual(gesture.string, "ud")
-        
+
         gesture.append(direction: .Down)
         XCTAssertNotEqual(gesture.string, "udd")
         XCTAssertEqual(gesture.string, "ud")
-        
+
         gesture.append(direction: .Vague)
         XCTAssertNotEqual(gesture.string, "udv")
         XCTAssertEqual(gesture.string, "ud")
-        
+
         gesture.append(direction: .No)
         XCTAssertEqual(gesture.string, "udn")
     }
-    
+
     func testAppendXY() {
-        
+
         let gesture = Gesture()
-        
+
         gesture.append(x: 0, y: 7)
         XCTAssertEqual(gesture.string, "d")
-        
+
         gesture.append(x: 7, y: 0)
         XCTAssertEqual(gesture.string, "dr")
-        
+
         gesture.append(x: -1, y: -7)
         XCTAssertEqual(gesture.string, "dru")
-        
+
         gesture.append(x: -7, y: 1)
         XCTAssertEqual(gesture.string, "drul")
     }
 
     func testRelease() {
-
 
         let drun = Gesture(fromString: "drun")
         XCTAssertEqual(drun.string, "drun")
@@ -134,7 +133,7 @@ extension GestureTests {
         XCTAssertNil(dr.appendAndReleaseIfCan(x: 0, y: 10)?.string)
         XCTAssertNil(dr.appendAndReleaseIfCan(x: 10, y: 0)?.string)
         XCTAssertEqual(dr.appendAndReleaseIfCan(x: 0, y: 0)?.string, "dr")
-        
+
         XCTAssertNil(dr.appendAndReleaseIfCan(x: -10, y: 0)?.string)
         XCTAssertNil(dr.appendAndReleaseIfCan(x: 10, y: 0)?.string)
         XCTAssertEqual(dr.appendAndReleaseIfCan(x: 0, y: 0)?.string, "lr")
@@ -147,7 +146,7 @@ extension GestureTests {
 
         let ud = Gesture(fromString: "ud")
         XCTAssertEqual(ud.arrowString, Key.UpArrow.symbol + Key.DownArrow.symbol)
-        
+
         let lr = Gesture(fromString: "lr")
         XCTAssertEqual(lr.arrowString, Key.LeftArrow.symbol + Key.RightArrow.symbol)
     }

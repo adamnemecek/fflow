@@ -17,7 +17,7 @@ class NSSizeExtensionTests: XCTestCase {
         XCTAssertEqual(size.shortSide, 4)
         XCTAssertEqual(size.longSide, 5)
     }
-    
+
     func testInitSquare() {
 
         let square = NSSize(squaringOf: 4)

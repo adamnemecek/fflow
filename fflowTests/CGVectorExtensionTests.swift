@@ -47,11 +47,11 @@ extension CGVectorExtensionTests {
 
         let point = NSPoint(x: 2, y: 3)
         let vector = CGVector(endPoint: point)
-        
+
         XCTAssertEqual(vector.dx, 2)
         XCTAssertEqual(vector.dy, 3)
     }
-    
+
     func testEndPoint() {
 
         let fourFive = CGVector(dx: 4, dy: 5).endPoint

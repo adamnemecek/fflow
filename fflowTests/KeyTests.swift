@@ -36,7 +36,7 @@ class KeyTests: XCTestCase {
         XCTAssertNil(Key(fromName: "invalidName"))
         XCTAssertEqual(Key(fromName: "N"), .N)
         XCTAssertEqual(Key(fromName: "n"), .N)
-        
+
         XCTAssertNil(Key(fromSymbol: "invalidSymbol"))
         XCTAssertEqual(Key(fromSymbol: "S"), .S)
 
@@ -52,7 +52,7 @@ class KeyTests: XCTestCase {
         XCTAssertEqual(Key.KeypadEquals.symbol, "=")
         XCTAssertEqual(Key.KeypadPlus.symbol, "+")
     }
-    
+
     func testProperty() {
 
         let shift = Key.Shift
