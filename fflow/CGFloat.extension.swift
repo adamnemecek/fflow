@@ -12,7 +12,7 @@ infix operator **: BitwiseShiftPrecedence
 
 extension CGFloat {
 
-    static func **(cardinal: CGFloat, index: Int) -> CGFloat {
+    static func ** (cardinal: CGFloat, index: Int) -> CGFloat {
 
         var pow: CGFloat = 1
 

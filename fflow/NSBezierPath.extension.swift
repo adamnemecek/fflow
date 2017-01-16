@@ -8,27 +8,26 @@
 
 import Cocoa
 
-
 extension NSBezierPath {
-    
-    func left(dx: CGFloat) {
 
-        self.relativeLine(to: .init(x: -dx, y: 0))
-    }
-    
-    func right(dx: CGFloat) {
+    func left(dx deltaX: CGFloat) {
 
-        self.relativeLine(to: .init(x: dx, y: 0))
-    }
-    
-    func up(dy: CGFloat) {
-
-        self.relativeLine(to: .init(x: 0, y: dy))
+        self.relativeLine(to: .init(x: -deltaX, y: 0))
     }
 
-    func down(dy: CGFloat) {
+    func right(dx deltaX: CGFloat) {
 
-        self.relativeLine(to: .init(x: 0, y: -dy))
+        self.relativeLine(to: .init(x: deltaX, y: 0))
+    }
+
+    func up(dy deltaY: CGFloat) {
+
+        self.relativeLine(to: .init(x: 0, y: deltaY))
+    }
+
+    func down(dy deltaY: CGFloat) {
+
+        self.relativeLine(to: .init(x: 0, y: -deltaY))
     }
 
     private func pointOfCenter(radius: CGFloat, angle: CGFloat) -> NSPoint {
@@ -41,18 +40,18 @@ extension NSBezierPath {
 
         return centerVector.endPoint
     }
-    
+
     func clockwise(radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat) {
-        
+
         self.appendArc(withCenter: pointOfCenter(radius: radius, angle: startAngle),
                        radius: radius,
                        startAngle: startAngle,
                        endAngle: endAngle,
                        clockwise: true)
     }
-    
+
     func counterClockwise(radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat) {
-        
+
         self.appendArc(withCenter: pointOfCenter(radius: radius, angle: startAngle),
                        radius: radius,
                        startAngle: startAngle,
@@ -60,7 +59,6 @@ extension NSBezierPath {
                        clockwise: false)
     }
 }
-
 
 extension NSBezierPath {
 
@@ -77,11 +75,10 @@ extension NSBezierPath {
         let to = frame.centerPoint
         let dx = to.x - from.x
         let dy = to.y - from.y
-        
+
         self.transform(using: .init(translationByX: dx, byY: dy))
     }
 }
-
 
 extension NSBezierPath {
 
@@ -91,8 +88,8 @@ extension NSBezierPath {
         self.move(to: initialPoint)
     }
 
-    convenience init(initialX x: CGFloat, y: CGFloat) {
+    convenience init(initialX: CGFloat, y initialY: CGFloat) {
 
-        self.init(initialPoint: .init(x: x, y: y))
+        self.init(initialPoint: .init(x: initialX, y: initialY))
     }
 }

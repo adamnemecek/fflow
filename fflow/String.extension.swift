@@ -10,10 +10,10 @@ import Cocoa
 
 extension String {
 
-    func firstIs(it: String) -> Bool {
+    func firstIs(it this: String) -> Bool {
 
         guard let first = self.characters.first else { return false }
-        return String(first) == it
+        return String(first) == this
     }
 
     func trimmingLeading(character: Character) -> String {

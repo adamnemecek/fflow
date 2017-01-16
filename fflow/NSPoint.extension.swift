@@ -10,8 +10,8 @@ import Foundation
 
 extension NSPoint {
 
-    init(bothXY x: CGFloat) {
+    init(bothXY: CGFloat) {
 
-        self.init(x: x, y: x)
+        self.init(x: bothXY, y: bothXY)
     }
 }

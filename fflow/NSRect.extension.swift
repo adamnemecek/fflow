@@ -22,7 +22,7 @@ extension NSRect {
 }
 
 extension NSRect {
-    
+
     init(size: NSSize) {
 
        self.init(origin: .zero, size: size)
