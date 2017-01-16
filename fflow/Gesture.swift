@@ -10,17 +10,15 @@ import Cocoa
 
 class Gesture {
 
-
     // MARK: Private static property
     // MARK: Private static method
     // MARK: Static property
     // MARK: Static method
 
-
     // MARK: Private instance property
 
     fileprivate var directions: [Direction] = []
-    
+
     private var last: Direction? { return self.directions.last }
     private var count: Int { return self.directions.count }
     private var isEmpty: Bool { return self.directions.isEmpty }
@@ -39,7 +37,6 @@ class Gesture {
         return stringAll.substring(to: nIndex)
     }
 
-
     // MARK: Instance property
 
     var string: String {
@@ -47,9 +44,8 @@ class Gesture {
         return self.directions.map({$0.string}).joined()
     }
 
-    
     // MARK: Designated init
-    
+
     init() {
     }
 
@@ -61,9 +57,7 @@ class Gesture {
         self.directions = validString.characters.map({ Direction(rawValue: String($0))! })
     }
 
-    
     // MARK: Convenience init
-
 
     // MARK: Private instance method
 
@@ -71,8 +65,7 @@ class Gesture {
 
         directions.removeAll()
     }
-    
-    
+
     // MARK: Instance method
 
     func append(direction: Direction) {
@@ -82,13 +75,13 @@ class Gesture {
         guard direction != self.last else { return } // whether duplicated or not
 
         self.directions.append(direction)
-        
+
         if self.isCanceled { self.clear() }
     }
 
-    func append(x: CGFloat, y: CGFloat) {
+    func append(x deltaX: CGFloat, y deltaY: CGFloat) {
 
-        let direction = Direction.which(x: x, y: y)
+        let direction = Direction.which(x: deltaX, y: deltaY)
         self.append(direction: direction)
     }
 
@@ -101,10 +94,6 @@ class Gesture {
         return partString
     }
 }
-
-
-
-
 
 extension Gesture {
 
@@ -186,7 +175,7 @@ extension Gesture {
 extension Gesture {
 
     private var radius: CGFloat { return self.initialLength * 0.3 }
-    
+
     private func startAngle(prev: Direction, current: Direction) -> CGFloat {
 
         if prev.isVertical { return current == .Left ? 0 : 180 }
@@ -226,7 +215,6 @@ extension Gesture {
         let startAngle = self.startAngle(prev: prev, current: current)
         let endAngle = self.endAngle(prev: prev, current: current)
 
-
         self.isClockwise(prev: prev, current: current)
             ? arc.clockwise(radius: self.radius, startAngle: startAngle, endAngle: endAngle)
             : arc.counterClockwise(radius: self.radius, startAngle: startAngle, endAngle: endAngle)
@@ -260,10 +248,6 @@ extension Gesture {
     }
 }
 
-
-
-
-
 extension Gesture {
 
     private func release() -> Gesture? {
@@ -276,17 +260,14 @@ extension Gesture {
 
         return gesture
     }
-    
-    func appendAndReleaseIfCan(x: CGFloat, y: CGFloat) -> Gesture? {
 
-        self.append(x: x, y: y)
+    func appendAndReleaseIfCan(x deltaX: CGFloat, y deltaY: CGFloat) -> Gesture? {
+
+        self.append(x: deltaX, y: deltaY)
 
         return self.release()
     }
 }
-
-
-
 
 extension Gesture {
 

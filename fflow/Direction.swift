@@ -9,7 +9,7 @@
 import Foundation
 
 enum Direction: String {
-    
+
     case Up = "u"
     case Down = "d"
     case Left = "l"
@@ -17,11 +17,11 @@ enum Direction: String {
     case Vague = "v"
     case No = "n"
 
-    static func which(x: CGFloat, y: CGFloat) -> Direction {
-        
+    static func which(x deltaX: CGFloat, y deltaY: CGFloat) -> Direction {
+
         let motionless: ClosedRange<CGFloat> = -1.0...1.0
-        
-        switch (x, y) {
+
+        switch (deltaX, deltaY) {
         case (0.0, 0.0): return .No
         case (motionless, -50.0 ... -5.0): return .Up
         case (motionless, 5.0...50.0): return .Down
@@ -30,7 +30,7 @@ enum Direction: String {
         default: return .Vague
         }
     }
-    
+
     static func filter(string: String) -> String {
 
         return string.characters.map({ String($0) })
