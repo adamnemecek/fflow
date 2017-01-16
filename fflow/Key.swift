@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 enum Key: Int {
 
     case Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine
@@ -35,7 +34,6 @@ enum Key: Int {
     case VolumeUp, VolumeDown, Mute, HelpInsert,
          Home, End, PageUp, PageDown,
          LeftArrow, RightArrow, DownArrow, UpArrow
-
 
     static private func find(which here: (KeyInfo) -> Bool) -> Key? {
 
@@ -77,14 +75,12 @@ enum Key: Int {
     }
 }
 
-
 private struct KeyInfo {
 
     let name: String
     let symbol: String
     let code: CGKeyCode
 }
-
 
 private let keyInfos = [
     KeyInfo(name: "Zero", symbol: "0", code: 29),
@@ -200,5 +196,5 @@ private let keyInfos = [
     KeyInfo(name: "LeftArrow", symbol: "←", code: 123),
     KeyInfo(name: "RightArrow", symbol: "→", code: 124),
     KeyInfo(name: "DownArrow", symbol: "↓", code: 125),
-    KeyInfo(name: "UpArrow", symbol: "↑", code: 126),
+    KeyInfo(name: "UpArrow", symbol: "↑", code: 126)
 ]

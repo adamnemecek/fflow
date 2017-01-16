@@ -10,17 +10,14 @@ import Cocoa
 
 class Keystroke {
 
-
     // MARK: Private static property
 
     static private var error: NSDictionary? = [:]
-
 
     // MARK: Private static method
     // MARK: Static property
     // MARK: Static method
 
-    
     // MARK: Private instance property
 
     fileprivate let key: Key
@@ -50,19 +47,17 @@ class Keystroke {
         return self.modifierSymbols + [self.key.symbol]
     }
 
-
     // MARK: Instance property
-    
+
     var string: String {
 
         return self.symbols.joined()
     }
 
-
     // MARK: Designated init
-    
+
     init?(keyCode: CGKeyCode, control: Bool = false, option: Bool = false, shift: Bool = false, command: Bool = false) {
-        
+
         guard let key = Key(fromCode: keyCode) else { return nil }
         self.key = key
         self.control = control
@@ -70,9 +65,9 @@ class Keystroke {
         self.shift = shift
         self.command = command
     }
-    
+
     init?(keySymbol: String, control: Bool = false, option: Bool = false, shift: Bool = false, command: Bool = false) {
-        
+
         guard let key = Key(fromSymbol: keySymbol) else { return nil }
         self.key = key
         self.control = control
@@ -82,7 +77,7 @@ class Keystroke {
     }
 
     init?(keyName: String, control: Bool = false, option: Bool = false, shift: Bool = false, command: Bool = false) {
-        
+
         guard let key = Key(fromName: keyName) else { return nil }
         self.key = key
         self.control = control
@@ -90,20 +85,20 @@ class Keystroke {
         self.shift = shift
         self.command = command
    }
-    
+
     init?(fromString immutableKeystrokeString: String) {
 
         var keystrokeString = immutableKeystrokeString
 
         self.control = keystrokeString.firstIs(it: Key.Control.symbol)
         if self.control { keystrokeString.characters.removeFirst() }
-        
+
         self.option = keystrokeString.firstIs(it: Key.Option.symbol)
         if self.option { keystrokeString.characters.removeFirst() }
 
         self.shift = keystrokeString.firstIs(it: Key.Shift.symbol)
         if self.shift { keystrokeString.characters.removeFirst() }
-        
+
         self.command = keystrokeString.firstIs(it: Key.Command.symbol)
         if self.command { keystrokeString.characters.removeFirst() }
 
@@ -111,15 +106,13 @@ class Keystroke {
         self.key = key
     }
 
-    
     // MARK: Convenience init
     // MARK: Private instance method
 
-    
     // MARK: Instance method
 
     func dispatchTo(appName: String) {
-        
+
         let modifiersString = self.modifiers.map({$0.name.lowercased() + " down"})
                                             .joined(separator: ",")
         let source = "tell application \"System Events\"\n"
@@ -132,10 +125,6 @@ class Keystroke {
     }
 }
 
-
-
-
-
 extension Keystroke {
 
     private var eventSource: CGEventSource? { return CGEventSource(stateID: .hidSystemState) }
@@ -147,7 +136,7 @@ extension Keystroke {
             self.control ? .maskControl : .maskNonCoalesced,
             self.option ? .maskAlternate : .maskNonCoalesced,
             self.shift ? .maskShift : .maskNonCoalesced,
-            self.command ? .maskCommand : .maskNonCoalesced,
+            self.command ? .maskCommand : .maskNonCoalesced
         ]
     }
 
@@ -175,8 +164,6 @@ extension Keystroke {
         self.modifiers.forEach({ self.up(keycode: $0.code)?.post(tap: self.hidEventTapLocation) })
     }
 }
-
-
 
 extension Keystroke {
 
