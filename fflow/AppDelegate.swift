@@ -11,7 +11,6 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
     private var statusItem: StatusItem? = nil
 
     private let indicator: Indicator = Indicator()
@@ -19,7 +18,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let commandPreference = CommandPreference()
 
     private var preference: Preference?
-
 
     private var menuItems: [NSMenuItem] {
 
@@ -40,7 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // Set up status bar item
         self.statusItem = StatusItem(menuItems: self.menuItems)
-        
+
         // Regist event handler for scrollWheel
         NSEvent.addGlobalMonitorForEvents(
             matching: .scrollWheel,
