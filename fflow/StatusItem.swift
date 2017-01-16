@@ -10,7 +10,6 @@ import Cocoa
 
 class StatusItem {
 
-
     // MARK: Private static property
 
     static private func f(size: NSSize) -> NSBezierPath {
@@ -22,7 +21,7 @@ class StatusItem {
         let halfOfLineWidth = lineWidth / 2
 
         let f = NSBezierPath()
-        f.move(to: NSMakePoint(0, 0))
+        f.move(to: NSPoint(x: 0, y: 0))
 
         f.up(dy: crossBarAltitude - halfOfLineWidth)
         f.left(dx: halfOfCrossBarLength - halfOfLineWidth)
@@ -44,14 +43,14 @@ class StatusItem {
         return f
     }
 
-    static private func icon(size: NSSize, f: NSBezierPath) -> NSImage {
+    static private func icon(size: NSSize, fPath: NSBezierPath) -> NSImage {
 
         let rect = NSRect(origin: .zero, size: size)
         let oval = NSBezierPath(ovalIn: rect)
 
         let shiftRight = AffineTransform(translationByX: size.width / 4, byY: 0)
-        f.transform(using: shiftRight)
-        oval.append(f)
+        fPath.transform(using: shiftRight)
+        oval.append(fPath)
 
         let ovalClip = NSBezierPath(ovalIn: rect)
         let image = NSImage(size: size)
@@ -66,7 +65,6 @@ class StatusItem {
         return image
     }
 
-
     // MARK: Private static method
     // MARK: Static property
     // MARK: Static method
@@ -75,9 +73,7 @@ class StatusItem {
     private let iconSize = NSSize(width: 18, height: 18)
     private let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
 
-
     // MARK: Instance property
-
 
     // MARK: Designated init
 
@@ -85,18 +81,17 @@ class StatusItem {
 
         let menu = NSMenu()
         menuItems.forEach({ menu.addItem($0) })
-        
+
         self.statusItem.menu = menu
         self.statusItem.highlightMode = true
         self.statusItem.image = StatusItem.icon(size: self.iconSize,
-                                                f: StatusItem.f(size: self.iconSize))
+                                                fPath: StatusItem.f(size: self.iconSize))
     }
 
-    
     // MARK: Convenience init
     // MARK: Private instance method
     // MARK: Instance method
-    
+
     private func menuItem(title: String, selector: Selector?) -> NSMenuItem {
 
         let menuItem = NSMenuItem()
@@ -104,7 +99,7 @@ class StatusItem {
         menuItem.action = selector
         return menuItem
     }
-    
+
     static private func quit() {
 
         NSApplication.shared().terminate(self)

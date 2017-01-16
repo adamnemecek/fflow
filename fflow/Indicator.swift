@@ -9,7 +9,6 @@
 import Foundation
 import Cocoa
 
-
 class Indicator: NSObject {
 
     // MARK: Private static property
@@ -59,11 +58,9 @@ class Indicator: NSObject {
         return panel
     }
 
-
     // MARK: Private static method
     // MARK: Static property
     // MARK: Static method
-
 
     // MARK: Private instance property
 
@@ -86,10 +83,8 @@ class Indicator: NSObject {
         return textView
     }
 
-
     // MARK: Instance property
 
-    
     // MARK: Designated init
 
     override init() {
@@ -98,9 +93,7 @@ class Indicator: NSObject {
         super.init()
     }
 
-
     // MARK: Convenience init
-
 
     // MARK: Private instance method
 
@@ -110,7 +103,6 @@ class Indicator: NSObject {
         self.panel.orderFront(nil)
     }
 
-
     // MARK: Instance method
 
     func show(text: String) {
@@ -119,7 +111,7 @@ class Indicator: NSObject {
 
         let textView = self.textView
         textView.string = text
-        
+
         contentView.addSubview(textView)
 
         self.showPanel()
@@ -131,7 +123,6 @@ class Indicator: NSObject {
         self.panel.contentView = Indicator.contentView
     }
 }
-
 
 extension Indicator {
 
@@ -175,7 +166,6 @@ extension Indicator {
     }
 }
 
-
 extension Indicator: CAAnimationDelegate {
 
     private var opacityAnimation: CABasicAnimation {
@@ -204,22 +194,21 @@ extension Indicator: CAAnimationDelegate {
             layer.add(self.opacityAnimation, forKey: "opacity")
         })
     }
-    
+
     func showAndFadeout(text: String) {
 
         self.show(text: text)
         self.fadeout()
     }
-    
+
     func showAndFadeout(gesture: Gesture) {
 
         self.show(gesture: gesture)
         self.fadeout()
     }
 
-
     // MARK: CAAnimationDelegate
-    
+
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
 
         self.close()
