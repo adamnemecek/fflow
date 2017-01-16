@@ -60,10 +60,6 @@ class CommandTableView: NSTableView {
     }
 }
 
-
-
-
-
 extension CommandTableView: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -82,10 +78,6 @@ extension CommandTableView: NSTableViewDelegate {
     }
 }
 
-
-
-
-
 extension CommandTableView: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -94,13 +86,9 @@ extension CommandTableView: NSTableViewDataSource {
     }
 }
 
-
-
 extension CommandTableView: Selectable {}
 
-
-
-extension CommandTableView: HasButtonBar  {
+extension CommandTableView: HasButtonBar {
 
     private var responseAdd: Int { return 1000 }
     private var responseCancel: Int { return 1001 }
@@ -163,7 +151,7 @@ extension CommandTableView: HasButtonBar  {
         CommandPreference().removeGesture(forApp: path, gestureString: gestureString)
 
         self.reloadData()
-        
+
         self.select(row: row)
     }
 
@@ -182,9 +170,7 @@ extension CommandTableView: HasButtonBar  {
 
         let buttonBar = self.buttonBar
         buttonBar.action = #selector(buttonBarClicked(sender:))
-        
+
         return buttonBar
     }
 }
-
-

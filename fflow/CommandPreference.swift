@@ -10,12 +10,10 @@ import Cocoa
 
 class CommandPreference {
 
-
     // MARK: Private static property
     // MARK: Private static method
     // MARK: Static property
     // MARK: Static method
-
 
     // MARK: Private instance property
 
@@ -24,11 +22,10 @@ class CommandPreference {
 
     private let appPathsKey = "appPaths"
 
-
     // MARK: Instance property
 
     var appPaths: [String] {
-        
+
         guard let anyAppPaths = self.userDefaults.array(forKey: self.appPathsKey) else { return [] }
         guard let appPaths = anyAppPaths as? [String] else { return [] }
         return appPaths
@@ -43,7 +40,6 @@ class CommandPreference {
         return userDefaults
     }
 
-
     // MARK: Designated init
 
     init(suiteName: String? = nil) {
@@ -54,10 +50,8 @@ class CommandPreference {
         self.setApp(path: AppItem.Finder.path)
     }
 
-
     // MARK: Convenience init
 
-    
     // MARK: Private instance method
 
     private func gesturesKey(forApp path: String) -> String {
@@ -96,11 +90,10 @@ class CommandPreference {
         self.userDefaults.set(keystrokeString, forKey: keystrokesKey)
     }
 
-
     // MARK: Instance method
-    
+
     func setApp(path: String) {
-        
+
         var paths = self.appPaths
         guard !paths.contains(path) else { return }
 
@@ -147,12 +140,12 @@ class CommandPreference {
         return anyKeystroke as? String
     }
     func keystroke(forApp url: URL, gesture: Gesture) -> String? {
-        
+
         return self.keystroke(forApp: url.path, gestureString: gesture.string)
     }
 
     func removeKeystroke(forApp path: String, gestureString: String) {
-        
+
         let keystrokeKey = self.keystrokeKey(forApp: path, forGesture: gestureString)
         self.userDefaults.removeObject(forKey: keystrokeKey)
     }
@@ -189,10 +182,6 @@ class CommandPreference {
     }
 }
 
-
-
-
-
 extension CommandPreference {
 
     private var globalAppPath: String { return AppItem.Global.path }
@@ -214,7 +203,6 @@ extension CommandPreference {
         self.set(forApp: self.finderPath, gestureString: gestureString, keystrokeString: keystrokeString)
     }
 }
-
 
 extension CommandPreference {
 

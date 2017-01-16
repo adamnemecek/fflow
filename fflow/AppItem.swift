@@ -37,7 +37,7 @@ enum AppItem {
         case let .Else(url): return url.path
         }
     }
-    
+
     var iconImage: NSImage? {
 
         switch self {

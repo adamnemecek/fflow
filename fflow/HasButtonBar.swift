@@ -8,13 +8,6 @@
 
 import Cocoa
 
-
-
-
-
-
-
-
 protocol HasButtonBar {
 
     var addSegment: Int { get }
@@ -34,7 +27,7 @@ extension HasButtonBar {
 
         segmentedControl.trackingMode = .momentary
         segmentedControl.segmentCount = 2
-        
+
         segmentedControl.setImage(NSImage(named: NSImageNameAddTemplate), forSegment: 0)
         segmentedControl.setImage(NSImage(named: NSImageNameRemoveTemplate), forSegment: 1)
 
@@ -43,5 +36,3 @@ extension HasButtonBar {
         return segmentedControl
     }
 }
-
-

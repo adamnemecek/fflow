@@ -8,35 +8,31 @@
 
 import Cocoa
 
-
 enum AppColumn: String {
-    
+
     case AppIcon
     case AppName
-    
+
     var identifier: String {
-        
+
         return self.rawValue
     }
-    
+
     var width: CGFloat {
-        
+
         switch self {
         case .AppIcon: return 40
         case .AppName: return 150
         }
     }
-    
+
     var tableColumn: NSTableColumn {
-        
+
         let tableColumn = NSTableColumn(identifier: self.identifier)
         tableColumn.width = self.width
         return tableColumn
     }
 }
-
-
-
 
 extension AppColumn {
 
@@ -64,7 +60,7 @@ extension AppColumn {
     private var textFieldOrigin: NSPoint { return NSPoint(x: self.imageViewWidth, y: 0) }
     private var textFieldSize: NSSize { return NSSize(width: self.textFieldWidth, height: 0) }
     private var textFieldFrame: NSRect { return NSRect(origin: self.textFieldOrigin, size:self.textFieldSize) }
-    
+
     private func textField(string: String) -> NSTextField {
 
         let textField = NSTextField(frame: self.textFieldFrame)
@@ -107,10 +103,6 @@ extension AppColumn {
         }
     }
 }
-
-
-
-
 
 extension AppColumn {
 

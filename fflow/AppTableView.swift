@@ -30,16 +30,12 @@ class AppTableView: NSTableView {
         self.addTableColumn(AppColumn.AppIcon.tableColumn)
         self.addTableColumn(AppColumn.AppName.tableColumn)
     }
-    
+
     required init?(coder: NSCoder) {
 
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-
-
-
 
 extension AppTableView: NSTableViewDelegate {
 
@@ -61,10 +57,6 @@ extension AppTableView: NSTableViewDelegate {
     }
 }
 
-
-
-
-
 extension AppTableView: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -73,13 +65,7 @@ extension AppTableView: NSTableViewDataSource {
     }
 }
 
-
-
-
 extension AppTableView: Selectable {}
-
-
-
 
 extension AppTableView: HasButtonBar {
 
@@ -141,13 +127,12 @@ extension AppTableView: HasButtonBar {
         default: break
         }
     }
-    
+
     var buttonBarForMe: NSSegmentedControl {
 
         let buttonBar = self.buttonBar
         buttonBar.action = #selector(buttonBarClicked(sender:))
-        
+
         return buttonBar
     }
 }
-

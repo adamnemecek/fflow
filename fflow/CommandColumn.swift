@@ -82,10 +82,6 @@ enum CommandColumn: String {
     }
 }
 
-
-
-
-
 extension CommandColumn {
 
     static func rowCount(forApp path: String) -> Int {
@@ -93,7 +89,6 @@ extension CommandColumn {
         return CommandPreference().gestures(forApp: path).count
     }
 }
-
 
 extension CommandColumn {
 
