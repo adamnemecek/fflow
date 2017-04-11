@@ -19,7 +19,6 @@ class CommandTableView: NSTableView {
         self.rowHeight = 30
         self.headerView = nil
         self.focusRingType = .none
-        self.allowsEmptySelection = false
         self.intercellSpacing = NSSize(squaringOf: 5)
 
         self.usesAlternatingRowBackgroundColors = true
