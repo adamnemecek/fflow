@@ -102,11 +102,16 @@ extension AppTableView: HasButtonBar {
         self.selectLastRow()
     }
 
+    private func canRemove(row: Int) -> Bool {
+
+        return row >= 2     // not remove Global and Finder.
+    }
+
     func deleteSelected() {
 
         let row = self.selectedRow
 
-        guard row >= 0 else { return }
+        guard self.canRemove(row: row) else { return }
 
         let commandPreference = CommandPreference()
         let path = AppColumn.appPaths[row]
