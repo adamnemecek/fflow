@@ -21,7 +21,6 @@ class CommandTableView: NSTableView {
         self.focusRingType = .none
         self.intercellSpacing = NSSize(squaringOf: 5)
 
-        self.usesAlternatingRowBackgroundColors = true
         self.gridColor = .knobColor
         self.gridStyleMask = [.solidVerticalGridLineMask]
 
