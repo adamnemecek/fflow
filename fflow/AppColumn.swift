@@ -110,4 +110,9 @@ extension AppColumn {
 
         return self.appPaths.count
     }
+
+    static func path(at row: Int) -> String {
+
+        return AppColumn.appPaths[row]
+    }
 }
