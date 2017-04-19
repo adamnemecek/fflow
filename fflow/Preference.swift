@@ -39,6 +39,7 @@ class Preference: NSWindowController {
 
         super.init(window: Preference.templateWindow)
 
+        self.window?.title = "fflow Preference"
         guard let splitView = Preference.splitView() else { return }
 
         self.window?.contentView?.addSubview(splitView)
