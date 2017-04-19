@@ -40,6 +40,7 @@
 		CED57AAB1D9DF43400F881C9 /* fflowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AAA1D9DF43400F881C9 /* fflowUITests.swift */; };
 		CED57AC31D9E2AC300F881C9 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AC21D9E2AC300F881C9 /* Direction.swift */; };
 		CEDABA3D1E0BC7380063D72F /* NSViewExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDABA3C1E0BC7380063D72F /* NSViewExtensionTests.swift */; };
+		CEDBB79D1EA61E7500CD7870 /* AppColumnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBB79C1EA61E7500CD7870 /* AppColumnTests.swift */; };
 		CEDE3B691DAFC4A80081664E /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDE3B681DAFC4A80081664E /* Indicator.swift */; };
 		CEE1008F1DC443E70060BB7D /* CommandPreferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE1008E1DC443E70060BB7D /* CommandPreferenceTests.swift */; };
 		CEE184221E25A87000BFB6B7 /* ScrollGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE184211E25A87000BFB6B7 /* ScrollGestureRecognizer.swift */; };
@@ -109,6 +110,7 @@
 		CED57AAC1D9DF43400F881C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CED57AC21D9E2AC300F881C9 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Direction.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CEDABA3C1E0BC7380063D72F /* NSViewExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSViewExtensionTests.swift; sourceTree = "<group>"; };
+		CEDBB79C1EA61E7500CD7870 /* AppColumnTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColumnTests.swift; sourceTree = "<group>"; };
 		CEDE3B681DAFC4A80081664E /* Indicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		CEE1008E1DC443E70060BB7D /* CommandPreferenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CommandPreferenceTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CEE184211E25A87000BFB6B7 /* ScrollGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollGestureRecognizer.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				CEDABA3C1E0BC7380063D72F /* NSViewExtensionTests.swift */,
 				CE7A9E701E0D4299007194B8 /* NSPointExtensionTests.swift */,
 				CE1806E41E15541F00FDDFD4 /* CGFloatExtensionTests.swift */,
+				CEDBB79C1EA61E7500CD7870 /* AppColumnTests.swift */,
 			);
 			path = fflowTests;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDBB79D1EA61E7500CD7870 /* AppColumnTests.swift in Sources */,
 				CEE4B8EF1E0A2A5000D00D35 /* NSRectExtensionTests.swift in Sources */,
 				CE512E1D1DFEACA3008B1877 /* NSBezierPathExtensionTests.swift in Sources */,
 				CEEB5FCE1E0A94CF0016E3F3 /* CGVectorExtensionTests.swift in Sources */,
