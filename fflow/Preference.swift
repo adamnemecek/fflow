@@ -167,24 +167,24 @@ private protocol HasSplitView {
 
 extension HasSplitView where Self: Preference {
 
+    private static var splitViewFrame: NSRect {
+
+        let topMargin: CGFloat = 40
+        let bottomMargin: CGFloat = 50
+        let horizontalMargin: CGFloat = 20
+
+        let origin = NSPoint(x: horizontalMargin, y: bottomMargin)
+        let size = Preference.windowFrame.insetBy(dx: horizontalMargin, dy: (topMargin + bottomMargin) / 2).size
+
+        return NSRect(origin: origin, size: size)
+    }
+
     fileprivate static func splitView() -> NSSplitView? {
 
+        let appsView = Preference.appsView()
         let commandsView = Preference.commandsView()
 
-        guard let scrollView = commandsView.subviews[1] as? NSScrollView else { return nil }
-        guard let commandTableView = scrollView.documentView as? CommandTableView else { return nil }
-
-        let appsView = Preference.appsView(commandTableView: commandTableView)
-
-        let offset: CGFloat = 10
-        let origin = NSPoint(bothXY: offset)
-        let size = Preference.windowFrame.insetBy(dx: offset, dy: offset).size
-
-        let frame = NSRect(origin: origin, size: size)
-                        .insetBy(dx: 0, dy: 20)
-                        .offsetBy(dx: 0, dy: 20)
-
-        let splitView = NSSplitView(frame: frame)
+        let splitView = NSSplitView(frame: self.splitViewFrame)
         splitView.addArrangedSubview(appsView)
         splitView.addArrangedSubview(commandsView)
         splitView.isVertical = true
