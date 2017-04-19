@@ -8,13 +8,14 @@
 
 import Cocoa
 
+public extension NSNotification.Name {
+
+    static let AppTableSelectionChenged = NSNotification.Name("AppTableSelectionChanged")
+}
+
 class AppTableView: NSTableView {
 
-    fileprivate let commandTableView: CommandTableView
-
-    init(commandTableView: CommandTableView) {
-
-        self.commandTableView = commandTableView
+    init() {
 
         super.init(frame: .zero)
 
@@ -49,9 +50,9 @@ extension AppTableView: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
 
-        let appPaths = AppColumn.appPaths
-        let path = appPaths[row]
-        self.commandTableView.change(currentApp: path)
+        NotificationCenter.default.post(name: .AppTableSelectionChenged,
+                                        object: AppColumn.path(at: row),
+                                        userInfo: nil)
 
         return true
     }

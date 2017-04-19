@@ -31,6 +31,10 @@ class CommandTableView: NSTableView {
         self.addTableColumn(CommandColumn.Keystroke.tableColumn)
 
         self.doubleAction = #selector(self.doubleClicked(sender:))
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.change(notification:)),
+                                               name: .AppTableSelectionChenged,
+                                               object: nil)
     }
 
     func doubleClicked(sender: Any) {
@@ -55,6 +59,17 @@ class CommandTableView: NSTableView {
 
         self.currentAppPath = path
         self.reloadData()
+    }
+
+    func change(notification: NSNotification) {
+
+        guard let path = notification.object as? String else { return }
+        self.change(currentApp: path)
+    }
+
+    deinit {
+
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

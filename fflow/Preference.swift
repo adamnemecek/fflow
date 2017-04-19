@@ -62,7 +62,7 @@ class Preference: NSWindowController {
 
 private protocol HasAppsView {
 
-    static func appsView(commandTableView: CommandTableView) -> NSView
+    static func appsView() -> NSView
 }
 
 extension HasAppsView where Self: Preference {
@@ -90,9 +90,9 @@ extension HasAppsView where Self: Preference {
         return scrollView
     }
 
-    fileprivate static func appsView(commandTableView: CommandTableView) -> NSView {
+    fileprivate static func appsView() -> NSView {
 
-        let appTableView = AppTableView(commandTableView: commandTableView)
+        let appTableView = AppTableView()
         let buttonBar = appTableView.buttonBarForMe
 
         let scrollView = self.scrollView
