@@ -58,6 +58,7 @@ class Preference: NSWindowController {
         window.orderFront(self)
         window.becomeKey()
     }
+
 }
 
 private protocol HasAppsView {
