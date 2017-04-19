@@ -43,7 +43,6 @@ class Preference: NSWindowController {
         guard let splitView = Preference.splitView() else { return }
 
         self.window?.contentView?.addSubview(splitView)
-//        self.window?.contentView?.addSubview(button)
     }
 
     required init?(coder: NSCoder) {
