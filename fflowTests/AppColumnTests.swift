@@ -26,12 +26,4 @@ class AppColumnTests: XCTestCase {
         XCTAssertEqual(AppColumn.path(at: 0), "/")
         XCTAssertEqual(AppColumn.path(at: 1), "/System/Library/CoreServices/Finder.app")
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
