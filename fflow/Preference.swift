@@ -189,6 +189,13 @@ extension HasSplitView where Self: Preference {
         splitView.addArrangedSubview(commandsView)
         splitView.isVertical = true
 
+        let leftSize = NSSize(width: 3, height: 0)
+        let rightSize = NSSize(width: 4, height: 0)
+
+        splitView.arrangedSubviews[0].setFrameSize(leftSize)
+        splitView.arrangedSubviews[1].setFrameSize(rightSize)
+        splitView.adjustSubviews()
+
         return splitView
     }
 }
