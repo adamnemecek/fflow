@@ -84,7 +84,7 @@ extension AppColumn {
         return [AppItem.Global.path] + [AppItem.Finder.path] + appPaths
     }
 
-    private func appItem(at row: Int) -> AppItem {
+    fileprivate static func appItem(at row: Int) -> AppItem {
 
         switch row {
         case 0: return AppItem.Global
@@ -95,7 +95,7 @@ extension AppColumn {
 
     func view(at row: Int) -> NSView? {
 
-        let appItem = self.appItem(at: row)
+        let appItem = AppColumn.appItem(at: row)
 
         switch self {
         case .AppIcon: return self.imageView(image: appItem.iconImage)
@@ -113,6 +113,11 @@ extension AppColumn {
 
     static func path(at row: Int) -> String {
 
-        return AppColumn.appPaths[row]
+        return self.appPaths[row]
+    }
+
+    static func appName(at row: Int) -> String {
+
+        return self.appItem(at: row).name
     }
 }
