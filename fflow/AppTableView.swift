@@ -103,6 +103,24 @@ extension AppTableView: HasButtonBar {
         self.selectLastRow()
     }
 
+    private func removeApp(at row: Int) {
+
+        let commandPreference = CommandPreference()
+        let path = AppColumn.appPaths[row]
+        commandPreference.removeApp(path: path)
+    }
+
+    private func confirmationAlert(for row: Int) -> NSAlert {
+
+        let appName = AppColumn.appName(at: row)
+        let alert = NSAlert()
+        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: "Cancel")
+        alert.informativeText = "Remove \(appName) ?"
+
+        return alert
+    }
+
     private func canRemove(row: Int) -> Bool {
 
         return row >= 2     // not remove Global and Finder.
@@ -114,13 +132,17 @@ extension AppTableView: HasButtonBar {
 
         guard self.canRemove(row: row) else { return }
 
-        let commandPreference = CommandPreference()
-        let path = AppColumn.appPaths[row]
-        commandPreference.removeApp(path: path)
+        guard let window = self.window else { return }
 
-        self.reloadData()
+        self.confirmationAlert(for: row)
+            .beginSheetModal(for: window,
+                             completionHandler: {(modalResponse: NSModalResponse) -> Void in
+            let OK: Int = 1000
+            guard modalResponse == OK else { return }
+            self.removeApp(at: row)
 
-        self.select(row: row)
+            self.reloadData()
+        })
     }
 
     func buttonBarClicked(sender: Any?) {
