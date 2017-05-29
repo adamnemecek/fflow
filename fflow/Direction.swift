@@ -17,38 +17,50 @@ enum Direction: String {
     case Vague = "v"
     case No = "n"
 
-    static func which(x deltaX: CGFloat, y deltaY: CGFloat) -> Direction {
+    var isVague: Bool {
 
-        let motionless: ClosedRange<CGFloat> = -1.0...1.0
-
-        switch (deltaX, deltaY) {
-        case (0.0, 0.0): return .No
-        case (motionless, -50.0 ... -5.0): return .Up
-        case (motionless, 5.0...50.0): return .Down
-        case (-50.0 ... -3.0, motionless): return .Left
-        case (3.0...50.0, motionless): return .Right
-        default: return .Vague
-        }
-    }
-
-    static func filter(string: String) -> String {
-
-        return string.characters.map({ String($0) })
-            .filter({ Direction(rawValue: $0) != nil }).joined()
+        return self == .Vague
     }
 
     var isNo: Bool {
 
         return self == .No
     }
+}
 
-    var isVague: Bool {
+private protocol CanGiveString {
 
-        return self == .Vague
+    var string: String { get }
+    var arrowString: String { get }
+}
+
+extension Direction: CanGiveString {
+
+    var string: String {
+
+        return self.rawValue
+    }
+
+    var arrowString: String {
+
+        switch self {
+        case .Up:    return "↑"
+        case .Down:  return "↓"
+        case .Left:  return "←"
+        case .Right: return "→"
+        default:     return "."
+        }
     }
 }
 
-extension Direction {
+private protocol Vectorable {
+
+    var unitVector: CGVector { get }
+    var isVertical: Bool { get }
+    var isHorizontal: Bool { get }
+}
+
+extension Direction: Vectorable {
 
     var unitVector: CGVector {
 
@@ -61,22 +73,57 @@ extension Direction {
         }
     }
 
-    var isVertical: Bool { return self.unitVector.dx == 0 }
-    var isHorizontal: Bool { return self.unitVector.dy == 0 }
+    var isVertical: Bool {
+
+        return self.unitVector.dx == 0
+    }
+
+    var isHorizontal: Bool {
+
+        return self.unitVector.dy == 0
+    }
 }
 
-extension Direction {
+private protocol CanInitFromString {
 
-    var string: String { return self.rawValue }
+    static func array(from: String) -> [Direction]
+}
 
-    var arrowString: String {
+extension Direction: CanInitFromString {
 
-        switch self {
-        case .Up: return Key.UpArrow.symbol
-        case .Down: return Key.DownArrow.symbol
-        case .Left: return Key.LeftArrow.symbol
-        case .Right: return Key.RightArrow.symbol
-        default: return "."
+    private static func filter(string: String) -> String {
+
+        return string.characters.map({ String($0) })
+            .filter({ Direction(rawValue: $0) != nil }).joined()
+    }
+
+    static func array(from directionsString: String) -> [Direction] {
+
+        let filteredString = Direction.filter(string: directionsString)
+        let validString = filteredString.trimmingLeading(character: "n")
+
+        return validString.characters.map({ Direction(rawValue: String($0))! })
+    }
+}
+
+private protocol CanDetectWhich {
+
+    static func which(x deltaX: CGFloat, y deltaY: CGFloat) -> Direction
+}
+
+extension Direction: CanDetectWhich {
+
+    static func which(x deltaX: CGFloat, y deltaY: CGFloat) -> Direction {
+
+        let motionless: ClosedRange<CGFloat> = -1.0...1.0
+
+        switch (deltaX, deltaY) {
+        case (0.0, 0.0): return .No
+        case (motionless, -50.0 ... -5.0): return .Up
+        case (motionless, 5.0...50.0): return .Down
+        case (-50.0 ... -3.0, motionless): return .Left
+        case (3.0...50.0, motionless): return .Right
+        default: return .Vague
         }
     }
 }
