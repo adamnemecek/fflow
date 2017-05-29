@@ -51,10 +51,7 @@ class Gesture {
 
     init(fromString gestureString: String) {
 
-        let filteredString = Direction.filter(string: gestureString)
-        let validString = filteredString.trimmingLeading(character: "n")
-
-        self.directions = validString.characters.map({ Direction(rawValue: String($0))! })
+        self.directions = Direction.array(from: gestureString)
     }
 
     // MARK: Convenience init

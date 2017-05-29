@@ -23,9 +23,10 @@ class DirectionTests: XCTestCase {
         super.tearDown()
     }
 
-    func testFilter() {
+    func testArray() {
 
-        XCTAssertEqual(Direction.filter(string: "iuydl rpre"), "udlrr")
+        let directions = Direction.array(from: "iuydl rpre")
+        XCTAssertEqual(directions.map({ $0.string }).joined(), "udlrr")
     }
 
     func testWhich() {
