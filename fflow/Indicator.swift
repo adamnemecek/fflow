@@ -11,8 +11,6 @@ import Cocoa
 
 class Indicator: NSObject {
 
-    // MARK: Private static property
-
     static fileprivate let side: CGFloat = 130
 
     static private var center: NSPoint {
@@ -58,12 +56,6 @@ class Indicator: NSObject {
         return panel
     }
 
-    // MARK: Private static method
-    // MARK: Static property
-    // MARK: Static method
-
-    // MARK: Private instance property
-
     fileprivate let panel: NSPanel
 
     private var textView: NSTextView {
@@ -83,27 +75,17 @@ class Indicator: NSObject {
         return textView
     }
 
-    // MARK: Instance property
-
-    // MARK: Designated init
-
     override init() {
 
         self.panel = Indicator.panel
         super.init()
     }
 
-    // MARK: Convenience init
-
-    // MARK: Private instance method
-
     fileprivate func showPanel() {
 
         self.panel.isFloatingPanel = true // to be visible even if target app isn't fullscreen
         self.panel.orderFront(nil)
     }
-
-    // MARK: Instance method
 
     func show(text: String) {
 
@@ -206,8 +188,6 @@ extension Indicator: CAAnimationDelegate {
         self.show(gesture: gesture)
         self.fadeout()
     }
-
-    // MARK: CAAnimationDelegate
 
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
 
