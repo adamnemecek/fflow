@@ -6,7 +6,6 @@
 //  Copyright © 2016年 user. All rights reserved.
 //
 
-import Foundation
 import Cocoa
 
 class Indicator: NSObject {
