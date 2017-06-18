@@ -14,10 +14,10 @@ class Indicator: NSObject {
 
     static private var center: NSPoint {
 
-        guard let screenSize = NSScreen.main()?.frame.size else { return .zero }
+        guard let frame = NSScreen.mousePointed()?.frame else { return .zero }
 
-        return .init(x: screenSize.width / 2,
-                     y: screenSize.height / 3)
+        return .init(x: frame.origin.x + frame.size.width / 2,
+                     y: frame.origin.y + frame.size.height / 3)
     }
 
     static fileprivate var size: NSSize {
@@ -81,6 +81,8 @@ class Indicator: NSObject {
     }
 
     fileprivate func showPanel() {
+
+        self.panel.setFrame(Indicator.frame, display: false)
 
         self.panel.isFloatingPanel = true // to be visible even if target app isn't fullscreen
         self.panel.orderFront(nil)
