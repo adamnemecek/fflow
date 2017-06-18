@@ -147,7 +147,13 @@ extension Indicator {
     }
 }
 
-extension Indicator: CAAnimationDelegate {
+protocol CanFadeout: CAAnimationDelegate {
+
+    func showAndFadeout(text: String) -> Void
+    func showAndFadeout(gesture: Gesture) -> Void
+}
+
+extension CanFadeout where Self: Indicator {
 
     private var opacityAnimation: CABasicAnimation {
 
@@ -187,6 +193,9 @@ extension Indicator: CAAnimationDelegate {
         self.show(gesture: gesture)
         self.fadeout()
     }
+}
+
+extension Indicator: CanFadeout {
 
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
 
