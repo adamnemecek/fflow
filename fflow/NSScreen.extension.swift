@@ -23,5 +23,3 @@ extension NSScreen {
         return screens?[index]
     }
 }
-
-
