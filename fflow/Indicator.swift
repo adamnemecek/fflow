@@ -47,7 +47,7 @@ class Indicator: NSObject {
                             backing: NSBackingStoreType.buffered,
                             defer: false)
 
-        panel.contentView = self.contentView
+        panel.contentView = Indicator.contentView
 
         panel.backgroundColor = .clear
         panel.hasShadow = false
