@@ -18,6 +18,7 @@
 		CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */; };
 		CE327DAB1E1E05E700730016 /* KeystrokeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE327DAA1E1E05E700730016 /* KeystrokeListener.swift */; };
 		CE36C7E31DFD688E0043F678 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36C7E21DFD688E0043F678 /* StringExtensionTests.swift */; };
+		CE39AD601EF58D9F00A607D6 /* NSScreenExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39AD5F1EF58D9F00A607D6 /* NSScreenExtensionTests.swift */; };
 		CE3F709A1E0B19C300D79D04 /* NSSize.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F70991E0B19C300D79D04 /* NSSize.extension.swift */; };
 		CE3F709C1E0B1A5800D79D04 /* NSSizeExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F709B1E0B1A5800D79D04 /* NSSizeExtensionTests.swift */; };
 		CE43BAEE1DB7F7B6005862C5 /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BAED1DB7F7B6005862C5 /* StatusItem.swift */; };
@@ -50,6 +51,7 @@
 		CEE4C1401E273B4F007222EC /* Selectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4C13F1E273B4F007222EC /* Selectable.swift */; };
 		CEEB5FCE1E0A94CF0016E3F3 /* CGVectorExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB5FCD1E0A94CF0016E3F3 /* CGVectorExtensionTests.swift */; };
 		CEF581E81E04AF7D006A8440 /* NSView.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF581E71E04AF7D006A8440 /* NSView.extension.swift */; };
+		CEF5E4071EF66EEE0091CA06 /* NSScreen.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF5E4061EF66EEE0091CA06 /* NSScreen.extension.swift */; };
 		CEFD397B1E0926B2001948C9 /* NSRect.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFD397A1E0926B2001948C9 /* NSRect.extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +84,7 @@
 		CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keystroke.swift; sourceTree = "<group>"; };
 		CE327DAA1E1E05E700730016 /* KeystrokeListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeystrokeListener.swift; sourceTree = "<group>"; };
 		CE36C7E21DFD688E0043F678 /* StringExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
+		CE39AD5F1EF58D9F00A607D6 /* NSScreenExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSScreenExtensionTests.swift; sourceTree = "<group>"; };
 		CE3F70991E0B19C300D79D04 /* NSSize.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSSize.extension.swift; sourceTree = "<group>"; };
 		CE3F709B1E0B1A5800D79D04 /* NSSizeExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSSizeExtensionTests.swift; sourceTree = "<group>"; };
 		CE43BAED1DB7F7B6005862C5 /* StatusItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
@@ -120,6 +123,7 @@
 		CEE4C13F1E273B4F007222EC /* Selectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selectable.swift; sourceTree = "<group>"; };
 		CEEB5FCD1E0A94CF0016E3F3 /* CGVectorExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CGVectorExtensionTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CEF581E71E04AF7D006A8440 /* NSView.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSView.extension.swift; sourceTree = "<group>"; };
+		CEF5E4061EF66EEE0091CA06 /* NSScreen.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSScreen.extension.swift; sourceTree = "<group>"; };
 		CEFD397A1E0926B2001948C9 /* NSRect.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRect.extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,6 +207,7 @@
 				CE0880F01E0A6FE700398749 /* CGVector.extension.swift */,
 				CE7A9E6E1E0D4216007194B8 /* NSPoint.extension.swift */,
 				CE1806E21E15534400FDDFD4 /* CGFloat.extension.swift */,
+				CEF5E4061EF66EEE0091CA06 /* NSScreen.extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				CE7A9E701E0D4299007194B8 /* NSPointExtensionTests.swift */,
 				CE1806E41E15541F00FDDFD4 /* CGFloatExtensionTests.swift */,
 				CEDBB79C1EA61E7500CD7870 /* AppColumnTests.swift */,
+				CE39AD5F1EF58D9F00A607D6 /* NSScreenExtensionTests.swift */,
 			);
 			path = fflowTests;
 			sourceTree = "<group>";
@@ -436,6 +442,7 @@
 			files = (
 				CEBD00051DA693FF006B1EE1 /* Gesture.swift in Sources */,
 				CE94A1FB1DAA0ACB00811518 /* Key.swift in Sources */,
+				CEF5E4071EF66EEE0091CA06 /* NSScreen.extension.swift in Sources */,
 				CE7A9E6F1E0D4216007194B8 /* NSPoint.extension.swift in Sources */,
 				CEE1FD611E226B51007CD8A2 /* CommandColumn.swift in Sources */,
 				CE327DAB1E1E05E700730016 /* KeystrokeListener.swift in Sources */,
@@ -469,6 +476,7 @@
 			files = (
 				CEDBB79D1EA61E7500CD7870 /* AppColumnTests.swift in Sources */,
 				CEE4B8EF1E0A2A5000D00D35 /* NSRectExtensionTests.swift in Sources */,
+				CE39AD601EF58D9F00A607D6 /* NSScreenExtensionTests.swift in Sources */,
 				CE512E1D1DFEACA3008B1877 /* NSBezierPathExtensionTests.swift in Sources */,
 				CEEB5FCE1E0A94CF0016E3F3 /* CGVectorExtensionTests.swift in Sources */,
 				CED57AA01D9DF43400F881C9 /* fflowTests.swift in Sources */,
