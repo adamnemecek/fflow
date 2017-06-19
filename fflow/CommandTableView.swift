@@ -99,7 +99,7 @@ extension CommandTableView: NSTableViewDataSource {
     }
 }
 
-extension CommandTableView: Selectable {}
+extension CommandTableView: CanSelect {}
 
 extension CommandTableView: HasButtonBar {
 

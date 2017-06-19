@@ -1,20 +1,20 @@
 //
-//  Selectable.swift
+//  CanSelect.protocol.swift
 //  fflow
 //
-//  Created by user on 2017/01/12.
+//  Created by user on 2017/06/19.
 //  Copyright © 2017年 user. All rights reserved.
 //
 
 import Cocoa
 
-protocol Selectable: NSTableViewDelegate, NSTableViewDataSource {
+protocol CanSelect: NSTableViewDelegate, NSTableViewDataSource {
 
     func select(row: Int)
     func selectLastRow()
 }
 
-extension Selectable where Self: NSTableView {
+extension CanSelect where Self: NSTableView {
 
     private func validRow(row: Int) -> Int {
 

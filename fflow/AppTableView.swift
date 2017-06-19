@@ -66,7 +66,7 @@ extension AppTableView: NSTableViewDataSource {
     }
 }
 
-extension AppTableView: Selectable {}
+extension AppTableView: CanSelect {}
 
 extension AppTableView: HasButtonBar {
 

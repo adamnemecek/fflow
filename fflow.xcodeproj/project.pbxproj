@@ -12,7 +12,6 @@
 		CE0B30D61E18E82300C1DD28 /* AppTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0B30D51E18E82300C1DD28 /* AppTableView.swift */; };
 		CE0B30D81E18E85300C1DD28 /* AppItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0B30D71E18E85300C1DD28 /* AppItem.swift */; };
 		CE0B30DA1E18FBB500C1DD28 /* CommandTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0B30D91E18FBB500C1DD28 /* CommandTableView.swift */; };
-		CE0B30DC1E18FBDA00C1DD28 /* HasButtonBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0B30DB1E18FBDA00C1DD28 /* HasButtonBar.swift */; };
 		CE1806E31E15534400FDDFD4 /* CGFloat.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806E21E15534400FDDFD4 /* CGFloat.extension.swift */; };
 		CE1806E51E15541F00FDDFD4 /* CGFloatExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806E41E15541F00FDDFD4 /* CGFloatExtensionTests.swift */; };
 		CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */; };
@@ -50,9 +49,10 @@
 		CEE1FD5F1E2264D2007CD8A2 /* AppColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE1FD5E1E2264D2007CD8A2 /* AppColumn.swift */; };
 		CEE1FD611E226B51007CD8A2 /* CommandColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE1FD601E226B51007CD8A2 /* CommandColumn.swift */; };
 		CEE4B8EF1E0A2A5000D00D35 /* NSRectExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4B8EE1E0A2A5000D00D35 /* NSRectExtensionTests.swift */; };
-		CEE4C1401E273B4F007222EC /* Selectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4C13F1E273B4F007222EC /* Selectable.swift */; };
 		CEEB5FCE1E0A94CF0016E3F3 /* CGVectorExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB5FCD1E0A94CF0016E3F3 /* CGVectorExtensionTests.swift */; };
 		CEEE49CF1EF7C87B00C186FE /* ValidScrollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE49CE1EF7C87B00C186FE /* ValidScrollTests.swift */; };
+		CEEE49D11EF7D94200C186FE /* HasButtonBar.protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE49D01EF7D94200C186FE /* HasButtonBar.protocol.swift */; };
+		CEEE49D31EF7D97000C186FE /* CanSelect.protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE49D21EF7D97000C186FE /* CanSelect.protocol.swift */; };
 		CEF581E81E04AF7D006A8440 /* NSView.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF581E71E04AF7D006A8440 /* NSView.extension.swift */; };
 		CEF5E4071EF66EEE0091CA06 /* NSScreen.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF5E4061EF66EEE0091CA06 /* NSScreen.extension.swift */; };
 		CEFD397B1E0926B2001948C9 /* NSRect.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFD397A1E0926B2001948C9 /* NSRect.extension.swift */; };
@@ -81,7 +81,6 @@
 		CE0B30D51E18E82300C1DD28 /* AppTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppTableView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE0B30D71E18E85300C1DD28 /* AppItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppItem.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE0B30D91E18FBB500C1DD28 /* CommandTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CommandTableView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		CE0B30DB1E18FBDA00C1DD28 /* HasButtonBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasButtonBar.swift; sourceTree = "<group>"; };
 		CE1806E21E15534400FDDFD4 /* CGFloat.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloat.extension.swift; sourceTree = "<group>"; };
 		CE1806E41E15541F00FDDFD4 /* CGFloatExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CGFloatExtensionTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keystroke.swift; sourceTree = "<group>"; };
@@ -125,9 +124,10 @@
 		CEE1FD5E1E2264D2007CD8A2 /* AppColumn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppColumn.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CEE1FD601E226B51007CD8A2 /* CommandColumn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandColumn.swift; sourceTree = "<group>"; };
 		CEE4B8EE1E0A2A5000D00D35 /* NSRectExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRectExtensionTests.swift; sourceTree = "<group>"; };
-		CEE4C13F1E273B4F007222EC /* Selectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selectable.swift; sourceTree = "<group>"; };
 		CEEB5FCD1E0A94CF0016E3F3 /* CGVectorExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CGVectorExtensionTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CEEE49CE1EF7C87B00C186FE /* ValidScrollTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidScrollTests.swift; sourceTree = "<group>"; };
+		CEEE49D01EF7D94200C186FE /* HasButtonBar.protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasButtonBar.protocol.swift; sourceTree = "<group>"; };
+		CEEE49D21EF7D97000C186FE /* CanSelect.protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanSelect.protocol.swift; sourceTree = "<group>"; };
 		CEF581E71E04AF7D006A8440 /* NSView.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSView.extension.swift; sourceTree = "<group>"; };
 		CEF5E4061EF66EEE0091CA06 /* NSScreen.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSScreen.extension.swift; sourceTree = "<group>"; };
 		CEFD397A1E0926B2001948C9 /* NSRect.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRect.extension.swift; sourceTree = "<group>"; };
@@ -181,8 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				CE9B96611DA8B1C3004AB707 /* CommandPreference.swift */,
-				CEE4C13F1E273B4F007222EC /* Selectable.swift */,
-				CE0B30DB1E18FBDA00C1DD28 /* HasButtonBar.swift */,
 				CE0B30D71E18E85300C1DD28 /* AppItem.swift */,
 				CEE1FD5E1E2264D2007CD8A2 /* AppColumn.swift */,
 				CE0B30D51E18E82300C1DD28 /* AppTableView.swift */,
@@ -190,6 +188,8 @@
 				CEE184211E25A87000BFB6B7 /* ScrollGestureRecognizer.swift */,
 				CEE1FD601E226B51007CD8A2 /* CommandColumn.swift */,
 				CE0B30D91E18FBB500C1DD28 /* CommandTableView.swift */,
+				CEEE49D01EF7D94200C186FE /* HasButtonBar.protocol.swift */,
+				CEEE49D21EF7D97000C186FE /* CanSelect.protocol.swift */,
 			);
 			name = Window;
 			sourceTree = "<group>";
@@ -462,7 +462,6 @@
 				CEE1FD5F1E2264D2007CD8A2 /* AppColumn.swift in Sources */,
 				CE0B30D61E18E82300C1DD28 /* AppTableView.swift in Sources */,
 				CEF581E81E04AF7D006A8440 /* NSView.extension.swift in Sources */,
-				CEE4C1401E273B4F007222EC /* Selectable.swift in Sources */,
 				CEE184221E25A87000BFB6B7 /* ScrollGestureRecognizer.swift in Sources */,
 				CE0B30D81E18E85300C1DD28 /* AppItem.swift in Sources */,
 				CE09F7841DB8899900EDE9C5 /* NSBezierPath.extension.swift in Sources */,
@@ -472,11 +471,12 @@
 				CE0880F11E0A6FE700398749 /* CGVector.extension.swift in Sources */,
 				CEA732BC1EF6A13200C0F0A6 /* ValidScroll.swift in Sources */,
 				CEFD397B1E0926B2001948C9 /* NSRect.extension.swift in Sources */,
+				CEEE49D11EF7D94200C186FE /* HasButtonBar.protocol.swift in Sources */,
 				CE6C2BF81DFC8D90001DBAD9 /* String.extension.swift in Sources */,
 				CE43BAEE1DB7F7B6005862C5 /* StatusItem.swift in Sources */,
-				CE0B30DC1E18FBDA00C1DD28 /* HasButtonBar.swift in Sources */,
 				CED57AC31D9E2AC300F881C9 /* Direction.swift in Sources */,
 				CEDE3B691DAFC4A80081664E /* Indicator.swift in Sources */,
+				CEEE49D31EF7D97000C186FE /* CanSelect.protocol.swift in Sources */,
 				CE0B30DA1E18FBB500C1DD28 /* CommandTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

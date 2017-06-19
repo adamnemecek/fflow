@@ -1,8 +1,8 @@
 //
-//  HasButtonBar.swift
+//  HasButtonBar.protocol.swift
 //  fflow
 //
-//  Created by user on 2017/01/01.
+//  Created by user on 2017/06/19.
 //  Copyright © 2017年 user. All rights reserved.
 //
 
