@@ -10,8 +10,6 @@ import Cocoa
 
 class StatusItem {
 
-    // MARK: Private static property
-
     static private func f(size: NSSize) -> NSBezierPath {
 
         let fHeight = size.height * 0.75
@@ -65,17 +63,8 @@ class StatusItem {
         return image
     }
 
-    // MARK: Private static method
-    // MARK: Static property
-    // MARK: Static method
-    // MARK: Private instance property
-
     private let iconSize = NSSize(width: 18, height: 18)
     private let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
-
-    // MARK: Instance property
-
-    // MARK: Designated init
 
     init(menuItems: [NSMenuItem]) {
 
@@ -87,10 +76,6 @@ class StatusItem {
         self.statusItem.image = StatusItem.icon(size: self.iconSize,
                                                 fPath: StatusItem.f(size: self.iconSize))
     }
-
-    // MARK: Convenience init
-    // MARK: Private instance method
-    // MARK: Instance method
 
     private func menuItem(title: String, selector: Selector?) -> NSMenuItem {
 

@@ -10,15 +10,7 @@ import Cocoa
 
 class Keystroke {
 
-    // MARK: Private static property
-
     static private var error: NSDictionary? = [:]
-
-    // MARK: Private static method
-    // MARK: Static property
-    // MARK: Static method
-
-    // MARK: Private instance property
 
     fileprivate let key: Key
     fileprivate let control: Bool
@@ -47,14 +39,10 @@ class Keystroke {
         return self.modifierSymbols + [self.key.symbol]
     }
 
-    // MARK: Instance property
-
     var string: String {
 
         return self.symbols.joined()
     }
-
-    // MARK: Designated init
 
     init?(keyCode: CGKeyCode, control: Bool = false, option: Bool = false, shift: Bool = false, command: Bool = false) {
 
@@ -105,11 +93,6 @@ class Keystroke {
         guard let key = Key(fromSymbol: keystrokeString) else { return nil }
         self.key = key
     }
-
-    // MARK: Convenience init
-    // MARK: Private instance method
-
-    // MARK: Instance method
 
     func dispatchTo(appName: String) {
 

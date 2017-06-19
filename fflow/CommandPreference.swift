@@ -10,19 +10,10 @@ import Cocoa
 
 class CommandPreference {
 
-    // MARK: Private static property
-    // MARK: Private static method
-    // MARK: Static property
-    // MARK: Static method
-
-    // MARK: Private instance property
-
 //    fileprivate let userDefaults = NSUserDefaultsController().defaults
     fileprivate let userDefaults: UserDefaults
 
     private let appPathsKey = "appPaths"
-
-    // MARK: Instance property
 
     var appPaths: [String] {
 
@@ -40,8 +31,6 @@ class CommandPreference {
         return userDefaults
     }
 
-    // MARK: Designated init
-
     init(suiteName: String? = nil) {
 
         self.userDefaults = CommandPreference.validUserDefaults(suiteName: suiteName)
@@ -49,10 +38,6 @@ class CommandPreference {
         self.setApp(path: AppItem.Global.path)
         self.setApp(path: AppItem.Finder.path)
     }
-
-    // MARK: Convenience init
-
-    // MARK: Private instance method
 
     private func gesturesKey(forApp path: String) -> String {
 
@@ -89,8 +74,6 @@ class CommandPreference {
         let keystrokesKey = self.keystrokeKey(forApp: path, forGesture: gestureString)
         self.userDefaults.set(keystrokeString, forKey: keystrokesKey)
     }
-
-    // MARK: Instance method
 
     func setApp(path: String) {
 

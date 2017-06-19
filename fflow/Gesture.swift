@@ -10,13 +10,6 @@ import Cocoa
 
 class Gesture {
 
-    // MARK: Private static property
-    // MARK: Private static method
-    // MARK: Static property
-    // MARK: Static method
-
-    // MARK: Private instance property
-
     fileprivate var directions: [Direction] = []
 
     private var last: Direction? { return self.directions.last }
@@ -37,14 +30,10 @@ class Gesture {
         return stringAll.substring(to: nIndex)
     }
 
-    // MARK: Instance property
-
     var string: String {
 
         return self.directions.map({$0.string}).joined()
     }
-
-    // MARK: Designated init
 
     init() {
     }
@@ -54,16 +43,10 @@ class Gesture {
         self.directions = Direction.array(from: gestureString)
     }
 
-    // MARK: Convenience init
-
-    // MARK: Private instance method
-
-    fileprivate func clear() {
+        fileprivate func clear() {
 
         directions.removeAll()
     }
-
-    // MARK: Instance method
 
     func append(direction: Direction) {
 
