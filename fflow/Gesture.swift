@@ -78,8 +78,8 @@ class Gesture {
 
     func append(x deltaX: CGFloat, y deltaY: CGFloat) {
 
-        let direction = Direction.which(x: deltaX, y: deltaY)
-        self.append(direction: direction)
+        let direction = ValidScroll(deltaX: deltaX, deltaY: deltaY)?.direction
+        self.append(direction: direction!)
     }
 
     func release() -> String? {

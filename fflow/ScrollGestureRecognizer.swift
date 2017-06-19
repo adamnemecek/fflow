@@ -51,10 +51,13 @@ class ScrollGestrueRecognizer: NSImageView {
 
         NSEvent.addLocalMonitorForEvents(matching: .scrollWheel, handler: {(event: NSEvent) -> NSEvent? in
 
-            let x = event.naturalScrollingDeltaX
-            let y = event.naturalScrollingDeltaY
+            guard let direction = ValidScroll(deltaX: event.naturalScrollingDeltaX,
+                                              deltaY: event.naturalScrollingDeltaY)?.direction else {
 
-            if let gesture = self.gesture.appendAndReleaseIfCan(x: x, y: y) {
+                return event
+            }
+
+            if let gesture = self.gesture.appendAndReleaseIfCan(direction: direction) {
 
                 self.recognizedGesture = gesture
 

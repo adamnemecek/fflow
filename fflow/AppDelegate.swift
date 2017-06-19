@@ -41,10 +41,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             matching: .scrollWheel,
             handler: {(event: NSEvent!) -> Void in
 
-                let x = event.naturalScrollingDeltaX
-                let y = event.naturalScrollingDeltaY
+                guard let scroll = ValidScroll(deltaX: event.naturalScrollingDeltaX,
+                                               deltaY: event.naturalScrollingDeltaY) else {
+                    return
+                }
 
-                guard let gesture = self.gesture.appendAndReleaseIfCan(x: x, y: y) else { return }
+                guard let gesture = self.gesture.appendAndReleaseIfCan(direction: scroll.direction) else { return }
 
                 let gestureString = gesture.string
 
