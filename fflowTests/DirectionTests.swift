@@ -29,16 +29,6 @@ class DirectionTests: XCTestCase {
         XCTAssertEqual(directions.map({ $0.string }).joined(), "udlrr")
     }
 
-    func testWhich() {
-
-        XCTAssertEqual(Direction.which(x: 0.0, y: 0.0), .No)
-        XCTAssertEqual(Direction.which(x: 1.0, y: 1.0), .Vague)
-        XCTAssertEqual(Direction.which(x: 0.0, y: -5.0), .Up)
-        XCTAssertEqual(Direction.which(x: 0.0, y: 5.0), .Down)
-        XCTAssertEqual(Direction.which(x: -3.0, y: 0.0), .Left)
-        XCTAssertEqual(Direction.which(x: 3.0, y: 0.0), .Right)
-    }
-
     func testIsNo() {
 
         XCTAssertTrue(Direction.No.isNo)

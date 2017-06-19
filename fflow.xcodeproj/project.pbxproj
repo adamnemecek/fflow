@@ -52,6 +52,7 @@
 		CEE4B8EF1E0A2A5000D00D35 /* NSRectExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4B8EE1E0A2A5000D00D35 /* NSRectExtensionTests.swift */; };
 		CEE4C1401E273B4F007222EC /* Selectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4C13F1E273B4F007222EC /* Selectable.swift */; };
 		CEEB5FCE1E0A94CF0016E3F3 /* CGVectorExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB5FCD1E0A94CF0016E3F3 /* CGVectorExtensionTests.swift */; };
+		CEEE49CF1EF7C87B00C186FE /* ValidScrollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE49CE1EF7C87B00C186FE /* ValidScrollTests.swift */; };
 		CEF581E81E04AF7D006A8440 /* NSView.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF581E71E04AF7D006A8440 /* NSView.extension.swift */; };
 		CEF5E4071EF66EEE0091CA06 /* NSScreen.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF5E4061EF66EEE0091CA06 /* NSScreen.extension.swift */; };
 		CEFD397B1E0926B2001948C9 /* NSRect.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFD397A1E0926B2001948C9 /* NSRect.extension.swift */; };
@@ -126,6 +127,7 @@
 		CEE4B8EE1E0A2A5000D00D35 /* NSRectExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRectExtensionTests.swift; sourceTree = "<group>"; };
 		CEE4C13F1E273B4F007222EC /* Selectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selectable.swift; sourceTree = "<group>"; };
 		CEEB5FCD1E0A94CF0016E3F3 /* CGVectorExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CGVectorExtensionTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		CEEE49CE1EF7C87B00C186FE /* ValidScrollTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidScrollTests.swift; sourceTree = "<group>"; };
 		CEF581E71E04AF7D006A8440 /* NSView.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSView.extension.swift; sourceTree = "<group>"; };
 		CEF5E4061EF66EEE0091CA06 /* NSScreen.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSScreen.extension.swift; sourceTree = "<group>"; };
 		CEFD397A1E0926B2001948C9 /* NSRect.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRect.extension.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				CE1806E41E15541F00FDDFD4 /* CGFloatExtensionTests.swift */,
 				CEDBB79C1EA61E7500CD7870 /* AppColumnTests.swift */,
 				CE39AD5F1EF58D9F00A607D6 /* NSScreenExtensionTests.swift */,
+				CEEE49CE1EF7C87B00C186FE /* ValidScrollTests.swift */,
 			);
 			path = fflowTests;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 			files = (
 				CEDBB79D1EA61E7500CD7870 /* AppColumnTests.swift in Sources */,
 				CEE4B8EF1E0A2A5000D00D35 /* NSRectExtensionTests.swift in Sources */,
+				CEEE49CF1EF7C87B00C186FE /* ValidScrollTests.swift in Sources */,
 				CE39AD601EF58D9F00A607D6 /* NSScreenExtensionTests.swift in Sources */,
 				CE512E1D1DFEACA3008B1877 /* NSBezierPathExtensionTests.swift in Sources */,
 				CEEB5FCE1E0A94CF0016E3F3 /* CGVectorExtensionTests.swift in Sources */,
