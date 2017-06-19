@@ -24,17 +24,17 @@ class CommandPreferenceTests: XCTestCase {
     let command = Key.Command.symbol
 
     override func setUp() {
-        
+
         super.setUp()
-        
+
         commandPreference.clearCompletely()
         commandPreference = CommandPreference(suiteName: CommandPreferenceTests.suiteName)
     }
 
     override func tearDown() {
-        
+
         commandPreference.clearCompletely()
-        
+
         super.tearDown()
     }
 
