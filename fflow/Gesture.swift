@@ -247,7 +247,7 @@ extension Gesture {
 
 extension Gesture {
 
-    private func release() -> Gesture? {
+    private func releaseIfCan() -> Gesture? {
 
         guard let gestureString = self.stringOfCompletedPart else { return nil }
 
@@ -262,7 +262,14 @@ extension Gesture {
 
         self.append(x: deltaX, y: deltaY)
 
-        return self.release()
+        return self.releaseIfCan()
+    }
+
+    func appendAndReleaseIfCan(direction: Direction) -> Gesture? {
+
+        self.append(direction: direction)
+
+        return self.releaseIfCan()
     }
 }
 
