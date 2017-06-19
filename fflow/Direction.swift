@@ -105,25 +105,3 @@ extension Direction: CanInitFromString {
         return validString.characters.map({ Direction(rawValue: String($0))! })
     }
 }
-
-private protocol CanDetectWhich {
-
-    static func which(x deltaX: CGFloat, y deltaY: CGFloat) -> Direction
-}
-
-extension Direction: CanDetectWhich {
-
-    static func which(x deltaX: CGFloat, y deltaY: CGFloat) -> Direction {
-
-        let motionless: ClosedRange<CGFloat> = -1.0...1.0
-
-        switch (deltaX, deltaY) {
-        case (0.0, 0.0): return .No
-        case (motionless, -50.0 ... -5.0): return .Up
-        case (motionless, 5.0...50.0): return .Down
-        case (-50.0 ... -3.0, motionless): return .Left
-        case (3.0...50.0, motionless): return .Right
-        default: return .Vague
-        }
-    }
-}
