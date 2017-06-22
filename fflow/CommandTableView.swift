@@ -106,6 +106,12 @@ extension CommandTableView: HasButtonBar {
     private var responseAdd: Int { return 1000 }
     private var responseCancel: Int { return 1001 }
 
+    private var gesturePanelSide: CGFloat { return 210 }
+    private var gesturePanelFrame: NSRect {
+
+        return NSRect(size: NSSize(squaringOf: self.gesturePanelSide))
+    }
+
     func add() {
 
         guard let window = self.window else { return }
@@ -119,7 +125,7 @@ extension CommandTableView: HasButtonBar {
 
         alert.addButton(withTitle: "Cancel")
 
-        let gesturePanel = GesturePanel(size: NSSize.init(squaringOf: 210))
+        let gesturePanel = GesturePanel(frame: self.gesturePanelFrame)
 
         gesturePanel.afterRecognized = {(gesture: Gesture) -> Void in
 
