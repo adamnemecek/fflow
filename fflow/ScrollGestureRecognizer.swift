@@ -20,6 +20,28 @@ class ScrollGestrueRecognizer: NSImageView {
     private var lineWidth: CGFloat { return self.imageSide * 0.045 }
     private var color: NSColor { return NSColor.init(white: 0.2, alpha: 1) }
 
+    private var roundedFramePath: NSBezierPath {
+
+        let rect = NSRect(size: self.imageSize)
+        let path =  NSBezierPath(roundedRect: rect, xRadius: 15, yRadius: 15)
+        path.lineWidth = 1
+        path.setLineDash([3, 3], count: 2, phase: 0)
+
+        return path
+    }
+
+    private var templateImage: NSImage {
+
+        let image = NSImage(size: self.imageSize)
+
+        image.lockFocus()
+        NSColor.darkGray.setStroke()
+        self.roundedFramePath.stroke()
+        image.unlockFocus()
+
+        return image
+    }
+
     private func imageFrom(path: NSBezierPath) -> NSImage {
 
         let imageSize = self.imageSize
@@ -29,8 +51,9 @@ class ScrollGestrueRecognizer: NSImageView {
 
         path.lineWidth = self.lineWidth
 
-        let image = NSImage(size: imageSize)
+        let image = self.templateImage
         image.lockFocus()
+
         self.color.setStroke()
         path.stroke()
         image.unlockFocus()
