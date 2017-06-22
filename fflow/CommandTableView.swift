@@ -119,7 +119,7 @@ extension CommandTableView: HasButtonBar {
 
         alert.addButton(withTitle: "Cancel")
 
-        let gesturePanel = GesturePanel(size: NSSize.init(squaringOf: 200))
+        let gesturePanel = GesturePanel(size: NSSize.init(squaringOf: 210))
 
         gesturePanel.afterRecognized = {(gesture: Gesture) -> Void in
 
