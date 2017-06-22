@@ -20,6 +20,8 @@ extension CanShowPath where Self: NSImageView {
 
     private var imageSide: CGFloat { return self.frame.size.shortSide }
     private var imageSize: NSSize { return NSSize(squaringOf: self.imageSide) }
+    private var imageRect: NSRect { return NSRect(size: self.imageSize) }
+
     private var margin: CGFloat { return self.imageSide * 0.25 }
 
     private var lineWidth: CGFloat { return self.imageSide * 0.045 }
@@ -27,8 +29,7 @@ extension CanShowPath where Self: NSImageView {
 
     private var roundedFramePath: NSBezierPath {
 
-        let rect = NSRect(size: self.imageSize)
-        let path =  NSBezierPath(roundedRect: rect, xRadius: 15, yRadius: 15)
+        let path =  NSBezierPath(roundedRect: self.imageRect, xRadius: 15, yRadius: 15)
         path.lineWidth = 1
         path.setLineDash([3, 3], count: 2, phase: 0)
 
