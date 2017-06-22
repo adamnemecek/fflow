@@ -8,10 +8,15 @@
 
 import Cocoa
 
-class GesturePanel: NSImageView {
+private protocol CanRecognize {
 
-    private let gesture = Gesture()
-    var recognizedGesture: Gesture?
+    var recognizedGesture: Gesture? { get }
+    var afterRecognized: ((Gesture) -> Void)? { get set }
+}
+
+private protocol CanShowPath {}
+
+extension CanShowPath where Self: NSImageView {
 
     private var imageSide: CGFloat { return self.frame.size.shortSide }
     private var imageSize: NSSize { return NSSize(squaringOf: self.imageSide) }
@@ -61,7 +66,7 @@ class GesturePanel: NSImageView {
         return image
     }
 
-    func updateImage(by gesture: Gesture?) {
+    fileprivate func updateImage(by gesture: Gesture?) {
 
         guard let gesture = gesture else {
 
@@ -72,11 +77,39 @@ class GesturePanel: NSImageView {
         self.image = self.imageFrom(path: gesture.naturalPath)
     }
 
-    func resetImage() {
+    fileprivate func resetImage() {
 
         self.updateImage(by: nil)
     }
+}
 
+class GesturePanel: NSImageView, CanRecognize, CanShowPath {
+
+    private let recognizingGesture = Gesture()
+
+    fileprivate var onRecognized: ((Gesture) -> Void)?
+
+    private func onScrollWheel(event: NSEvent) -> NSEvent? {
+
+        guard let direction = ValidScroll(deltaX: event.naturalScrollingDeltaX,
+                                          deltaY: event.naturalScrollingDeltaY)?.direction else {
+
+            return event
+        }
+
+        if let gesture = self.recognizingGesture.appendAndReleaseIfCan(direction: direction) {
+
+            self.recognizedGesture = gesture
+
+            self.onRecognized?(gesture)
+
+            self.afterRecognized?(gesture)
+        }
+
+        return event
+    }
+
+    var recognizedGesture: Gesture?
     var afterRecognized: ((Gesture) -> Void)?
 
     override init(frame frameRect: NSRect) {
@@ -85,25 +118,9 @@ class GesturePanel: NSImageView {
 
         self.resetImage()
 
-        NSEvent.addLocalMonitorForEvents(matching: .scrollWheel, handler: {(event: NSEvent) -> NSEvent? in
+        self.onRecognized = {(gesture) in self.updateImage(by: gesture) }
 
-            guard let direction = ValidScroll(deltaX: event.naturalScrollingDeltaX,
-                                              deltaY: event.naturalScrollingDeltaY)?.direction else {
-
-                return event
-            }
-
-            if let gesture = self.gesture.appendAndReleaseIfCan(direction: direction) {
-
-                self.recognizedGesture = gesture
-
-                self.updateImage(by: gesture)
-
-                self.afterRecognized?(gesture)
-            }
-
-            return event
-        })
+        NSEvent.addLocalMonitorForEvents(matching: .scrollWheel, handler: self.onScrollWheel)
     }
 
     required init?(coder: NSCoder) {
