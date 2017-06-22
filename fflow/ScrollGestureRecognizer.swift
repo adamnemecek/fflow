@@ -61,9 +61,20 @@ class ScrollGestrueRecognizer: NSImageView {
         return image
     }
 
-    func updateImage(by gesture: Gesture) {
+    func updateImage(by gesture: Gesture?) {
+
+        guard let gesture = gesture else {
+
+            self.image = self.templateImage
+            return
+        }
 
         self.image = self.imageFrom(path: gesture.naturalPath)
+    }
+
+    func resetImage() {
+
+        self.updateImage(by: nil)
     }
 
     var afterRecognized: ((Gesture) -> Void)?
@@ -71,6 +82,8 @@ class ScrollGestrueRecognizer: NSImageView {
     override init(frame frameRect: NSRect) {
 
         super.init(frame: frameRect)
+
+        self.resetImage()
 
         NSEvent.addLocalMonitorForEvents(matching: .scrollWheel, handler: {(event: NSEvent) -> NSEvent? in
 
