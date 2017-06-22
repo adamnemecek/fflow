@@ -119,9 +119,9 @@ extension CommandTableView: HasButtonBar {
 
         alert.addButton(withTitle: "Cancel")
 
-        let scrollGestureRecognizer = ScrollGestrueRecognizer(size: NSSize.init(squaringOf: 200))
+        let gesturePanel = GesturePanel(size: NSSize.init(squaringOf: 200))
 
-        scrollGestureRecognizer.afterRecognized = {(gesture: Gesture) -> Void in
+        gesturePanel.afterRecognized = {(gesture: Gesture) -> Void in
 
             alert.informativeText = gesture.arrowString
             let gestures = CommandPreference().gestures(forApp: self.currentAppPath)
@@ -135,13 +135,13 @@ extension CommandTableView: HasButtonBar {
             return
         }
 
-        alert.accessoryView = scrollGestureRecognizer
+        alert.accessoryView = gesturePanel
 
         alert.beginSheetModal(for: window, completionHandler: {(modalResponse) -> Void in
 
             switch modalResponse {
             case self.responseAdd:
-                guard let gesture = scrollGestureRecognizer.recognizedGesture else { return }
+                guard let gesture = gesturePanel.recognizedGesture else { return }
                 CommandPreference().setGesture(forApp: self.currentAppPath, gestureString: gesture.string)
                 self.reloadData()
                 self.selectLastRow()
