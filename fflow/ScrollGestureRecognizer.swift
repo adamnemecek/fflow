@@ -15,8 +15,8 @@ class ScrollGestrueRecognizer: NSImageView {
 
     private var imageSide: CGFloat { return self.frame.size.shortSide }
     private var imageSize: NSSize { return NSSize(squaringOf: self.imageSide) }
-
     private var margin: CGFloat { return self.imageSide * 0.25 }
+
     private var lineWidth: CGFloat { return self.imageSide * 0.045 }
     private var color: NSColor { return NSColor.init(white: 0.2, alpha: 1) }
 
