@@ -1,5 +1,5 @@
 //
-//  ScrollGestureRecognizer.swift
+//  GesturePanel.swift
 //  fflow
 //
 //  Created by user on 2017/01/11.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ScrollGestrueRecognizer: NSImageView {
+class GesturePanel: NSImageView {
 
     private let gesture = Gesture()
     var recognizedGesture: Gesture?
