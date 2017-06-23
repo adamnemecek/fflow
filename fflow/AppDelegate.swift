@@ -59,11 +59,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
                 guard let url = NSWorkspace.shared().frontmostApplication?.bundleURL else { return }
 
-                guard let keystroke = self.commandPreference.keystroke(forApp: url, gesture: gesture)
+                guard let keystrokeString = self.commandPreference.keystroke(forApp: url, gesture: gesture)
                                 ?? self.commandPreference.keystrokeForGlobal(gesture: gesture) else { return }
 
                 self.indicator.showAndFadeout(gesture: gesture)
-                Keystroke(fromString: keystroke)?.dispatchToFrontmostApp()
+                Keystroke(string: keystrokeString)?.dispatchToFrontmostApp()
         })
     }
 

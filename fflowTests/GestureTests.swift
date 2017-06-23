@@ -18,14 +18,14 @@ class GestureTests: XCTestCase {
 
     func testInitFromString() {
 
-        XCTAssertNotNil(Gesture(fromString: ""))
-        XCTAssertNotNil(Gesture(fromString: "asdf"))
+        XCTAssertNotNil(Gesture(string: ""))
+        XCTAssertNotNil(Gesture(string: "asDF"))
     }
 
     func testString() {
 
-        XCTAssertEqual(Gesture(fromString: "ud").string, "ud")
-        XCTAssertEqual(Gesture(fromString: "asdf").string, "d")
+        XCTAssertEqual(Gesture(string: "UD").string, "UD")
+        XCTAssertEqual(Gesture(string: "ASDF").string, "D")
     }
 
     func testAppendDirection() {
@@ -33,21 +33,21 @@ class GestureTests: XCTestCase {
         let gesture = Gesture()
 
         gesture.append(direction: .Up)
-        XCTAssertEqual(gesture.string, "u")
+        XCTAssertEqual(gesture.string, "U")
 
         gesture.append(direction: .Down)
-        XCTAssertEqual(gesture.string, "ud")
+        XCTAssertEqual(gesture.string, "UD")
 
         gesture.append(direction: .Down)
-        XCTAssertNotEqual(gesture.string, "udd")
-        XCTAssertEqual(gesture.string, "ud")
+        XCTAssertNotEqual(gesture.string, "UDD")
+        XCTAssertEqual(gesture.string, "UD")
 
         gesture.append(direction: .Vague)
-        XCTAssertNotEqual(gesture.string, "udv")
-        XCTAssertEqual(gesture.string, "ud")
+        XCTAssertNotEqual(gesture.string, "UDV")
+        XCTAssertEqual(gesture.string, "UD")
 
         gesture.append(direction: .No)
-        XCTAssertEqual(gesture.string, "udn")
+        XCTAssertEqual(gesture.string, "UDN")
     }
 
     func testAppendXY() {
@@ -55,40 +55,16 @@ class GestureTests: XCTestCase {
         let gesture = Gesture()
 
         gesture.append(x: 0, y: 7)
-        XCTAssertEqual(gesture.string, "d")
+        XCTAssertEqual(gesture.string, "D")
 
         gesture.append(x: 7, y: 0)
-        XCTAssertEqual(gesture.string, "dr")
+        XCTAssertEqual(gesture.string, "DR")
 
         gesture.append(x: -1, y: -7)
-        XCTAssertEqual(gesture.string, "dru")
+        XCTAssertEqual(gesture.string, "DRU")
 
         gesture.append(x: -7, y: 1)
-        XCTAssertEqual(gesture.string, "drul")
-    }
-
-    func testRelease() {
-
-        let drun = Gesture(fromString: "drun")
-        XCTAssertEqual(drun.string, "drun")
-        let druString = drun.release()
-        XCTAssertEqual(druString, "dru")
-        XCTAssertEqual(drun.string, "")
-
-        let r = Gesture(fromString: "nr")
-        XCTAssertEqual(r.string, "r")
-        let nilString = r.release()
-        XCTAssertNil(nilString)
-        XCTAssertEqual(r.string, "r")
-
-        let rdn = r
-        rdn.append(direction: .Down)
-        rdn.append(direction: .No)
-        XCTAssertEqual(rdn.string, "rdn")
-
-        let rdString = rdn.release()
-        XCTAssertEqual(rdString, "rd")
-        XCTAssertEqual(rdn.string, "")
+        XCTAssertEqual(gesture.string, "DRUL")
     }
 }
 
@@ -100,7 +76,7 @@ extension GestureTests {
         let elementCountOfLine = 2
         let elementCountOfOnePath = elementCountOfRivet + elementCountOfLine
 
-        let drudu = Gesture(fromString: "drudu")
+        let drudu = Gesture(string: "drudu")
 
         XCTAssertEqual(drudu.path.elementCount, elementCountOfOnePath * 5)
     }
@@ -110,7 +86,7 @@ extension GestureTests {
 
     func testSingleDirectionGestureShouldBeCanceled() {
 
-        let u = Gesture(fromString: "u")
+        let u = Gesture(string: "u")
         XCTAssertNil(u.appendAndReleaseIfCan(x: 0, y: 0)?.string)
     }
 
@@ -120,11 +96,11 @@ extension GestureTests {
 
         XCTAssertNil(dr.appendAndReleaseIfCan(x: 0, y: 10)?.string)
         XCTAssertNil(dr.appendAndReleaseIfCan(x: 10, y: 0)?.string)
-        XCTAssertEqual(dr.appendAndReleaseIfCan(x: 0, y: 0)?.string, "dr")
+        XCTAssertEqual(dr.appendAndReleaseIfCan(x: 0, y: 0)?.string, "DR")
 
         XCTAssertNil(dr.appendAndReleaseIfCan(x: -10, y: 0)?.string)
         XCTAssertNil(dr.appendAndReleaseIfCan(x: 10, y: 0)?.string)
-        XCTAssertEqual(dr.appendAndReleaseIfCan(x: 0, y: 0)?.string, "lr")
+        XCTAssertEqual(dr.appendAndReleaseIfCan(x: 0, y: 0)?.string, "LR")
     }
 }
 
@@ -132,10 +108,10 @@ extension GestureTests {
 
     func testArrowString() {
 
-        let ud = Gesture(fromString: "ud")
+        let ud = Gesture(string: "ud")
         XCTAssertEqual(ud.arrowString, Key.UpArrow.symbol + Key.DownArrow.symbol)
 
-        let lr = Gesture(fromString: "lr")
+        let lr = Gesture(string: "lr")
         XCTAssertEqual(lr.arrowString, Key.LeftArrow.symbol + Key.RightArrow.symbol)
     }
 }

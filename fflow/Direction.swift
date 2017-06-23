@@ -10,12 +10,12 @@ import Foundation
 
 enum Direction: String {
 
-    case Up = "u"
-    case Down = "d"
-    case Left = "l"
-    case Right = "r"
-    case Vague = "v"
-    case No = "n"
+    case Up = "U"
+    case Down = "D"
+    case Left = "L"
+    case Right = "R"
+    case Vague = "V"
+    case No = "N"
 
     var isVague: Bool {
 
@@ -93,14 +93,14 @@ extension Direction: CanInitFromString {
 
     private static func filter(string: String) -> String {
 
-        return string.characters.map({ String($0) })
+        return string.characters.map({ String($0).uppercased() })
             .filter({ Direction(rawValue: $0) != nil }).joined()
     }
 
     static func array(from directionsString: String) -> [Direction] {
 
         let filteredString = Direction.filter(string: directionsString)
-        let validString = filteredString.trimmingLeading(character: "n")
+        let validString = filteredString.trimmingLeading(oneLetter: Direction.No.string)
 
         return validString.characters.map({ Direction(rawValue: String($0))! })
     }

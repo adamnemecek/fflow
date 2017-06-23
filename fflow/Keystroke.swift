@@ -74,7 +74,7 @@ class Keystroke {
         self.command = command
    }
 
-    init?(fromString immutableKeystrokeString: String) {
+    init?(string immutableKeystrokeString: String) {
 
         var keystrokeString = immutableKeystrokeString
 

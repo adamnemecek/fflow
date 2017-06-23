@@ -18,14 +18,14 @@ class KeystrokeTests: XCTestCase {
 
     func testInit() {
 
-        XCTAssertNil(Keystroke(fromString: ""))
-        XCTAssertNotNil(Keystroke(fromString: "a"))
-        XCTAssertNotNil(Keystroke(fromString: "A"))
-        XCTAssertNotNil(Keystroke(fromString: control + "A"))
-        XCTAssertNotNil(Keystroke(fromString: shift + "A"))
-        XCTAssertNotNil(Keystroke(fromString: option + "A"))
-        XCTAssertNotNil(Keystroke(fromString: command + "A"))
-        XCTAssertNotNil(Keystroke(fromString: option + command + "A"))
+        XCTAssertNil(Keystroke(string: ""))
+        XCTAssertNotNil(Keystroke(string: "a"))
+        XCTAssertNotNil(Keystroke(string: "A"))
+        XCTAssertNotNil(Keystroke(string: control + "A"))
+        XCTAssertNotNil(Keystroke(string: shift + "A"))
+        XCTAssertNotNil(Keystroke(string: option + "A"))
+        XCTAssertNotNil(Keystroke(string: command + "A"))
+        XCTAssertNotNil(Keystroke(string: option + command + "A"))
 
         XCTAssertNotNil(Keystroke(keyName: "zero"))
         XCTAssertNotNil(Keystroke(keyName: "Zero"))
@@ -40,10 +40,10 @@ class KeystrokeTests: XCTestCase {
 
     func testString() {
 
-        let controlA = Keystroke(fromString: control + "A")
+        let controlA = Keystroke(string: control + "A")
         XCTAssertEqual(controlA?.string, control + "A")
 
-        let F8 = Keystroke(fromString: command + "F8")
+        let F8 = Keystroke(string: command + "F8")
         XCTAssertEqual(F8?.string, command + "F8")
 
         let u = Keystroke(keyName: "u")
@@ -96,12 +96,12 @@ extension KeystrokeTests {
 
         // correct order: control, option, shift, command
 
-        let coscA = Keystroke(fromString: control + option + shift + command + "a")
+        let coscA = Keystroke(string: control + option + shift + command + "a")
         XCTAssertEqual(coscA?.string, control + option + shift + command + "A")
 
-        let controlShiftB = Keystroke(fromString: control + shift + "z")
+        let controlShiftB = Keystroke(string: control + shift + "z")
         XCTAssertEqual(controlShiftB?.string, control + shift + "Z")
-        let keystrokeNil = Keystroke(fromString: shift + control + "z")
+        let keystrokeNil = Keystroke(string: shift + control + "z")
         XCTAssertNil(keystrokeNil)
     }
 }
