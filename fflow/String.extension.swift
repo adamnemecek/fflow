@@ -16,6 +16,12 @@ extension String {
         return String(first) == this
     }
 
+    func trimmingLeading(oneLetter: String) -> String {
+
+        guard let first = oneLetter.characters.first else { return self }
+        return self.trimmingLeading(character: first)
+    }
+
     func trimmingLeading(character: Character) -> String {
 
         var trimmed: String = ""
