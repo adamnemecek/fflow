@@ -50,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
                 let gestureString = gesture.string
 
-                guard gestureString != "rl" && gestureString != "lr" else {
+                guard gestureString != "RL" && gestureString != "LR" else {
 
                     self.indicator.showAndFadeout(gesture: gesture)
                     self.centerClick()
