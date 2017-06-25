@@ -75,7 +75,7 @@ extension CanShowPath where Self: NSImageView {
             return
         }
 
-        self.image = self.imageFrom(path: gesture.naturalPath)
+        self.image = self.imageFrom(path: gesture.path)
     }
 
     fileprivate func resetImage() {

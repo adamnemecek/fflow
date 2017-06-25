@@ -74,11 +74,14 @@ extension GestureTests {
 
         let elementCountOfRivet = 5
         let elementCountOfLine = 2
-        let elementCountOfOnePath = elementCountOfRivet + elementCountOfLine
+        let elementCountOfJoint = 3
+
+        let elementCountOfFirstPath = elementCountOfRivet + elementCountOfLine
+        let elementCountByElsePath = elementCountOfRivet + elementCountOfLine + elementCountOfJoint
 
         let drudu = Gesture(string: "drudu")
 
-        XCTAssertEqual(drudu.path.elementCount, elementCountOfOnePath * 5)
+        XCTAssertEqual(drudu.path.elementCount, elementCountOfFirstPath + elementCountByElsePath * 4)
     }
 }
 

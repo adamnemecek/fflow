@@ -138,7 +138,7 @@ extension Indicator {
 
         guard let contentView = self.panel.contentView else { return }
 
-        let path = gesture.naturalPath
+        let path = gesture.path
         let image = self.imageFrom(path: path)
 
         let imageView = self.imageView
