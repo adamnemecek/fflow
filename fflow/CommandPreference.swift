@@ -193,7 +193,15 @@ extension CommandPreference: CanRemoveDefaults {}
 
 extension CommandPreference {
 
+    func clearCompletely() {
+
+        self.appPaths.forEach({ self.removeApp(path: $0) })
+        self.setApps(paths: [])
+    }
+
     func backToDefault() {
+
+        self.clearCompletely()
 
         let shift = Key.Shift.symbol
         let control = Key.Control.symbol
@@ -201,36 +209,40 @@ extension CommandPreference {
         let command = Key.Command.symbol
         let tab = Key.Tab.symbol
 
-        let chrome = "/Applications/Google Chrome.app"
-        self.set(forApp: chrome, gestureString: "dr", keystrokeString: "\(command)w")
-        self.set(forApp: chrome, gestureString: "dru", keystrokeString: "\(shift)\(command)t")
-        self.set(forApp: chrome, gestureString: "dur", keystrokeString: "\(command)t")
-        self.set(forApp: chrome, gestureString: "dul", keystrokeString: "\(shift)\(command)x")
-        self.set(forApp: chrome, gestureString: "lurd", keystrokeString: "\(command)r")
-        self.set(forApp: chrome, gestureString: "ur", keystrokeString: "\(option)\(command)→")
-        self.set(forApp: chrome, gestureString: "ul", keystrokeString: "\(option)\(command)←")
-
-        let safari = "/Applications/Safari.app"
-        self.set(forApp: safari, gestureString: "dr", keystrokeString: "\(command)w")
-        self.set(forApp: safari, gestureString: "lurd", keystrokeString: "\(command)r")
-        self.set(forApp: safari, gestureString: "ur", keystrokeString: "\(control)\(tab)")
-        self.set(forApp: safari, gestureString: "ul", keystrokeString: "\(control)\(shift)\(tab)")
-
-        let atom = "/Applications/Atom.app"
-        self.set(forApp: atom, gestureString: "dr", keystrokeString: "\(command)w")
-        self.set(forApp: atom, gestureString: "ul", keystrokeString: "\(option)\(command)←")
-        self.set(forApp: atom, gestureString: "ur", keystrokeString: "\(option)\(command)→")
-
         let global = AppItem.Global.path
-        self.set(forApp: global, gestureString: "dr", keystrokeString: "\(command)w")
+        self.set(forApp: global, gestureString: "LRD", keystrokeString: "\(command)Q")
 
         let finder = AppItem.Finder.path
-        self.set(forApp: finder, gestureString: "lrd", keystrokeString: "\(command)q")
-    }
+        self.set(forApp: finder, gestureString: "DR", keystrokeString: "\(command)W")
 
-    func clearCompletely() {
+        let chrome = "/Applications/Google Chrome.app"
+        self.set(forApp: chrome, gestureString: "DR", keystrokeString: "\(command)W")
+        self.set(forApp: chrome, gestureString: "DRU", keystrokeString: "\(shift)\(command)T")
+        self.set(forApp: chrome, gestureString: "DUR", keystrokeString: "\(command)T")
+        self.set(forApp: chrome, gestureString: "DUL", keystrokeString: "\(shift)\(command)X")
+        self.set(forApp: chrome, gestureString: "LURD", keystrokeString: "\(command)R")
+        self.set(forApp: chrome, gestureString: "UR", keystrokeString: "\(option)\(command)→")
+        self.set(forApp: chrome, gestureString: "UL", keystrokeString: "\(option)\(command)←")
+        self.set(forApp: chrome, gestureString: "DLU", keystrokeString: "\(option)\(command)J")
 
-        self.appPaths.forEach({ self.removeApp(path: $0) })
-        self.setApps(paths: [])
+        let safari = "/Applications/Safari.app"
+        self.set(forApp: safari, gestureString: "DR", keystrokeString: "\(command)W")
+        self.set(forApp: safari, gestureString: "LURD", keystrokeString: "\(command)R")
+        self.set(forApp: safari, gestureString: "UR", keystrokeString: "\(control)\(tab)")
+        self.set(forApp: safari, gestureString: "UL", keystrokeString: "\(control)\(shift)\(tab)")
+
+        let atom = "/Applications/Atom.app"
+        self.set(forApp: atom, gestureString: "DR", keystrokeString: "\(command)W")
+        self.set(forApp: atom, gestureString: "UL", keystrokeString: "\(option)\(command)←")
+        self.set(forApp: atom, gestureString: "UR", keystrokeString: "\(option)\(command)→")
+        self.set(forApp: atom, gestureString: "DRU", keystrokeString: "\(shift)\(command)T")
+
+        let dictionary = "/Applications/Dictionary.app"
+        self.set(forApp: dictionary, gestureString: "DR", keystrokeString: "\(command)W")
+
+        let xcode = "/Applications/Xcode.app"
+        self.set(forApp: xcode, gestureString: "LDR", keystrokeString: "\(option)\(command)C")
+        self.set(forApp: xcode, gestureString: "DRD", keystrokeString: "\(command)B")
+        self.set(forApp: xcode, gestureString: "DRU", keystrokeString: "\(command)U")
     }
 }
