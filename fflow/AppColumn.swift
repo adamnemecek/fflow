@@ -40,14 +40,16 @@ extension AppColumn {
     private var imageViewSize: NSSize { return NSSize(squaringOf: self.imageViewWidth) }
     private var imageViewFrame: NSRect { return NSRect(size: self.imageViewSize) }
 
-    private func imageView(image optionalImage: NSImage?) -> NSImageView {
+    private var imageMargin: CGFloat { return 5 }
+    private var imageSize: NSSize { return self.imageViewSize.insetBy(bothDxDy: self.imageMargin) }
+
+    private func imageView(image: NSImage?) -> NSImageView {
 
         let imageView = NSImageView(frame: self.imageViewFrame)
 
-        guard let image = optionalImage else { return imageView }
+        guard let image = image else { return imageView }
 
-        let offset: CGFloat = 5
-        image.size = self.imageViewFrame.insetBy(dx: offset, dy: offset).size
+        image.size = self.imageSize
 
         imageView.image = image
 
