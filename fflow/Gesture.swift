@@ -12,13 +12,80 @@ class Gesture {
 
     fileprivate var directions: [Direction] = []
 
-    private var last: Direction? { return self.directions.last }
-    private var count: Int { return self.directions.count }
-    private var isEmpty: Bool { return self.directions.isEmpty }
-    fileprivate var isCompleted: Bool { return self.last == .No }
-    private var isCanceled: Bool { return self.count <= 2 && self.isCompleted }
+    init() {
+    }
 
-    fileprivate var stringOfCompletedPart: String? {
+    init(string gestureString: String) {
+
+        self.directions = Direction.array(from: gestureString)
+    }
+}
+
+protocol CanGiveGestureString {
+
+    var string: String { get }
+    var arrowString: String { get }
+}
+
+extension CanGiveGestureString where Self: Gesture {
+
+    var string: String {
+
+        return self.directions.map({$0.string}).joined()
+    }
+
+    var arrowString: String {
+
+        return self.directions.map({$0.arrowString}).joined()
+    }
+}
+
+protocol CanAppendAndRelease: CanGiveGestureString {
+
+    func appendAndReleaseIfCan(direction: Direction) -> Gesture?
+}
+
+extension CanAppendAndRelease where Self: Gesture {
+
+    private var last: Direction? { return self.directions.last }
+
+    private var count: Int { return self.directions.count }
+    private var isCompleted: Bool { return self.last == .No }
+    private var isCanceled: Bool { return self.count <= 2 && self.isCompleted }
+    private var isEmpty: Bool { return self.directions.isEmpty }
+
+    private func isAvailable(direction: Direction) -> Bool {
+
+        return !direction.isVague
+    }
+
+    private func isAvailableIfWouldBe(first direction: Direction) -> Bool {
+
+        return !self.isEmpty || !direction.isNo
+    }
+
+    private func isAvailableToBe(last direction: Direction) -> Bool {
+
+        return direction != self.last
+    }
+
+    private func clear() {
+
+        directions.removeAll()
+    }
+
+    private func append(direction: Direction) {
+
+        guard isAvailable(direction: direction) else { return }
+        guard isAvailableIfWouldBe(first: direction) else { return }
+        guard isAvailableToBe(last: direction) else { return }
+
+        self.directions.append(direction)
+
+        if self.isCanceled { self.clear() }
+    }
+
+    private var completedPartString: String? {
 
         guard self.isCompleted else { return nil }
 
@@ -30,124 +97,42 @@ class Gesture {
         return stringAll.substring(to: nIndex)
     }
 
-    var string: String {
+    private func releaseIfCan() -> Gesture? {
 
-        return self.directions.map({$0.string}).joined()
+        guard let gestureString = self.completedPartString else { return nil }
+
+        let gesture = Gesture(string: gestureString)
+
+        self.clear()
+
+        return gesture
     }
 
-    init() {
-    }
+    func appendAndReleaseIfCan(direction: Direction) -> Gesture? {
 
-    init(string gestureString: String) {
+        self.append(direction: direction)
 
-        self.directions = Direction.array(from: gestureString)
-    }
-
-        fileprivate func clear() {
-
-        directions.removeAll()
-    }
-
-    func append(direction: Direction) {
-
-        guard !direction.isVague else { return }
-        guard !self.isEmpty || !direction.isNo else { return } // .No must not be first
-        guard direction != self.last else { return } // whether duplicated or not
-
-        self.directions.append(direction)
-
-        if self.isCanceled { self.clear() }
-    }
-
-    func append(x deltaX: CGFloat, y deltaY: CGFloat) {
-
-        let direction = ValidScroll(deltaX: deltaX, deltaY: deltaY)?.direction
-        self.append(direction: direction!)
+        return self.releaseIfCan()
     }
 }
 
-extension Gesture {
+extension Gesture: CanAppendAndRelease {}
 
-    fileprivate var initialLength: CGFloat { return 100 }
+protocol CanGivePath {
 
-    private var radian: CGFloat { return CGFloat(M_PI) / 18 }
-    private var clockwise: CGAffineTransform { return .init(rotationAngle: -self.radian) }
-    private var counterClockwise: CGAffineTransform { return .init(rotationAngle: self.radian) }
-    private var notRotate: CGAffineTransform { return .init(rotationAngle: 0) }
-
-    private var rivetSide: CGFloat { return 7 }
-    private var rivetSize: NSSize { return NSSize(squaringOf: self.rivetSide) }
-
-    fileprivate func rivet(at center: NSPoint) -> NSBezierPath {
-
-        let rect = NSRect(center: center, size: self.rivetSize)
-        let rivet = NSBezierPath(ovalIn: rect)
-        rivet.move(to: center)
-
-        return rivet
-    }
-
-    private func oneLine(vector: CGVector) -> NSBezierPath {
-
-        let line = NSBezierPath(initialPoint: .zero)
-
-        let rivet = self.rivet(at: .zero)
-        line.append(rivet)
-
-        line.relativeLine(to: vector.endPoint)
-
-        return line
-    }
-
-    private func rotation(prev: CGVector, current: CGVector) -> CGAffineTransform {
-
-        let sub = prev - current
-        guard sub.dx != 2 && sub.dy != 2 else { return self.counterClockwise }
-        guard sub.dx != -2 && sub.dy != -2 else { return self.clockwise }
-
-        return self.notRotate
-    }
-
-    private func rotated(prev: CGVector, current: CGVector) -> CGVector {
-
-        let rotation = self.rotation(prev: prev, current: current)
-        let rotatedPoint = current.endPoint.applying(rotation)
-
-        return CGVector(endPoint: rotatedPoint)
-    }
-
-    var path: NSBezierPath {
-
-        let path = NSBezierPath(initialPoint: .zero)
-        path.lineCapStyle = .roundLineCapStyle
-
-        var length = self.initialLength
-        var prev: CGVector = .zero
-
-        for direction in self.directions {
-
-            let rotated = self.rotated(prev: prev, current: direction.unitVector)
-
-            let oneLine = self.oneLine(vector: length * rotated)
-
-            let point = path.currentPoint
-            oneLine.transform(using: .init(translationByX: point.x, byY: point.y))
-
-            path.append(oneLine)
-
-            prev = rotated
-            length *= 0.9
-        }
-
-        return path
-    }
+    var path: NSBezierPath { get }
 }
 
-extension Gesture {
+extension CanGivePath where Self: Gesture {
 
-    private var radius: CGFloat { return self.initialLength * 0.3 }
+    static private var initialPathLength: CGFloat { return 100 }
 
-    private func startAngle(prev: Direction, current: Direction) -> CGFloat {
+    static private var rivetSide: CGFloat { return 7 }
+    static private var rivetSize: NSSize { return NSSize(squaringOf: self.rivetSide) }
+
+    static private var radius: CGFloat { return self.initialPathLength * 0.3 }
+
+    static private func startAngle(prev: Direction, current: Direction) -> CGFloat {
 
         if prev.isVertical { return current == .Left ? 0 : 180 }
         if current == .Up { return 270 }
@@ -155,7 +140,7 @@ extension Gesture {
         return 90
     }
 
-    private func endAngle(prev: Direction, current: Direction) -> CGFloat {
+    static private func endAngle(prev: Direction, current: Direction) -> CGFloat {
 
         if prev == .Up { return 90 }
         if prev == .Down { return 270 }
@@ -163,7 +148,7 @@ extension Gesture {
         return 0
     }
 
-    private func isClockwise(prev: Direction, current: Direction) -> Bool {
+    static private func isClockwise(prev: Direction, current: Direction) -> Bool {
 
         switch (prev, current) {
         case (.Right, .Up): fallthrough
@@ -177,36 +162,45 @@ extension Gesture {
         }
     }
 
-    private func joint(at startPoint: NSPoint, prev: Direction, current: Direction) -> NSBezierPath {
+    static private func rivet(at center: NSPoint) -> NSBezierPath {
+
+        let rect = NSRect(center: center, size: self.rivetSize)
+        let rivet = NSBezierPath(ovalIn: rect)
+        rivet.move(to: center)
+
+        return rivet
+    }
+
+    static private func joint(at startPoint: NSPoint, prev: Direction, current: Direction) -> NSBezierPath {
 
         let arc = NSBezierPath(initialPoint: startPoint)
 
         guard prev != .No else { return arc }
 
-        let startAngle = self.startAngle(prev: prev, current: current)
-        let endAngle = self.endAngle(prev: prev, current: current)
+        let startAngle = Self.startAngle(prev: prev, current: current)
+        let endAngle = Self.endAngle(prev: prev, current: current)
 
-        self.isClockwise(prev: prev, current: current)
+        Self.isClockwise(prev: prev, current: current)
             ? arc.clockwise(radius: self.radius, startAngle: startAngle, endAngle: endAngle)
             : arc.counterClockwise(radius: self.radius, startAngle: startAngle, endAngle: endAngle)
 
         return arc
     }
 
-    var naturalPath: NSBezierPath {
+    var path: NSBezierPath {
 
         let path = NSBezierPath(initialPoint: .zero)
         path.lineCapStyle = .roundLineCapStyle
 
-        var length = self.initialLength
+        var length = Self.initialPathLength
         var prev: Direction = .No
 
         for current in self.directions {
 
-            let joint = self.joint(at: path.currentPoint, prev: prev, current: current)
+            let joint = Self.joint(at: path.currentPoint, prev: prev, current: current)
             path.append(joint)
 
-            let rivet = self.rivet(at: path.currentPoint)
+            let rivet = Self.rivet(at: path.currentPoint)
             path.append(rivet)
 
             path.relativeLine(to: (length * current.unitVector).endPoint)
@@ -219,38 +213,83 @@ extension Gesture {
     }
 }
 
-extension Gesture {
+extension Gesture: CanGivePath {}
 
-    private func releaseIfCan() -> Gesture? {
+// extension for straight path
 
-        guard let gestureString = self.stringOfCompletedPart else { return nil }
-
-        let gesture = Gesture(string: gestureString)
-
-        self.clear()
-
-        return gesture
-    }
-
-    func appendAndReleaseIfCan(x deltaX: CGFloat, y deltaY: CGFloat) -> Gesture? {
-
-        self.append(x: deltaX, y: deltaY)
-
-        return self.releaseIfCan()
-    }
-
-    func appendAndReleaseIfCan(direction: Direction) -> Gesture? {
-
-        self.append(direction: direction)
-
-        return self.releaseIfCan()
-    }
-}
-
-extension Gesture {
-
-    var arrowString: String {
-
-        return self.directions.map({$0.arrowString}).joined()
-    }
-}
+//extension Gesture {
+//
+//    fileprivate var initialLength: CGFloat { return 100 }
+//
+//    private var radian: CGFloat { return CGFloat(M_PI) / 18 }
+//    private var clockwise: CGAffineTransform { return .init(rotationAngle: -self.radian) }
+//    private var counterClockwise: CGAffineTransform { return .init(rotationAngle: self.radian) }
+//    private var notRotate: CGAffineTransform { return .init(rotationAngle: 0) }
+//
+//    private var rivetSide: CGFloat { return 7 }
+//    private var rivetSize: NSSize { return NSSize(squaringOf: self.rivetSide) }
+//
+//    fileprivate func rivet(at center: NSPoint) -> NSBezierPath {
+//
+//        let rect = NSRect(center: center, size: self.rivetSize)
+//        let rivet = NSBezierPath(ovalIn: rect)
+//        rivet.move(to: center)
+//
+//        return rivet
+//    }
+//
+//    private func oneLine(vector: CGVector) -> NSBezierPath {
+//
+//        let line = NSBezierPath(initialPoint: .zero)
+//
+//        let rivet = self.rivet(at: .zero)
+//        line.append(rivet)
+//
+//        line.relativeLine(to: vector.endPoint)
+//
+//        return line
+//    }
+//
+//    private func rotation(prev: CGVector, current: CGVector) -> CGAffineTransform {
+//
+//        let sub = prev - current
+//        guard sub.dx != 2 && sub.dy != 2 else { return self.counterClockwise }
+//        guard sub.dx != -2 && sub.dy != -2 else { return self.clockwise }
+//
+//        return self.notRotate
+//    }
+//
+//    private func rotated(prev: CGVector, current: CGVector) -> CGVector {
+//
+//        let rotation = self.rotation(prev: prev, current: current)
+//        let rotatedPoint = current.endPoint.applying(rotation)
+//
+//        return CGVector(endPoint: rotatedPoint)
+//    }
+//
+//    var path: NSBezierPath {
+//
+//        let path = NSBezierPath(initialPoint: .zero)
+//        path.lineCapStyle = .roundLineCapStyle
+//
+//        var length = self.initialLength
+//        var prev: CGVector = .zero
+//
+//        for direction in self.directions {
+//
+//            let rotated = self.rotated(prev: prev, current: direction.unitVector)
+//
+//            let oneLine = self.oneLine(vector: length * rotated)
+//
+//            let point = path.currentPoint
+//            oneLine.transform(using: .init(translationByX: point.x, byY: point.y))
+//
+//            path.append(oneLine)
+//
+//            prev = rotated
+//            length *= 0.9
+//        }
+//
+//        return path
+//    }
+//}
