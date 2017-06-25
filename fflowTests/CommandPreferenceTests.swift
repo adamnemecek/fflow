@@ -75,8 +75,19 @@ class CommandPreferenceTests: XCTestCase {
     func testKeystroke() {
 
         self.testSet()
+
         let optionP = commandPreference.keystroke(forApp: atom, gestureString: "DR")
         XCTAssertEqual(optionP, option + "P")
+
+        let url = URL(fileURLWithPath: atom)
+        let ul = Gesture(string: "UL")
+
+        let commandD = commandPreference.keystroke(forApp: url, gesture: ul)
+        XCTAssertEqual(commandD, command + "D")
+
+        let uld = Gesture(string: "ULD")
+        let maybeNil = commandPreference.keystroke(forApp: url, gesture: uld)
+        XCTAssertNil(maybeNil)
     }
 
     func testRemoveKeystroke() {
