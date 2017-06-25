@@ -28,13 +28,13 @@ enum Direction: String {
     }
 }
 
-private protocol CanGiveString {
+protocol CanGiveDirectionString {
 
     var string: String { get }
     var arrowString: String { get }
 }
 
-extension Direction: CanGiveString {
+extension Direction: CanGiveDirectionString {
 
     var string: String {
 
