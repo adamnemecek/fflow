@@ -27,45 +27,6 @@ class GestureTests: XCTestCase {
         XCTAssertEqual(Gesture(string: "UD").string, "UD")
         XCTAssertEqual(Gesture(string: "ASDF").string, "D")
     }
-
-    func testAppendDirection() {
-
-        let gesture = Gesture()
-
-        gesture.append(direction: .Up)
-        XCTAssertEqual(gesture.string, "U")
-
-        gesture.append(direction: .Down)
-        XCTAssertEqual(gesture.string, "UD")
-
-        gesture.append(direction: .Down)
-        XCTAssertNotEqual(gesture.string, "UDD")
-        XCTAssertEqual(gesture.string, "UD")
-
-        gesture.append(direction: .Vague)
-        XCTAssertNotEqual(gesture.string, "UDV")
-        XCTAssertEqual(gesture.string, "UD")
-
-        gesture.append(direction: .No)
-        XCTAssertEqual(gesture.string, "UDN")
-    }
-
-    func testAppendXY() {
-
-        let gesture = Gesture()
-
-        gesture.append(x: 0, y: 7)
-        XCTAssertEqual(gesture.string, "D")
-
-        gesture.append(x: 7, y: 0)
-        XCTAssertEqual(gesture.string, "DR")
-
-        gesture.append(x: -1, y: -7)
-        XCTAssertEqual(gesture.string, "DRU")
-
-        gesture.append(x: -7, y: 1)
-        XCTAssertEqual(gesture.string, "DRUL")
-    }
 }
 
 extension GestureTests {
@@ -90,20 +51,20 @@ extension GestureTests {
     func testSingleDirectionGestureShouldBeCanceled() {
 
         let u = Gesture(string: "u")
-        XCTAssertNil(u.appendAndReleaseIfCan(x: 0, y: 0)?.string)
+        XCTAssertNil(u.appendAndReleaseIfCan(direction: .No)?.string)
     }
 
     func testAppendAndReleaseIfCan() {
 
         let dr = Gesture()
 
-        XCTAssertNil(dr.appendAndReleaseIfCan(x: 0, y: 10)?.string)
-        XCTAssertNil(dr.appendAndReleaseIfCan(x: 10, y: 0)?.string)
-        XCTAssertEqual(dr.appendAndReleaseIfCan(x: 0, y: 0)?.string, "DR")
+        XCTAssertNil(dr.appendAndReleaseIfCan(direction: .Down)?.string)
+        XCTAssertNil(dr.appendAndReleaseIfCan(direction: .Right)?.string)
+        XCTAssertEqual(dr.appendAndReleaseIfCan(direction: .No)?.string, "DR")
 
-        XCTAssertNil(dr.appendAndReleaseIfCan(x: -10, y: 0)?.string)
-        XCTAssertNil(dr.appendAndReleaseIfCan(x: 10, y: 0)?.string)
-        XCTAssertEqual(dr.appendAndReleaseIfCan(x: 0, y: 0)?.string, "LR")
+        XCTAssertNil(dr.appendAndReleaseIfCan(direction: .Left)?.string)
+        XCTAssertNil(dr.appendAndReleaseIfCan(direction: .Right)?.string)
+        XCTAssertEqual(dr.appendAndReleaseIfCan(direction: .No)?.string, "LR")
     }
 }
 
