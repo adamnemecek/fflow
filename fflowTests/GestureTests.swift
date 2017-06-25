@@ -27,6 +27,11 @@ class GestureTests: XCTestCase {
         XCTAssertEqual(Gesture(string: "UD").string, "UD")
         XCTAssertEqual(Gesture(string: "ASDF").string, "D")
     }
+
+    func testStringLowercased() {
+
+        XCTAssertEqual(Gesture(string: "dr").string, "DR")
+    }
 }
 
 extension GestureTests {
