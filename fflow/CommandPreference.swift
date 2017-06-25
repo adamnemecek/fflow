@@ -10,36 +10,19 @@ import Cocoa
 
 class CommandPreference {
 
-//    fileprivate let userDefaults = NSUserDefaultsController().defaults
-    fileprivate let userDefaults: UserDefaults
-
-    private let appPathsKey = "appPaths"
-
-    var appPaths: [String] {
-
-        guard let anyAppPaths = self.userDefaults.array(forKey: self.appPathsKey) else { return [] }
-        guard let appPaths = anyAppPaths as? [String] else { return [] }
-        return appPaths
-    }
-
     static private func validUserDefaults(suiteName: String?) -> UserDefaults {
 
         guard let name = suiteName else { return UserDefaults.standard }
-
         guard let userDefaults = UserDefaults(suiteName: name) else { return UserDefaults.standard }
 
         return userDefaults
     }
 
-    init(suiteName: String? = nil) {
+    fileprivate let userDefaults: UserDefaults
 
-        self.userDefaults = CommandPreference.validUserDefaults(suiteName: suiteName)
+    fileprivate let appPathsKey = "appPaths"
 
-        self.setApp(path: AppItem.Global.path)
-        self.setApp(path: AppItem.Finder.path)
-    }
-
-    private func gesturesKey(forApp path: String) -> String {
+    fileprivate func gesturesKey(forApp path: String) -> String {
 
         return "gesturesFor:\(path)"
     }
@@ -49,24 +32,85 @@ class CommandPreference {
         return "keystrokeFor:\(path)/\(gestureString)"
     }
 
-    private func setApps(paths: [String]) {
+    init(suiteName: String? = nil) {
+
+        self.userDefaults = CommandPreference.validUserDefaults(suiteName: suiteName)
+    }
+}
+
+protocol CanGetDefaults {
+
+    var appPaths: [String] { get }
+    func gestures(forApp path: String) -> [String]
+    func keystroke(forApp path: String, gestureString: String) -> String?
+    func keystroke(forApp url: URL, gesture: Gesture) -> String?
+}
+
+extension CanGetDefaults where Self: CommandPreference {
+
+    private func keystrokes(forApp path: String) -> [String] {
+
+        let gestures = self.gestures(forApp: path)
+
+        return gestures.map({
+
+            let key = self.keystrokeKey(forApp: path, forGesture: $0)
+            guard let anyKeystroke = self.userDefaults.object(forKey: key) else { return "" }
+            guard let keystrokeString = anyKeystroke as? String else { return "" }
+
+            return keystrokeString
+        })
+    }
+
+    var appPaths: [String] {
+
+        guard let anyAppPaths = self.userDefaults.array(forKey: self.appPathsKey) else { return [] }
+        guard let appPaths = anyAppPaths as? [String] else { return [] }
+        return appPaths
+    }
+
+    func gestures(forApp path: String) -> [String] {
+
+        let gesturesKey = self.gesturesKey(forApp: path)
+
+        guard let anyGestures = self.userDefaults.array(forKey: gesturesKey) else { return [] }
+        guard let gestures = anyGestures as? [String] else { return [] }
+
+        return gestures
+    }
+
+    func keystroke(forApp path: String, gestureString: String) -> String? {
+
+        let keystrokeKey = self.keystrokeKey(forApp: path, forGesture: gestureString)
+        guard let anyKeystroke = self.userDefaults.object(forKey: keystrokeKey) else { return nil }
+
+        return anyKeystroke as? String
+    }
+
+    func keystroke(forApp url: URL, gesture: Gesture) -> String? {
+
+        return self.keystroke(forApp: url.path, gestureString: gesture.string)
+    }
+}
+
+protocol CanSetDefaults: CanGetDefaults {
+
+    func setApp(path: String)
+    func setGesture(forApp path: String, gestureString: String)
+    func set(forApp path: String, gestureString: String, keystrokeString: String)
+}
+
+extension CanSetDefaults where Self: CommandPreference {
+
+    fileprivate func setApps(paths: [String]) {
 
         self.userDefaults.set(paths, forKey: self.appPathsKey)
     }
 
-    private func setGestures(forApp path: String, gestures: [String]) {
+    fileprivate func setGestures(forApp path: String, gestures: [String]) {
 
         let gesturesKey = self.gesturesKey(forApp: path)
         self.userDefaults.set(gestures, forKey: gesturesKey)
-    }
-
-    func setGesture(forApp path: String, gestureString: String) {
-
-        var gestures = self.gestures(forApp: path)
-        guard !gestures.contains(gestureString) else { return }
-
-        gestures.append(gestureString)
-        self.setGestures(forApp: path, gestures: gestures)
     }
 
     private func setKeystroke(forApp path: String, gestureString: String, keystrokeString: String) {
@@ -84,66 +128,33 @@ class CommandPreference {
         self.setApps(paths: paths)
     }
 
+    func setGesture(forApp path: String, gestureString: String) {
+
+        var gestures = self.gestures(forApp: path)
+        guard !gestures.contains(gestureString) else { return }
+
+        gestures.append(gestureString)
+        self.setGestures(forApp: path, gestures: gestures)
+    }
+
     func set(forApp path: String, gestureString: String, keystrokeString: String) {
 
         self.setApp(path: path)
         self.setGesture(forApp: path, gestureString: gestureString)
         self.setKeystroke(forApp: path, gestureString: gestureString, keystrokeString: keystrokeString)
     }
+}
 
-    func gestures(forApp path: String) -> [String] {
+protocol CanRemoveDefaults: CanSetDefaults {
 
-        let gesturesKey = self.gesturesKey(forApp: path)
+    func removeApp(path: String)
+    func removeGesture(forApp path: String, gestureString: String)
+    func removeKeystroke(forApp path: String, gestureString: String)
+}
 
-        guard let anyGestures = self.userDefaults.array(forKey: gesturesKey) else { return [] }
-        guard let gestures = anyGestures as? [String] else { return [] }
+extension CanRemoveDefaults where Self: CommandPreference {
 
-        return gestures
-    }
-
-    func keystrokes(forApp path: String) -> [String] {
-
-        let gestures = self.gestures(forApp: path)
-
-        return gestures.map({
-
-            let key = self.keystrokeKey(forApp: path, forGesture: $0)
-            guard let anyKeystroke = self.userDefaults.object(forKey: key) else { return "" }
-            guard let keystrokeString = anyKeystroke as? String else { return "" }
-
-            return keystrokeString
-        })
-    }
-
-    func keystroke(forApp path: String, gestureString: String) -> String? {
-
-        let keystrokeKey = self.keystrokeKey(forApp: path, forGesture: gestureString)
-        guard let anyKeystroke = self.userDefaults.object(forKey: keystrokeKey) else { return nil }
-
-        return anyKeystroke as? String
-    }
-    func keystroke(forApp url: URL, gesture: Gesture) -> String? {
-
-        return self.keystroke(forApp: url.path, gestureString: gesture.string)
-    }
-
-    func removeKeystroke(forApp path: String, gestureString: String) {
-
-        let keystrokeKey = self.keystrokeKey(forApp: path, forGesture: gestureString)
-        self.userDefaults.removeObject(forKey: keystrokeKey)
-    }
-
-    func removeGesture(forApp path: String, gestureString: String) {
-
-        self.removeKeystroke(forApp: path, gestureString: gestureString)
-
-        var gestures = self.gestures(forApp: path)
-        guard let index = gestures.index(of: gestureString) else { return }
-        gestures.remove(at: index)
-        self.setGestures(forApp: path, gestures: gestures)
-    }
-
-    func removeGestures(forApp path: String) {
+    fileprivate func removeGestures(forApp path: String) {
 
         let gestures = self.gestures(forApp: path)
         gestures.forEach({ self.removeKeystroke(forApp: path, gestureString: $0) })
@@ -158,34 +169,24 @@ class CommandPreference {
         self.setApps(paths: self.appPaths.filter({ $0 != path }))
     }
 
-    func clearCompletely() {
+    func removeGesture(forApp path: String, gestureString: String) {
 
-        self.appPaths.forEach({ self.removeApp(path: $0) })
-        self.setApps(paths: [])
+        self.removeKeystroke(forApp: path, gestureString: gestureString)
+
+        var gestures = self.gestures(forApp: path)
+        guard let index = gestures.index(of: gestureString) else { return }
+        gestures.remove(at: index)
+        self.setGestures(forApp: path, gestures: gestures)
+    }
+
+    func removeKeystroke(forApp path: String, gestureString: String) {
+
+        let keystrokeKey = self.keystrokeKey(forApp: path, forGesture: gestureString)
+        self.userDefaults.removeObject(forKey: keystrokeKey)
     }
 }
 
-extension CommandPreference {
-
-    private var globalAppPath: String { return AppItem.Global.path }
-
-    func setForGlobal(gestureString: String, keystrokeString: String) {
-        self.set(forApp: self.globalAppPath, gestureString: gestureString, keystrokeString: keystrokeString)
-    }
-
-    func keystrokeForGlobal(gesture: Gesture) -> String? {
-        return self.keystroke(forApp: self.globalAppPath, gestureString: gesture.string)
-    }
-}
-
-extension CommandPreference {
-
-    private var finderPath: String { return AppItem.Finder.path }
-
-    func setForFinder(gestureString: String, keystrokeString: String) {
-        self.set(forApp: self.finderPath, gestureString: gestureString, keystrokeString: keystrokeString)
-    }
-}
+extension CommandPreference: CanRemoveDefaults {}
 
 extension CommandPreference {
 
@@ -217,8 +218,16 @@ extension CommandPreference {
         self.set(forApp: atom, gestureString: "ul", keystrokeString: "\(option)\(command)←")
         self.set(forApp: atom, gestureString: "ur", keystrokeString: "\(option)\(command)→")
 
-        self.setForFinder(gestureString: "dr", keystrokeString: "\(command)w")
+        let global = AppItem.Global.path
+        self.set(forApp: global, gestureString: "dr", keystrokeString: "\(command)w")
 
-        self.setForGlobal(gestureString: "lrd", keystrokeString: "\(command)q")
+        let finder = AppItem.Finder.path
+        self.set(forApp: finder, gestureString: "lrd", keystrokeString: "\(command)q")
+    }
+
+    func clearCompletely() {
+
+        self.appPaths.forEach({ self.removeApp(path: $0) })
+        self.setApps(paths: [])
     }
 }

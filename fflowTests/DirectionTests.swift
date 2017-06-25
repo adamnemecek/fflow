@@ -14,7 +14,7 @@ class DirectionTests: XCTestCase {
     func testArray() {
 
         let directions = Direction.array(from: "iuydl rpre")
-        XCTAssertEqual(directions.map({ $0.string }).joined(), "udlrr")
+        XCTAssertEqual(directions.map({ $0.string }).joined(), "UDLRR")
     }
 
     func testIsNo() {
@@ -66,10 +66,10 @@ extension DirectionTests {
 
     func testString() {
 
-        XCTAssertEqual(Direction.Up.string, "u")
-        XCTAssertEqual(Direction.Down.string, "d")
-        XCTAssertEqual(Direction.Left.string, "l")
-        XCTAssertEqual(Direction.Right.string, "r")
+        XCTAssertEqual(Direction.Up.string, "U")
+        XCTAssertEqual(Direction.Down.string, "D")
+        XCTAssertEqual(Direction.Left.string, "L")
+        XCTAssertEqual(Direction.Right.string, "R")
     }
 
     func testArrowString() {

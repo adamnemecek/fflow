@@ -40,4 +40,9 @@ extension NSSize {
         return NSSize(width: self.width - 2 * deltaX,
                       height: self.height - 2 * deltaY)
     }
+
+    func insetBy(bothDxDy delta: CGFloat) -> NSSize {
+
+        return self.insetBy(dx: delta, dy: delta)
+    }
 }

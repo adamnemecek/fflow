@@ -40,6 +40,13 @@ class AppTableView: NSTableView {
 
 extension AppTableView: NSTableViewDelegate {
 
+    private func noticeSelectionChanged(selectedAt row: Int) {
+
+        NotificationCenter.default.post(name: .AppTableSelectionChenged,
+                                        object: AppColumn.path(at: row),
+                                        userInfo: nil)
+    }
+
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 
         guard let identifier = tableColumn?.identifier else { return nil }
@@ -50,9 +57,7 @@ extension AppTableView: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
 
-        NotificationCenter.default.post(name: .AppTableSelectionChenged,
-                                        object: AppColumn.path(at: row),
-                                        userInfo: nil)
+        self.noticeSelectionChanged(selectedAt: row)
 
         return true
     }

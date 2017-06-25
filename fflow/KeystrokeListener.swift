@@ -91,7 +91,7 @@ extension KeystrokeListener {
 
     func set(keystrokeString: String) {
 
-        guard let keystroke = Keystroke(fromString: keystrokeString) else { return }
+        guard let keystroke = Keystroke(string: keystrokeString) else { return }
 
         self.set(keystroke: keystroke)
     }

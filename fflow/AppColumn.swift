@@ -12,8 +12,17 @@ enum AppColumn: String {
 
     case AppIcon
     case AppName
+}
 
-    var identifier: String {
+protocol HasColumnInfo {
+
+    var width: CGFloat { get }
+    var tableColumn: NSTableColumn { get }
+}
+
+extension AppColumn: HasColumnInfo {
+
+    private var identifier: String {
 
         return self.rawValue
     }
@@ -34,20 +43,52 @@ enum AppColumn: String {
     }
 }
 
-extension AppColumn {
+protocol AlwaysHaveGlobalAndFinder {}
+
+extension AlwaysHaveGlobalAndFinder {
+
+    static private func isNotGlobal(path: String) -> Bool { return path != AppItem.Global.path }
+    static private func isNotFinder(path: String) -> Bool { return path != AppItem.Finder.path }
+
+    static var appPaths: [String] {
+
+        let appPaths = CommandPreference().appPaths.filter({ return isNotGlobal(path: $0) && isNotFinder(path: $0) })
+
+        return [AppItem.Global.path] + [AppItem.Finder.path] + appPaths
+    }
+
+    fileprivate static func appItem(at row: Int) -> AppItem {
+
+        switch row {
+        case 0: return AppItem.Global
+        case 1: return AppItem.Finder
+        default: return AppItem.Else(URL(fileURLWithPath: AppColumn.appPaths[row]))
+        }
+    }
+}
+
+protocol HasView: AlwaysHaveGlobalAndFinder {
+
+    static var appPaths: [String] { get }
+    func view(at row: Int) -> NSView?
+}
+
+extension AppColumn: HasView {
 
     private var imageViewWidth: CGFloat { return AppColumn.AppIcon.width }
     private var imageViewSize: NSSize { return NSSize(squaringOf: self.imageViewWidth) }
     private var imageViewFrame: NSRect { return NSRect(size: self.imageViewSize) }
 
-    private func imageView(image optionalImage: NSImage?) -> NSImageView {
+    private var imageMargin: CGFloat { return 5 }
+    private var imageSize: NSSize { return self.imageViewSize.insetBy(bothDxDy: self.imageMargin) }
+
+    private func imageView(image: NSImage?) -> NSImageView {
 
         let imageView = NSImageView(frame: self.imageViewFrame)
 
-        guard let image = optionalImage else { return imageView }
+        guard let image = image else { return imageView }
 
-        let offset: CGFloat = 5
-        image.size = self.imageViewFrame.insetBy(dx: offset, dy: offset).size
+        image.size = self.imageSize
 
         imageView.image = image
 
@@ -73,24 +114,6 @@ extension AppColumn {
         textField.usesSingleLineMode = true
 
         return textField
-    }
-
-    static var appPaths: [String] {
-
-        let appPaths = CommandPreference().appPaths.filter({
-            $0 != AppItem.Global.path && $0 != AppItem.Finder.path
-        })
-
-        return [AppItem.Global.path] + [AppItem.Finder.path] + appPaths
-    }
-
-    fileprivate static func appItem(at row: Int) -> AppItem {
-
-        switch row {
-        case 0: return AppItem.Global
-        case 1: return AppItem.Finder
-        default: return AppItem.Else(URL(fileURLWithPath: AppColumn.appPaths[row]))
-        }
     }
 
     func view(at row: Int) -> NSView? {

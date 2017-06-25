@@ -38,7 +38,7 @@ class Gesture {
     init() {
     }
 
-    init(fromString gestureString: String) {
+    init(string gestureString: String) {
 
         self.directions = Direction.array(from: gestureString)
     }
@@ -63,15 +63,6 @@ class Gesture {
 
         let direction = ValidScroll(deltaX: deltaX, deltaY: deltaY)?.direction
         self.append(direction: direction!)
-    }
-
-    func release() -> String? {
-
-        guard let partString = self.stringOfCompletedPart else { return nil }
-
-        self.clear()
-
-        return partString
     }
 }
 
@@ -234,7 +225,7 @@ extension Gesture {
 
         guard let gestureString = self.stringOfCompletedPart else { return nil }
 
-        let gesture = Gesture(fromString: gestureString)
+        let gesture = Gesture(string: gestureString)
 
         self.clear()
 

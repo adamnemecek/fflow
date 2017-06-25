@@ -38,6 +38,15 @@ enum AppItem {
         }
     }
 
+    var url: URL {
+
+        switch self {
+        case .Global: fallthrough
+        case .Finder: return URL(fileURLWithPath: self.path)
+        case let .Else(url): return url
+        }
+    }
+
     var iconImage: NSImage? {
 
         switch self {
