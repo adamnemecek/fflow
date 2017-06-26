@@ -95,6 +95,18 @@ extension AppColumn: HasView {
         return imageView
     }
 
+    private func attributedString(for appItem: AppItem) -> NSMutableAttributedString {
+
+        let attr = NSMutableAttributedString(string: "\(appItem.name)\n\(appItem.path)")
+
+        let range = NSRange(location: appItem.name.characters.count + 1,
+                            length: appItem.path.characters.count)
+        attr.addAttribute(NSFontAttributeName,
+                          value: NSFont.systemFont(ofSize: 10, weight: 0.1),
+                          range: range)
+        return attr
+    }
+
     private var fontSize: CGFloat { return 13 }
 
     private var textFieldWidth: CGFloat { return AppColumn.AppName.width }
@@ -102,16 +114,16 @@ extension AppColumn: HasView {
     private var textFieldSize: NSSize { return NSSize(width: self.textFieldWidth, height: 0) }
     private var textFieldFrame: NSRect { return NSRect(origin: self.textFieldOrigin, size:self.textFieldSize) }
 
-    private func textField(string: String) -> NSTextField {
+    private func textField(for appItem: AppItem) -> NSTextField {
 
         let textField = NSTextField(frame: self.textFieldFrame)
         textField.backgroundColor = .clear
         textField.font = NSFont.boldSystemFont(ofSize: self.fontSize)
         textField.isBordered = false
-        textField.stringValue = string
         textField.isSelectable = false
         textField.isEditable = false
-        textField.usesSingleLineMode = true
+
+        textField.attributedStringValue = attributedString(for: appItem)
 
         return textField
     }
@@ -122,7 +134,7 @@ extension AppColumn: HasView {
 
         switch self {
         case .AppIcon: return self.imageView(image: appItem.iconImage)
-        case .AppName: return self.textField(string: appItem.name)
+        case .AppName: return self.textField(for: appItem)
         }
     }
 }
