@@ -177,7 +177,7 @@ extension CanGivePath where Self: Gesture {
 
         guard prev != .No else { return arc }
 
-        let startAngle = Self.startAngle(prev: prev, current: current)
+        let startAngle = self.startAngle(prev: prev, current: current)
         let endAngle = Self.endAngle(prev: prev, current: current)
 
         Self.isClockwise(prev: prev, current: current)
