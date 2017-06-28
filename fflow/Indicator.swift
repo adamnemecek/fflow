@@ -39,7 +39,7 @@ class Indicator: NSObject {
         return view
     }
 
-    static fileprivate var panel: NSPanel {
+    static fileprivate var templatePanel: NSPanel {
 
         let panel = NSPanel(contentRect: Indicator.frame,
                             styleMask: [.nonactivatingPanel],
@@ -60,7 +60,7 @@ class Indicator: NSObject {
 
     override init() {
 
-        self.panel = Indicator.panel
+        self.panel = Indicator.templatePanel
 
         super.init()
     }
