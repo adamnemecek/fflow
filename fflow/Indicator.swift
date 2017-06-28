@@ -51,10 +51,19 @@ class Indicator: NSObject {
         panel.backgroundColor = .clear
         panel.hasShadow = false
 
+        panel.isFloatingPanel = true // to be visible even if target app isn't fullscreen
+
         return panel
     }
 
     fileprivate let panel: NSPanel
+
+    override init() {
+
+        self.panel = Indicator.panel
+
+        super.init()
+    }
 
     private var textView: NSTextView {
 
@@ -73,17 +82,10 @@ class Indicator: NSObject {
         return textView
     }
 
-    override init() {
-
-        self.panel = Indicator.panel
-        super.init()
-    }
-
     fileprivate func showPanel() {
 
         self.panel.setFrame(Indicator.frame, display: false)
 
-        self.panel.isFloatingPanel = true // to be visible even if target app isn't fullscreen
         self.panel.orderFront(nil)
     }
 
