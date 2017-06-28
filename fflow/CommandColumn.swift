@@ -10,7 +10,8 @@ import Cocoa
 
 enum CommandColumn: String {
 
-    case Gesture
+    case GesturePath
+    case GestureArrowString
     case Keystroke
 
     var identifier: String {
@@ -21,8 +22,9 @@ enum CommandColumn: String {
     var width: CGFloat {
 
         switch self {
-        case .Gesture: return 80
-        case .Keystroke: return 80
+        case .GesturePath:        return 40
+        case .GestureArrowString: return 80
+        case .Keystroke:          return 0
         }
     }
 
@@ -33,22 +35,42 @@ enum CommandColumn: String {
         return tableColumn
     }
 
+    private var imageViewWidth: CGFloat { return CommandColumn.GesturePath.width }
+    private var imageViewSize: NSSize { return NSSize(squaringOf: self.imageViewWidth) }
+    private var imageViewFrame: NSRect { return NSRect(size: self.imageViewSize) }
+
+    private var imageMargin: CGFloat { return 0 }
+    private var imageSize: NSSize { return self.imageViewSize.insetBy(bothDxDy: self.imageMargin) }
+
+    private func imageView(for gesture: Gesture) -> NSImageView {
+
+        let image = Indicator.image(by: gesture.path)
+        image.size = self.imageSize
+        image.isTemplate = true
+
+        let imageView = NSImageView(frame: self.imageViewFrame)
+        imageView.image = image
+
+        return imageView
+    }
+
     private var fontSize: CGFloat { return 13 }
 
-    private var textFieldWidth: CGFloat { return CommandColumn.Gesture.width }
+    private var textFieldWidth: CGFloat { return CommandColumn.GestureArrowString.width }
     private var textFieldSize: NSSize { return NSSize(width: self.textFieldWidth, height: 0) }
-    private var textFieldFrame: NSRect { return NSRect(size:self.textFieldSize) }
+    private var textFieldFrame: NSRect { return NSRect(size: self.textFieldSize) }
 
-    private func textField(string: String) -> NSTextField {
+    private func textField(for gesture: Gesture) -> NSTextField {
 
         let textField = NSTextField(frame: self.textFieldFrame)
         textField.backgroundColor = .clear
         textField.font = NSFont.boldSystemFont(ofSize: self.fontSize)
         textField.isBordered = false
-        textField.stringValue = string
         textField.isSelectable = false
         textField.isEditable = false
         textField.usesSingleLineMode = true
+
+        textField.stringValue = gesture.arrowString
 
         return textField
     }
@@ -65,10 +87,13 @@ enum CommandColumn: String {
 
         let commandPreference = CommandPreference()
         let gestureString = commandPreference.gestures(forApp: path)[row]
+        let gesture = Gesture(string: gestureString)
 
         switch self {
-        case .Gesture:
-            return self.textField(string: gestureString)
+        case .GesturePath:
+            return self.imageView(for: gesture)
+        case .GestureArrowString:
+            return self.textField(for: gesture)
         case .Keystroke:
             let keystrokeString = commandPreference.keystroke(forApp: path, gestureString: gestureString)
             let keystrokeListener = self.keystrokeListener(keystrokeString: keystrokeString ?? "")
