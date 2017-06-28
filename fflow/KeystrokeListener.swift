@@ -10,7 +10,7 @@ import Cocoa
 
 class KeystrokeListener: NSTextField {
 
-    var keystroke: Keystroke?
+    static private var defaultFont: NSFont { return NSFont.systemFont(ofSize: 13) }
 
     private var eventMonitor: Any?
 
@@ -68,9 +68,13 @@ class KeystrokeListener: NSTextField {
         self.afterUnlisten?()
     }
 
+    var keystroke: Keystroke?
+
     override init(frame frameRect: NSRect) {
 
         super.init(frame: frameRect)
+
+        self.font = KeystrokeListener.defaultFont
 
         self.unlisten()
     }
@@ -79,9 +83,6 @@ class KeystrokeListener: NSTextField {
 
         fatalError("init(coder:) has not been implemented")
     }
-}
-
-extension KeystrokeListener {
 
     func set(keystroke: Keystroke) {
 
