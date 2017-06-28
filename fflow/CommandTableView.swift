@@ -27,7 +27,8 @@ class CommandTableView: NSTableView {
         self.delegate = self
         self.dataSource = self
 
-        self.addTableColumn(CommandColumn.Gesture.tableColumn)
+        self.addTableColumn(CommandColumn.GesturePath.tableColumn)
+        self.addTableColumn(CommandColumn.GestureArrowString.tableColumn)
         self.addTableColumn(CommandColumn.Keystroke.tableColumn)
 
         self.doubleAction = #selector(self.doubleClicked(sender:))
