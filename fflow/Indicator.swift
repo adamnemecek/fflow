@@ -16,8 +16,7 @@ class Indicator: NSObject {
 
         guard let frame = NSScreen.mousePointed()?.frame else { return .zero }
 
-        return .init(x: frame.origin.x + frame.size.width / 2,
-                     y: frame.origin.y + frame.size.height / 3)
+        return frame.centerPoint
     }
 
     static fileprivate var size: NSSize {
