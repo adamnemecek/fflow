@@ -10,28 +10,21 @@ import Cocoa
 
 class Indicator: NSObject {
 
-    static fileprivate let side: CGFloat = 130
-
-    static private var center: NSPoint {
+    static private var neckPoint: NSPoint {
 
         guard let frame = NSScreen.mousePointed()?.frame else { return .zero }
 
-        return frame.centerPoint
+        return NSPoint(x: frame.origin.x + frame.size.width / 2,
+                       y: frame.origin.y + frame.size.height / 3)
     }
 
-    static fileprivate var size: NSSize {
-
-        return .init(squaringOf: Indicator.side)
-    }
-
-    static private var frame: NSRect {
-
-        return .init(center: Indicator.center, size: Indicator.size)
-    }
+    static fileprivate let side: CGFloat = 130
+    static fileprivate var size: NSSize { return NSSize(squaringOf: self.side) }
+    static private var frame: NSRect { return NSRect(center: self.neckPoint, size: self.size) }
 
     static fileprivate var contentView: NSView {
 
-        let view = NSView(size: Indicator.size)
+        let view = NSView(size: self.size)
         view.wantsLayer = true
         view.layer?.cornerRadius = 20
         view.layer?.backgroundColor = NSColor(white: 0.8, alpha: 1).cgColor
@@ -46,7 +39,7 @@ class Indicator: NSObject {
                             backing: NSBackingStoreType.buffered,
                             defer: false)
 
-        panel.contentView = Indicator.contentView
+        panel.contentView = self.contentView
 
         panel.backgroundColor = .clear
         panel.hasShadow = false
@@ -110,21 +103,21 @@ class Indicator: NSObject {
 
 extension Indicator {
 
-    private var imageView: NSImageView { return .init(size: Indicator.size) }
-    private var image: NSImage { return NSImage(size: self.imageView.frame.size) }
+    static private var imageView: NSImageView { return NSImageView(size: self.size) }
+    static private var image: NSImage { return NSImage(size: self.imageView.frame.size) }
 
-    private var margin: CGFloat { return Indicator.side * 0.25 }
-    private var lineWidth: CGFloat { return Indicator.side * 0.045 }
-    private var color: NSColor { return NSColor.init(white: 0.2, alpha: 1) }
+    static private var margin: CGFloat { return self.side * 0.25 }
+    static private var lineWidth: CGFloat { return self.side * 0.045 }
+    static private var color: NSColor { return NSColor(white: 0.2, alpha: 1) }
 
-    private func imageFrom(path: NSBezierPath) -> NSImage {
+    static func image(by path: NSBezierPath) -> NSImage {
 
         path.lineWidth = self.lineWidth
 
         let size = NSSize(squaringOf: self.image.size.width - 2 * self.margin)
         path.scaleBounds(within: size)
 
-        path.setBoundsCenter(of: .init(size: self.image.size))
+        path.setBoundsCenter(of: NSRect(size: self.image.size))
 
         let image = self.image
         image.lockFocus()
@@ -140,9 +133,9 @@ extension Indicator {
         guard let contentView = self.panel.contentView else { return }
 
         let path = gesture.path
-        let image = self.imageFrom(path: path)
+        let image = Indicator.image(by: path)
 
-        let imageView = self.imageView
+        let imageView = Indicator.imageView
         imageView.image = image
         contentView.addSubview(imageView)
 
