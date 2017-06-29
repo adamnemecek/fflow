@@ -10,6 +10,13 @@ import Cocoa
 
 class CommandTableView: NSTableView {
 
+    static private var height: CGFloat { return CommandColumn.GesturePath.tableColumn.width }
+
+    private var keptRow: Int = -1
+    private var hasSelectedRow: Bool { return self.selectedRow != -1 }
+    private var isClickedTwice: Bool { return self.clickedRow == self.keptRow }
+    fileprivate func keepIndexOf(row: Int) { self.keptRow = row }
+
     fileprivate var currentAppPath: String = AppItem.Global.path
 
     func setCurrentApp(by notification: NSNotification) {
@@ -24,7 +31,7 @@ class CommandTableView: NSTableView {
 
         super.init(frame: .zero)
 
-        self.rowHeight = 30
+        self.rowHeight = CommandTableView.height
         self.headerView = nil
         self.focusRingType = .none
         self.intercellSpacing = NSSize(squaringOf: 5)
@@ -39,24 +46,31 @@ class CommandTableView: NSTableView {
         self.addTableColumn(CommandColumn.GestureArrowString.tableColumn)
         self.addTableColumn(CommandColumn.Keystroke.tableColumn)
 
-        self.doubleAction = #selector(self.doubleClicked(sender:))
+        self.action = #selector(self.clicked(sender:))
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.setCurrentApp(by:)),
                                                name: .AppTableSelectionChanged,
                                                object: nil)
     }
 
-    func doubleClicked(sender: Any) {
+    private var clickedKeystrokeListener: KeystrokeListener? {
 
-        guard let commandTableView = sender as? CommandTableView else { return }
+        return self.view(atColumn: self.clickedColumn,
+                                 row: self.clickedRow,
+                                 makeIfNecessary: false) as? KeystrokeListener
+    }
 
-        let view = commandTableView.view(atColumn: commandTableView.clickedColumn,
-                                         row: commandTableView.clickedRow,
-                                         makeIfNecessary: false)
+    func clicked(sender: Any) {
 
-        guard let keystrokeListener = view as? KeystrokeListener else { return }
+        guard self.hasSelectedRow else {
 
-        keystrokeListener.listen()
+            self.reloadData()
+            return
+        }
+
+        if self.isClickedTwice { self.clickedKeystrokeListener?.listen() }
+
+        self.keepIndexOf(row: self.clickedRow)
     }
 
     required init?(coder: NSCoder) {
