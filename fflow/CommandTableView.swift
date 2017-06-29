@@ -12,6 +12,14 @@ class CommandTableView: NSTableView {
 
     fileprivate var currentAppPath: String = AppItem.Global.path
 
+    func setCurrentApp(by notification: NSNotification) {
+
+        guard let path = notification.object as? String else { return }
+        self.currentAppPath = path
+
+        self.reloadData()
+    }
+
     init() {
 
         super.init(frame: .zero)
@@ -33,7 +41,7 @@ class CommandTableView: NSTableView {
 
         self.doubleAction = #selector(self.doubleClicked(sender:))
 
-        NotificationCenter.default.addObserver(self, selector: #selector(self.change(notification:)),
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setCurrentApp(by:)),
                                                name: .AppTableSelectionChanged,
                                                object: nil)
     }
@@ -54,18 +62,6 @@ class CommandTableView: NSTableView {
     required init?(coder: NSCoder) {
 
         fatalError("init(coder:) has not been implemented")
-    }
-
-    func change(currentApp path: String) {
-
-        self.currentAppPath = path
-        self.reloadData()
-    }
-
-    func change(notification: NSNotification) {
-
-        guard let path = notification.object as? String else { return }
-        self.change(currentApp: path)
     }
 
     deinit {
