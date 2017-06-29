@@ -10,21 +10,29 @@ import Cocoa
 
 class KeystrokeListener: NSTextField {
 
+    static private var eventMonitor: Any?
+
     static private var defaultFont: NSFont { return NSFont.systemFont(ofSize: 13) }
 
-    private var eventMonitor: Any?
+    private func setAppeance(asListening which: Bool) {
 
-    private func keyDownHandler(event: NSEvent) -> NSEvent? {
+        switch which {
+        case true:
+            self.isEditable = true
+            self.isBordered = true
+            self.backgroundColor = .white
+        default:
+            self.isEditable = false
+            self.isBordered = false
+            self.backgroundColor = .clear
+        }
+    }
 
-        self.keystroke = Keystroke(keyCode: event.keyCode, modifierFlags: event.modifierFlags)
+    func listen() {
 
-        guard let stringValue = keystroke?.string else { return nil }
-
-        self.stringValue = stringValue
-
-        self.unlisten()
-
-        return nil
+        self.setAppeance(asListening: true)
+        self.setMonitor(asListening: true)
+        self.becomeFirstResponder()
     }
 
     private func blur() {
@@ -33,39 +41,39 @@ class KeystrokeListener: NSTextField {
         self.isEnabled = true
     }
 
-    func listen() {
+    var afterUnlisten: ((Keystroke?) -> Void)?
 
-        self.isEditable = true
+    func unlisten() {
 
-        self.isBordered = true
-        self.backgroundColor = .white
-
-        self.eventMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: self.keyDownHandler)
-
-        self.becomeFirstResponder()
-    }
-
-    private var afterUnlisten: (() -> Void)?
-
-    func afterUnlisten(handler: (() -> Void)?) {
-
-        self.afterUnlisten = handler
-    }
-
-    private func unlisten() {
-
-        self.isEditable = false
-
-        self.isBordered = false
-        self.backgroundColor = .clear
-
-        guard let eventMonitor = self.eventMonitor else { return }
-
-        NSEvent.removeMonitor(eventMonitor)
-
+        self.setAppeance(asListening: false)
+        self.setMonitor(asListening: false)
         self.blur()
 
-        self.afterUnlisten?()
+        self.afterUnlisten?(self.keystroke)
+    }
+
+    private func afterListen(event: NSEvent) -> NSEvent? {
+
+        self.keystroke = Keystroke(keyCode: event.keyCode, modifierFlags: event.modifierFlags)
+        self.stringValue = keystroke?.string ?? ""
+
+        self.unlisten()
+
+        return nil
+    }
+
+    private func setMonitor(asListening which: Bool) {
+
+        switch which {
+        case true:
+            guard KeystrokeListener.eventMonitor == nil else { return }
+            KeystrokeListener.eventMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown,
+                                                                              handler: self.afterListen)
+        default:
+            guard let eventMonitor = KeystrokeListener.eventMonitor else { return }
+            NSEvent.removeMonitor(eventMonitor)
+            KeystrokeListener.eventMonitor = nil
+        }
     }
 
     var keystroke: Keystroke?
@@ -74,15 +82,22 @@ class KeystrokeListener: NSTextField {
 
         super.init(frame: frameRect)
 
+        self.setAppeance(asListening: false)
         self.font = KeystrokeListener.defaultFont
-
-        self.unlisten()
     }
 
     required init?(coder: NSCoder) {
 
         fatalError("init(coder:) has not been implemented")
     }
+
+    deinit {
+
+        self.setMonitor(asListening: false)
+    }
+}
+
+extension KeystrokeListener {
 
     func set(keystroke: Keystroke) {
 
