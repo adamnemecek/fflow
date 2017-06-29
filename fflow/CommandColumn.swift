@@ -75,18 +75,25 @@ enum CommandColumn: String {
         return textField
     }
 
-    private func keystrokeListener(keystrokeString: String) -> KeystrokeListener {
+    private func keystrokeListener(forApp path: String, gestureString: String) -> KeystrokeListener {
 
-        let keystrokeListener = KeystrokeListener(frame: .init(width: self.width, height: 0))
-        keystrokeListener.set(keystrokeString: keystrokeString)
+        let keystrokeListener = KeystrokeListener(frame: NSRect(width: self.width, height: 0))
+
+        let keystrokeString = CommandPreference().keystroke(forApp: path, gestureString: gestureString)
+        keystrokeListener.set(keystrokeString: keystrokeString ?? "")
+
+        keystrokeListener.afterUnlisten = {(_ keystroke: Keystroke?) -> Void in
+            CommandPreference().set(forApp: path,
+                                    gestureString: gestureString,
+                                    keystrokeString: keystroke?.string ?? "")
+        }
 
         return keystrokeListener
     }
 
     func view(forApp path: String, at row: Int) -> NSView? {
 
-        let commandPreference = CommandPreference()
-        let gestureString = commandPreference.gestures(forApp: path)[row]
+        let gestureString = CommandPreference().gestures(forApp: path)[row]
         let gesture = Gesture(string: gestureString)
 
         switch self {
@@ -95,14 +102,7 @@ enum CommandColumn: String {
         case .GestureArrowString:
             return self.textField(for: gesture)
         case .Keystroke:
-            let keystrokeString = commandPreference.keystroke(forApp: path, gestureString: gestureString)
-            let keystrokeListener = self.keystrokeListener(keystrokeString: keystrokeString ?? "")
-            let handler = {() -> Void in
-                guard let keystroke = keystrokeListener.keystroke else { return }
-                CommandPreference().set(forApp: path, gestureString: gestureString, keystrokeString: keystroke.string)
-            }
-            keystrokeListener.afterUnlisten(handler: handler)
-            return keystrokeListener
+            return self.keystrokeListener(forApp: path, gestureString: gestureString)
         }
     }
 }
