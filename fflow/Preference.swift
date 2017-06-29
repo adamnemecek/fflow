@@ -54,7 +54,7 @@ class Preference: NSWindowController {
 
         guard let window = self.window else { return }
 
-        window.orderFront(self)
+        window.orderFrontRegardless()
         window.becomeKey()
     }
 
