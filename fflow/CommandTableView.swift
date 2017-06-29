@@ -34,7 +34,7 @@ class CommandTableView: NSTableView {
         self.doubleAction = #selector(self.doubleClicked(sender:))
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.change(notification:)),
-                                               name: .AppTableSelectionChenged,
+                                               name: .AppTableSelectionChanged,
                                                object: nil)
     }
 

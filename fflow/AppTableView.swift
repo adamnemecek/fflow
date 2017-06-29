@@ -10,7 +10,7 @@ import Cocoa
 
 public extension NSNotification.Name {
 
-    static let AppTableSelectionChenged = NSNotification.Name("AppTableSelectionChanged")
+    static let AppTableSelectionChanged = NSNotification.Name("AppTableSelectionChanged")
 }
 
 class AppTableView: NSTableView {
@@ -42,7 +42,7 @@ extension AppTableView: NSTableViewDelegate {
 
     private func noticeSelectionChanged(selectedAt row: Int) {
 
-        NotificationCenter.default.post(name: .AppTableSelectionChenged,
+        NotificationCenter.default.post(name: .AppTableSelectionChanged,
                                         object: AppColumn.path(at: row),
                                         userInfo: nil)
     }
