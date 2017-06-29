@@ -114,67 +114,88 @@ extension CommandTableView: NSTableViewDataSource {
     }
 }
 
-extension CommandTableView: CanSelect {}
+protocol CanAddNewGesture: CanSelect {}
 
-extension CommandTableView: HasButtonBar {
+extension CanAddNewGesture where Self: CommandTableView {
+
+    private var gesturePanelSide: CGFloat { return 210 }
+    private var gesturePanelSize: NSSize { return NSSize(squaringOf: self.gesturePanelSide) }
+    private var gesturePanelFrame: NSRect { return NSRect(size: self.gesturePanelSize) }
+
+    private func okButton(on alert: NSAlert) -> NSButton { return alert.buttons[0] }
+
+    private func alert(on gesturePanel: GesturePanel) -> NSAlert {
+
+        let alert = NSAlert()
+
+        alert.messageText = "Attempt to scroll gesture."
+        alert.informativeText = "( not yet. )"
+
+        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: "Cancel")
+        self.okButton(on: alert).isEnabled = false
+
+        alert.accessoryView = gesturePanel
+
+        return alert
+    }
+
+    private func handlerToInform(on alert: NSAlert) -> ((Gesture) -> Void) {
+
+        return {(gesture: Gesture) -> Void in
+
+            alert.informativeText = gesture.arrowString
+
+            let gestures = CommandPreference().gestures(forApp: self.currentAppPath)
+            let okButton = self.okButton(on: alert)
+
+            if gestures.contains(gesture.string) {
+                alert.informativeText += " is duplicated !!"
+                okButton.isEnabled = false
+            } else {
+                okButton.isEnabled = true
+            }
+
+            return
+        }
+    }
 
     private var responseAdd: Int { return 1000 }
     private var responseCancel: Int { return 1001 }
 
-    private var gesturePanelSide: CGFloat { return 210 }
-    private var gesturePanelFrame: NSRect {
+    private func handlerToSaveGesture(from gesturePanel: GesturePanel) -> ((NSModalResponse) -> Void) {
 
-        return NSRect(size: NSSize(squaringOf: self.gesturePanelSide))
+        return {(modalResponse) -> Void in
+
+            guard modalResponse == self.responseAdd else { return }
+
+            guard let gesture = gesturePanel.recognizedGesture else { return }
+            CommandPreference().setGesture(forApp: self.currentAppPath, gestureString: gesture.string)
+
+            self.reloadData()
+            self.selectLastRow()
+        }
     }
 
-    func add() {
+    func addNewGesture() {
 
         guard let window = self.window else { return }
 
-        let alert = NSAlert()
-        alert.messageText = "Attempt to scroll gesture."
-        alert.informativeText = "( not yet. )"
-
-        let okButton = alert.addButton(withTitle: "OK")
-        okButton.isEnabled = false
-
-        alert.addButton(withTitle: "Cancel")
-
         let gesturePanel = GesturePanel(frame: self.gesturePanelFrame)
+        let alert = self.alert(on: gesturePanel)
 
-        gesturePanel.afterRecognized = {(gesture: Gesture) -> Void in
+        gesturePanel.afterRecognized = self.handlerToInform(on: alert)
 
-            alert.informativeText = gesture.arrowString
-            let gestures = CommandPreference().gestures(forApp: self.currentAppPath)
-            guard !gestures.contains(gesture.string) else {
-                alert.informativeText += " is duplicated !!"
-                okButton.isEnabled = false
-                return
-            }
-
-            okButton.isEnabled = true
-            return
-        }
-
-        alert.accessoryView = gesturePanel
-
-        alert.beginSheetModal(for: window, completionHandler: {(modalResponse) -> Void in
-
-            switch modalResponse {
-            case self.responseAdd:
-                guard let gesture = gesturePanel.recognizedGesture else { return }
-                CommandPreference().setGesture(forApp: self.currentAppPath, gestureString: gesture.string)
-                self.reloadData()
-                self.selectLastRow()
-            case self.responseCancel:
-                fallthrough
-            default:
-                break
-            }
-        })
+        alert.beginSheetModal(for: window,
+                              completionHandler: self.handlerToSaveGesture(from: gesturePanel))
     }
+}
 
-    func deleteSelected() {
+protocol CanDeleteSelectedGesture: CanSelect {}
+
+extension CanDeleteSelectedGesture where Self: CommandTableView {
+
+    func deleteSelectedGesture() {
 
         let row = self.selectedRow
 
@@ -185,17 +206,19 @@ extension CommandTableView: HasButtonBar {
         CommandPreference().removeGesture(forApp: path, gestureString: gestureString)
 
         self.reloadData()
-
         self.select(row: row)
     }
+}
 
-    func buttonBarClicked(sender: Any?) {
+extension CommandTableView: HasButtonBar, CanAddNewGesture, CanDeleteSelectedGesture {
+
+    func whichButtonClicked(sender: Any?) {
 
         guard let segmentedControl = sender as? NSSegmentedControl else { return }
 
         switch segmentedControl.selectedSegment {
-        case self.addSegment: self.add()
-        case self.removeSegment: self.deleteSelected()
+        case self.addSegment: self.addNewGesture()
+        case self.removeSegment: self.deleteSelectedGesture()
         default: break
         }
     }
@@ -203,7 +226,7 @@ extension CommandTableView: HasButtonBar {
     var buttonBarForMe: NSSegmentedControl {
 
         let buttonBar = self.buttonBar
-        buttonBar.action = #selector(buttonBarClicked(sender:))
+        buttonBar.action = #selector(self.whichButtonClicked(sender:))
 
         return buttonBar
     }
