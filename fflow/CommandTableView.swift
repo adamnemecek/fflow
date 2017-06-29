@@ -86,16 +86,20 @@ class CommandTableView: NSTableView {
 
 extension CommandTableView: NSTableViewDelegate {
 
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    private func commandColumn(of tableColumn: NSTableColumn?) -> CommandColumn? {
 
         guard let identifier = tableColumn?.identifier else { return nil }
+        return CommandColumn(rawValue: identifier)
+    }
 
-        guard let commandColumn = CommandColumn(rawValue: identifier) else { return nil }
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 
-        return commandColumn.view(forApp: self.currentAppPath, at: row)
+        return self.commandColumn(of: tableColumn)?.view(forApp: self.currentAppPath, at: row)
     }
 
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+
+        self.keepIndexOf(row: self.selectedRow)
 
         self.reloadData()
         return true
