@@ -22,7 +22,7 @@ class Indicator: NSObject {
     static fileprivate var size: NSSize { return NSSize(squaringOf: self.side) }
     static private var frame: NSRect { return NSRect(center: self.neckPoint, size: self.size) }
 
-    static fileprivate var contentView: NSView {
+    static fileprivate var templateContentView: NSView {
 
         let view = NSView(size: self.size)
         view.wantsLayer = true
@@ -39,7 +39,7 @@ class Indicator: NSObject {
                             backing: NSBackingStoreType.buffered,
                             defer: false)
 
-        panel.contentView = self.contentView
+        panel.contentView = self.templateContentView
 
         panel.backgroundColor = .clear
         panel.hasShadow = false
@@ -97,7 +97,7 @@ class Indicator: NSObject {
     func close() {
 
         self.panel.close()
-        self.panel.contentView = Indicator.contentView
+        self.panel.contentView = Indicator.templateContentView
     }
 }
 
