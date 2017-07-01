@@ -84,6 +84,14 @@ extension CanShowImage where Self: Indicator {
 
         self.showPanel()
     }
+}
+
+protocol CanClose {
+
+    func close()
+}
+
+extension CanClose where Self: Indicator {
 
     func close() {
 
