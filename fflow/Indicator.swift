@@ -100,28 +100,41 @@ extension CanClose where Self: Indicator {
     }
 }
 
-extension Indicator {
+protocol CanShowGesturePathImage: CanShowImage {
 
-    static private var imageView: NSImageView { return NSImageView(size: self.size) }
-    static private var image: NSImage { return NSImage(size: self.imageView.frame.size) }
+    static func image(by path: NSBezierPath) -> NSImage
+    func show(gesture: Gesture)
+}
 
-    static private var margin: CGFloat { return self.side * 0.25 }
+extension CanShowGesturePathImage where Self: Indicator {
+
+    static private var imageSize: NSSize { return Self.size }
+    static private var image: NSImage { return NSImage(size: self.imageSize) }
+
     static private var lineWidth: CGFloat { return self.side * 0.045 }
+    static private var margin: CGFloat { return self.side * 0.25 }
+    static private var pathSize: NSSize { return self.imageSize.insetBy(bothDxDy: self.margin) }
+    static private var imageRect: NSRect { return NSRect(size: self.imageSize) }
+
+    static private func suitabled(path: NSBezierPath) -> NSBezierPath {
+
+        path.lineWidth = self.lineWidth
+
+        path.scaleBounds(within: self.pathSize)
+        path.setBoundsCenter(of: self.imageRect)
+
+        return path
+    }
+
     static private var color: NSColor { return NSColor(white: 0.2, alpha: 1) }
 
     static func image(by path: NSBezierPath) -> NSImage {
 
-        path.lineWidth = self.lineWidth
-
-        let size = NSSize(squaringOf: self.image.size.width - 2 * self.margin)
-        path.scaleBounds(within: size)
-
-        path.setBoundsCenter(of: NSRect(size: self.image.size))
-
         let image = self.image
+
         image.lockFocus()
         self.color.setStroke()
-        path.stroke()
+        self.suitabled(path: path).stroke()
         image.unlockFocus()
 
         return image
@@ -129,23 +142,16 @@ extension Indicator {
 
     func show(gesture: Gesture) {
 
-        guard let contentView = self.panel.contentView else { return }
-
         let path = gesture.path
-        let image = Indicator.image(by: path)
+        let image = Self.image(by: path)
 
-        let imageView = Indicator.imageView
-        imageView.image = image
-        contentView.addSubview(imageView)
-
-        self.showPanel()
+        self.show(image: image)
     }
 }
 
-protocol CanFadeout: CAAnimationDelegate {
+protocol CanFadeout: CanClose, CAAnimationDelegate {
 
-    func showAndFadeout(text: String) -> Void
-    func showAndFadeout(gesture: Gesture) -> Void
+    func fadeout()
 }
 
 extension CanFadeout where Self: Indicator {
