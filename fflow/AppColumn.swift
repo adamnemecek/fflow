@@ -43,9 +43,9 @@ extension AppColumn: HasColumnInfo {
     }
 }
 
-protocol AlwaysHaveGlobalAndFinder {}
+protocol AlwaysHasGlobalAndFinder {}
 
-extension AlwaysHaveGlobalAndFinder {
+extension AlwaysHasGlobalAndFinder {
 
     static private func isNotGlobal(path: String) -> Bool { return path != AppItem.Global.path }
     static private func isNotFinder(path: String) -> Bool { return path != AppItem.Finder.path }
@@ -67,7 +67,7 @@ extension AlwaysHaveGlobalAndFinder {
     }
 }
 
-protocol HasView: AlwaysHaveGlobalAndFinder {
+protocol HasView: AlwaysHasGlobalAndFinder {
 
     static var appPaths: [String] { get }
     func view(at row: Int) -> NSView?
