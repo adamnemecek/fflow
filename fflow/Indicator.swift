@@ -190,10 +190,16 @@ extension CanFadeout where Self: Indicator {
     }
 }
 
-extension Indicator: CanFadeout {
+extension Indicator: CanShowGesturePathImage, CanFadeout {
 
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
 
         self.close()
+    }
+
+    func showAndFadeout(gesture: Gesture) {
+
+        self.show(gesture: gesture)
+        self.fadeout()
     }
 }
