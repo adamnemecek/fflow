@@ -55,9 +55,6 @@ extension NSRect {
 
     var centerPoint: NSPoint {
 
-        let x = self.minX + self.width / 2
-        let y = self.minY + self.height / 2
-
-        return NSPoint(x: x, y: y)
+        return NSPoint(x: self.midX, y: self.midY)
     }
 }
