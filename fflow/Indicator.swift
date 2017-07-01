@@ -10,17 +10,8 @@ import Cocoa
 
 class Indicator: NSObject {
 
-    static private var neckPoint: NSPoint {
-
-        guard let frame = NSScreen.mousePointed()?.frame else { return .zero }
-
-        return NSPoint(x: frame.origin.x + frame.size.width / 2,
-                       y: frame.origin.y + frame.size.height / 3)
-    }
-
     static fileprivate let side: CGFloat = 130
     static fileprivate var size: NSSize { return NSSize(squaringOf: self.side) }
-    static private var frame: NSRect { return NSRect(center: self.neckPoint, size: self.size) }
 
     static fileprivate var templateContentView: NSView {
 
@@ -44,8 +35,6 @@ class Indicator: NSObject {
         panel.backgroundColor = .clear
         panel.hasShadow = false
 
-        panel.isFloatingPanel = true // to be visible even if target app isn't fullscreen
-
         return panel
     }
 
@@ -57,39 +46,41 @@ class Indicator: NSObject {
 
         super.init()
     }
+}
 
-    private var textView: NSTextView {
+protocol CanShowImage {
 
-        let fontSize: CGFloat = 40
+    func show(image: NSImage)
+}
 
-        let textView = NSTextView()
-        textView.backgroundColor = .clear
-        textView.font = NSFont(name: "Helvetica", size: fontSize)
-        textView.textColor = NSColor(calibratedWhite: 0.2, alpha: 1.0)
-        textView.alignCenter(nil)
+extension CanShowImage where Self: Indicator {
 
-        let textViewSize = NSSize(width: Indicator.side, height: fontSize)
-        textView.setFrameSize(textViewSize)
-        textView.frame.center(of: Indicator.frame)
+    static private var neckPoint: NSPoint {
 
-        return textView
+        guard let frame = NSScreen.mousePointed()?.frame else { return .zero }
+
+        return NSPoint(x: frame.origin.x + frame.size.width / 2,
+                       y: frame.origin.y + frame.size.height / 3)
     }
 
-    fileprivate func showPanel() {
+    static private var frame: NSRect { return NSRect(center: self.neckPoint, size: self.size) }
 
-        self.panel.setFrame(Indicator.frame, display: false)
+    private func showPanel() {
 
-        self.panel.orderFront(nil)
+        self.panel.setFrame(Self.frame, display: false)
+
+        self.panel.orderFrontRegardless()
     }
 
-    func show(text: String) {
+    static private var imageView: NSImageView { return NSImageView(size: self.size) }
+
+    func show(image: NSImage) {
 
         guard let contentView = self.panel.contentView else { return }
 
-        let textView = self.textView
-        textView.string = text
-
-        contentView.addSubview(textView)
+        let imageView = Self.imageView
+        imageView.image = image
+        contentView.addSubview(imageView)
 
         self.showPanel()
     }
