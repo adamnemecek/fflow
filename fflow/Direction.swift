@@ -91,7 +91,7 @@ private protocol CanInitFromString {
 
 extension Direction: CanInitFromString {
 
-    private static func filter(string: String) -> String {
+    static private func filter(string: String) -> String {
 
         return string.characters.map({ String($0).uppercased() })
             .filter({ Direction(rawValue: $0) != nil }).joined()
