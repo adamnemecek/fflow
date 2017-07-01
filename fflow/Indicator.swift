@@ -156,6 +156,8 @@ protocol CanFadeout: CanClose, CAAnimationDelegate {
 
 extension CanFadeout where Self: Indicator {
 
+    static private var deadline: DispatchTime { return .now() + 0.4 }
+
     private var opacityAnimation: CABasicAnimation {
 
         let animation = CABasicAnimation(keyPath: "opacity")
@@ -164,35 +166,27 @@ extension CanFadeout where Self: Indicator {
         animation.duration = 0.1
         animation.isRemovedOnCompletion = false
 //        animation.fillMode = kCAFillModeForwards
+
         animation.delegate = self
 
         return animation
     }
 
-    private func fadeout() {
+    private var fadeoutAnimation: (() -> Void) {
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
-
+        return {
             guard let layer = self.panel.contentView?.layer else {
-
                 self.close()
                 return
             }
-
             layer.add(self.opacityAnimation, forKey: "opacity")
-        })
+        }
     }
 
-    func showAndFadeout(text: String) {
+    func fadeout() {
 
-        self.show(text: text)
-        self.fadeout()
-    }
-
-    func showAndFadeout(gesture: Gesture) {
-
-        self.show(gesture: gesture)
-        self.fadeout()
+        DispatchQueue.main.asyncAfter(deadline: Self.deadline,
+                                      execute: self.fadeoutAnimation)
     }
 }
 
