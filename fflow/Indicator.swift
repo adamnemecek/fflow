@@ -34,9 +34,9 @@ class Indicator: NSObject {
 
     static fileprivate var templatePanel: NSPanel {
 
-        let panel = NSPanel(contentRect: Indicator.frame,
+        let panel = NSPanel(contentRect: .zero,
                             styleMask: [.nonactivatingPanel],
-                            backing: NSBackingStoreType.buffered,
+                            backing: .buffered,
                             defer: false)
 
         panel.contentView = self.templateContentView
