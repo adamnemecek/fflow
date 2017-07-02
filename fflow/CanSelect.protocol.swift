@@ -16,7 +16,7 @@ protocol CanSelect: NSTableViewDelegate, NSTableViewDataSource {
 
 extension CanSelect where Self: NSTableView {
 
-    private func validRow(row: Int) -> Int {
+    private func validRow(for row: Int) -> Int {
 
         guard row >= 0 else { return 0 }
 
@@ -29,7 +29,7 @@ extension CanSelect where Self: NSTableView {
 
     func select(row: Int) {
 
-        let validRow = self.validRow(row: row)
+        let validRow = self.validRow(for: row)
 
         let _ = self.tableView?(self, shouldSelectRow: validRow)
         
