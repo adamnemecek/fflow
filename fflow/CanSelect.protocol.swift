@@ -31,10 +31,10 @@ extension CanSelect where Self: NSTableView {
 
         let validRow = self.validRow(row: row)
 
+        let _ = self.tableView?(self, shouldSelectRow: validRow)
+        
         let indexSet = IndexSet(integer: validRow)
         self.selectRowIndexes(indexSet, byExtendingSelection: false)
-
-        let _ = self.tableView?(self, shouldSelectRow: validRow)
     }
 
     func selectLastRow() {
