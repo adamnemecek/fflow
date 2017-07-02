@@ -206,7 +206,6 @@ extension CanDeleteSelectedGesture where Self: CommandTableView {
         CommandPreference().removeGesture(forApp: path, gestureString: gestureString)
 
         self.reloadData()
-        self.select(row: row)
     }
 }
 
