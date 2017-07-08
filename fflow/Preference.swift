@@ -180,8 +180,8 @@ extension HasSplitView where Self: Preference {
 
     fileprivate static func splitView() -> NSSplitView? {
 
-        let appsView = Preference.appsView()
-        let commandsView = Preference.commandsView()
+        let appsView = self.appsView()
+        let commandsView = self.commandsView()
 
         let splitView = NSSplitView(frame: self.splitViewFrame)
         splitView.addArrangedSubview(appsView)
