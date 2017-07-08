@@ -150,7 +150,7 @@ extension AppTableView: HasButtonBar {
         }
     }
 
-    func deleteSelected() {
+    func removeSelected() {
 
         let row = self.selectedRow
 
@@ -169,7 +169,7 @@ extension AppTableView: HasButtonBar {
 
         switch segmentedControl.selectedSegment {
         case self.addSegment: self.add()
-        case self.removeSegment: self.deleteSelected()
+        case self.removeSegment: self.removeSelected()
         default: break
         }
     }
