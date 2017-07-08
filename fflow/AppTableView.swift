@@ -122,35 +122,45 @@ extension AppTableView: HasButtonBar {
 
         let appName = AppColumn.appName(at: row)
         let alert = NSAlert()
-        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: "Remove")
         alert.addButton(withTitle: "Cancel")
         alert.informativeText = "Remove \(appName) ?"
 
         return alert
     }
 
-    private func canRemove(row: Int) -> Bool {
+    private var unremovableApps: [AppItem] { return [.Global, .Finder] }
 
-        return row >= 2     // not remove Global and Finder.
+    private func canRemove(this row: Int) -> Bool {
+
+        return row >= self.unremovableApps.count
+    }
+
+    private var responseRemove: Int { return 1000 }
+
+    private func handlerToRemoveApp(at row: Int) -> ((NSModalResponse) -> Void) {
+
+        return {(modalResponse: NSModalResponse) -> Void in
+
+            guard modalResponse == self.responseRemove else { return }
+
+            self.removeApp(at: row)
+
+            self.reloadData()
+        }
     }
 
     func deleteSelected() {
 
         let row = self.selectedRow
 
-        guard self.canRemove(row: row) else { return }
+        guard self.canRemove(this: row) else { return }
 
         guard let window = self.window else { return }
 
         self.confirmationAlert(for: row)
             .beginSheetModal(for: window,
-                             completionHandler: {(modalResponse: NSModalResponse) -> Void in
-            let OK: Int = 1000
-            guard modalResponse == OK else { return }
-            self.removeApp(at: row)
-
-            self.reloadData()
-        })
+                             completionHandler: self.handlerToRemoveApp(at: row))
     }
 
     func buttonBarClicked(sender: Any?) {
