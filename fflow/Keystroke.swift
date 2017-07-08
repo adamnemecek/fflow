@@ -138,9 +138,9 @@ extension Keystroke {
     convenience init?(keyCode: CGKeyCode, modifierFlags: NSEventModifierFlags) {
 
         self.init(keyCode: keyCode,
-                  control: modifierFlags.contains(NSEventModifierFlags.control),
-                  option: modifierFlags.contains(NSEventModifierFlags.option),
-                  shift: modifierFlags.contains(NSEventModifierFlags.shift),
-                  command: modifierFlags.contains(NSEventModifierFlags.command))
+                  control: modifierFlags.contains(.control),
+                  option: modifierFlags.contains(.option),
+                  shift: modifierFlags.contains(.shift),
+                  command: modifierFlags.contains(.command))
     }
 }
