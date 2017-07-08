@@ -127,11 +127,6 @@ extension CanGivePath where Self: Gesture {
 
     static private var initialPathLength: CGFloat { return 100 }
 
-    static private var rivetSide: CGFloat { return 7 }
-    static private var rivetSize: NSSize { return NSSize(squaringOf: self.rivetSide) }
-
-    static private var radius: CGFloat { return self.initialPathLength * 0.3 }
-
     static private func startAngle(prev: Direction, current: Direction) -> CGFloat {
 
         if prev.isVertical { return current == .Left ? 0 : 180 }
@@ -162,6 +157,8 @@ extension CanGivePath where Self: Gesture {
         }
     }
 
+    static private var rivetSize: NSSize { return NSSize(squaringOf: 9) }
+
     static private func rivet(at center: NSPoint) -> NSBezierPath {
 
         let rect = NSRect(center: center, size: self.rivetSize)
@@ -170,6 +167,8 @@ extension CanGivePath where Self: Gesture {
 
         return rivet
     }
+
+    static private var radius: CGFloat { return self.initialPathLength * 0.3 }
 
     static private func joint(at startPoint: NSPoint, prev: Direction, current: Direction) -> NSBezierPath {
 
