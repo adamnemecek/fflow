@@ -75,7 +75,21 @@ extension AppTableView: CanSelect {}
 
 extension AppTableView: HasButtonBar {
 
-    private func letUserChooseApp() -> URL? {
+    private func handlerToAddApp(for openPanel: NSOpenPanel) -> ((NSModalResponse) -> Void) {
+
+        return {(modalResponse: NSModalResponse) -> Void in
+
+            guard modalResponse == NSModalResponseOK else { return }
+            guard let path = openPanel.url?.path else { return }
+
+            CommandPreference().setApp(path: path)
+            self.reloadData()
+
+            self.selectLastRow()
+        }
+    }
+
+    private var templateOpenPanel: NSOpenPanel {
 
         let openPanel = NSOpenPanel()
         openPanel.canChooseFiles = true
@@ -85,27 +99,16 @@ extension AppTableView: HasButtonBar {
         openPanel.directoryURL = URL(fileURLWithPath: "/Applications", isDirectory: true)
         openPanel.allowedFileTypes = ["app"]
 
-        let modalResponse = openPanel.runModal()
-
-        guard modalResponse == NSModalResponseOK else {
-            NSLog("Cancelled or aborted or stopped")
-            return nil
-        }
-
-        return openPanel.url
-    }
-
-    private func appendAndReload(path: String) {
-
-        CommandPreference().setApp(path: path)
-        self.reloadData()
+        return openPanel
     }
 
     func add() {
 
-        guard let url = self.letUserChooseApp() else { return }
-        self.appendAndReload(path: url.path)
-        self.selectLastRow()
+        guard let window = self.window else { return }
+
+        let openPanel = self.templateOpenPanel
+        openPanel.beginSheetModal(for: window,
+                                  completionHandler: self.handlerToAddApp(for: openPanel))
     }
 
     private func removeApp(at row: Int) {
