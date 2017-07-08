@@ -10,8 +10,6 @@ import Cocoa
 
 class Keystroke {
 
-    static private var error: NSDictionary? = [:]
-
     fileprivate let key: Key
     fileprivate let control: Bool
     fileprivate let option: Bool
@@ -92,19 +90,6 @@ class Keystroke {
 
         guard let key = Key(fromSymbol: keystrokeString) else { return nil }
         self.key = key
-    }
-
-    func dispatchTo(appName: String) {
-
-        let modifiersString = self.modifiers.map({$0.name.lowercased() + " down"})
-                                            .joined(separator: ",")
-        let source = "tell application \"System Events\"\n"
-          + "tell process \"\(appName)\"\n"
-          + "key code \(key.code) using {\(modifiersString)}\n"
-          + "end tell\n"
-          + "end tell\n"
-
-        NSAppleScript(source: source)?.executeAndReturnError(&(Keystroke.error))
     }
 }
 
