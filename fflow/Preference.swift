@@ -10,7 +10,7 @@ import Cocoa
 
 class Preference: NSWindowController {
 
-    private static let width: CGFloat = 600
+    fileprivate static let width: CGFloat = 600
     private static let height: CGFloat = 500
 
     fileprivate static let windowSize = NSSize(width: Preference.width, height: Preference.height)
@@ -29,46 +29,37 @@ class Preference: NSWindowController {
 
     private static var templateWindow: NSWindow {
 
-        return NSWindow(contentRect: Preference.windowFrame,
-                        styleMask: [.closable, .titled],
-                        backing: .buffered,
-                        defer: false)
+        let window =  NSWindow(contentRect: Preference.windowFrame,
+                               styleMask: [.closable, .titled],
+                               backing: .buffered,
+                               defer: false)
+
+        window.title = "fflow Preference"
+
+        return window
     }
 
     init() {
 
         super.init(window: Preference.templateWindow)
-
-        self.window?.title = "fflow Preference"
-        guard let splitView = Preference.splitView() else { return }
-
-        self.window?.contentView?.addSubview(splitView)
     }
 
     required init?(coder: NSCoder) {
 
         fatalError("init(coder:) has not been implemented")
     }
-
-    func openWindow() {
-
-        guard let window = self.window else { return }
-
-        window.orderFrontRegardless()
-        window.becomeKey()
-    }
-
 }
 
-private protocol HasAppsView {
-
-    static func appsView() -> NSView
-}
+private protocol HasAppsView {}
 
 extension HasAppsView where Self: Preference {
 
-    private static var scrollViewOrigin: NSPoint { return .init(x: 0, y: 40) }
-    private static var scrollViewFrame: NSRect { return .init(origin: self.scrollViewOrigin, size: .zero) }
+    private static var scrollViewOrigin: NSPoint { return NSPoint(x: 0, y: 40) }
+
+    private static var scrollViewFrame: NSRect {
+
+        return NSRect(origin: self.scrollViewOrigin, size: .zero)
+    }
 
     private static var autoresizingMask: NSAutoresizingMaskOptions {
 
@@ -92,15 +83,13 @@ extension HasAppsView where Self: Preference {
 
     fileprivate static func appsView() -> NSView {
 
-        let appTableView = AppTableView()
-        let buttonBar = appTableView.buttonBarForMe
-
         let scrollView = self.scrollView
+        let appTableView = AppTableView()
         scrollView.documentView = appTableView
 
         let view = NSView(frame: .zero)
-        view.addSubview(buttonBar)
         view.addSubview(scrollView)
+        view.addSubview(appTableView.buttonBarForMe)
 
         view.autoresizesSubviews = true
 
@@ -108,17 +97,16 @@ extension HasAppsView where Self: Preference {
     }
 }
 
-extension Preference: HasAppsView {}
-
-private protocol HasCommandsView {
-
-    static func commandsView() -> NSView
-}
+private protocol HasCommandsView {}
 
 extension HasCommandsView where Self: Preference {
 
-    private static var scrollViewOrigin: NSPoint { return .init(x: 0, y: 40) }
-    private static var scrollViewFrame: NSRect { return .init(origin: self.scrollViewOrigin, size: .zero) }
+    private static var scrollViewOrigin: NSPoint { return NSPoint(x: 0, y: 40) }
+
+    private static var scrollViewFrame: NSRect {
+
+        return NSRect(origin: self.scrollViewOrigin, size: .zero)
+    }
 
     private static var autoresizingMask: NSAutoresizingMaskOptions {
 
@@ -141,15 +129,13 @@ extension HasCommandsView where Self: Preference {
 
     fileprivate static func commandsView() -> NSView {
 
-        let commandTableView = CommandTableView()
-        let buttonBar = commandTableView.buttonBarForMe
-
         let scrollView = self.scrollView
+        let commandTableView = CommandTableView()
         scrollView.documentView = commandTableView
 
         let view = NSView(frame: .zero)
-        view.addSubview(buttonBar)
         view.addSubview(scrollView)
+        view.addSubview(commandTableView.buttonBarForMe)
 
         view.autoresizesSubviews = true
 
@@ -157,12 +143,7 @@ extension HasCommandsView where Self: Preference {
     }
 }
 
-extension Preference: HasCommandsView {}
-
-private protocol HasSplitView {
-
-     static func splitView() -> NSSplitView?
-}
+private protocol HasSplitView: HasAppsView, HasCommandsView {}
 
 extension HasSplitView where Self: Preference {
 
@@ -199,7 +180,63 @@ extension HasSplitView where Self: Preference {
     }
 }
 
-extension Preference: HasSplitView {}
+private protocol HasDoneButton {}
+
+extension HasDoneButton where Self: Preference {
+
+    private static var doneButtonWidth: CGFloat { return 80 }
+    private static var doneButtonHeight: CGFloat { return 20 }
+
+    private static var doneButtonRightMargin: CGFloat { return 20 }
+    private static var doneButtonBottomMargin: CGFloat { return 10 }
+
+    private static var doneButtonOrigin: NSPoint {
+
+        return NSPoint(x: self.width - self.doneButtonRightMargin - self.doneButtonWidth,
+                       y: self.doneButtonBottomMargin)
+    }
+    private static var doneButtonSize: NSSize {
+
+        return NSSize(width: self.doneButtonWidth,
+                      height: self.doneButtonHeight)
+    }
+    private static var doneButtonFrame: NSRect {
+
+        return NSRect(origin: self.doneButtonOrigin,
+                      size: self.doneButtonSize)
+    }
+    fileprivate static var doneButton: NSButton {
+
+        let button = NSButton(frame: self.doneButtonFrame)
+
+        button.title = "Done"
+        button.bezelStyle = .roundRect
+
+        button.action = #selector(self.close)
+
+        return button
+    }
+}
+
+private protocol CanOpen: HasSplitView, HasDoneButton {
+
+    func openWindow()
+}
+
+extension Preference: CanOpen {
+
+    func openWindow() {
+
+        guard let window = self.window else { return }
+        guard let splitView = Preference.splitView() else { return }
+
+        window.contentView?.addSubview(Preference.doneButton)
+        window.contentView?.addSubview(splitView)
+
+        window.orderFrontRegardless()
+        window.becomeKey()
+    }
+}
 
 protocol CanClear {
 
