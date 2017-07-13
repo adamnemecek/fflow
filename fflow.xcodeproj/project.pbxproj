@@ -56,6 +56,7 @@
 		CEF581E81E04AF7D006A8440 /* NSView.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF581E71E04AF7D006A8440 /* NSView.extension.swift */; };
 		CEF5E4071EF66EEE0091CA06 /* NSScreen.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF5E4061EF66EEE0091CA06 /* NSScreen.extension.swift */; };
 		CEFD397B1E0926B2001948C9 /* NSRect.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFD397A1E0926B2001948C9 /* NSRect.extension.swift */; };
+		CEFF8EBC1F1248AA00C4382E /* GestureImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF8EBB1F1248AA00C4382E /* GestureImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		CEF581E71E04AF7D006A8440 /* NSView.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSView.extension.swift; sourceTree = "<group>"; };
 		CEF5E4061EF66EEE0091CA06 /* NSScreen.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSScreen.extension.swift; sourceTree = "<group>"; };
 		CEFD397A1E0926B2001948C9 /* NSRect.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRect.extension.swift; sourceTree = "<group>"; };
+		CEFF8EBB1F1248AA00C4382E /* GestureImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				CEA732BB1EF6A13200C0F0A6 /* ValidScroll.swift */,
 				CED57AC21D9E2AC300F881C9 /* Direction.swift */,
 				CEBD00041DA693FF006B1EE1 /* Gesture.swift */,
+				CEFF8EBB1F1248AA00C4382E /* GestureImage.swift */,
 			);
 			name = Gesture;
 			sourceTree = "<group>";
@@ -377,6 +380,11 @@
 					CED57A8B1D9DF43400F881C9 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 					CED57A9A1D9DF43400F881C9 = {
 						CreatedOnToolsVersion = 8.0;
@@ -480,6 +488,7 @@
 				CEA732BC1EF6A13200C0F0A6 /* ValidScroll.swift in Sources */,
 				CEFD397B1E0926B2001948C9 /* NSRect.extension.swift in Sources */,
 				CEEE49D11EF7D94200C186FE /* HasButtonBar.protocol.swift in Sources */,
+				CEFF8EBC1F1248AA00C4382E /* GestureImage.swift in Sources */,
 				CE6C2BF81DFC8D90001DBAD9 /* String.extension.swift in Sources */,
 				CE43BAEE1DB7F7B6005862C5 /* StatusItem.swift in Sources */,
 				CED57AC31D9E2AC300F881C9 /* Direction.swift in Sources */,

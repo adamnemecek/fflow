@@ -44,7 +44,7 @@ enum CommandColumn: String {
 
     private func imageView(for gesture: Gesture) -> NSImageView {
 
-        let image = Indicator.image(by: gesture.path)
+        let image = GestureImage(gesture: gesture).image
         image.size = self.imageSize
         image.isTemplate = true
 

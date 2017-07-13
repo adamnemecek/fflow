@@ -48,20 +48,24 @@ extension CanShowPath where Self: NSImageView {
         return image
     }
 
-    private func imageFrom(path: NSBezierPath) -> NSImage {
+    private func image(of gesture: Gesture) -> NSImage {
 
-        let imageSize = self.imageSize
+        let image = GestureImage(gesture: gesture).image
 
-        path.scaleBounds(within: imageSize.insetBy(dx: self.margin, dy: self.margin))
-        path.setBoundsCenter(of: .init(size: imageSize))
+        image.size = self.imageSize
 
-        path.lineWidth = self.lineWidth
+//        let imageSize = self.imageSize
+//
+//        path.scaleBounds(within: imageSize.insetBy(dx: self.margin, dy: self.margin))
+//        path.setBoundsCenter(of: .init(size: imageSize))
+//
+//        path.lineWidth = self.lineWidth
+//
+//        let image = self.templateImage
 
-        let image = self.templateImage
         image.lockFocus()
-
-        self.color.setStroke()
-        path.stroke()
+        NSColor.darkGray.setStroke()
+        self.roundedFramePath.stroke()
         image.unlockFocus()
 
         return image
@@ -75,7 +79,7 @@ extension CanShowPath where Self: NSImageView {
             return
         }
 
-        self.image = self.imageFrom(path: gesture.path)
+        self.image = self.image(of: gesture)
     }
 
     fileprivate func resetImage() {

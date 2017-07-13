@@ -112,7 +112,6 @@ extension HasGesturePath  where Self: GestureImage {
     }
 }
 
-
 private protocol CanGivePathImage: HasGesturePath {
 
     var image: NSImage { get }
@@ -120,16 +119,16 @@ private protocol CanGivePathImage: HasGesturePath {
 
 extension CanGivePathImage where Self: GestureImage {
 
-    static private var imageSide: CGFloat { return 100 }
+    static private var imageSide: CGFloat { return 130 }
     static private var imageSize: NSSize { return NSSize(squaringOf: self.imageSide) }
-    static private var templateImage: NSImage { return NSImage(size: self.imageSize) }
+    static fileprivate var templateImage: NSImage { return NSImage(size: self.imageSize) }
 
     static private var lineWidth: CGFloat { return self.imageSide * 0.045 }
     static private var margin: CGFloat { return self.imageSide * 0.25 }
     static private var pathSize: NSSize { return self.imageSize.insetBy(bothDxDy: self.margin) }
     static private var imageRect: NSRect { return NSRect(size: self.imageSize) }
 
-    static private func suitabled(path: NSBezierPath) -> NSBezierPath {
+    static fileprivate func suitabled(path: NSBezierPath) -> NSBezierPath {
 
         path.lineWidth = self.lineWidth
 
@@ -139,19 +138,20 @@ extension CanGivePathImage where Self: GestureImage {
         return path
     }
 
-    static private var color: NSColor { return NSColor(white: 0.2, alpha: 1) }
+    static fileprivate var color: NSColor { return NSColor(white: 0.2, alpha: 1) }
+}
+
+extension GestureImage: CanGivePathImage {
 
     var image: NSImage {
 
-        let image = Self.templateImage
+        let image = GestureImage.templateImage
 
         image.lockFocus()
-        Self.color.setStroke()
-        Self.suitabled(path: path).stroke()
+        GestureImage.color.setStroke()
+        GestureImage.suitabled(path: path).stroke()
         image.unlockFocus()
 
         return image
     }
 }
-
-extension GestureImage: CanGivePathImage {}

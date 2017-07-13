@@ -100,54 +100,54 @@ extension CanClose where Self: Indicator {
     }
 }
 
-protocol CanShowGesturePathImage: CanShowImage {
-
-    static func image(by path: NSBezierPath) -> NSImage
-    func show(gesture: Gesture)
-}
-
-extension CanShowGesturePathImage where Self: Indicator {
-
-    static private var imageSize: NSSize { return Self.size }
-    static private var image: NSImage { return NSImage(size: self.imageSize) }
-
-    static private var lineWidth: CGFloat { return self.side * 0.045 }
-    static private var margin: CGFloat { return self.side * 0.25 }
-    static private var pathSize: NSSize { return self.imageSize.insetBy(bothDxDy: self.margin) }
-    static private var imageRect: NSRect { return NSRect(size: self.imageSize) }
-
-    static private func suitabled(path: NSBezierPath) -> NSBezierPath {
-
-        path.lineWidth = self.lineWidth
-
-        path.scaleBounds(within: self.pathSize)
-        path.setBoundsCenter(of: self.imageRect)
-
-        return path
-    }
-
-    static private var color: NSColor { return NSColor(white: 0.2, alpha: 1) }
-
-    static func image(by path: NSBezierPath) -> NSImage {
-
-        let image = self.image
-
-        image.lockFocus()
-        self.color.setStroke()
-        self.suitabled(path: path).stroke()
-        image.unlockFocus()
-
-        return image
-    }
-
-    func show(gesture: Gesture) {
-
-        let path = gesture.path
-        let image = Self.image(by: path)
-
-        self.show(image: image)
-    }
-}
+//protocol CanShowGesturePathImage: CanShowImage {
+//
+//    static func image(by path: NSBezierPath) -> NSImage
+//    func show(gesture: Gesture)
+//}
+//
+//extension CanShowGesturePathImage where Self: Indicator {
+//
+//    static private var imageSize: NSSize { return Self.size }
+//    static private var image: NSImage { return NSImage(size: self.imageSize) }
+//
+//    static private var lineWidth: CGFloat { return self.side * 0.045 }
+//    static private var margin: CGFloat { return self.side * 0.25 }
+//    static private var pathSize: NSSize { return self.imageSize.insetBy(bothDxDy: self.margin) }
+//    static private var imageRect: NSRect { return NSRect(size: self.imageSize) }
+//
+//    static private func suitabled(path: NSBezierPath) -> NSBezierPath {
+//
+//        path.lineWidth = self.lineWidth
+//
+//        path.scaleBounds(within: self.pathSize)
+//        path.setBoundsCenter(of: self.imageRect)
+//
+//        return path
+//    }
+//
+//    static private var color: NSColor { return NSColor(white: 0.2, alpha: 1) }
+//
+//    static func image(by path: NSBezierPath) -> NSImage {
+//
+//        let image = self.image
+//
+//        image.lockFocus()
+//        self.color.setStroke()
+//        self.suitabled(path: path).stroke()
+//        image.unlockFocus()
+//
+//        return image
+//    }
+//
+//    func show(gesture: Gesture) {
+//
+//        let path = gesture.path
+//        let image = Self.image(by: path)
+//
+//        self.show(image: image)
+//    }
+//}
 
 protocol CanFadeout: CanClose, CAAnimationDelegate {
 
@@ -190,16 +190,16 @@ extension CanFadeout where Self: Indicator {
     }
 }
 
-extension Indicator: CanShowGesturePathImage, CanFadeout {
+extension Indicator: CanShowImage, CanFadeout {
 
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
 
         self.close()
     }
 
-    func showAndFadeout(gesture: Gesture) {
+    func showAndFadeout(image: NSImage) {
 
-        self.show(gesture: gesture)
+        self.show(image: image)
         self.fadeout()
     }
 }

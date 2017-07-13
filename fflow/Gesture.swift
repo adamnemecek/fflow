@@ -10,7 +10,7 @@ import Cocoa
 
 class Gesture {
 
-    fileprivate var directions: [Direction] = []
+    fileprivate(set) var directions: [Direction] = []
 
     init() {
     }
@@ -71,7 +71,7 @@ extension CanAppendAndRelease where Self: Gesture {
 
     private func clear() {
 
-        directions.removeAll()
+        self.directions.removeAll()
     }
 
     private func append(direction: Direction) {
@@ -118,98 +118,98 @@ extension CanAppendAndRelease where Self: Gesture {
 
 extension Gesture: CanAppendAndRelease {}
 
-protocol CanGivePath {
-
-    var path: NSBezierPath { get }
-}
-
-extension CanGivePath where Self: Gesture {
-
-    static private var initialPathLength: CGFloat { return 100 }
-
-    static private func startAngle(prev: Direction, current: Direction) -> CGFloat {
-
-        if prev.isVertical { return current == .Left ? 0 : 180 }
-        if current == .Up { return 270 }
-
-        return 90
-    }
-
-    static private func endAngle(prev: Direction, current: Direction) -> CGFloat {
-
-        if prev == .Up { return 90 }
-        if prev == .Down { return 270 }
-        if prev == .Left { return 180 }
-        return 0
-    }
-
-    static private func isClockwise(prev: Direction, current: Direction) -> Bool {
-
-        switch (prev, current) {
-        case (.Right, .Up): fallthrough
-        case (.Up, .Left): fallthrough
-        case (.Left, .Down): fallthrough
-        case (.Down, .Right): fallthrough
-        case (.Left, .Right): fallthrough
-        case (.Down, .Up): return false
-        default:
-            return true
-        }
-    }
-
-    static private var rivetSize: NSSize { return NSSize(squaringOf: 9) }
-
-    static private func rivet(at center: NSPoint) -> NSBezierPath {
-
-        let rect = NSRect(center: center, size: self.rivetSize)
-        let rivet = NSBezierPath(ovalIn: rect)
-        rivet.move(to: center)
-
-        return rivet
-    }
-
-    static private var radius: CGFloat { return self.initialPathLength * 0.3 }
-
-    static private func joint(at startPoint: NSPoint, prev: Direction, current: Direction) -> NSBezierPath {
-
-        let arc = NSBezierPath(initialPoint: startPoint)
-
-        guard prev != .No else { return arc }
-
-        let startAngle = self.startAngle(prev: prev, current: current)
-        let endAngle = Self.endAngle(prev: prev, current: current)
-
-        Self.isClockwise(prev: prev, current: current)
-            ? arc.clockwise(radius: self.radius, startAngle: startAngle, endAngle: endAngle)
-            : arc.counterClockwise(radius: self.radius, startAngle: startAngle, endAngle: endAngle)
-
-        return arc
-    }
-
-    var path: NSBezierPath {
-
-        let path = NSBezierPath(initialPoint: .zero)
-        path.lineCapStyle = .roundLineCapStyle
-
-        var length = Self.initialPathLength
-        var prev: Direction = .No
-
-        for current in self.directions {
-
-            let joint = Self.joint(at: path.currentPoint, prev: prev, current: current)
-            path.append(joint)
-
-            let rivet = Self.rivet(at: path.currentPoint)
-            path.append(rivet)
-
-            path.relativeLine(to: (length * current.unitVector).endPoint)
-
-            prev = current
-            length *= 0.9
-        }
-
-        return path
-    }
-}
-
-extension Gesture: CanGivePath {}
+//protocol CanGivePath {
+//
+//    var path: NSBezierPath { get }
+//}
+//
+//extension CanGivePath where Self: Gesture {
+//
+//    static private var initialPathLength: CGFloat { return 100 }
+//
+//    static private func startAngle(prev: Direction, current: Direction) -> CGFloat {
+//
+//        if prev.isVertical { return current == .Left ? 0 : 180 }
+//        if current == .Up { return 270 }
+//
+//        return 90
+//    }
+//
+//    static private func endAngle(prev: Direction, current: Direction) -> CGFloat {
+//
+//        if prev == .Up { return 90 }
+//        if prev == .Down { return 270 }
+//        if prev == .Left { return 180 }
+//        return 0
+//    }
+//
+//    static private func isClockwise(prev: Direction, current: Direction) -> Bool {
+//
+//        switch (prev, current) {
+//        case (.Right, .Up): fallthrough
+//        case (.Up, .Left): fallthrough
+//        case (.Left, .Down): fallthrough
+//        case (.Down, .Right): fallthrough
+//        case (.Left, .Right): fallthrough
+//        case (.Down, .Up): return false
+//        default:
+//            return true
+//        }
+//    }
+//
+//    static private var rivetSize: NSSize { return NSSize(squaringOf: 9) }
+//
+//    static private func rivet(at center: NSPoint) -> NSBezierPath {
+//
+//        let rect = NSRect(center: center, size: self.rivetSize)
+//        let rivet = NSBezierPath(ovalIn: rect)
+//        rivet.move(to: center)
+//
+//        return rivet
+//    }
+//
+//    static private var radius: CGFloat { return self.initialPathLength * 0.3 }
+//
+//    static private func joint(at startPoint: NSPoint, prev: Direction, current: Direction) -> NSBezierPath {
+//
+//        let arc = NSBezierPath(initialPoint: startPoint)
+//
+//        guard prev != .No else { return arc }
+//
+//        let startAngle = self.startAngle(prev: prev, current: current)
+//        let endAngle = Self.endAngle(prev: prev, current: current)
+//
+//        Self.isClockwise(prev: prev, current: current)
+//            ? arc.clockwise(radius: self.radius, startAngle: startAngle, endAngle: endAngle)
+//            : arc.counterClockwise(radius: self.radius, startAngle: startAngle, endAngle: endAngle)
+//
+//        return arc
+//    }
+//
+//    var path: NSBezierPath {
+//
+//        let path = NSBezierPath(initialPoint: .zero)
+//        path.lineCapStyle = .roundLineCapStyle
+//
+//        var length = Self.initialPathLength
+//        var prev: Direction = .No
+//
+//        for current in self.directions {
+//
+//            let joint = Self.joint(at: path.currentPoint, prev: prev, current: current)
+//            path.append(joint)
+//
+//            let rivet = Self.rivet(at: path.currentPoint)
+//            path.append(rivet)
+//
+//            path.relativeLine(to: (length * current.unitVector).endPoint)
+//
+//            prev = current
+//            length *= 0.9
+//        }
+//
+//        return path
+//    }
+//}
+//
+//extension Gesture: CanGivePath {}
