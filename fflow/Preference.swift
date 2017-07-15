@@ -39,15 +39,11 @@ class Preference {
         return window
     }
 
-    init() {
+    static let shared = Preference()
 
-        super.init(window: Preference.templateWindow)
-    }
+    fileprivate let window = Preference.templateWindow
 
-    required init?(coder: NSCoder) {
-
-        fatalError("init(coder:) has not been implemented")
-    }
+    private init() {}
 }
 
 private protocol HasAppsView {}
@@ -212,7 +208,7 @@ extension HasDoneButton where Self: Preference {
         button.title = "Done"
         button.bezelStyle = .roundRect
 
-        button.action = #selector(self.close)
+        button.action = #selector(self.shared.window.close)
 
         return button
     }
@@ -227,8 +223,9 @@ extension Preference: CanOpen {
 
     func openWindow() {
 
-        guard let window = self.window else { return }
         guard let splitView = Preference.splitView() else { return }
+
+        let window = Preference.shared.window
 
         window.contentView?.addSubview(Preference.doneButton)
         window.contentView?.addSubview(splitView)
