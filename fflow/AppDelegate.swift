@@ -71,17 +71,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
-    @objc private func quit() {
-
-        NSApplication.shared().terminate(self)
-    }
-
-    @objc private func preferences() {
-
-        self.preference = Preference()
-        self.preference?.openWindow()
-    }
-
     func centerClick() {
 
         guard let location = CGEvent(source: nil)?.location else { return }
@@ -97,5 +86,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         down?.post(tap: .cghidEventTap)
         up?.post(tap: .cghidEventTap)
+    }
+}
+
+extension AppDelegate {
+
+    func openPreferences() {
+
+        Preference.shared.openWindow()
+    }
+
+    func quit() {
+
+        NSApplication.shared().terminate(self)
     }
 }
