@@ -13,7 +13,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private var statusItem: StatusItem? = nil
 
-    private let indicator: Indicator = Indicator()
     private let gesture = Gesture()
     private let commandPreference = CommandPreference()
 
