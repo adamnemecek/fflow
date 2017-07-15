@@ -8,14 +8,14 @@
 
 import Cocoa
 
-class Preference: NSWindowController {
+class Preference {
 
-    fileprivate static let width: CGFloat = 600
-    private static let height: CGFloat = 500
+    static fileprivate let width: CGFloat = 600
+    static private let height: CGFloat = 500
 
-    fileprivate static let windowSize = NSSize(width: Preference.width, height: Preference.height)
+    static fileprivate let windowSize = NSSize(width: Preference.width, height: Preference.height)
 
-    fileprivate static var windowFrame: NSRect {
+    static fileprivate var windowFrame: NSRect {
 
         let size = Preference.windowSize
 
@@ -27,7 +27,7 @@ class Preference: NSWindowController {
         return NSRect(center: centerPoint, size: size)
     }
 
-    private static var templateWindow: NSWindow {
+    static private var templateWindow: NSWindow {
 
         let window =  NSWindow(contentRect: Preference.windowFrame,
                                styleMask: [.closable, .titled],
@@ -54,19 +54,19 @@ private protocol HasAppsView {}
 
 extension HasAppsView where Self: Preference {
 
-    private static var scrollViewOrigin: NSPoint { return NSPoint(x: 0, y: 40) }
+    static private var scrollViewOrigin: NSPoint { return NSPoint(x: 0, y: 40) }
 
-    private static var scrollViewFrame: NSRect {
+    static private var scrollViewFrame: NSRect {
 
         return NSRect(origin: self.scrollViewOrigin, size: .zero)
     }
 
-    private static var autoresizingMask: NSAutoresizingMaskOptions {
+    static private var autoresizingMask: NSAutoresizingMaskOptions {
 
         return [.viewHeightSizable, .viewWidthSizable, .viewMaxYMargin]
     }
 
-    private static var scrollView: NSScrollView {
+    static private var scrollView: NSScrollView {
 
         let scrollView = NSScrollView(frame: self.scrollViewFrame)
 
@@ -81,7 +81,7 @@ extension HasAppsView where Self: Preference {
         return scrollView
     }
 
-    fileprivate static func appsView() -> NSView {
+    static fileprivate func appsView() -> NSView {
 
         let scrollView = self.scrollView
         let appTableView = AppTableView()
@@ -101,19 +101,19 @@ private protocol HasCommandsView {}
 
 extension HasCommandsView where Self: Preference {
 
-    private static var scrollViewOrigin: NSPoint { return NSPoint(x: 0, y: 40) }
+    static private var scrollViewOrigin: NSPoint { return NSPoint(x: 0, y: 40) }
 
-    private static var scrollViewFrame: NSRect {
+    static private var scrollViewFrame: NSRect {
 
         return NSRect(origin: self.scrollViewOrigin, size: .zero)
     }
 
-    private static var autoresizingMask: NSAutoresizingMaskOptions {
+    static private var autoresizingMask: NSAutoresizingMaskOptions {
 
         return [.viewHeightSizable, .viewWidthSizable, .viewMaxYMargin]
     }
 
-    private static var scrollView: NSScrollView {
+    static private var scrollView: NSScrollView {
 
         let scrollView = NSScrollView(frame: self.scrollViewFrame)
 
@@ -127,7 +127,7 @@ extension HasCommandsView where Self: Preference {
         return scrollView
     }
 
-    fileprivate static func commandsView() -> NSView {
+    static fileprivate func commandsView() -> NSView {
 
         let scrollView = self.scrollView
         let commandTableView = CommandTableView()
@@ -147,7 +147,7 @@ private protocol HasSplitView: HasAppsView, HasCommandsView {}
 
 extension HasSplitView where Self: Preference {
 
-    private static var splitViewFrame: NSRect {
+    static private var splitViewFrame: NSRect {
 
         let topMargin: CGFloat = 40
         let bottomMargin: CGFloat = 50
@@ -159,7 +159,7 @@ extension HasSplitView where Self: Preference {
         return NSRect(origin: origin, size: size)
     }
 
-    fileprivate static func splitView() -> NSSplitView? {
+    static fileprivate func splitView() -> NSSplitView? {
 
         let appsView = self.appsView()
         let commandsView = self.commandsView()
@@ -184,28 +184,28 @@ private protocol HasDoneButton {}
 
 extension HasDoneButton where Self: Preference {
 
-    private static var doneButtonWidth: CGFloat { return 80 }
-    private static var doneButtonHeight: CGFloat { return 20 }
+    static private var doneButtonWidth: CGFloat { return 80 }
+    static private var doneButtonHeight: CGFloat { return 20 }
 
-    private static var doneButtonRightMargin: CGFloat { return 20 }
-    private static var doneButtonBottomMargin: CGFloat { return 10 }
+    static private var doneButtonRightMargin: CGFloat { return 20 }
+    static private var doneButtonBottomMargin: CGFloat { return 10 }
 
-    private static var doneButtonOrigin: NSPoint {
+    static private var doneButtonOrigin: NSPoint {
 
         return NSPoint(x: self.width - self.doneButtonRightMargin - self.doneButtonWidth,
                        y: self.doneButtonBottomMargin)
     }
-    private static var doneButtonSize: NSSize {
+    static private var doneButtonSize: NSSize {
 
         return NSSize(width: self.doneButtonWidth,
                       height: self.doneButtonHeight)
     }
-    private static var doneButtonFrame: NSRect {
+    static private var doneButtonFrame: NSRect {
 
         return NSRect(origin: self.doneButtonOrigin,
                       size: self.doneButtonSize)
     }
-    fileprivate static var doneButton: NSButton {
+    static fileprivate var doneButton: NSButton {
 
         let button = NSButton(frame: self.doneButtonFrame)
 
