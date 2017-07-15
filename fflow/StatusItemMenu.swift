@@ -6,10 +6,28 @@
 //  Copyright © 2017年 user. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
-enum StatusItemMenu {
+enum StatusItemMenu: String {
 
     case Preferences
     case Quit
+
+    var action: Selector {
+
+        switch self {
+        case .Preferences: return #selector(AppDelegate.openPreferences)
+        case .Quit:        fallthrough
+        default:           return #selector(AppDelegate.quit)
+        }
+    }
+
+    var item: NSMenuItem {
+
+        let item = NSMenuItem()
+        item.title = self.rawValue
+        item.action = self.action
+
+        return item
+    }
 }
