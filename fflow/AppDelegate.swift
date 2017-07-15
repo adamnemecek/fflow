@@ -11,29 +11,14 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    private var statusItem: StatusItem? = nil
+    private let statusItem = StatusItem.shared
 
     private let gesture = Gesture()
     private let commandPreference = CommandPreference()
 
     private var preference: Preference?
 
-    private var menuItems: [NSMenuItem] {
-
-        let quit = NSMenuItem()
-        quit.title = "Quit"
-        quit.action = #selector(self.quit)
-
-        let preferences = NSMenuItem()
-        preferences.title = "Preferences"
-        preferences.action = #selector(self.preferences)
-        return [preferences, quit]
-    }
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-
-        // Set up status bar item
-        self.statusItem = StatusItem(menuItems: self.menuItems)
 
         // Regist event handler for scrollWheel
         NSEvent.addGlobalMonitorForEvents(

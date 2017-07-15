@@ -10,83 +10,23 @@ import Cocoa
 
 class StatusItem {
 
-    static private func f(size: NSSize) -> NSBezierPath {
+    static private var menuItems: [NSMenuItem] {
 
-        let fHeight = size.height * 0.75
-        let crossBarAltitude = fHeight * 0.65
-        let halfOfCrossBarLength = fHeight * 0.5 / 2
-        let lineWidth = fHeight * 0.14
-        let halfOfLineWidth = lineWidth / 2
-
-        let f = NSBezierPath()
-        f.move(to: NSPoint(x: 0, y: 0))
-
-        f.up(dy: crossBarAltitude - halfOfLineWidth)
-        f.left(dx: halfOfCrossBarLength - halfOfLineWidth)
-        f.up(dy: lineWidth)
-        f.right(dx: halfOfCrossBarLength - halfOfLineWidth)
-
-        let outerRadius = lineWidth + halfOfCrossBarLength - halfOfLineWidth
-        f.clockwise(radius: outerRadius, startAngle: 180, endAngle: 0)
-        f.left(dx: lineWidth)
-        let innerRadius = outerRadius - lineWidth
-        f.counterClockwise(radius: innerRadius, startAngle: 0, endAngle: 180)
-
-        f.right(dx: halfOfCrossBarLength - halfOfLineWidth)
-        f.down(dy: lineWidth)
-        f.left(dx: halfOfCrossBarLength - halfOfLineWidth)
-        f.down(dy: crossBarAltitude - halfOfLineWidth)
-        f.close()
-
-        return f
+        return [StatusItemMenu.Preferences.item,
+                StatusItemMenu.Quit.item]
     }
 
-    static private func icon(size: NSSize, fPath: NSBezierPath) -> NSImage {
+    static let shared = StatusItem()
 
-        let rect = NSRect(origin: .zero, size: size)
-        let oval = NSBezierPath(ovalIn: rect)
-
-        let shiftRight = AffineTransform(translationByX: size.width / 4, byY: 0)
-        fPath.transform(using: shiftRight)
-        oval.append(fPath)
-
-        let ovalClip = NSBezierPath(ovalIn: rect)
-        let image = NSImage(size: size)
-        image.lockFocus()
-        ovalClip.addClip()
-        NSColor.black.setFill()
-        oval.fill()
-        image.unlockFocus()
-
-        image.isTemplate = true
-
-        return image
-    }
-
-    private let iconSize = NSSize(width: 18, height: 18)
     private let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
 
-    init(menuItems: [NSMenuItem]) {
+    private init() {
 
         let menu = NSMenu()
-        menuItems.forEach({ menu.addItem($0) })
+        StatusItem.menuItems.forEach({ menu.addItem($0) })
 
         self.statusItem.menu = menu
         self.statusItem.highlightMode = true
-        self.statusItem.image = StatusItem.icon(size: self.iconSize,
-                                                fPath: StatusItem.f(size: self.iconSize))
-    }
-
-    private func menuItem(title: String, selector: Selector?) -> NSMenuItem {
-
-        let menuItem = NSMenuItem()
-        menuItem.title = title
-        menuItem.action = selector
-        return menuItem
-    }
-
-    static private func quit() {
-
-        NSApplication.shared().terminate(self)
+        self.statusItem.image = StatusItemIcon.icon()
     }
 }
