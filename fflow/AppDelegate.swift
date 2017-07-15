@@ -52,7 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
                 guard gestureString != "RL" && gestureString != "LR" else {
 
-                    self.indicator.showAndFadeout(gesture: gesture)
+                    Indicator.shared.showAndFadeout(gesture: gesture)
                     self.centerClick()
                     return
                 }
@@ -62,7 +62,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 guard let keystrokeString = self.commandPreference.keystroke(forApp: url, gesture: gesture)
                     ?? self.commandPreference.keystroke(forApp: AppItem.Global.url, gesture: gesture) else { return }
 
-                self.indicator.showAndFadeout(gesture: gesture)
+                Indicator.shared.showAndFadeout(gesture: gesture)
                 Keystroke(string: keystrokeString)?.dispatchToFrontmostApp()
         })
     }

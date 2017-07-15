@@ -40,12 +40,14 @@ class Indicator: NSObject {
 
     fileprivate let panel: NSPanel
 
-    override init() {
+    private override init() {
 
         self.panel = Indicator.templatePanel
 
         super.init()
     }
+
+    static let shared = Indicator()
 }
 
 protocol CanShowImage {
