@@ -15,7 +15,6 @@
 		CE1806E31E15534400FDDFD4 /* CGFloat.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806E21E15534400FDDFD4 /* CGFloat.extension.swift */; };
 		CE1806E51E15541F00FDDFD4 /* CGFloatExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806E41E15541F00FDDFD4 /* CGFloatExtensionTests.swift */; };
 		CE1998D71F187A2000391297 /* StatusItemMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1998D61F187A2000391297 /* StatusItemMenu.swift */; };
-		CE1998DB1F187BE900391297 /* StatusItemIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1998DA1F187BE900391297 /* StatusItemIcon.swift */; };
 		CE313D8E1DA0B2C70097ADA2 /* Keystroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */; };
 		CE327DAB1E1E05E700730016 /* KeystrokeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE327DAA1E1E05E700730016 /* KeystrokeListener.swift */; };
 		CE36C7E31DFD688E0043F678 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36C7E21DFD688E0043F678 /* StringExtensionTests.swift */; };
@@ -86,7 +85,6 @@
 		CE1806E21E15534400FDDFD4 /* CGFloat.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloat.extension.swift; sourceTree = "<group>"; };
 		CE1806E41E15541F00FDDFD4 /* CGFloatExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CGFloatExtensionTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE1998D61F187A2000391297 /* StatusItemMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemMenu.swift; sourceTree = "<group>"; };
-		CE1998DA1F187BE900391297 /* StatusItemIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemIcon.swift; sourceTree = "<group>"; };
 		CE313D8D1DA0B2C70097ADA2 /* Keystroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keystroke.swift; sourceTree = "<group>"; };
 		CE327DAA1E1E05E700730016 /* KeystrokeListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeystrokeListener.swift; sourceTree = "<group>"; };
 		CE36C7E21DFD688E0043F678 /* StringExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
@@ -166,7 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				CE1998D61F187A2000391297 /* StatusItemMenu.swift */,
-				CE1998DA1F187BE900391297 /* StatusItemIcon.swift */,
 				CE43BAED1DB7F7B6005862C5 /* StatusItem.swift */,
 			);
 			name = StatusItem;
@@ -481,7 +478,6 @@
 				CE1998D71F187A2000391297 /* StatusItemMenu.swift in Sources */,
 				CED57A901D9DF43400F881C9 /* AppDelegate.swift in Sources */,
 				CE9B96621DA8B1C3004AB707 /* CommandPreference.swift in Sources */,
-				CE1998DB1F187BE900391297 /* StatusItemIcon.swift in Sources */,
 				CE848DFD1DA752130097E42F /* Preference.swift in Sources */,
 				CEE1FD5F1E2264D2007CD8A2 /* AppColumn.swift in Sources */,
 				CE0B30D61E18E82300C1DD28 /* AppTableView.swift in Sources */,
