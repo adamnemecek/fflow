@@ -13,13 +13,14 @@ class StatusItem {
     static private var iconImageName: String { return "StatusItemIcon" }
     static private var iconImage: NSImage? { return NSImage(named: self.iconImageName) }
 
-    static private var size: NSSize { return NSSize(squaringOf: 18) }
+//    static private var size: NSSize { return NSSize(squaringOf: 16) }
+//    static private var size: NSSize { return NSSize.init(width: 20, height: 16) }
 
     static private var icon: NSImage {
 
         guard let image = self.iconImage else { return NSImage.init() }
         image.isTemplate = true
-        image.size = self.size
+//        image.size = self.size
         return image
     }
 
