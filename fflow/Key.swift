@@ -53,21 +53,21 @@ enum Key: Int {
         return keyInfos[self.rawValue].symbol
     }
 
-    init?(fromName name: String) {
+    init?(name: String) {
 
         let which: (KeyInfo) -> Bool = { $0.name == name.capitalized }
         guard let key = Key.find(which: which) else { return nil }
         self = key
     }
 
-    init?(fromSymbol symbol: String) {
+    init?(symbol: String) {
 
         let which: (KeyInfo) -> Bool = { $0.symbol == symbol.capitalized }
         guard let key = Key.find(which: which) else { return nil }
         self = key
     }
 
-    init?(fromCode code: CGKeyCode) {
+    init?(code: CGKeyCode) {
 
         let which: (KeyInfo) -> Bool = { $0.code == code }
         guard let key = Key.find(which: which) else { return nil }

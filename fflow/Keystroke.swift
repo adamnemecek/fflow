@@ -44,7 +44,7 @@ class Keystroke {
 
     init?(keyCode: CGKeyCode, control: Bool = false, option: Bool = false, shift: Bool = false, command: Bool = false) {
 
-        guard let key = Key(fromCode: keyCode) else { return nil }
+        guard let key = Key(code: keyCode) else { return nil }
         self.key = key
         self.control = control
         self.option = option
@@ -54,7 +54,7 @@ class Keystroke {
 
     init?(keySymbol: String, control: Bool = false, option: Bool = false, shift: Bool = false, command: Bool = false) {
 
-        guard let key = Key(fromSymbol: keySymbol) else { return nil }
+        guard let key = Key(symbol: keySymbol) else { return nil }
         self.key = key
         self.control = control
         self.option = option
@@ -64,7 +64,7 @@ class Keystroke {
 
     init?(keyName: String, control: Bool = false, option: Bool = false, shift: Bool = false, command: Bool = false) {
 
-        guard let key = Key(fromName: keyName) else { return nil }
+        guard let key = Key(name: keyName) else { return nil }
         self.key = key
         self.control = control
         self.option = option
@@ -88,7 +88,7 @@ class Keystroke {
         self.command = keystrokeString.firstIs(it: Key.Command.symbol)
         if self.command { keystrokeString.characters.removeFirst() }
 
-        guard let key = Key(fromSymbol: keystrokeString) else { return nil }
+        guard let key = Key(symbol: keystrokeString) else { return nil }
         self.key = key
     }
 }

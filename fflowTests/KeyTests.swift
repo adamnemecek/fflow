@@ -21,16 +21,16 @@ class KeyTests: XCTestCase {
 
     func testInitFromAny() {
 
-        XCTAssertNil(Key(fromName: "invalidName"))
-        XCTAssertEqual(Key(fromName: "N"), .N)
-        XCTAssertEqual(Key(fromName: "n"), .N)
+        XCTAssertNil(Key(name: "invalidName"))
+        XCTAssertEqual(Key(name: "N"), .N)
+        XCTAssertEqual(Key(name: "n"), .N)
 
-        XCTAssertNil(Key(fromSymbol: "invalidSymbol"))
-        XCTAssertEqual(Key(fromSymbol: "S"), .S)
+        XCTAssertNil(Key(symbol: "invalidSymbol"))
+        XCTAssertEqual(Key(symbol: "S"), .S)
 
         let invalidCode: CGKeyCode = 255
-        XCTAssertNil(Key(fromCode: invalidCode))
-        XCTAssertEqual(Key(fromCode: 8), .C)
+        XCTAssertNil(Key(code: invalidCode))
+        XCTAssertEqual(Key(code: 8), .C)
     }
 
     func testDirect() {
