@@ -52,26 +52,6 @@ class Keystroke {
         self.command = command
     }
 
-    init?(keySymbol: String, control: Bool = false, option: Bool = false, shift: Bool = false, command: Bool = false) {
-
-        guard let key = Key(symbol: keySymbol) else { return nil }
-        self.key = key
-        self.control = control
-        self.option = option
-        self.shift = shift
-        self.command = command
-    }
-
-    init?(keyName: String, control: Bool = false, option: Bool = false, shift: Bool = false, command: Bool = false) {
-
-        guard let key = Key(name: keyName) else { return nil }
-        self.key = key
-        self.control = control
-        self.option = option
-        self.shift = shift
-        self.command = command
-   }
-
     init?(string immutableKeystrokeString: String) {
 
         var keystrokeString = immutableKeystrokeString

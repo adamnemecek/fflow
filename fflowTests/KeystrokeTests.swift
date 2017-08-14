@@ -27,13 +27,6 @@ class KeystrokeTests: XCTestCase {
         XCTAssertNotNil(Keystroke(string: command + "A"))
         XCTAssertNotNil(Keystroke(string: option + command + "A"))
 
-        XCTAssertNotNil(Keystroke(keyName: "zero"))
-        XCTAssertNotNil(Keystroke(keyName: "Zero"))
-        XCTAssertNotNil(Keystroke(keyName: "Zero", control: true, option: true, shift: true, command: true))
-
-        XCTAssertNotNil(Keystroke(keySymbol: "→"))
-        XCTAssertNotNil(Keystroke(keySymbol: "→", control: true, option: true, shift: true, command: true))
-
         XCTAssertNotNil(Keystroke(keyCode: 34))
         XCTAssertNotNil(Keystroke(keyCode: 34, control: true, option: true, shift: true, command: true))
     }
@@ -45,18 +38,6 @@ class KeystrokeTests: XCTestCase {
 
         let F8 = Keystroke(string: command + "F8")
         XCTAssertEqual(F8?.string, command + "F8")
-
-        let u = Keystroke(keyName: "u")
-        XCTAssertEqual(u?.string, "U")
-
-        let commandD = Keystroke(keyName: "d", command: true)
-        XCTAssertEqual(commandD?.string, "⌘D")
-
-        let optionY = Keystroke(keyName: "y", option: true)
-        XCTAssertEqual(optionY?.string, "⌥Y")
-
-        let shiftCommand9 = Keystroke(keySymbol: "9", shift: true, command: true)
-        XCTAssertEqual(shiftCommand9?.string, "⇧⌘9")
 
         let control9 = Keystroke(keyCode: 10, control: true)
         XCTAssertEqual(control9?.string, "⌃§")
