@@ -55,22 +55,22 @@ enum Key: Int {
 
     init?(name: String) {
 
-        let which: (KeyInfo) -> Bool = { $0.name == name.capitalized }
-        guard let key = Key.find(which: which) else { return nil }
+        let here: (KeyInfo) -> Bool = { $0.name == name.capitalized }
+        guard let key = Key.find(which: here) else { return nil }
         self = key
     }
 
     init?(symbol: String) {
 
-        let which: (KeyInfo) -> Bool = { $0.symbol == symbol.capitalized }
-        guard let key = Key.find(which: which) else { return nil }
+        let here: (KeyInfo) -> Bool = { $0.symbol == symbol.capitalized }
+        guard let key = Key.find(which: here) else { return nil }
         self = key
     }
 
     init?(code: CGKeyCode) {
 
-        let which: (KeyInfo) -> Bool = { $0.code == code }
-        guard let key = Key.find(which: which) else { return nil }
+        let here: (KeyInfo) -> Bool = { $0.code == code }
+        guard let key = Key.find(which: here) else { return nil }
         self = key
     }
 }
