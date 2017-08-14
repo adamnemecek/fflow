@@ -73,7 +73,7 @@ class Keystroke {
     }
 }
 
-protocol CanDispatch {
+private protocol CanDispatch {
 
     func dispatchToFrontmostApp()
 }
