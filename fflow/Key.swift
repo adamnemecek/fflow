@@ -6,7 +6,7 @@
 //  Copyright © 2016年 user. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 enum Key: Int {
 
@@ -73,6 +73,28 @@ enum Key: Int {
         guard let key = Key.find(which: here) else { return nil }
         self = key
     }
+}
+
+protocol KeyGiveEvent {
+
+    var downEvent: CGEvent? { get }
+    var upEvent: CGEvent? { get }
+}
+
+extension KeyGiveEvent {
+
+    static private var eventSource: CGEventSource? { return CGEventSource(stateID: .hidSystemState) }
+
+    static fileprivate func event(keycode: CGKeyCode, keyDown: Bool) -> CGEvent? {
+
+        return CGEvent(keyboardEventSource: self.eventSource, virtualKey: keycode, keyDown: keyDown)
+    }
+}
+
+extension Key: KeyGiveEvent {
+
+    var downEvent: CGEvent? { return Key.event(keycode: self.code, keyDown: true) }
+    var upEvent: CGEvent? { return Key.event(keycode: self.code, keyDown: false) }
 }
 
 private struct KeyInfo {
