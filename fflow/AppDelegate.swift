@@ -26,9 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             handler: {(event: NSEvent!) -> Void in
 
                 guard let validScroll = ValidScroll(deltaX: event.naturalScrollingDeltaX,
-                                               deltaY: event.naturalScrollingDeltaY) else {
-                    return
-                }
+                                                    deltaY: event.naturalScrollingDeltaY) else { return }
 
                 guard let gesture = self.gesture.appendAndReleaseIfCan(direction: validScroll.direction) else { return }
 
