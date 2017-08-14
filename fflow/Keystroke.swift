@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class Keystroke {
+struct Keystroke {
 
     fileprivate let key: Key
     fileprivate let control: Bool
@@ -78,9 +78,12 @@ private protocol CanDispatch {
     func dispatchToFrontmostApp()
 }
 
-extension CanDispatch where Self: Keystroke {
+extension CanDispatch {
 
     static fileprivate var location: CGEventTapLocation { return .cghidEventTap }
+}
+
+extension Keystroke: CanDispatch {
 
     fileprivate var flags: CGEventFlags {
 
@@ -91,9 +94,6 @@ extension CanDispatch where Self: Keystroke {
             self.command ? .maskCommand   : .maskNonCoalesced
         ]
     }
-}
-
-extension Keystroke: CanDispatch {
 
     func dispatchToFrontmostApp() {
 
@@ -110,7 +110,7 @@ extension Keystroke: CanDispatch {
 
 extension Keystroke {
 
-    convenience init?(keyCode: CGKeyCode, modifierFlags: NSEventModifierFlags) {
+    init?(keyCode: CGKeyCode, modifierFlags: NSEventModifierFlags) {
 
         self.init(keyCode: keyCode,
                   control: modifierFlags.contains(.control),
