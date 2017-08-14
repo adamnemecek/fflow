@@ -93,43 +93,38 @@ class Keystroke {
     }
 }
 
-extension Keystroke {
+protocol CanDispatch {
 
-    private var eventSource: CGEventSource? { return CGEventSource(stateID: .hidSystemState) }
-    private var hidEventTapLocation: CGEventTapLocation { return .cghidEventTap }
+    func dispatchToFrontmostApp()
+}
 
-    private var flags: CGEventFlags {
+extension CanDispatch where Self: Keystroke {
+
+    static fileprivate var location: CGEventTapLocation { return .cghidEventTap }
+
+    fileprivate var flags: CGEventFlags {
 
         return [
-            self.control ? .maskControl : .maskNonCoalesced,
-            self.option ? .maskAlternate : .maskNonCoalesced,
-            self.shift ? .maskShift : .maskNonCoalesced,
-            self.command ? .maskCommand : .maskNonCoalesced
+            self.control ? .maskControl   : .maskNonCoalesced,
+            self.option ?  .maskAlternate : .maskNonCoalesced,
+            self.shift ?   .maskShift     : .maskNonCoalesced,
+            self.command ? .maskCommand   : .maskNonCoalesced
         ]
     }
+}
 
-    private func down(keycode: CGKeyCode) -> CGEvent? {
-
-        return CGEvent(keyboardEventSource: self.eventSource, virtualKey: keycode, keyDown: true)
-    }
-
-    private func up(keycode: CGKeyCode) -> CGEvent? {
-
-        return CGEvent(keyboardEventSource: self.eventSource, virtualKey: keycode, keyDown: false)
-    }
+extension Keystroke: CanDispatch {
 
     func dispatchToFrontmostApp() {
 
-        guard let keyDown = self.down(keycode: self.key.code) else { return }
-        guard let keyUp = self.up(keycode: self.key.code) else { return }
+        guard let downEvent = self.key.downEvent else { return }
+        guard let upEvent   = self.key.upEvent   else { return }
 
-        keyDown.flags = self.flags
-
-        self.modifiers.forEach({ self.down(keycode: $0.code)?.post(tap: self.hidEventTapLocation) })
-        keyDown.post(tap: self.hidEventTapLocation)
-
-        keyUp.post(tap: self.hidEventTapLocation)
-        self.modifiers.forEach({ self.up(keycode: $0.code)?.post(tap: self.hidEventTapLocation) })
+        self.modifiers.forEach({ $0.downEvent?.post(tap: Keystroke.location) })
+        downEvent.flags = self.flags
+        downEvent.post(tap: Keystroke.location)
+        upEvent.post(tap: Keystroke.location)
+        self.modifiers.forEach({ $0.upEvent?.post(tap: Keystroke.location) })
     }
 }
 
