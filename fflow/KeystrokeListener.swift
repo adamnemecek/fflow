@@ -54,7 +54,9 @@ class KeystrokeListener: NSTextField {
 
     private func afterListen(event: NSEvent) -> NSEvent? {
 
-        self.keystroke = Keystroke(keyCode: event.keyCode, modifierFlags: event.modifierFlags)
+        guard let key = Key(code: event.keyCode) else { return nil }
+
+        self.keystroke = Keystroke(key: key, modifierFlags: event.modifierFlags.cgEventFlags)
         self.stringValue = keystroke?.string ?? ""
 
         self.unlisten()

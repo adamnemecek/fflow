@@ -72,34 +72,11 @@ private protocol CanDispatch {
     func dispatchToFrontmostApp()
 }
 
-extension CanDispatch {
-
-    static fileprivate var location: CGEventTapLocation { return .cghidEventTap }
-}
-
 extension Keystroke: CanDispatch {
 
     func dispatchToFrontmostApp() {
 
-        guard let downEvent = self.key.downEvent else { return }
-        guard let upEvent   = self.key.upEvent   else { return }
-
-        self.modifiers.forEach({ $0.downEvent?.post(tap: Keystroke.location) })
-        downEvent.flags = self.flags
-        downEvent.post(tap: Keystroke.location)
-        upEvent.post(tap: Keystroke.location)
-        self.modifiers.forEach({ $0.upEvent?.post(tap: Keystroke.location) })
-    }
-}
-
-extension Keystroke {
-
-    init?(keyCode: CGKeyCode, modifierFlags: NSEventModifierFlags) {
-
-        self.init(keyCode: keyCode,
-                  control: modifierFlags.contains(.control),
-                  option: modifierFlags.contains(.option),
-                  shift: modifierFlags.contains(.shift),
-                  command: modifierFlags.contains(.command))
+        self.key.down(using: self.modifierFlags)
+        self.key.up(using: self.modifierFlags)
     }
 }

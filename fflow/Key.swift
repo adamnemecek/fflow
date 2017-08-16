@@ -75,13 +75,13 @@ enum Key: Int {
     }
 }
 
-protocol KeyGiveEvent {
+private protocol CanDownUp {
 
-    var downEvent: CGEvent? { get }
-    var upEvent: CGEvent? { get }
+    func down(using flags: CGEventFlags)
+    func up(using flags: CGEventFlags)
 }
 
-extension KeyGiveEvent {
+extension CanDownUp {
 
     static private var eventSource: CGEventSource? { return CGEventSource(stateID: .hidSystemState) }
 
@@ -91,10 +91,41 @@ extension KeyGiveEvent {
     }
 }
 
-extension Key: KeyGiveEvent {
+extension CanDownUp {
 
-    var downEvent: CGEvent? { return Key.event(keycode: self.code, keyDown: true) }
-    var upEvent: CGEvent? { return Key.event(keycode: self.code, keyDown: false) }
+    static fileprivate var location: CGEventTapLocation { return .cghidEventTap }
+}
+
+extension Key: CanDownUp {
+
+    private func downEvent(with modifierFlags: CGEventFlags = []) -> CGEvent? {
+
+        let event = Key.event(keycode: self.code, keyDown: true)
+        event?.flags = modifierFlags
+
+        return event
+    }
+
+    private func upEvent() -> CGEvent? {
+
+        return Key.event(keycode: self.code, keyDown: false)
+    }
+
+    func down(using flags: CGEventFlags) {
+
+        guard let downEvent = self.downEvent(with: flags) else { return }
+
+        flags.keys().forEach({ $0.downEvent()?.post(tap: Key.location) })
+        downEvent.post(tap: Key.location)
+    }
+
+    func up(using flags: CGEventFlags) {
+
+        guard let upEvent = self.upEvent() else { return }
+
+        upEvent.post(tap: Key.location)
+        flags.keys().forEach({ $0.upEvent()?.post(tap: Key.location) })
+    }
 }
 
 private struct KeyInfo {
