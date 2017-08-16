@@ -26,9 +26,6 @@ class KeystrokeTests: XCTestCase {
         XCTAssertNotNil(Keystroke(string: option + "A"))
         XCTAssertNotNil(Keystroke(string: command + "A"))
         XCTAssertNotNil(Keystroke(string: option + command + "A"))
-
-        XCTAssertNotNil(Keystroke(keyCode: 34))
-        XCTAssertNotNil(Keystroke(keyCode: 34, control: true, option: true, shift: true, command: true))
     }
 
     func testString() {
@@ -38,9 +35,6 @@ class KeystrokeTests: XCTestCase {
 
         let F8 = Keystroke(string: command + "F8")
         XCTAssertEqual(F8?.string, command + "F8")
-
-        let control9 = Keystroke(keyCode: 10, control: true)
-        XCTAssertEqual(control9?.string, "⌃§")
     }
 }
 
@@ -69,30 +63,4 @@ extension KeystrokeTests {
 //            for _ in 0..<100 { shiftA.dispatchToFrontmostApp() }
 //        }
 //    }
-}
-
-extension KeystrokeTests {
-
-    func testModifiersOrder() {
-
-        // correct order: control, option, shift, command
-
-        let coscA = Keystroke(string: control + option + shift + command + "a")
-        XCTAssertEqual(coscA?.string, control + option + shift + command + "A")
-
-        let controlShiftB = Keystroke(string: control + shift + "z")
-        XCTAssertEqual(controlShiftB?.string, control + shift + "Z")
-        let keystrokeNil = Keystroke(string: shift + control + "z")
-        XCTAssertNil(keystrokeNil)
-    }
-}
-
-extension KeystrokeTests {
-
-    func testEventModifierFlags() {
-
-        let flags: NSEventModifierFlags = [.option, .control, .command, .shift]
-        let coscF2 = Keystroke(keyCode: 120, modifierFlags: flags)
-        XCTAssertEqual(coscF2?.string, control + option + shift + command + "F2")
-    }
 }
