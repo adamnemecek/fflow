@@ -35,4 +35,9 @@ extension String {
 
         return trimmed
     }
+
+    func removingOccurrence(of this: String) -> String {
+
+        return self.replacingOccurrences(of: this, with: "")
+    }
 }

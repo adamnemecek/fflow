@@ -27,4 +27,10 @@ class StringExtensionTests: XCTestCase {
         let s = "nnnasdf"
         XCTAssertEqual(s.trimmingLeading(character: "n"), "asdf")
     }
+
+    func testRemovingOccurrence() {
+
+        let s = "NasNdfN"
+        XCTAssertEqual(s.removingOccurrence(of: "N"), "asdf")
+    }
 }
