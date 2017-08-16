@@ -12,8 +12,8 @@ class CommandPreference {
 
     static private func validUserDefaults(suiteName: String?) -> UserDefaults {
 
-        guard let name = suiteName else { return UserDefaults.standard }
-        guard let userDefaults = UserDefaults(suiteName: name) else { return UserDefaults.standard }
+        guard let suiteName = suiteName else { return UserDefaults.standard }
+        guard let userDefaults = UserDefaults(suiteName: suiteName) else { return UserDefaults.standard }
 
         return userDefaults
     }
