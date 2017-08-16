@@ -35,34 +35,44 @@ extension Keystroke: CanGiveString {
 
         return self.symbols.joined()
     }
+}
 
-    init?(keyCode: CGKeyCode, control: Bool = false, option: Bool = false, shift: Bool = false, command: Bool = false) {
+private protocol CanInitWithSymbol {
 
-        guard let key = Key(code: keyCode) else { return nil }
-        self.key = key
-        self.control = control
-        self.option = option
-        self.shift = shift
-        self.command = command
+    init?(string: String)
+}
+
+extension CanInitWithSymbol {
+
+    static fileprivate func recognizeFlags(symbols: String) -> CGEventFlags {
+
+        var flags: CGEventFlags = []
+
+        if symbols.contains(Key.Control.symbol) { flags.formUnion(.maskControl) }
+        if symbols.contains(Key.Option.symbol) { flags.formUnion(.maskAlternate) }
+        if symbols.contains(Key.Shift.symbol) { flags.formUnion(.maskShift) }
+        if symbols.contains(Key.Command.symbol) { flags.formUnion(.maskCommand) }
+
+        return flags
     }
 
-    init?(string immutableKeystrokeString: String) {
+    static fileprivate func recognizeKey(symbols: String) -> Key? {
 
-        var keystrokeString = immutableKeystrokeString
+        let keySymbol = symbols.removingOccurrence(of: Key.Control.symbol)
+                               .removingOccurrence(of: Key.Option.symbol)
+                               .removingOccurrence(of: Key.Shift.symbol)
+                               .removingOccurrence(of: Key.Command.symbol)
+        return Key(symbol: keySymbol)
+    }
+}
 
-        self.control = keystrokeString.firstIs(it: Key.Control.symbol)
-        if self.control { keystrokeString.characters.removeFirst() }
+extension Keystroke: CanInitWithSymbol {
 
-        self.option = keystrokeString.firstIs(it: Key.Option.symbol)
-        if self.option { keystrokeString.characters.removeFirst() }
+    init?(string: String) {
 
-        self.shift = keystrokeString.firstIs(it: Key.Shift.symbol)
-        if self.shift { keystrokeString.characters.removeFirst() }
+        guard let key = Keystroke.recognizeKey(symbols: string) else { return nil }
 
-        self.command = keystrokeString.firstIs(it: Key.Command.symbol)
-        if self.command { keystrokeString.characters.removeFirst() }
-
-        guard let key = Key(symbol: keystrokeString) else { return nil }
+        self.modifierFlags = Keystroke.recognizeFlags(symbols: string)
         self.key = key
     }
 }
