@@ -40,6 +40,45 @@ class KeystrokeTests: XCTestCase {
 
 extension KeystrokeTests {
 
+    var suiteName: String { return "KeystrokeTests" }
+    var key: String { return "Key" }
+
+    func testSerialize() {
+
+        guard let defaults = UserDefaults(suiteName: self.suiteName) else { return }
+
+        let shiftX = Keystroke(key: .X, modifierFlags: [.maskShift])
+        defaults.set(shiftX.serialized(), forKey: self.key)
+
+        let serialized = defaults.dictionary(forKey: self.key) as? [String: UInt16]
+        XCTAssertEqual(serialized?["keyCode"], 7)
+        XCTAssertEqual(serialized?["control"], 0)
+        XCTAssertEqual(serialized?["option"], 0)
+        XCTAssertEqual(serialized?["shift"], 1)
+        XCTAssertEqual(serialized?["command"], 0)
+
+        defaults.removeSuite(named: self.suiteName)
+    }
+
+    func testDeserialize() {
+
+        guard let defaults = UserDefaults(suiteName: self.suiteName) else { return }
+
+        let shiftX = Keystroke(key: .X, modifierFlags: [.maskShift])
+        defaults.set(shiftX.serialized(), forKey: self.key)
+
+        let serialized = defaults.dictionary(forKey: self.key) as? [String: UInt16]
+        let deserialized = Keystroke(serialized: serialized)
+
+        XCTAssertEqual(deserialized?.key.code, 7)
+        XCTAssertEqual(deserialized?.modifierFlags.contains(.maskShift), true)
+
+        defaults.removeSuite(named: self.suiteName)
+    }
+}
+
+extension KeystrokeTests {
+
     // NOTE: native code is about 16x faster than which through applescript
 
     // Through applescript

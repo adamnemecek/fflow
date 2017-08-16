@@ -90,3 +90,44 @@ extension Keystroke: CanDispatch {
         self.key.up(using: self.modifierFlags)
     }
 }
+
+private protocol CanSerialize {
+
+    func serialized() -> [String: UInt16]
+    init?(serialized: [String: Any]?)
+}
+
+extension Keystroke: CanSerialize {
+
+    func serialized() -> [String: UInt16] {
+
+        return [
+            "keyCode": self.key.code,
+            "control": self.modifierFlags.contains(.maskControl)   ? 1 : 0,
+             "option": self.modifierFlags.contains(.maskAlternate) ? 1 : 0,
+              "shift": self.modifierFlags.contains(.maskShift)     ? 1 : 0,
+            "command": self.modifierFlags.contains(.maskCommand)   ? 1 : 0
+        ]
+    }
+
+    init?(serialized: [String: Any]?) {
+
+        guard let dictionary = serialized as? [String: UInt16] else { return nil }
+
+        guard let keyCode = dictionary["keyCode"] else { return nil }
+        guard let key = Key(code: keyCode) else { return nil }
+
+        guard let control = dictionary["control"] else { return nil }
+        guard let option = dictionary["option"] else { return nil }
+        guard let shift = dictionary["shift"] else { return nil }
+        guard let command = dictionary["command"] else { return nil }
+
+        self.key = key
+        self.modifierFlags = [
+            control == 1 ? .maskControl   : .maskNonCoalesced,
+            option  == 1 ? .maskAlternate : .maskNonCoalesced,
+            shift   == 1 ? .maskShift     : .maskNonCoalesced,
+            command == 1 ? .maskCommand   : .maskNonCoalesced
+        ]
+    }
+}
