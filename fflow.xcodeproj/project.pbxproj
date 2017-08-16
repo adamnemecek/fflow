@@ -56,6 +56,9 @@
 		CEEE49D31EF7D97000C186FE /* CanSelect.protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE49D21EF7D97000C186FE /* CanSelect.protocol.swift */; };
 		CEF581E81E04AF7D006A8440 /* NSView.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF581E71E04AF7D006A8440 /* NSView.extension.swift */; };
 		CEF5E4071EF66EEE0091CA06 /* NSScreen.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF5E4061EF66EEE0091CA06 /* NSScreen.extension.swift */; };
+		CEFC46001F43C248001F0F6A /* NSEventModifierFlags.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC45FF1F43C248001F0F6A /* NSEventModifierFlags.extension.swift */; };
+		CEFC46021F43C33B001F0F6A /* NSEventModifierFlagsExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC46011F43C33B001F0F6A /* NSEventModifierFlagsExtensionTests.swift */; };
+		CEFC46041F43D14D001F0F6A /* CGEventFlags.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC46031F43D14D001F0F6A /* CGEventFlags.extension.swift */; };
 		CEFD397B1E0926B2001948C9 /* NSRect.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFD397A1E0926B2001948C9 /* NSRect.extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +135,9 @@
 		CEEE49D21EF7D97000C186FE /* CanSelect.protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanSelect.protocol.swift; sourceTree = "<group>"; };
 		CEF581E71E04AF7D006A8440 /* NSView.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSView.extension.swift; sourceTree = "<group>"; };
 		CEF5E4061EF66EEE0091CA06 /* NSScreen.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSScreen.extension.swift; sourceTree = "<group>"; };
+		CEFC45FF1F43C248001F0F6A /* NSEventModifierFlags.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSEventModifierFlags.extension.swift; sourceTree = "<group>"; };
+		CEFC46011F43C33B001F0F6A /* NSEventModifierFlagsExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSEventModifierFlagsExtensionTests.swift; sourceTree = "<group>"; };
+		CEFC46031F43D14D001F0F6A /* CGEventFlags.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGEventFlags.extension.swift; sourceTree = "<group>"; };
 		CEFD397A1E0926B2001948C9 /* NSRect.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRect.extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -230,6 +236,8 @@
 				CE1806E21E15534400FDDFD4 /* CGFloat.extension.swift */,
 				CEF5E4061EF66EEE0091CA06 /* NSScreen.extension.swift */,
 				CEA732B91EF6934900C0F0A6 /* NSEvent.extension.swift */,
+				CEFC45FF1F43C248001F0F6A /* NSEventModifierFlags.extension.swift */,
+				CEFC46031F43D14D001F0F6A /* CGEventFlags.extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -292,6 +300,7 @@
 				CEDBB79C1EA61E7500CD7870 /* AppColumnTests.swift */,
 				CE39AD5F1EF58D9F00A607D6 /* NSScreenExtensionTests.swift */,
 				CEEE49CE1EF7C87B00C186FE /* ValidScrollTests.swift */,
+				CEFC46011F43C33B001F0F6A /* NSEventModifierFlagsExtensionTests.swift */,
 			);
 			path = fflowTests;
 			sourceTree = "<group>";
@@ -495,7 +504,9 @@
 				CE6C2BF81DFC8D90001DBAD9 /* String.extension.swift in Sources */,
 				CE43BAEE1DB7F7B6005862C5 /* StatusItem.swift in Sources */,
 				CED57AC31D9E2AC300F881C9 /* Direction.swift in Sources */,
+				CEFC46041F43D14D001F0F6A /* CGEventFlags.extension.swift in Sources */,
 				CEDE3B691DAFC4A80081664E /* Indicator.swift in Sources */,
+				CEFC46001F43C248001F0F6A /* NSEventModifierFlags.extension.swift in Sources */,
 				CEEE49D31EF7D97000C186FE /* CanSelect.protocol.swift in Sources */,
 				CE0B30DA1E18FBB500C1DD28 /* CommandTableView.swift in Sources */,
 			);
@@ -507,6 +518,7 @@
 			files = (
 				CEDBB79D1EA61E7500CD7870 /* AppColumnTests.swift in Sources */,
 				CEE4B8EF1E0A2A5000D00D35 /* NSRectExtensionTests.swift in Sources */,
+				CEFC46021F43C33B001F0F6A /* NSEventModifierFlagsExtensionTests.swift in Sources */,
 				CEEE49CF1EF7C87B00C186FE /* ValidScrollTests.swift in Sources */,
 				CE39AD601EF58D9F00A607D6 /* NSScreenExtensionTests.swift in Sources */,
 				CE512E1D1DFEACA3008B1877 /* NSBezierPathExtensionTests.swift in Sources */,
