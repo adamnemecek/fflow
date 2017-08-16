@@ -10,26 +10,20 @@ import Cocoa
 
 struct Keystroke {
 
-    fileprivate let key: Key
-    fileprivate let control: Bool
-    fileprivate let option: Bool
-    fileprivate let shift: Bool
-    fileprivate let command: Bool
+    var key: Key
+    var modifierFlags: CGEventFlags = []
+}
 
-    fileprivate var modifiers: [Key] {
+private protocol CanGiveString {
 
-        var modifiers: [Key] = []
-        if self.control { modifiers.append(Key.Control) }
-        if self.option { modifiers.append(Key.Option) }
-        if self.shift { modifiers.append(Key.Shift) }
-        if self.command { modifiers.append(Key.Command) }
+    var string: String { get }
+}
 
-        return modifiers
-    }
+extension Keystroke: CanGiveString {
 
     private var modifierSymbols: [String] {
 
-        return self.modifiers.map({ $0.symbol })
+        return self.modifierFlags.keys().map({ $0.symbol })
     }
 
     private var symbols: [String] {
@@ -84,16 +78,6 @@ extension CanDispatch {
 }
 
 extension Keystroke: CanDispatch {
-
-    fileprivate var flags: CGEventFlags {
-
-        return [
-            self.control ? .maskControl   : .maskNonCoalesced,
-            self.option ?  .maskAlternate : .maskNonCoalesced,
-            self.shift ?   .maskShift     : .maskNonCoalesced,
-            self.command ? .maskCommand   : .maskNonCoalesced
-        ]
-    }
 
     func dispatchToFrontmostApp() {
 
